@@ -18,7 +18,7 @@ function App() {
                 />
             </CardHeader>
             <CardBody>
-                <div className='mb-2 flex items-center justify-between'>
+                <div className='mb-2 flex items-center justify-between p-5'>
                     <Typography color='blue-gray' className='font-medium'>
                         Apple AirPods
                     </Typography>
@@ -29,17 +29,17 @@ function App() {
                 <Typography
                     variant='small'
                     color='gray'
-                    className='font-normal opacity-75'
+                    className='font-normal opacity-75 pl-5 pr-5'
                 >
                     With plenty of talk and listen time, voice-activated Siri
                     access, and an available wireless charging case.
                 </Typography>
             </CardBody>
-            <CardFooter className='pt-0'>
+            <CardFooter className='pt-0 p-5 place-self-center'>
                 <Button
                     ripple={false}
-                    fullWidth={true}
-                    className='bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 rounded focus:scale-105 focus:shadow-none active:scale-100'
+                    fullWidth={false}
+                    className='p-1 border-1 shadow-none hover:scale-105 rounded focus:shadow-none active:scale-100 hover:cursor-pointer'
                 >
                     Add to Cart
                 </Button>
