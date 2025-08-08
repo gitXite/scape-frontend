@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Typography,
+    Button,
+} from '@material-tailwind/react';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Card className='w-96'>
+            <CardHeader shadow={false} floated={false} className='h-96'>
+                <img
+                    src='https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80'
+                    alt='card-image'
+                    className='h-full w-full object-cover'
+                />
+            </CardHeader>
+            <CardBody>
+                <div className='mb-2 flex items-center justify-between'>
+                    <Typography color='blue-gray' className='font-medium'>
+                        Apple AirPods
+                    </Typography>
+                    <Typography color='blue-gray' className='font-medium'>
+                        $95.00
+                    </Typography>
+                </div>
+                <Typography
+                    variant='small'
+                    color='gray'
+                    className='font-normal opacity-75'
+                >
+                    With plenty of talk and listen time, voice-activated Siri
+                    access, and an available wireless charging case.
+                </Typography>
+            </CardBody>
+            <CardFooter className='pt-0'>
+                <Button
+                    ripple={false}
+                    fullWidth={true}
+                    className='bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100'
+                >
+                    Add to Cart
+                </Button>
+            </CardFooter>
+        </Card>
+    );
 }
 
-export default App
+export default App;
