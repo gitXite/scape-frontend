@@ -9,12 +9,12 @@ import {
 
 function App() {
     return (
-        <Card className='w-96'>
+        <Card className='flex flex-col w-96'>
             <CardHeader shadow={false} floated={false} className='h-96'>
                 <img
                     src='https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80'
                     alt='card-image'
-                    className='h-full w-full object-cover'
+                    className='h-full w-full object-cover rounded-xl'
                 />
             </CardHeader>
             <CardBody>
@@ -39,7 +39,7 @@ function App() {
                 <Button
                     ripple={false}
                     fullWidth={true}
-                    className='bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100'
+                    className='bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 rounded focus:scale-105 focus:shadow-none active:scale-100'
                 >
                     Add to Cart
                 </Button>
