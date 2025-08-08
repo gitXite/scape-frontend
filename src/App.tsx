@@ -39,7 +39,7 @@ function App() {
                 <Button
                     ripple={false}
                     fullWidth={false}
-                    className='p-1 border-1 shadow-none hover:scale-105 rounded focus:shadow-none active:scale-100 hover:cursor-pointer'
+                    className='p-1  shadow-none hover:scale-105 rounded focus:shadow-none active:scale-100 hover:cursor-pointer'
                 >
                     Add to Cart
                 </Button>
