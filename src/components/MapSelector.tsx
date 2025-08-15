@@ -23,6 +23,8 @@ const containerStyle: React.CSSProperties = {
     width: '50%'
 };
 
+const libraries: ('geometry')[] = ['geometry'];
+
 
 const MapSelector = () => {
     const [center, setCenter] = useState<LatLngLiteral>({ lat: 60.4720, lng: 8.4689 });
@@ -72,7 +74,7 @@ const MapSelector = () => {
     
     return (
         <div className='flex flex-col h-full w-full'>
-            <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={['geometry']}>
+            <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}

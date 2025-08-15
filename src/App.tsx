@@ -3,7 +3,9 @@ import MapSelector from './components/MapSelector';
 
 function App() {
     return (
-        <MapSelector />
+        <div className='flex h-full w-full'>
+            <MapSelector />
+        </div>
     );
 }
 
