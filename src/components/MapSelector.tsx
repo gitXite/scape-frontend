@@ -1,8 +1,8 @@
 // remember to install '@react-google-maps/api'
-import { useRef, useCallback, useState, CSSProperties } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 // types for IntelliSense
-import {} from 'google.maps';
+// import {} from 'google.maps';
 
 
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -18,7 +18,7 @@ type RectangleBounds = {
 const RECT_HEIGHT_SCALE: number = 1000;
 const RECT_WIDTH_SCALE: number = 1000;
 
-const containerStyle: CSSProperties = {
+const containerStyle: React.CSSProperties = {
     height: '70%',
     width: '50%'
 };
@@ -97,7 +97,7 @@ const MapSelector = () => {
                     )}
                 </GoogleMap>
             </LoadScript>
-            <button onClick={handleCapture]>
+            <button onClick={handleCapture}>
                 Capture Coordinates
             </button>
         </div>
