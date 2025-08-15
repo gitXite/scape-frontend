@@ -19,7 +19,7 @@ const RECT_HEIGHT_SCALE: number = 1000;
 const RECT_WIDTH_SCALE: number = 1000;
 
 const containerStyle: React.CSSProperties = {
-    height: '70%',
+    height: '500px',
     width: '50%'
 };
 
@@ -73,7 +73,7 @@ const MapSelector = () => {
     };
     
     return (
-        <div className='flex flex-col h-full w-full'>
+        <div className='flex flex-col h-full w-full items-center'>
             <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
