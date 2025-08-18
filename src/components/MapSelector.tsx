@@ -19,7 +19,7 @@ const RECT_HEIGHT_SCALE: number = 10000;
 const RECT_WIDTH_SCALE: number = 7000;
 
 const containerStyle: React.CSSProperties = {
-    height: '500px',
+    height: '600px',
     width: '50%'
 };
 
