@@ -1,5 +1,5 @@
 // remember to install '@react-google-maps/api'
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 // types for IntelliSense
 // import {} from 'google.maps';
@@ -52,17 +52,6 @@ const MapSelector = () => {
         });
     };
 
-    const handleCenterChanged = () => {
-        if (mapRef.current) {
-            const c = mapRef.current.getCenter();
-            if (c) {
-                const newCenter = { lat: c.lat(), lng: c.lng() };
-                setCenter(newCenter);
-                computeRectangleBounds(newCenter);
-            }
-        }
-    };
-
     const handleCapture = () => {
         if (rectangleBounds) {
             alert(`Coordinates captured successfully:\n${JSON.stringify(rectangleBounds, null, 2)}`);
@@ -71,6 +60,10 @@ const MapSelector = () => {
             return;
         }
     };
+
+    useEffect(() => {
+        if (mapRef.current) computeRectangleBounds(center);
+    }, [center])
     
     return (
         <div className='flex flex-col h-full w-full items-center mt-20'>
@@ -81,7 +74,15 @@ const MapSelector = () => {
                     zoom={10}
                     mapTypeId='hybrid'
                     onLoad={onLoad}
-                    onCenterChanged={handleCenterChanged}
+                    onDragEnd={() => {
+                        if (mapRef.current) {
+                            const c = mapRef.current.getCenter();
+                            if (c) {
+                                const newCenter = { lat: c.lat(), lng: c.lng() };
+                                setCenter(newCenter);
+                            }
+                        }
+                    }}
                 >
                     {rectangleBounds && (
                         <Rectangle 
