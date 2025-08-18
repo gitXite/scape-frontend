@@ -15,8 +15,8 @@ type RectangleBounds = {
 
 // selection size and scale, eg 500:1
 // placeholder values - currently in meters
-const RECT_HEIGHT_SCALE: number = 1000;
-const RECT_WIDTH_SCALE: number = 1000;
+const RECT_HEIGHT_SCALE: number = 10000;
+const RECT_WIDTH_SCALE: number = 7000;
 
 const containerStyle: React.CSSProperties = {
     height: '500px',
@@ -79,6 +79,7 @@ const MapSelector = () => {
                     mapContainerStyle={containerStyle}
                     center={center}
                     zoom={8}
+                    mapTypeId='hybrid'
                     onLoad={onLoad}
                     onCenterChanged={handleCenterChanged}
                 >
@@ -87,10 +88,10 @@ const MapSelector = () => {
                             bounds={rectangleBounds}
                             options={{
                                 strokeColor: '#04ff00',
-                                strokeOpacity: 0.8,
-                                strokeWeight: 2,
+                                strokeOpacity: 0.5,
+                                strokeWeight: 1,
                                 fillColor: '#04ff00',
-                                fillOpacity: 0.30,
+                                fillOpacity: 0.1,
                                 draggable: false,
                                 editable: false, 
                                 clickable: false
