@@ -73,7 +73,7 @@ const MapSelector = () => {
     };
     
     return (
-        <div className='flex flex-col h-full w-full items-center'>
+        <div className='flex flex-col h-full w-full items-center mt-20'>
             <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
