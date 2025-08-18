@@ -9,8 +9,8 @@ type RectangleBounds = {
     west: number;
 };
 
-const RECT_HEIGHT_SCALE = 10000; // in meters
-const RECT_WIDTH_SCALE = 7000; // in meters
+const RECT_HEIGHT_SCALE = 10000 * 2; // in meters
+const RECT_WIDTH_SCALE = 7000 * 2; // in meters
 
 const containerStyle: React.CSSProperties = {
     height: '600px',
@@ -21,7 +21,7 @@ const libraries: ('geometry')[] = ['geometry'];
 
 const MapSelector = () => {
     const [center, setCenter] = useState<LatLngLiteral>({ lat: 60.4720, lng: 8.4689 });
-    const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | null>(null);
+    const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
 
     const onLoad = useCallback((map: google.maps.Map) => {
