@@ -78,7 +78,7 @@ const MapSelector = () => {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
-                    zoom={8}
+                    zoom={10}
                     mapTypeId='hybrid'
                     onLoad={onLoad}
                     onCenterChanged={handleCenterChanged}
@@ -100,7 +100,7 @@ const MapSelector = () => {
                     )}
                 </GoogleMap>
             </LoadScript>
-            <button onClick={handleCapture}>
+            <button className='' onClick={handleCapture}>
                 Capture Coordinates
             </button>
         </div>
