@@ -100,7 +100,7 @@ const MapSelector = () => {
                     )}
                 </GoogleMap>
             </LoadScript>
-            <button className='' onClick={handleCapture}>
+            <button className='flex border-1 mt-5 p-3 hover:cursor-pointer' onClick={handleCapture}>
                 Capture Coordinates
             </button>
         </div>
