@@ -9,6 +9,7 @@ type RectangleBounds = {
     west: number;
 };
 
+// placeholder, to scale with zoom
 const RECT_HEIGHT_SCALE = 10000 * 2; // in meters
 const RECT_WIDTH_SCALE = 7000 * 2; // in meters
 
@@ -20,7 +21,7 @@ const containerStyle: React.CSSProperties = {
 const libraries: ('geometry')[] = ['geometry'];
 
 const MapSelector = () => {
-    const [center, setCenter] = useState<LatLngLiteral>({ lat: 60.4720, lng: 8.4689 });
+    const [center, setCenter] = useState<LatLngLiteral>({ lat: 60.39299, lng: 5.32415 });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
 
@@ -57,7 +58,7 @@ const MapSelector = () => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full items-center mt-20">
+        <div className="flex flex-col h-full w-full items-center mt-20 drop-shadow-2xl drop-shadow-neutral-900">
             <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
