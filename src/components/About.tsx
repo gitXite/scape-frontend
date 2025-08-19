@@ -15,7 +15,7 @@ function About() {
                 inView1 ? 'opacity-100' : 'opacity-0'
             }`}>
                 <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
-                <p className='w-8/12 text-center text-neutral-700'>
+                <p className='w-8/12 text-center text-neutral-700 leading-8'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Minima dolore, consequuntur alias quasi voluptate corporis
                     ducimus asperiores! Commodi quasi repudiandae impedit
@@ -27,7 +27,7 @@ function About() {
                 inView2 ? 'opacity-100' : 'opacity-0'
             }`}>
                 <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
-                <p className='w-8/12 text-center text-neutral-700 '>
+                <p className='w-8/12 text-center text-neutral-700 leading-8'>
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Doloremque ad, exercitationem quisquam ducimus numquam iure
                     quaerat, incidunt deserunt expedita tempore at delectus
