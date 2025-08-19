@@ -20,10 +20,10 @@ function Header() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
             clearTimeout(timeout);
-        }
+        };
     }, []);
 
-    
+
     return (
         <header className={`flex h-auto w-full p-5 fixed bg-neutral-500/10 z-1 drop-shadow-2xl place-content-center backdrop-blur-sm border-b-1 border-neutral-300 transition-transform duration-300 ${
             showHeader ? 'translate-y-0' : '-translate-y-full'
