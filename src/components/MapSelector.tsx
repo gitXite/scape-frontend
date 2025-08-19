@@ -24,7 +24,7 @@ const containerStyle: React.CSSProperties = {
 const libraries: 'geometry'[] = ['geometry'];
 
 
-const MapSelector = () => {
+function MapSelector() {
     const [center, setCenter] = useState<LatLngLiteral>({
         lat: 60.39299,
         lng: 5.32415,
@@ -127,6 +127,6 @@ const MapSelector = () => {
             </div>
         </div>
     );
-};
+}
 
 export default MapSelector;
