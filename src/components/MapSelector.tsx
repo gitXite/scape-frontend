@@ -58,7 +58,7 @@ const MapSelector = () => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full items-center mt-20 drop-shadow-2xl drop-shadow-neutral-900">
+        <div className="flex flex-col h-full w-full items-center pt-20 drop-shadow-2xl drop-shadow-neutral-900">
             <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -86,7 +86,7 @@ const MapSelector = () => {
                 </GoogleMap>
             </LoadScript>
 
-            <button className="flex border-1 mt-5 p-3 hover:cursor-pointer" onClick={handleCapture}>
+            <button className="flex border-neutral-900 text-neutral-900 text-xl border-1 mt-5 p-3 pl-10 pr-10 rounded-md hover:cursor-pointer" onClick={handleCapture}>
                 Capture Coordinates
             </button>
         </div>

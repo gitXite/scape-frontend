@@ -1,9 +1,11 @@
 
 import MapSelector from './components/MapSelector';
+import Home from './pages/Home';
 
 function App() {
     return (
-        <div className='flex h-full w-full place-content-center'>
+        <div className='h-full w-full'>
+            <Home />
             <MapSelector />
         </div>
     );
