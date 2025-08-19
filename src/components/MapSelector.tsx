@@ -104,7 +104,7 @@ const MapSelector = () => {
                                 bounds={rectangleBounds}
                                 options={{
                                     strokeColor: '#04ff00',
-                                    strokeOpacity: 0.5,
+                                    strokeOpacity: 0.8,
                                     strokeWeight: 1,
                                     fillColor: '#04ff00',
                                     fillOpacity: 0.1,
