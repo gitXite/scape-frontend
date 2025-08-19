@@ -15,8 +15,9 @@ const RECT_WIDTH_SCALE = 7000 * 2; // in meters
 
 const containerStyle: React.CSSProperties = {
     height: '80%',
-    width: '100%',
-    boxShadow: '5px 5px 10px 2px rgba(0, 0, 0, 0.3)',
+    width: '80%',
+    boxShadow: '5px 5px 15px 2px rgba(0, 0, 0, 0.3)',
+    borderRadius: '5px',
 };
 
 const libraries: ('geometry')[] = ['geometry'];
@@ -59,7 +60,7 @@ const MapSelector = () => {
     };
 
     return (
-        <div className="flex flex-col h-full w-full bg-neutral-100 place-content-center items-center pt-20">
+        <div className="flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15">
             <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -87,7 +88,7 @@ const MapSelector = () => {
                 </GoogleMap>
             </LoadScript>
 
-            <button className="flex border-neutral-900 text-neutral-900 text-xl border-1 mt-5 p-5 pl-10 pr-10 rounded-md hover:cursor-pointer hover:bg-neutral-900 hover:text-neutral-100" onClick={handleCapture}>
+            <button className="flex border-neutral-900 text-neutral-900 text-xl border-1 mt-8 p-5 pl-10 pr-10 rounded-md hover:cursor-pointer hover:bg-neutral-900 hover:text-neutral-100" onClick={handleCapture}>
                 Capture Coordinates
             </button>
         </div>
