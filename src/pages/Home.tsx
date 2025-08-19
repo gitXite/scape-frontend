@@ -1,6 +1,7 @@
 import MapSelector from '../components/MapSelector';
 import Welcome from '../components/Welcome';
 import About from '../components/About';
+import Footer from '../components/Footer';
 
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
             <Welcome />
             <About />
             <MapSelector />
+            <Footer />
         </div>
     );
 }
