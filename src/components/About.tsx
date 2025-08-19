@@ -11,7 +11,7 @@ function About() {
 
     return (
         <div ref={ref1} className='flex h-full w-full bg-neutral-100 place-content-center justify-around'>
-            <div className={`flex flex-col h-fit place-items-center w-1/3 mb-80 transition-opacity duration-700 ease-in ${
+            <div className={`flex flex-col h-fit place-items-center w-1/3 mb-80 transition-opacity duration-600 ease-in ${
                 inView1 ? 'opacity-100' : 'opacity-0'
             }`}>
                 <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
@@ -23,7 +23,7 @@ function About() {
                     Eos, corporis.
                 </p>
             </div>
-            <div ref={ref2} className={`flex flex-col h-fit place-items-center w-1/3 mt-100 transition-opacity duration-700 ease-in ${
+            <div ref={ref2} className={`flex flex-col h-fit place-items-center w-1/3 mt-100 transition-opacity duration-600 ease-in ${
                 inView2 ? 'opacity-100' : 'opacity-0'
             }`}>
                 <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
