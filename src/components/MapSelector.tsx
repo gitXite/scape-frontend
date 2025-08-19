@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
+import { useInView } from 'react-intersection-observer';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -20,12 +21,20 @@ const containerStyle: React.CSSProperties = {
     borderRadius: '5px',
 };
 
-const libraries: ('geometry')[] = ['geometry'];
+const libraries: 'geometry'[] = ['geometry'];
+const options = {
+    triggerOnce: false,
+    threshold: 0.2,
+}
 
 const MapSelector = () => {
-    const [center, setCenter] = useState<LatLngLiteral>({ lat: 60.39299, lng: 5.32415 });
+    const [center, setCenter] = useState<LatLngLiteral>({
+        lat: 60.39299,
+        lng: 5.32415,
+    });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
+    const { ref: ref3, inView: inView3 } = useInView(options);
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -35,10 +44,18 @@ const MapSelector = () => {
     const computeRectangleBounds = useCallback((point: LatLngLiteral) => {
         const latLng = new google.maps.LatLng(point.lat, point.lng);
 
-        const north = google.maps.geometry.spherical.computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 0).lat();
-        const south = google.maps.geometry.spherical.computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 180).lat();
-        const east = google.maps.geometry.spherical.computeOffset(latLng, RECT_WIDTH_SCALE / 2, 90).lng();
-        const west = google.maps.geometry.spherical.computeOffset(latLng, RECT_WIDTH_SCALE / 2, 270).lng();
+        const north = google.maps.geometry.spherical
+            .computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 0)
+            .lat();
+        const south = google.maps.geometry.spherical
+            .computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 180)
+            .lat();
+        const east = google.maps.geometry.spherical
+            .computeOffset(latLng, RECT_WIDTH_SCALE / 2, 90)
+            .lng();
+        const west = google.maps.geometry.spherical
+            .computeOffset(latLng, RECT_WIDTH_SCALE / 2, 270)
+            .lng();
 
         setRectangleBounds({ north, south, east, west });
     }, []);
@@ -55,42 +72,58 @@ const MapSelector = () => {
 
     const handleCapture = () => {
         if (rectangleBounds) {
-            alert(`Coordinates captured successfully:\n${JSON.stringify(rectangleBounds, null, 2)}`);
+            alert(
+                `Coordinates captured successfully:\n${JSON.stringify(
+                    rectangleBounds,
+                    null,
+                    2
+                )}`
+            );
         }
     };
 
     return (
-        <div className="flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15">
-            <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} libraries={libraries}>
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={10}
-                    mapTypeId="hybrid"
-                    onLoad={onLoad}
-                    onClick={handleMapClick}
+        <div className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15'>
+            <div ref={ref3} className={`flex flex-col h-full w-full place-content-start items-center transition-opacity duration-700 ease-in ${
+                inView3 ? 'opacity-100' : 'opacity-0'
+            }`}>
+                <LoadScript
+                    googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+                    libraries={libraries}
                 >
-                    {rectangleBounds && (
-                        <Rectangle
-                            bounds={rectangleBounds}
-                            options={{
-                                strokeColor: '#04ff00',
-                                strokeOpacity: 0.5,
-                                strokeWeight: 1,
-                                fillColor: '#04ff00',
-                                fillOpacity: 0.1,
-                                draggable: false,
-                                editable: false,
-                                clickable: false,
-                            }}
-                        />
-                    )}
-                </GoogleMap>
-            </LoadScript>
+                    <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={center}
+                        zoom={10}
+                        mapTypeId='hybrid'
+                        onLoad={onLoad}
+                        onClick={handleMapClick}
+                    >
+                        {rectangleBounds && (
+                            <Rectangle
+                                bounds={rectangleBounds}
+                                options={{
+                                    strokeColor: '#04ff00',
+                                    strokeOpacity: 0.5,
+                                    strokeWeight: 1,
+                                    fillColor: '#04ff00',
+                                    fillOpacity: 0.1,
+                                    draggable: false,
+                                    editable: false,
+                                    clickable: false,
+                                }}
+                            />
+                        )}
+                    </GoogleMap>
+                </LoadScript>
 
-            <button className="flex border-neutral-900 text-neutral-900 text-xl border-1 mt-8 p-5 pl-10 pr-10 rounded-md hover:cursor-pointer hover:bg-neutral-900 hover:text-neutral-100" onClick={handleCapture}>
-                Capture Coordinates
-            </button>
+                <button
+                    className='flex border-neutral-900 text-neutral-900 text-xl border-1 mt-8 p-5 pl-10 pr-10 rounded-md hover:cursor-pointer hover:bg-neutral-900 hover:text-neutral-100'
+                    onClick={handleCapture}
+                >
+                    Capture Coordinates
+                </button>
+            </div>
         </div>
     );
 };
