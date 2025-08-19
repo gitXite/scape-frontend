@@ -22,10 +22,7 @@ const containerStyle: React.CSSProperties = {
 };
 
 const libraries: 'geometry'[] = ['geometry'];
-const options = {
-    triggerOnce: false,
-    threshold: 0.2,
-}
+
 
 const MapSelector = () => {
     const [center, setCenter] = useState<LatLngLiteral>({
@@ -34,7 +31,10 @@ const MapSelector = () => {
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
-    const { ref: ref3, inView: inView3 } = useInView(options);
+    const { ref: ref3, inView: inView3 } = useInView({
+        triggerOnce: false,
+        threshold: 0.1,
+    });
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -81,6 +81,7 @@ const MapSelector = () => {
             );
         }
     };
+    
 
     return (
         <div className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15'>
