@@ -11,8 +11,8 @@ type RectangleBounds = {
 };
 
 // placeholder, to scale with zoom
-const RECT_HEIGHT_SCALE = 10000 * 2; // in meters
-const RECT_WIDTH_SCALE = 7000 * 2; // in meters
+const RECT_HEIGHT_SCALE = 12000 * 2; // in meters
+const RECT_WIDTH_SCALE = 9500 * 2; // in meters
 
 const containerStyle: React.CSSProperties = {
     height: '80%',
