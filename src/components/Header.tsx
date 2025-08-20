@@ -36,7 +36,7 @@ function Header() {
 
 
     return (
-        <header onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-1 drop-shadow-2xl place-content-center backdrop-blur-sm border-b-1 border-neutral-300 transition-transform duration-300 ${
+        <header onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-1 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
             showHeader || ishovered ? 'translate-y-0' : '-translate-y-full'
             }`}>
             <nav className='flex place-items-center'>
