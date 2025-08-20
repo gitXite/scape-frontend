@@ -81,6 +81,12 @@ function MapSelector() {
             );
         }
     };
+
+    const resetMap = () => {
+        if (rectangleBounds) {
+            setCenter({ lat: 60.39299, lng: 5.32415 });
+        }
+    };
     
 
     return (
@@ -117,13 +123,16 @@ function MapSelector() {
                         )}
                     </GoogleMap>
                 </LoadScript>
-
-                <button
-                    className='flex border-neutral-900 text-neutral-900 text-xl border-1 mt-8 p-5 pl-10 pr-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-md hover:cursor-pointer hover:border-neutral-100 hover:bg-neutral-900 hover:text-neutral-100'
-                    onClick={handleCapture}
-                >
-                    Capture Coordinates
-                </button>
+                
+                <div className='flex place-items-center ml-17'>
+                    <button
+                        className='flex border-neutral-900 text-neutral-900 text-xl mr-5 border-1 mt-8 p-5 pl-10 pr-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-md hover:cursor-pointer hover:border-neutral-100 hover:bg-neutral-900 hover:text-neutral-100'
+                        onClick={handleCapture}
+                    >
+                        Capture Coordinates
+                    </button>
+                    <button className='flex h-10 w-10 place-content-center place-items-end border-neutral-900 text-neutral-900 border-1 mt-8 p-2 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-md hover:cursor-pointer hover:border-neutral-100 hover:bg-neutral-900 hover:text-neutral-100' onClick={resetMap}>Reset</button>
+                </div>
             </div>
         </div>
     );
