@@ -14,9 +14,9 @@ function About() {
 
 
     return (
-        <div className='flex h-[200vh] w-full bg-neutral-100  justify-around'>
-            <div className='flex-col w-1/3 place-content-center'>
-                <div ref={ref1} className={`flex flex-col h-fit place-items-center mb-100 transition-opacity duration-600 ease-in ${
+        <div className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'>
+            <div className='flex flex-col items-center gap-y-80 mt-20'>
+                <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
@@ -28,7 +28,7 @@ function About() {
                         Eos, corporis.
                     </p>
                 </div>
-                <div ref={ref2} className={`flex flex-col h-fit place-items-center mb-120 transition-opacity duration-600 ease-in ${
+                <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
@@ -41,8 +41,8 @@ function About() {
                     </p>
                 </div>
             </div>
-            <div className='flex-col w-1/3'>
-                <div ref={ref3} className={`flex flex-col h-fit place-items-center mt-120 transition-opacity duration-600 ease-in ${
+            <div className='flex flex-col items-center justify-center gap-y-80 mt-40'>
+                <div ref={ref3} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView3 ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
@@ -54,7 +54,7 @@ function About() {
                         ratione!
                     </p>
                 </div>
-                <div ref={ref4} className={`flex flex-col h-fit place-items-center mt-100 transition-opacity duration-600 ease-in ${
+                <div ref={ref4} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView4 ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
