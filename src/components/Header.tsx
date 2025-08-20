@@ -39,7 +39,12 @@ function Header() {
         <header onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-1 drop-shadow-2xl place-content-center backdrop-blur-sm border-b-1 border-neutral-300 transition-transform duration-300 ${
             showHeader || ishovered ? 'translate-y-0' : '-translate-y-full'
             }`}>
-            <div className='text-4xl text-neutral-100 mix-blend-difference'>MD // DESIGN</div>
+            <nav className='flex place-items-center'>
+                <a href="#welcome" className='fixed left-3/8'>Home</a>
+                <a href="#about" className='fixed right-3/8'>About</a>
+                <div className='text-4xl text-neutral-100 mix-blend-difference'>MD // DESIGN</div>
+                <a href="#map" className='fixed right-1/3'>Map</a>
+            </nav>
         </header>
     );
 }

@@ -90,7 +90,7 @@ function MapSelector() {
     
 
     return (
-        <div className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15'>
+        <div id='map' className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15'>
             <div ref={ref3} className={`flex flex-col h-full w-full place-content-start items-center transition-opacity duration-600 ease-in ${
                 inView3 ? 'opacity-100' : 'opacity-0'
             }`}>
