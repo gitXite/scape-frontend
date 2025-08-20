@@ -50,17 +50,20 @@ function Header() {
             }`}
         >
             <nav className='flex place-items-center'>
-                <a href='#welcome' className='fixed left-3/9'>
+                <a href='#welcome' className='group fixed left-3/9 transition duration-300'>
                     Home
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#about' className='fixed right-3/9'>
+                <a href='#about' className='group fixed right-3/9 transition duration-300'>
                     About
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
                 <div className='text-4xl text-neutral-100 mix-blend-difference'>
                     MD // DESIGN
                 </div>
-                <a href='#map' className='fixed right-3/11'>
+                <a href='#map' className='group fixed right-3/11 transition duration-300'>
                     Map
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
             </nav>
         </header>
