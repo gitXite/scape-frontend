@@ -31,7 +31,7 @@ function MapSelector() {
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
-    const { ref: ref3, inView: inView3 } = useInView({
+    const { ref: ref, inView: inView } = useInView({
         triggerOnce: false,
         threshold: 0.1,
     });
@@ -91,8 +91,8 @@ function MapSelector() {
 
     return (
         <div id='map' className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-15'>
-            <div ref={ref3} className={`flex flex-col h-full w-full place-content-start items-center transition-opacity duration-600 ease-in ${
-                inView3 ? 'opacity-100' : 'opacity-0'
+            <div ref={ref} className={`flex flex-col h-full w-full place-content-start items-center transition-opacity duration-600 ease-in ${
+                inView ? 'opacity-100' : 'opacity-0'
             }`}>
                 <LoadScript
                     googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
