@@ -40,6 +40,7 @@ function About() {
                     </p>
                 </div>
             </div>
+            
             <div className='flex flex-col items-center justify-center gap-y-80 mt-40'>
                 <div ref={ref3} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView3 ? 'opacity-100' : 'opacity-0'
