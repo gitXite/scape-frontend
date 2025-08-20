@@ -124,9 +124,9 @@ function MapSelector() {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center ml-15'>
+                <div className='flex place-items-center ml-18'>
                     <button
-                        className='flex border-neutral-900 text-neutral-900 text-xl mr-5 border-1 mt-8 p-5 pl-10 pr-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-md hover:cursor-pointer hover:border-neutral-100 hover:bg-neutral-900 hover:text-neutral-100'
+                        className='flex border-neutral-900 text-neutral-900 text-xl border-1 mt-8 mr-10 p-5 pl-10 pr-10 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-md hover:cursor-pointer hover:border-neutral-100 hover:bg-neutral-900 hover:text-neutral-100'
                         onClick={handleCapture}
                     >
                         Capture Coordinates
