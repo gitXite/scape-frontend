@@ -50,16 +50,16 @@ function Header() {
             }`}
         >
             <nav className='flex place-items-center'>
-                <a href='#welcome' className='fixed left-3/8'>
+                <a href='#welcome' className='fixed left-3/9'>
                     Home
                 </a>
-                <a href='#about' className='fixed right-3/8'>
+                <a href='#about' className='fixed right-3/9'>
                     About
                 </a>
                 <div className='text-4xl text-neutral-100 mix-blend-difference'>
                     MD // DESIGN
                 </div>
-                <a href='#map' className='fixed right-1/3'>
+                <a href='#map' className='fixed right-3/11'>
                     Map
                 </a>
             </nav>
