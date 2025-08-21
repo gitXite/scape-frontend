@@ -87,6 +87,12 @@ function MapSelector() {
             setCenter({ lat: 60.39299, lng: 5.32415 });
         }
     };
+
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
     
 
     return (
