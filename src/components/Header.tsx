@@ -50,7 +50,7 @@ function Header() {
             }`}
         >
             <nav className='flex place-items-center'>
-                <a href='#welcome' className='group fixed left-3/9 transition duration-300'>
+                <a href='#home' className='group fixed left-3/9 transition duration-300'>
                     Home
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>

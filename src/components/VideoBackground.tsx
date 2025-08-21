@@ -10,6 +10,7 @@ function VideoBackground() {
                 muted
                 loop
                 playsInline
+                poster='src/assets/fallback.jpg'
             />
     );
 }
