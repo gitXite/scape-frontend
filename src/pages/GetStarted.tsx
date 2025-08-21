@@ -5,7 +5,7 @@ import MapSelector from '../components/MapSelector';
 
 function GetStarted() {
     return (
-        <div className='h-full w-full bg-neutral-900'>
+        <div className='h-full w-full'>
             <MapSelector />
             <Footer />
         </div>
