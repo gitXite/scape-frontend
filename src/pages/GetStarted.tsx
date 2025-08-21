@@ -10,7 +10,7 @@ function GetStarted() {
     return (
         <div className='bg-neutral-100 h-full w-full'>
             <button 
-                className='fixed m-10 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
+                className='absolute m-10 mt-8 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
                 onClick={() => {navigate(-1)}}
             >
                 Back
