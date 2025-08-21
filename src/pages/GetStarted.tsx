@@ -8,9 +8,9 @@ function GetStarted() {
     const navigate = useNavigate();
 
     return (
-        <div className='flex bg-neutral-100 h-full w-full'>
+        <div className='bg-neutral-100 h-full w-full'>
             <button 
-                className='relative left-55 top-10 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
+                className='fixed m-10 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
                 onClick={() => {navigate(-1)}}
             >
                 Back

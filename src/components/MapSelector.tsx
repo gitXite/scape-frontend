@@ -108,7 +108,7 @@ function MapSelector() {
                         mapContainerStyle={containerStyle}
                         center={center}
                         zoom={10}
-                        mapTypeId='hybrid'
+                        mapTypeId='terrain'
                         onLoad={onLoad}
                         onClick={handleMapClick}
                     >
