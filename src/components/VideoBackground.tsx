@@ -1,4 +1,4 @@
-import welcome from '../assets/welcome.mp4';
+import welcome from '../assets/welcome_2.mp4';
 
 
 function VideoBackground() {
@@ -10,7 +10,7 @@ function VideoBackground() {
                 muted
                 loop
                 playsInline
-                poster='src/assets/fallback.jpg'
+                poster='src/assets/fallback_2.jpg'
             />
     );
 }
