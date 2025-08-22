@@ -1,21 +1,45 @@
-import { useNavigate } from 'react-router';
+import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
 
 
 
 function GetStarted() {
-    const navigate = useNavigate();
 
     return (
         <div className='bg-neutral-100 h-full w-full'>
-            <button 
-                className='absolute m-10 mt-8 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
-                onClick={() => {navigate(-1)}}
-            >
-                Back
-            </button>
-            <div className='flex-col h-full w-full'>
+            <BackButton />
+            <div className='flex-col h-full w-full place-items-center'>
+                /* Choose frames and customize */
+                <div>
+                    <div>
+                        <input
+                            type='radio'
+                            name='frame'
+                        >
+
+                        </input>
+                        <label></label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            name='frame'
+                        >
+
+                        </input>
+                        <label></label>
+                    </div>
+                    <div>
+                        <input
+                            type='radio'
+                            name='frame'
+                        >
+
+                        </input>
+                        <label></label>
+                    </div>
+                </div>
                 <MapSelector />
                 <Footer />
             </div>
