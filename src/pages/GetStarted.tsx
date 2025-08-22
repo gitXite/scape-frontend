@@ -10,36 +10,7 @@ function GetStarted() {
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
             <div className='flex-col h-full w-full place-items-center'>
-                /* Choose frames and customize */
-                <div>
-                    <div>
-                        <input
-                            type='radio'
-                            name='frame'
-                        >
-
-                        </input>
-                        <label></label>
-                    </div>
-                    <div>
-                        <input
-                            type='radio'
-                            name='frame'
-                        >
-
-                        </input>
-                        <label></label>
-                    </div>
-                    <div>
-                        <input
-                            type='radio'
-                            name='frame'
-                        >
-
-                        </input>
-                        <label></label>
-                    </div>
-                </div>
+            
                 <MapSelector />
                 <Footer />
             </div>
