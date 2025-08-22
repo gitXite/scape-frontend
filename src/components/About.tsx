@@ -18,7 +18,8 @@ function About() {
                 <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className=' text-6xl text-neutral-900'>Placeholder</h1>
+                    <p className='text-3xl text-amber-800 p-5'>//</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Minima dolore, consequuntur alias quasi voluptate corporis
@@ -30,7 +31,8 @@ function About() {
                 <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900'>Placeholder</h1>
+                    <p className='text-3xl text-amber-800 p-5'>//</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
@@ -45,7 +47,8 @@ function About() {
                 <div ref={ref3} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView3 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900'>Placeholder</h1>
+                    <p className='text-3xl text-amber-800 p-5'>//</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
@@ -57,7 +60,8 @@ function About() {
                 <div ref={ref4} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView4 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='mb-10 text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900'>Placeholder</h1>
+                    <p className='text-3xl text-amber-800 p-5'>//</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
