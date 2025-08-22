@@ -27,8 +27,17 @@ function Header() {
             startHideTimeout();
         };
 
+        const handleMouseMove = (e: MouseEvent) => {
+            if (e.clientY <= 50) {
+                setShowHeader(true);
+                startHideTimeout();
+            }
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
         return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('scroll', handleScroll);
             clearHideTimeout();
         };
