@@ -3,7 +3,7 @@
 ## From Map To Masterpiece
 Our customizable landscapes become instant conversation starters
 
-<img width="768" height="512" alt="Product Image" src="src/assets/product-image-straight.png" />
+<img width="768" height="512" alt="Product Image" src="./src/assets/product-image-straight.png" />
 
 ## Realize Your World
 At **MD // Design** we offer customizable 3D printed models that bring your home to life. With personalized intricate terrain landscapes, every model is crafted with precision and attention to detail. 
@@ -13,4 +13,4 @@ Whether it's for home decor or sentimental gifts, our models *will* become a con
 With our easy-to-use online interface, you can preview and modify designs before ordering, ensuring your creation is exactly how you imagined. 
 At **MD // Design**, we combine cutting-edge technology with creative freedom to help you realize your world - one 3D print at a time. 
 
-<img width="768" height="512" alt="Product Image 2" src="src/assets/product-image-angle.png" />
+<img width="768" height="512" alt="Product Image 2" src="./src/assets/product-image-angle.png" />
