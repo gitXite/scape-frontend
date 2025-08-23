@@ -19,7 +19,7 @@ function About() {
                 <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className=' text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className=' text-6xl text-neutral-900'>From Map To Masterpiece</h1>
                     <p className='text-3xl text-amber-800 p-5'>/ /</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -32,7 +32,7 @@ function About() {
                 <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900'>Realize Your World</h1>
                     <p className='text-3xl text-amber-800 p-5'>/ /</p>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
