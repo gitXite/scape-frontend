@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Stepper, Step, Button } from "@material-tailwind/react";
 
 
-function DefaultStepper() {
-    const [activeStep, setActiveStep] = useState(0);
+function DefaultStepper({ activeStep, setActiveStep }) {
     const [isFirstStep, setIsFirstStep] = useState(true);
     const [isLastStep, setIsLastStep] = useState(false);
 
@@ -13,7 +12,7 @@ function DefaultStepper() {
     return (
         <div className='w-full py-4 px-8'>
             <Stepper
-                isActiveStep={activeStep}
+                activeStep={activeStep}
                 isLastStep={(value) => setIsLastStep(value)}
                 isFirstStep={(value) => setIsFirstStep(value)}
             >
