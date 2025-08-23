@@ -12,9 +12,9 @@ function Welcome() {
                 <h1 className='z-2 mt-10 text-9xl drop-shadow-black drop-shadow-2xl'>W   E   L   C   O   M   E</h1>
                 <button 
                     className='z-2 flex mt-20 p-5 pl-12 pr-12 text-xl backdrop-blur-md text-neutral-100 border-1 transition duration-150 shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] hover:shadow-[inset_0px_0px_15px_rgba(0,0,0,0.6)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] shadow-neutral-950 border-neutral-100 rounded-full hover:drop-shadow-xl hover:cursor-pointer'
-                    onClick={() => {navigate('/get-started')}}
+                    onClick={() => {navigate('/customize')}}
                 >
-                    <p>G   e   t</p><span className='w-4'></span><p>S   t   a   r   t   e   d</p>
+                    <p>S   t   a   r   t</p><span className='w-4'></span><p>C   u   s   t   o   m   i   z   i   n   g</p>
                 </button>
             </div>
         </div>
