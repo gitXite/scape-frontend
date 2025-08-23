@@ -4,7 +4,7 @@ import MapSelector from '../components/MapSelector';
 
 
 
-function GetStarted() {
+function Customize() {
 
     return (
         <div className='bg-neutral-100 h-full w-full'>
@@ -19,4 +19,4 @@ function GetStarted() {
 }
 
 
-export default GetStarted;
+export default Customize;
