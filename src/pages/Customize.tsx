@@ -4,6 +4,7 @@ import MapSelector from '../components/MapSelector';
 import ModelPreview from '../components/ModelPreview';
 import CustomizeFrame from '../components/CustomizeFrame';
 import CustomizePassePartout from '../components/CustomizePassePartout';
+import DefaultStepper from '../components/DefaultStepper';
 
 
 function Customize() {
@@ -20,6 +21,8 @@ function Customize() {
 
                 {/* Step 3 */}
                 {/* <ModelPreview /> <CustomizePassePartout /> */}
+                
+                <DefaultStepper />
             </div>
             <Footer />
         </div>
