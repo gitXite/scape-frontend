@@ -15,8 +15,6 @@ function Customize() {
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
             <div className='flex-col h-full w-full place-items-center'>
-                <DefaultStepper activeStep={activeStep} setActiveStep={setActiveStep} />
-
                 {activeStep === 0 && <MapSelector />}
                 {activeStep === 1 && (
                     <>
@@ -29,7 +27,9 @@ function Customize() {
                         <ModelPreview /> 
                         <CustomizePassePartout />
                     </>
-                )}                
+                )}
+                
+                <DefaultStepper activeStep={activeStep} setActiveStep={setActiveStep} />
             </div>
             <Footer />
         </div>
