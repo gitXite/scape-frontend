@@ -1,7 +1,9 @@
 import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
-
+import ModelPreview from '../components/ModelPreview';
+import CustomizeFrame from '../components/CustomizeFrame';
+import CustomizePassePartout from '../components/CustomizePassePartout';
 
 
 function Customize() {
@@ -10,10 +12,16 @@ function Customize() {
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
             <div className='flex-col h-full w-full place-items-center'>
-            
+                {/* Step 1 */}
                 <MapSelector />
-                <Footer />
+                
+                {/* Step 2 */}
+                {/* <ModelPreview /> <CustomizeFrame /> */}
+
+                {/* Step 3 */}
+                {/* <ModelPreview /> <CustomizePassePartout /> */}
             </div>
+            <Footer />
         </div>
     );
 }
