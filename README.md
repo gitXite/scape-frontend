@@ -3,7 +3,7 @@
 </div>
 
 ## From Map To Masterpiece
-- Our customizable landscapes become instant conversation starters
+— Our customizable landscapes become instant conversation starters
 
 <img width="1080" height="720" alt="Product Image" src="https://github.com/user-attachments/assets/8d753d8d-c554-44e1-b3b2-53d20b92c3fd" />
 
