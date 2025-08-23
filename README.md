@@ -1,7 +1,7 @@
 # MD // Design
 
 ## From Map To Masterpiece
-### Our Customizable Landscapes Become Instant Conversation Starters
+Our customizable landscapes become instant conversation starters
 
 <img width="768" height="512" alt="Product Image" src="https://github.com/user-attachments/assets/8d753d8d-c554-44e1-b3b2-53d20b92c3fd" />
 
