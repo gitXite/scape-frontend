@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
@@ -8,21 +9,27 @@ import DefaultStepper from '../components/DefaultStepper';
 
 
 function Customize() {
+    const [activeStep, setActiveStep] = useState(0);
 
     return (
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
             <div className='flex-col h-full w-full place-items-center'>
-                {/* Step 1 */}
-                <MapSelector />
-                
-                {/* Step 2 */}
-                {/* <ModelPreview /> <CustomizeFrame /> */}
+                <DefaultStepper activeStep={activeStep} setActiveStep={setActiveStep} />
 
-                {/* Step 3 */}
-                {/* <ModelPreview /> <CustomizePassePartout /> */}
-                
-                <DefaultStepper />
+                {activeStep === 0 && <MapSelector />}
+                {activeStep === 1 && (
+                    <>
+                        <ModelPreview /> 
+                        <CustomizeFrame />
+                    </>
+                )}
+                {activeStep === 2 && (
+                    <>
+                        <ModelPreview /> 
+                        <CustomizePassePartout />
+                    </>
+                )}                
             </div>
             <Footer />
         </div>
