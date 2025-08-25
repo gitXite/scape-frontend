@@ -1,7 +1,7 @@
 import Footer from '../components/Footer';
 import CheckoutSummary from '../components/CheckoutSummary';
 import CheckoutPayment from '../components/CheckoutPayment';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@/components/ui/Separator';
 import BackButton from '@/components/BackButton';
 
 
