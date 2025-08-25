@@ -27,8 +27,9 @@ function Customize() {
                         <CustomizePassePartout />
                     </>
                 )}
-                
             </div>
+            
+            {/* Stepper */}
             <Footer />
         </div>
     );
