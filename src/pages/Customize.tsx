@@ -30,7 +30,7 @@ function Customize() {
                 )}
             </div>
 
-            {<Stepper />}
+            {<Stepper activeStep={activeStep} setActiveStep={setActiveStep} />}
             <Footer />
         </div>
     );
