@@ -1,9 +1,16 @@
 
 
 
-function Stepper() {
+type StepperProps = {
+    activeStep: number, 
+    setActiveStep: number,
+};
+
+function Stepper({ activeStep, setActiveStep }: StepperProps) {
     return (
-        <div></div>
+        <div className='w-full'>
+
+        </div>
     );
 }
 
