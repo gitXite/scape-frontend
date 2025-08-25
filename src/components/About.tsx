@@ -14,6 +14,7 @@ function About() {
 
     return (
         <div id='about' className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'>
+            {/* <img src="src/assets/product-image-without-pp.png" alt="Background" className='absolute object-cover z-0' /> */}
             <div className='flex flex-col items-center gap-y-80 mt-20'>
                 <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
