@@ -14,7 +14,7 @@ function Customize() {
     return (
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
-            <div className='flex-col h-full w-full place-items-center'>
+            <div className='flex h-full w-full place-items-center'>
                 {activeStep === 0 && <MapSelector />}
                 {activeStep === 1 && (
                     <>
@@ -29,8 +29,8 @@ function Customize() {
                     </>
                 )}
                 
-                <DefaultStepper activeStep={activeStep} setActiveStep={setActiveStep} />
             </div>
+            <DefaultStepper activeStep={activeStep} setActiveStep={setActiveStep} />
             <Footer />
         </div>
     );

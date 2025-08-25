@@ -17,7 +17,7 @@ function Welcome() {
                     <p>S   t   a   r   t</p><span className='w-4'></span><p>C   u   s   t   o   m   i   z   i   n   g</p>
                 </button>
             </div>
-            <p className='text-neutral-600/80 justify-self-center'>Read More</p>
+            <a href='#about' className='text-lg text-neutral-600 relative top-10 cursor-pointer'>Read More</a>
         </div>
     );
 }
