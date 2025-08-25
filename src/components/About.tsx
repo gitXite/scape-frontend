@@ -1,5 +1,4 @@
 import { useInView } from 'react-intersection-observer';
-import CustomCarousel from './CustomCarousel';
 
 const options = {
     triggerOnce: false,
@@ -19,7 +18,7 @@ function About() {
                 <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className=' text-6xl text-neutral-900 pb-5'>From Map To Masterpiece</h1>
+                    <h1 className=' text-6xl text-neutral-900 pb-10'>From Map To Masterpiece</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Minima dolore, consequuntur alias quasi voluptate corporis
@@ -31,7 +30,7 @@ function About() {
                 <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-5'>Realize Your World</h1>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>Realize Your World</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
@@ -46,12 +45,19 @@ function About() {
                 <div ref={ref3} className={`h-100 w-150 place-items-center transition-opacity duration-600 ease-in ${
                     inView3 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <CustomCarousel />    
+                    <h1 className='text-6xl text-neutral-900 pb-10'>Realize Your World</h1>
+                    <p className='w-8/12 text-center text-neutral-700 leading-8'>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Doloremque ad, exercitationem quisquam ducimus numquam iure
+                        quaerat, incidunt deserunt expedita tempore at delectus
+                        quasi molestias necessitatibus sit est reprehenderit odit
+                        ratione!
+                    </p>
                 </div>
                 <div ref={ref4} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView4 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-5'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>Placeholder</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
