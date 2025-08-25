@@ -8,18 +8,18 @@ import CustomizePassePartout from '../components/CustomizePassePartout';
 import { Stepper } from '@/components/ui/Stepper';
 
 
-const steps = [
-    { component: MapSelector() },
-    { component: CustomizeFrame() },
-    { component: CustomizePassePartout() },
-];
 
 function Customize() {
     const [activeStep, setActiveStep] = useState(0);
-
+    const steps = [
+        { component: MapSelector() },
+        { component: CustomizeFrame() },
+        { component: CustomizePassePartout() },
+    ];
+    
     return (
         <div className='bg-neutral-100 h-full w-full'>
-            <BackButton />
+            <BackButton />  
             <div className='flex h-full w-full place-items-center'>
                 <Stepper steps={steps} currentStep={activeStep} onStepChange={setActiveStep} />
             </div>
