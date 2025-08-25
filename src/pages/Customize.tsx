@@ -5,7 +5,6 @@ import MapSelector from '../components/MapSelector';
 import ModelPreview from '../components/ModelPreview';
 import CustomizeFrame from '../components/CustomizeFrame';
 import CustomizePassePartout from '../components/CustomizePassePartout';
-import Stepper from '../components/Stepper';
 
 
 function Customize() {
@@ -30,7 +29,6 @@ function Customize() {
                 )}
             </div>
 
-            {<Stepper activeStep={activeStep} setActiveStep={setActiveStep} />}
             <Footer />
         </div>
     );
