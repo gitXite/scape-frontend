@@ -18,7 +18,7 @@ function Welcome() {
                 </button>
             </div>
             <div className='text-center'>
-                <a href='#about' className='text-lg text-neutral-600 relative top-10 cursor-pointer hover:text-neutral-900 active:text-neutral-600'>Read More</a>
+                <a href='#about' className='text-lg text-neutral-500 relative top-10 cursor-pointer hover:text-neutral-600 active:text-neutral-600'>Read More</a>
             </div>
         </div>
     );
