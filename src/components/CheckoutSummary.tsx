@@ -8,7 +8,7 @@ function CheckoutSummary() {
             <div className='flex-col pb-5'>
                 <h1 className='pb-5 text-neutral-900'>Order Summary</h1>
                 <Separator orientation='horizontal'/>
-                <div className='flex justify-between py-2'>
+                <div className='flex justify-between py-5'>
                     <img src='src/assets/product-image-straight.png' alt='Product Image 1' className='h-20 w-30 rounded-sm object-cover' />
                     <h2 className='text-neutral-900'>Model</h2>
                     <p className='text-neutral-600'>199kr</p>
@@ -21,12 +21,12 @@ function CheckoutSummary() {
             </div>
             <Separator orientation='horizontal'/>
             <div className='flex-col pt-5 pb-5'>
-                <div className='flex justify-between'>
+                <div className='flex justify-between pb-2'>
                     <p className='text-neutral-900'>Subtotal</p>
                     <p className='text-neutral-600'>298kr</p>
                 </div>
                 <div className='flex justify-between'>
-                    <p className='text-neutral-900'>Tax Included</p>
+                    <p className='text-neutral-900 pb-2'>Tax Included</p>
                     <p className='text-neutral-600'>74.5kr</p>
                 </div>
                 <div className='flex justify-between'>
@@ -35,7 +35,7 @@ function CheckoutSummary() {
                 </div>
             </div>
             <Separator orientation='horizontal'/>
-            <div className='flex justify-between'>
+            <div className='flex justify-between py-5'>
                 <h1 className='text-neutral-900'>Total</h1>
                 <p className='text-neutral-900'>347kr</p>
             </div>
