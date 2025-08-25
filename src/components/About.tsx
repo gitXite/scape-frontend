@@ -30,7 +30,7 @@ function About() {
                 <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-10'>Realize Your World</h1>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>Placeholder</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
@@ -42,7 +42,7 @@ function About() {
             </div>
 
             <div className='flex flex-col items-center justify-center gap-y-80 mt-40'>
-                <div ref={ref3} className={`h-100 w-150 place-items-center transition-opacity duration-600 ease-in ${
+                <div ref={ref3} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView3 ? 'opacity-100' : 'opacity-0'
                 }`}>
                     <h1 className='text-6xl text-neutral-900 pb-10'>Realize Your World</h1>
