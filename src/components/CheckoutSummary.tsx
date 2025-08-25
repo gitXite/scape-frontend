@@ -4,17 +4,17 @@ import { Separator } from './ui/separator';
 
 function CheckoutSummary() {
     return (
-        <div className='flex-col h-full w-2/4 p-10 content-center'>
+        <div className='flex-col h-full w-2/4 p-20 content-center'>
             <div className='flex-col pb-5'>
                 <h1 className='pb-5 text-neutral-900'>Order Summary</h1>
                 <Separator orientation='horizontal'/>
                 <div className='flex justify-between py-5'>
-                    <img src='src/assets/product-image-straight.png' alt='Product Image 1' className='h-20 w-30 rounded-sm object-cover' />
+                    <img src='src/assets/product-image-straight.png' alt='Product Image 1' className='w-50 rounded-sm object-cover' />
                     <h2 className='text-neutral-900'>Model</h2>
                     <p className='text-neutral-600'>199kr</p>
                 </div>
                 <div className='flex justify-between py-2'>
-                    <img src='src/assets/product-image-angle.png' alt='Product Image 2' className='h-20 w-30 rounded-sm object-cover' />
+                    <img src='src/assets/product-image-angle.png' alt='Product Image 2' className='w-50 rounded-sm object-cover' />
                     <h2 className='text-neutral-900'>Frame</h2>
                     <p className='text-neutral-600'>99kr</p>
                 </div>
