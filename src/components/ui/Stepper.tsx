@@ -1,6 +1,6 @@
+import type { JSX } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from '../animate-ui/buttons/Ripple';
-import type { JSX } from 'react';
 
 interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
