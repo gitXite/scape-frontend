@@ -35,10 +35,10 @@ function About() {
                         Eos, corporis.
                     </p>
                 </div>
-                <div ref={ref2} className={`place-items-center transition-opacity duration-600 ease-in ${
+                <div ref={ref2} className={`place-items-center mt-20 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-10'>Gallery</h1>
+                    {/* <h1 className='text-6xl text-neutral-900 pb-10'>Gallery</h1> */}
                     <Carousel className='w-3/4 rounded-sm'>
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
@@ -73,7 +73,7 @@ function About() {
                 <div ref={ref4} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView4 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-10'>Placeholder</h1>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>The Perfect Gift</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                         Doloremque ad, exercitationem quisquam ducimus numquam iure
