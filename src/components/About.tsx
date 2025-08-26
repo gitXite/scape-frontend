@@ -59,8 +59,28 @@ function About() {
                 </div>
                 <div
                     ref={ref2}
-                    className={`place-items-center mt-20 transition-opacity duration-600 ease-in ${
+                    className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                         inView2 ? 'opacity-100' : 'opacity-0'
+                    }`}
+                >
+                    <h1 className='text-6xl text-neutral-900 pb-10'>
+                        Realize Your World
+                    </h1>
+                    <p className='w-8/12 text-center text-neutral-700 leading-8'>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Doloremque ad, exercitationem quisquam ducimus
+                        numquam iure quaerat, incidunt deserunt expedita tempore
+                        at delectus quasi molestias necessitatibus sit est
+                        reprehenderit odit ratione!
+                    </p>
+                </div>
+            </div>
+
+            <div className='flex flex-col items-center justify-center gap-y-80 mt-40'>
+                <div
+                    ref={ref3}
+                    className={`place-items-center transition-opacity duration-600 ease-in ${
+                        inView3 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
                     <Carousel setApi={setApi} className='w-3/4 rounded-sm'>
@@ -105,26 +125,6 @@ function About() {
                         <CarouselPrevious className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
                         <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
                     </Carousel>
-                </div>
-            </div>
-
-            <div className='flex flex-col items-center justify-center gap-y-80 mt-40'>
-                <div
-                    ref={ref3}
-                    className={`place-items-center transition-opacity duration-600 ease-in ${
-                        inView3 ? 'opacity-100' : 'opacity-0'
-                    }`}
-                >
-                    <h1 className='text-6xl text-neutral-900 pb-10'>
-                        Realize Your World
-                    </h1>
-                    <p className='w-8/12 text-center text-neutral-700 leading-8'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Doloremque ad, exercitationem quisquam ducimus
-                        numquam iure quaerat, incidunt deserunt expedita tempore
-                        at delectus quasi molestias necessitatibus sit est
-                        reprehenderit odit ratione!
-                    </p>
                 </div>
                 <div
                     ref={ref4}
