@@ -83,7 +83,7 @@ function About() {
                         inView3 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <Carousel setApi={setApi} className='w-3/4 rounded-sm'>
+                    <Carousel setApi={setApi} className='w-3/4 rounded-sm drop-shadow-xl'>
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
                                 <img
