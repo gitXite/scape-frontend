@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 import VideoBackground from './VideoBackground';
+import { ChevronDown } from 'lucide-react';
 
 
 function Welcome() {
@@ -17,8 +18,9 @@ function Welcome() {
                     <p>G e t</p><span className='w-4'></span><p>S t a r t e d</p>
                 </button>
             </div>
-            <div className='text-center'>
-                <a href='#about' className='text-lg text-neutral-500 relative top-10 cursor-pointer hover:text-neutral-600 active:text-neutral-600'>Read More</a>
+            <div className='flex flex-col text-center items-center'>
+                <a href='#about' className='text-lg text-neutral-500 relative top-10 cursor-pointer hover:text-neutral-600 active:text-neutral-600 pb-5 z-1 peer'>Read More</a>
+                <ChevronDown className='text-neutral-500/50 relative top-5 cursor-pointer z-0 peer-hover:translate-y-2 transition-transform duration-200 ease-out' />
             </div>
         </div>
     );
