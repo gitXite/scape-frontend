@@ -1,13 +1,14 @@
+import { Button } from './ui/Button';
 import { Separator } from './ui/Separator';
 
 
 
 function CheckoutSummary() {
     return (
-        <div className='flex-col h-full w-2/4 p-20 content-center'>
+        <div className='flex-col h-full w-2/4 p-20 content-center text-center'>
             <div className='flex-col pb-5'>
-                <h1 className='pb-5 text-neutral-900'>Order Summary</h1>
-                <Separator orientation='horizontal'/>
+                <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl'>Order Summary</h1>
+                <Separator orientation='horizontal' className='relative bottom-5'/>
                 <div className='flex justify-between py-5'>
                     <img src='src/assets/product-image-straight.png' alt='Product Image 1' className='w-50 rounded-sm object-cover' />
                     <h2 className='text-neutral-900'>Model</h2>
@@ -39,6 +40,7 @@ function CheckoutSummary() {
                 <h1 className='text-neutral-900'>Total</h1>
                 <p className='text-neutral-900'>347kr</p>
             </div>
+            <Button className='h-12 w-3/9 rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 cursor-pointer'>Order Now</Button>
         </div>
     );
 }
