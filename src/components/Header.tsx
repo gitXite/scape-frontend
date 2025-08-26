@@ -54,7 +54,7 @@ function Header() {
                 isHoveredRef.current = false;
                 startHideTimeout();
             }}
-            className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-1 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
+            className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
                 showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
