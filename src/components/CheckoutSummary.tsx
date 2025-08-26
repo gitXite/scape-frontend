@@ -5,7 +5,7 @@ import { Separator } from './ui/Separator';
 
 function CheckoutSummary() {
     return (
-        <div className='flex-col h-full w-2/4 p-20 content-center text-center'>
+        <div className='flex-col h-full w-2/4 p-20 pt-10 content-center text-center'>
             <div className='flex-col pb-5'>
                 <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl'>Order Summary</h1>
                 <Separator orientation='horizontal' className='relative bottom-5'/>
