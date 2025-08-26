@@ -2,7 +2,6 @@ import { useState } from 'react';
 import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
-import ModelPreview from '../components/ModelPreview';
 import CustomizeFrame from '../components/CustomizeFrame';
 import CustomizePassePartout from '../components/CustomizePassePartout';
 import { Stepper } from '@/components/ui/Stepper';
