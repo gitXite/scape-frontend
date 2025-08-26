@@ -39,7 +39,6 @@ function About() {
             id='about'
             className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'
         >
-            {/* <img src="src/assets/product-image-without-pp.png" alt="Background" className='absolute object-cover z-0' /> */}
             <div className='flex flex-col items-center gap-y-80 mt-20'>
                 <div
                     ref={ref1}
@@ -64,7 +63,6 @@ function About() {
                         inView2 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    {/* <h1 className='text-6xl text-neutral-900 pb-10'>Gallery</h1> */}
                     <Carousel setApi={setApi} className='w-3/4 rounded-sm'>
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
@@ -89,6 +87,7 @@ function About() {
                                 />
                             </CarouselItem>
                         </CarouselContent>
+
                         <div className='absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2'>
                             {Array.from({ length: count }).map((_, index) => (
                                 <button
@@ -102,6 +101,7 @@ function About() {
                                 />
                             ))}
                         </div>
+                        
                         <CarouselPrevious className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
                         <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
                     </Carousel>
