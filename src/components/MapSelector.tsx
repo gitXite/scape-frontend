@@ -138,7 +138,7 @@ function MapSelector() {
                         Capture Coordinates
                     </button>
                     <button 
-                        className='flex place-content-center place-items-end mt-8 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
+                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
                         onClick={resetMap}
                     >
                         Reset

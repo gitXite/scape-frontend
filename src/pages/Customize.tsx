@@ -22,7 +22,7 @@ function Customize() {
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton />
             <HoverCard>
-                <HoverCardTrigger className='absolute m-10 top-0 mt-9 mr-110 right-0'><CircleQuestionMark className='text-neutral-600 hover:text-neutral-900 transition-colors duration-100 cursor-pointer' /></HoverCardTrigger>
+                <HoverCardTrigger className='absolute m-10 top-0 mt-9 mr-50 right-0'><CircleQuestionMark className='text-neutral-600 hover:text-neutral-900 transition-colors duration-100 cursor-pointer' /></HoverCardTrigger>
                 <HoverCardContent className='bg-neutral-900 text-neutral-100'>
                     Select your coordinates, pick a frame, passe-partout and order now!
                 </HoverCardContent>
