@@ -28,12 +28,12 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                     <div
                         key={index}
                         className={cn(
-                            'w-4 h-4 rounded-full border-2 transition-all duration-300',
+                            'w-5 h-5 rounded-full border-2 transition-all duration-300',
                             index <= currentStep
                                 ? 'border-neutral-900 bg-neutral-900'
                                 : 'border-neutral-200 bg-neutral-100'
                         )}
-                    />
+                    /> 
                 ))}
             </div>
         </div>
