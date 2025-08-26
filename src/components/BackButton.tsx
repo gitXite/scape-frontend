@@ -7,7 +7,7 @@ function BackButton() {
 
     return (
         <button 
-            className='absolute m-10 top-0 mt-8 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
+            className='absolute m-10 top-0 mt-9 h-fit text-lg text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
             onClick={() => {navigate(-1)}}
         >
             Back
