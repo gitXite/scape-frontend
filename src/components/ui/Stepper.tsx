@@ -30,8 +30,8 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                         className={cn(
                             'w-5 h-5 rounded-full border-2 transition-all duration-300',
                             index <= currentStep
-                                ? 'border-neutral-900 bg-neutral-900'
-                                : 'border-neutral-200 bg-neutral-100'
+                                ? 'border-neutral-900 bg-neutral-900 text-neutral-100'
+                                : 'border-neutral-200 bg-neutral-100 text-neutral-900'
                         )}
                     /> 
                 ))}
