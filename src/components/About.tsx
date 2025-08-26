@@ -1,4 +1,11 @@
 import { useInView } from 'react-intersection-observer';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from './ui/Carousel';
 
 const options = {
     triggerOnce: false,
@@ -31,14 +38,15 @@ function About() {
                 <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className='text-6xl text-neutral-900 pb-10'>Placeholder</h1>
-                    <p className='w-8/12 text-center text-neutral-700 leading-8'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                        Doloremque ad, exercitationem quisquam ducimus numquam iure
-                        quaerat, incidunt deserunt expedita tempore at delectus
-                        quasi molestias necessitatibus sit est reprehenderit odit
-                        ratione!
-                    </p>
+                    <Carousel>
+                        <CarouselContent>
+                            <CarouselItem></CarouselItem>
+                            <CarouselItem></CarouselItem>
+                            <CarouselItem></CarouselItem>
+                        </CarouselContent>
+                        <CarouselPrevious className='bg-neutral-900 hover:bg-neutral-200 active:bg-neutral-50' />
+                        <CarouselNext className='bg-neutral-900 hover:bg-neutral-200 active:bg-neutral-50' />
+                    </Carousel>
                 </div>
             </div>
 
