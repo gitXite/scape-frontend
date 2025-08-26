@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './Ripple';
+import { useNavigate } from 'react-router';
 
 interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
@@ -10,6 +11,7 @@ interface StepperProps {
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     const progressPercentage = (currentStep / (steps.length - 1)) * 100;
+    const navigate = useNavigate();
 
     const TimelineComponent = (
         <div className='relative top-10 w-full max-w-2xl mx-auto'>
@@ -51,7 +53,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                     Previous
                 </RippleButton>
                 <RippleButton
-                    onClick={() => onStepChange(currentStep + 1)}
+                    onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
                     disabled={currentStep === steps.length - 1}
                     className='text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
