@@ -46,14 +46,14 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                     variant='outline'
                     onClick={() => onStepChange(currentStep - 1)}
                     disabled={currentStep === 0}
-                    className='text-neutral-900 bg-neutral-100 hover:bg-neutral-200 hover:drop-shadow-md ml-50 bottom-25'
+                    className='text-neutral-900 bg-neutral-100 border-neutral-300 border-1 hover:bg-neutral-200 hover:drop-shadow-md active:bg-neutral-50 ml-50 bottom-25'
                 >
                     Previous
                 </RippleButton>
                 <RippleButton
                     onClick={() => onStepChange(currentStep + 1)}
                     disabled={currentStep === steps.length - 1}
-                    className='text-neutral-100 bg-neutral-900 hover:drop-shadow-md mr-50 bottom-25'
+                    className='text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
                     {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </RippleButton>

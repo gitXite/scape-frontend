@@ -26,7 +26,7 @@ function About() {
                 <div ref={ref1} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView1 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <h1 className=' text-6xl text-neutral-900 pb-10'>From Map To Masterpiece</h1>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>From Map To Masterpiece</h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Minima dolore, consequuntur alias quasi voluptate corporis
@@ -35,17 +35,24 @@ function About() {
                         Eos, corporis.
                     </p>
                 </div>
-                <div ref={ref2} className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
+                <div ref={ref2} className={`place-items-center transition-opacity duration-600 ease-in ${
                     inView2 ? 'opacity-100' : 'opacity-0'
                 }`}>
-                    <Carousel>
-                        <CarouselContent>
-                            <CarouselItem></CarouselItem>
-                            <CarouselItem></CarouselItem>
-                            <CarouselItem></CarouselItem>
+                    <h1 className='text-6xl text-neutral-900 pb-10'>Gallery</h1>
+                    <Carousel className='w-3/4 rounded-sm'>
+                        <CarouselContent className='rounded-sm'>
+                            <CarouselItem className=''>
+                                <img src="src/assets/product-image-straight.png" alt="Image 1" className='rounded-sm' />
+                            </CarouselItem>
+                            <CarouselItem className=''>
+                                <img src="src/assets/product-image-angle.png" alt="Image 2" className='rounded-sm' />
+                            </CarouselItem>
+                            <CarouselItem className=''>
+                                <img src="src/assets/product-image-straight.png" alt="Image 1" className='rounded-sm' />
+                            </CarouselItem>
                         </CarouselContent>
-                        <CarouselPrevious className='bg-neutral-900 hover:bg-neutral-200 active:bg-neutral-50' />
-                        <CarouselNext className='bg-neutral-900 hover:bg-neutral-200 active:bg-neutral-50' />
+                        <CarouselPrevious className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
+                        <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
                     </Carousel>
                 </div>
             </div>
