@@ -20,7 +20,7 @@ function Welcome() {
             </div>
             <div className='flex flex-col text-center items-center'>
                 <a href='#about' className='text-lg text-neutral-500 relative top-10 cursor-pointer hover:text-neutral-600 active:text-neutral-500 transition-colors duration-100 pb-5 z-1 peer'>Read More</a>
-                <ChevronDown className='text-neutral-500/50 relative top-5 cursor-pointer z-0 peer-hover:translate-y-2 transition-transform duration-200 ease-out' />
+                <ChevronDown className='text-neutral-500/50 relative top-5 cursor-pointer z-0 peer-hover:translate-y-2 peer-hover:text-neutral-600/60 transition-all duration-200 ease-out' />
             </div>
         </div>
     );
