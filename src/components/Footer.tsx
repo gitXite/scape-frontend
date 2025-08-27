@@ -1,26 +1,27 @@
 import { Separator } from './ui/Separator';
 
+
 function Footer() {
     return (
         <footer className='flex justify-center place-items-end h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-20 h-40 text-center'>
                 <div className='flex flex-col px-6 place-content-around'>
                     <a
-                        href='#home'
+                        href='/#home'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
                     >
                         Home
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='#about'
+                        href='/#about'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
                     >
                         About
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='#map'
+                        href='/#map'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
                     >
                         Map
@@ -102,5 +103,6 @@ function Footer() {
         </footer>
     );
 }
+
 
 export default Footer;
