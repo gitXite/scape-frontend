@@ -87,14 +87,14 @@ function About() {
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
                                 <img
-                                    src='src/assets/product-image-angle.png'
+                                    src='src/assets/product-image-straight.png'
                                     alt='Image 1'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
                             <CarouselItem className=''>
                                 <img
-                                    src='src/assets/product-image-straight.png'
+                                    src='src/assets/product-image-angle.png'
                                     alt='Image 2'
                                     className='rounded-sm'
                                 />
