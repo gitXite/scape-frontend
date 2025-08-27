@@ -3,6 +3,7 @@ import { Separator } from './ui/Separator';
 
 
 function CustomizePassePartout() {
+
     return (
         <div className='flex h-full w-full justify-center items-center pb-20'>
             <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
@@ -12,7 +13,7 @@ function CustomizePassePartout() {
                     value='without'
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-sky-300 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Without' className='w-50 mb-2 rounded' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Without a passe-partout -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Pure focus on the model</p>
@@ -28,7 +29,7 @@ function CustomizePassePartout() {
                     value='white'
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-sky-300 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='White' className='w-50 mb-2 rounded' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Enclosed by white -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Bright, airy, and classic</p>
@@ -44,7 +45,7 @@ function CustomizePassePartout() {
                     value='black'
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-start items-center border rounded-sm p-4 transition peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-sky-300 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-start items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Black' className='w-50 mb-2 rounded' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Enclosed by black -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Sharp contrast for a bold look</p>
