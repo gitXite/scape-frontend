@@ -43,14 +43,14 @@ function Footer() {
                         href='/'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
                     >
-                        Services
+                        Projects
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
                         href='/'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
                     >
-                        Projects
+                        Services
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>
@@ -70,7 +70,7 @@ function Footer() {
                         href='/'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
                     >
-                        Support
+                        Shipping
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
