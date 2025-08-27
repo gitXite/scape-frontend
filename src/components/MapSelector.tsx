@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 import { useInView } from 'react-intersection-observer';
+import { Slider } from './ui/Slider';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -169,6 +170,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         Reset
                     </button>
+                    <Slider defaultValue={[33]} className='flex mt-8 ml-10 w-40' />
                 </div>
             </div>
         </div>
