@@ -1,4 +1,5 @@
 import { Separator } from './ui/Separator';
+import Socials from './Socials';
 
 function Footer() {
     return (
