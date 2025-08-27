@@ -16,6 +16,7 @@ function Customize() {
         const step = localStorage.getItem('step');
         return step ? +step : 0;
     });
+    
     const steps = [
         { component: MapSelector() },
         { component: CustomizeFrame() },
