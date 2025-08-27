@@ -54,7 +54,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                 </RippleButton>
                 <RippleButton
                     onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
-                    disabled={currentStep === steps.length - 1}
+                    disabled={currentStep === steps.length - 1 || !localStorage.getItem('coordinates')}
                     className='w-22 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}

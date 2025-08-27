@@ -93,6 +93,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     break;
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
+                    window.location.reload();
                     // toast message here
                     break;
             }
