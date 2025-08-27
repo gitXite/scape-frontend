@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
@@ -12,12 +12,16 @@ import { Separator } from '@/components/ui/Separator';
 
 
 function Customize() {
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = localStorage.getItem('step') ? useState(+localStorage.getItem('step')!) : useState(0);
     const steps = [
         { component: MapSelector() },
         { component: CustomizeFrame() },
         { component: CustomizePassePartout() },
     ];
+
+    useEffect(() => {
+        localStorage.setItem('step', activeStep.toString());
+    }, [activeStep]);
     
     return (
         <div className='bg-neutral-100 h-full w-full'>
