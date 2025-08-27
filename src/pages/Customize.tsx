@@ -28,15 +28,15 @@ function Customize() {
                     <p>1. </p>
                     <b>Select your coordinates -</b>
                     <p className='pb-2'>Choose the exact location you want</p>
-                    <Separator orientation='horizontal' className='bg-neutral-100/30' />
+                    <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>2. </p>
                     <b>Pick a frame -</b>
                     <p className='pb-2'>Find the style that fits your space</p>
-                    <Separator orientation='horizontal' className='bg-neutral-100/30' />
+                    <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>3. </p>
                     <b>Add a passe-partout -</b>
                     <p className='pb-2'>Give your model a refined finish</p>
-                    <Separator orientation='horizontal' className='bg-neutral-100/30' />
+                    <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>4. </p>
                     <b>Checkout -</b>
                     <p>Get your customized piece delivered to you</p>
