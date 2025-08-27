@@ -12,7 +12,10 @@ import { Separator } from '@/components/ui/Separator';
 
 
 function Customize() {
-    const [activeStep, setActiveStep] = localStorage.getItem('step') ? useState(+localStorage.getItem('step')!) : useState(0);
+    const [activeStep, setActiveStep] = useState(() => {
+        const step = localStorage.getItem('step');
+        return step ? +step : 0;
+    });
     const steps = [
         { component: MapSelector() },
         { component: CustomizeFrame() },
