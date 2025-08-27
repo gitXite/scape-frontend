@@ -96,7 +96,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
                     localStorage.setItem('terrainDepth', sliderValue[0].toString());
-                    window.dispatchEvent(new Event('coordinatesUpdated'));
+                    window.dispatchEvent(new Event('coordinates-updated'));
                     // toast message here
                     break;
             }
