@@ -170,7 +170,10 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         Reset
                     </button>
-                    <Slider defaultValue={[33]} className='flex mt-8 ml-10 w-40' />
+                    <div className='flex flex-col ml-10 w-40 items-center'>
+                        <p className='text-neutral-600 pb-3'>Terrain Depth</p>
+                        <Slider defaultValue={[33]} className='w-full' />
+                    </div>
                 </div>
             </div>
         </div>
