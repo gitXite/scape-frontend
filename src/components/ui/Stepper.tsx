@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './Ripple';
-import { useNavigate } from 'react-router';
+import { useNavigate, useState, useEffect } from 'react-router';
 
 interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
@@ -11,7 +11,24 @@ interface StepperProps {
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     const progressPercentage = (currentStep / (steps.length - 1)) * 100;
+    const [storedCoordinates, setStoredCoordinates] = useState<boolean>(() => {
+        return !!localStorage.getItem('coordinates');
+    });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setStoredCoordinates(!!localStorage.getItem('coordinates'));
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('coordinates-updated', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('coordinates-updated', handleStorageChange);
+        };
+    }, []);
 
     const TimelineComponent = (
         <div className='relative top-10 w-full max-w-2xl mx-auto'>
@@ -54,7 +71,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                 </RippleButton>
                 <RippleButton
                     onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
-                    disabled={currentStep === steps.length - 1 || !localStorage.getItem('coordinates')}
+                    disabled={currentStep === steps.length - 1 || !storedCoordinates}
                     className='w-22 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
