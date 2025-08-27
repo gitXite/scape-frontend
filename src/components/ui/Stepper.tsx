@@ -11,14 +11,14 @@ interface StepperProps {
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     const progressPercentage = (currentStep / (steps.length - 1)) * 100;
-    const [storedCoordinates, setStoredCoordinates] = useState<boolean>(() => {
+    const [coordinatesAreStored, setCoordinatesAreStored] = useState<boolean>(() => {
         return !!localStorage.getItem('coordinates');
     });
     const navigate = useNavigate();
 
     useEffect(() => {
         const handleStorageChange = () => {
-            setStoredCoordinates(!!localStorage.getItem('coordinates'));
+            setCoordinatesAreStored(!!localStorage.getItem('coordinates'));
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -71,7 +71,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                 </RippleButton>
                 <RippleButton
                     onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
-                    disabled={currentStep === steps.length - 1 || !storedCoordinates}
+                    disabled={currentStep === steps.length - 1 || !coordinatesAreStored}
                     className='w-22 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
