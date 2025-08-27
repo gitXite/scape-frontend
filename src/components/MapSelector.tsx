@@ -40,6 +40,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         });
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
+    const [sliderValue, setSliderValue] = useState([33]);
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
         triggerOnce: false,
@@ -94,7 +95,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     break;
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
-                    window.location.reload();
+                    localStorage.setItem('terrainDepth', sliderValue[0].toString());
                     // toast message here
                     break;
             }
@@ -109,7 +110,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                     break;
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
+                    setSliderValue([33]);
                     localStorage.removeItem('coordinates');
+                    localStorage.removeItem('terrainDepth');
                     break;
             }
         }
@@ -172,7 +175,13 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </button>
                     <div className='flex flex-col ml-10 w-40 items-center'>
                         <p className='text-neutral-600 pb-3'>Terrain Depth</p>
-                        <Slider defaultValue={[33]} className='w-full' />
+                        <Slider 
+                            defaultValue={[33]}
+                            className='w-full'
+                            value={sliderValue}
+                            onValueChange={(value) => setSliderValue(value)}
+                        />
+                        <p className='text-neutral-600 pt-3'>{sliderValue[0]}%</p>
                     </div>
                 </div>
             </div>
