@@ -101,8 +101,15 @@ function MapSelector({ mode }: MapSelectorProps) {
 
     const resetMap = () => {
         if (rectangleBounds) {
-            setCenter({ lat: 60.39299, lng: 5.32415 });
-            localStorage.removeItem('coordinates');
+            switch (mode) {
+                case 'dummy':
+                    setCenter({ lat: 60.39299, lng: 5.32415 });
+                    break;
+                case 'real':
+                    setCenter({ lat: 60.39299, lng: 5.32415 });
+                    localStorage.removeItem('coordinates');
+                    break;
+            }
         }
     };
 
