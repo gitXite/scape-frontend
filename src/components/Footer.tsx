@@ -84,7 +84,7 @@ function Footer() {
             </div>
             <div className='flex-col place-items-center'>
                 <div className='h-fit w-auto text-2xl text-neutral-100 p-2 pb-15'>
-                    <p className=''>Terrascapes</p>
+                    <p className=''>T e r r a n u o v o</p>
                 </div>
                 <small className=''>
                     Copyright © {new Date().getFullYear()} by Daniel Halås. All
