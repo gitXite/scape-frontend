@@ -11,7 +11,7 @@ function Home() {
             <Header />
             <Welcome />
             <About />
-            <MapSelector />
+            <MapSelector mode='dummy' />
             <Footer />
         </div>
     );

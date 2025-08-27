@@ -9,6 +9,9 @@ type RectangleBounds = {
     east: number;
     west: number;
 };
+type MapSelectorProps = {
+    mode: 'dummy' | 'real',
+};
 
 // placeholder, to scale with zoom
 const RECT_HEIGHT_SCALE = 12000 * 2; // in meters
@@ -24,10 +27,16 @@ const containerStyle: React.CSSProperties = {
 const libraries: 'geometry'[] = ['geometry'];
 
 
-function MapSelector() {
-    const [center, setCenter] = useState<LatLngLiteral>({
-        lat: 60.39299,
-        lng: 5.32415,
+function MapSelector({ mode }: MapSelectorProps) {
+    const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
+        const coords = localStorage.getItem('coordinates');
+        return coords ? ({
+            lat: (JSON.parse(coords).north + JSON.parse(coords).south) / 2,
+            lng: (JSON.parse(coords).east + JSON.parse(coords).west) / 2,
+        }) : ({
+            lat: 60.39299,
+            lng: 5.32415,
+        });
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const mapRef = useRef<google.maps.Map | null>(null);
@@ -72,19 +81,28 @@ function MapSelector() {
 
     const handleCapture = () => {
         if (rectangleBounds) {
-            alert(
-                `Coordinates captured successfully:\n${JSON.stringify(
-                    rectangleBounds,
-                    null,
-                    2
-                )}`
-            );
+            switch (mode) {
+                case 'dummy':
+                    alert(
+                        `Coordinates captured successfully:\n${JSON.stringify(
+                            rectangleBounds,
+                            null,
+                            2
+                        )}`
+                    );
+                    break;
+                case 'real':
+                    localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
+                    // toast message here
+                    break;
+            }
         }
     };
 
     const resetMap = () => {
         if (rectangleBounds) {
             setCenter({ lat: 60.39299, lng: 5.32415 });
+            localStorage.removeItem('coordinates');
         }
     };
 
