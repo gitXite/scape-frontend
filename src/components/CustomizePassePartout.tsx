@@ -4,6 +4,7 @@ import { Separator } from './ui/Separator';
 function CustomizePassePartout() {
     const handleClick = (value: string) => {
         localStorage.setItem('selectedPassePartout', value);
+        window.dispatchEvent(new Event('passe-partout-updated'));
     };
     
     return (
