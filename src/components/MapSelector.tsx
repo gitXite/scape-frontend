@@ -96,7 +96,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
                     localStorage.setItem('terrainDepth', sliderValue[0].toString());
-                    window.dispatchEvent(new Event('coordinates-updated'));
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('coordinates-updated'));
+                    });
                     // toast message here
                     break;
             }
@@ -115,6 +117,11 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setSliderValue([33]);
                     localStorage.removeItem('coordinates');
                     localStorage.removeItem('terrainDepth');
+                    localStorage.removeItem('selectedFrame');
+                    localStorage.removeItem('selectedPassePartout');
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('coordinates-updated'));
+                    });
                     break;
             }
         }

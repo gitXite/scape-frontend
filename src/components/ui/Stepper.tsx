@@ -30,7 +30,6 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                 selectedFrame: !!localStorage.getItem('selectedFrame'),
                 selectedPassePartout: !!localStorage.getItem('selectedPassePartout'),
             });
-            console.log(storedStates);
         };
 
         window.addEventListener('storage', handleStorageChange);
