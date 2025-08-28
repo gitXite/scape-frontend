@@ -2,7 +2,6 @@ import { Button } from './ui/Button';
 import { Separator } from './ui/Separator';
 
 
-
 function CheckoutSummary() {
     return (
         <div className='flex-col h-full w-2/4 p-20 pt-10 content-center text-center'>
