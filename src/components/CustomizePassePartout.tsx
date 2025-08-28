@@ -1,5 +1,5 @@
 import { Separator } from './ui/Separator';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 
 function CustomizePassePartout() {
@@ -8,7 +8,9 @@ function CustomizePassePartout() {
         return storedValue ? storedValue : '';
     });
     
-    const handleClick = (value: string) => {
+    const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+        const value = (event.target as HTMLInputElement).value;
+
         setSelectedValue(value);
         localStorage.setItem('selectedPassePartout', value);
         window.dispatchEvent(new Event('passe-partout-updated'));
@@ -21,8 +23,8 @@ function CustomizePassePartout() {
                     type='radio'
                     name='passe-partout'
                     value='without'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'without'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -39,8 +41,8 @@ function CustomizePassePartout() {
                     type='radio'
                     name='passe-partout'
                     value='white'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'white'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -57,8 +59,8 @@ function CustomizePassePartout() {
                     type='radio'
                     name='passe-partout'
                     value='black'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'black'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-start items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>

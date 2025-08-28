@@ -1,5 +1,5 @@
 import { Separator } from './ui/Separator';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 
 function CustomizeFrame() {
@@ -8,7 +8,9 @@ function CustomizeFrame() {
         return storedValue ? storedValue : '';
     });
     
-    const handleClick = (value: string) => {
+    const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+        const value = (event.target as HTMLInputElement).value;
+
         setSelectedValue(value);
         localStorage.setItem('selectedFrame', value);
         window.dispatchEvent(new Event('frame-updated'));
@@ -21,8 +23,8 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='oak'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'oak'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -39,8 +41,8 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='walnut'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'walnut'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -57,8 +59,8 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='white'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'white'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -75,8 +77,8 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='black'
-                    checked={selectedValue === value}
-                    onClick={(e) => handleClick(e.target.value)}
+                    checked={selectedValue === 'black'}
+                    onClick={handleClick}
                     className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
