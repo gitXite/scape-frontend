@@ -183,7 +183,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         Reset
                     </button>
                     <div className='flex flex-col ml-10 w-40 relative top-4 items-center group'>
-                        <p className='text-neutral-600 pb-3 cursor-default'>
+                        <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
                             Terrain Depth
                         </p>
                         <Slider 
@@ -192,7 +192,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                             onValueChange={(value) => setSliderValue(value)}
                             className='w-full'
                         />
-                        <p className='text-neutral-400 pt-2 transition-colors duration-200 ease-in-out group-hover:text-neutral-600 cursor-default'>
+                        <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
                             {sliderValue[0]}%
                         </p>
                     </div>
