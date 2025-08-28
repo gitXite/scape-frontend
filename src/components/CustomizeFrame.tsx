@@ -5,6 +5,7 @@ import { Separator } from './ui/Separator';
 function CustomizeFrame() {
     const handleClick = (value: string) => {
         localStorage.setItem('selectedFrame', value);
+        window.dispatchEvent(new Event('frame-updated'));
     };
     
     return (
