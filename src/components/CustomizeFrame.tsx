@@ -1,9 +1,15 @@
 import { Separator } from './ui/Separator';
-
+import { useState } from 'react';
 
 
 function CustomizeFrame() {
+    const [selectedValue, setSelectedValue] = useState<string>((): string => {
+        const storedValue = localStorage.getItem('selectedFrame');
+        return storedValue ? storedValue : '';
+    });
+    
     const handleClick = (value: string) => {
+        setSelectedValue(value);
         localStorage.setItem('selectedFrame', value);
         window.dispatchEvent(new Event('frame-updated'));
     };
@@ -15,8 +21,9 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='oak'
-                    className='peer hidden'
+                    checked={selectedValue === value}
                     onClick={(e) => handleClick(e.target.value)}
+                    className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Oak Frame' className='w-50 rounded mb-2' />
@@ -32,8 +39,9 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='walnut'
-                    className='peer hidden'
+                    checked={selectedValue === value}
                     onClick={(e) => handleClick(e.target.value)}
+                    className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Walnut Frame' className='w-50 rounded mb-2' />
@@ -49,8 +57,9 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='white'
-                    className='peer hidden'
+                    checked={selectedValue === value}
                     onClick={(e) => handleClick(e.target.value)}
+                    className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='White Frame' className='w-50 rounded mb-2' />
@@ -66,8 +75,9 @@ function CustomizeFrame() {
                     type='radio'
                     name='frame'
                     value='black'
-                    className='peer hidden'
+                    checked={selectedValue === value}
                     onClick={(e) => handleClick(e.target.value)}
+                    className='peer hidden'
                 />
                 <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Black Frame' className='w-50 rounded mb-2' />
