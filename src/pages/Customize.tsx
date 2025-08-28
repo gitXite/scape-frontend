@@ -35,15 +35,15 @@ function Customize() {
                 <HoverCardContent className='bg-neutral-900 text-neutral-100 text-center justify-center'>
                     <p>1. </p>
                     <b>Select your coordinates -</b>
-                    <p className='pb-2'>Choose the exact location you want</p>
+                    <p className='pb-3'>Choose the exact location you want</p>
                     <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>2. </p>
                     <b>Pick a frame -</b>
-                    <p className='pb-2'>Find the style that fits your space</p>
+                    <p className='pb-3'>Find the style that fits your space</p>
                     <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>3. </p>
                     <b>Add a passe-partout -</b>
-                    <p className='pb-2'>Give your model a refined finish</p>
+                    <p className='pb-3'>Give your model a refined finish</p>
                     <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>4. </p>
                     <b>Checkout -</b>
