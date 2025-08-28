@@ -7,26 +7,41 @@ interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
     currentStep: number;
     onStepChange: (step: number) => void;
-}
+};
+type StoredStates = {
+    coordinates: boolean,
+    selectedFrame: boolean,
+    selectedPassePartout: boolean,
+};
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     const progressPercentage = (currentStep / (steps.length - 1)) * 100;
-    const [coordinatesAreStored, setCoordinatesAreStored] = useState<boolean>(() => {
-        return !!localStorage.getItem('coordinates');
-    });
+    const [storedStates, setStoredStates] = useState<StoredStates>(() => ({
+        coordinates: !!localStorage.getItem('coordinates'),
+        selectedFrame: !!localStorage.getItem('selectedFrame'),
+        selectedPassePartout: !!localStorage.getItem('selectedPassePartout'),
+    }));
     const navigate = useNavigate();
 
     useEffect(() => {
         const handleStorageChange = () => {
-            setCoordinatesAreStored(!!localStorage.getItem('coordinates'));
+            setStoredStates({
+                coordinates: !!localStorage.getItem('coordinates'),
+                selectedFrame: !!localStorage.getItem('selectedFrame'),
+                selectedPassePartout: !!localStorage.getItem('selectedPassePartout'),
+            });
         };
 
         window.addEventListener('storage', handleStorageChange);
         window.addEventListener('coordinates-updated', handleStorageChange);
+        window.addEventListener('frame-updated', handleStorageChange);
+        window.addEventListener('passe-partout-updated', handleStorageChange);
 
         return () => {
             window.removeEventListener('storage', handleStorageChange);
             window.removeEventListener('coordinates-updated', handleStorageChange);
+            window.removeEventListener('frame-updated', handleStorageChange);
+            window.removeEventListener('passe-partout-updated', handleStorageChange);
         };
     }, []);
 
@@ -71,7 +86,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                 </RippleButton>
                 <RippleButton
                     onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
-                    disabled={currentStep === steps.length - 1 || !coordinatesAreStored}
+                    disabled={!storedStates.coordinates || !storedStates.selectedFrame || !storedStates.selectedPassePartout}
                     className='w-22 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 hover:drop-shadow-md mr-50 bottom-25'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
