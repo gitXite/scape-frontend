@@ -108,6 +108,7 @@ function MapSelector({ mode }: MapSelectorProps) {
             switch (mode) {
                 case 'dummy':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
+                    setSliderValue([33]);
                     break;
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
@@ -161,7 +162,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center ml-18'>
+                <div className='flex place-items-center relative left-35'>
                     <button
                         className='flex border-neutral-100 text-neutral-100 bg-neutral-900 text-xl border-1 mt-8 mr-10 p-5 pl-10 pr-10 transition duration-150 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] hover:drop-shadow-xl hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.3)] active:shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-full active:text-neutral-600 hover:bg-neutral-100 hover:border-neutral-900 hover:text-neutral-900 hover:cursor-pointer'
                         onClick={handleCapture}
@@ -174,13 +175,13 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         Reset
                     </button>
-                    <div className='flex flex-col ml-10 w-40 items-center'>
+                    <div className='flex flex-col ml-10 w-40 relative top-4.5 items-center'>
                         <p className='text-neutral-600 pb-3'>Terrain Depth</p>
                         <Slider 
                             defaultValue={[33]}
-                            className='w-full'
                             value={sliderValue}
                             onValueChange={(value) => setSliderValue(value)}
+                            className='w-full'
                         />
                         <p className='text-neutral-600 pt-3'>{sliderValue[0]}%</p>
                     </div>
