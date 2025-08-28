@@ -1,7 +1,7 @@
-import type { JSX } from 'react';
+import { type JSX,  useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './Ripple';
-import { useNavigate, useState, useEffect } from 'react-router';
+import { useNavigate } from 'react-router';
 
 interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
