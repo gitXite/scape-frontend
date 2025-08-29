@@ -1,6 +1,6 @@
 import MapSelector from '../components/MapSelector';
 import Welcome from '../components/Welcome';
-import About from '../components/About';
+import About from '../components/Story';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 

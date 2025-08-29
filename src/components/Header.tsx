@@ -66,8 +66,8 @@ function Header() {
                 <div className='text-4xl text-neutral-100 mix-blend-difference'>
                     S c a p e
                 </div>
-                <a href='#our-story' className='group fixed right-3/9 transition duration-300 tracking-wide'>
-                    Our Story
+                <a href='#story' className='group fixed right-3/9 transition duration-300 tracking-wide'>
+                    Story
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
                 <a href='#map' className='group fixed right-3/11 transition duration-300 tracking-wide'>
