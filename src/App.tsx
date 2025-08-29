@@ -45,7 +45,7 @@ function App() {
                             // closeIconLabel: 'Reject all and close modal',
                             footer: `
                                 <a href="/privacy-policy" target="_blank">Privacy Policy</a>
-                                <a href="/terms-&-conditions" target="_blank">Terms & Conditions</a>
+                                <a href="/terms-of-service" target="_blank">Terms & Conditions</a>
                             `,
                         },
                         preferencesModal: {
