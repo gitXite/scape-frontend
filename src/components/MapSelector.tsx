@@ -169,9 +169,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center relative left-35'>
+                <div className='flex place-items-center relative left-23'>
+                    <button className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer'>
+                        Preview
+                    </button>
                     <button
-                        className='flex border-neutral-100 text-neutral-100 bg-neutral-900 text-xl border-1 mt-8 mr-10 p-5 pl-10 pr-10 transition duration-150 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] hover:drop-shadow-xl hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.3)] active:shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-full active:text-neutral-600 hover:bg-neutral-100 hover:border-neutral-900 hover:text-neutral-900 hover:cursor-pointer'
+                        className='flex border-neutral-100 text-neutral-100 bg-neutral-900 text-xl border-1 mt-8 ml-10 mr-10 p-5 pl-10 pr-10 transition duration-150 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] hover:drop-shadow-xl hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.3)] active:shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-full active:text-neutral-600 hover:bg-neutral-100 hover:border-neutral-900 hover:text-neutral-900 hover:cursor-pointer'
                         onClick={handleCapture}
                     >
                         Capture Coordinates
