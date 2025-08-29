@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 import { useInView } from 'react-intersection-observer';
 import { Slider } from './ui/Slider';
+import ModelPreview from './modals/ModelPreview';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -46,6 +47,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         triggerOnce: false,
         threshold: 0.1,
     });
+    const [showModal, setShowModal] = useState(false);
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -170,7 +172,10 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </LoadScript>
                 
                 <div className='flex place-items-center relative left-23'>
-                    <button className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer'>
+                    <button 
+                        onClick={() => setShowModal(true)}
+                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer'
+                    >
                         Preview
                     </button>
                     <button
@@ -201,6 +206,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </div>
                 </div>
             </div>
+            {showModal && (
+                <ModelPreview />
+            )}
         </div>
     );
 }
