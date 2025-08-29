@@ -5,80 +5,136 @@ function Footer() {
     return (
         <footer className='flex justify-center place-items-end h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-20 h-40 text-center'>
-                <div className='flex flex-col px-6 place-content-around'>
+                <div className='flex flex-col items-start px-6 place-content-around'>
                     <a
                         href='/#home'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
+                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
                     >
                         Home
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
                         href='/#about'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
+                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
                     >
-                        About
+                        Our Story
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
                         href='/#map'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium'
+                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
                     >
                         Map
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>
-                <Separator
-                    orientation='vertical'
-                    className='border-neutral-100/10 max-h-25 mt-7.5'
-                />
-                <div className='flex flex-col px-6 place-content-around'>
+                <div className='flex items-center justify-center h-full'>
+                    <Separator
+                        orientation='vertical'
+                        className='border-neutral-100/10 max-h-20'
+                    />
+                </div>
+                <div className='flex flex-col items-start px-6 place-content-around'>
+                    <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
+                        Company
+                    </h1>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        About Us
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
                     <a
                         href='/gallery'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Gallery
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
                         href='/'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
-                        Projects
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
-                    >
-                        Services
+                        Testimonials
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>
-                <Separator
-                    orientation='vertical'
-                    className='border-neutral-100/10 max-h-25 mt-7.5'
-                />
-                <div className='flex flex-col px-6 place-content-around'>
-                    <a
-                        href='/contact'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
-                    >
-                        Contact
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
+                <div className='flex items-center justify-center h-full'>
+                    <Separator
+                        orientation='vertical'
+                        className='border-neutral-100/10 max-h-20'
+                    />
+                </div>
+                <div className='flex flex-col items-start px-6 place-content-around'>
+                    <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
+                        Support
+                    </h1>
                     <a
                         href='/'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
-                    >
-                        Shipping
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-regular'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         FAQ
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Orders & Shipping
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/contact'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Contact Support
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Submit Feedback
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                </div>
+                <div className='flex items-center justify-center h-full'>
+                    <Separator
+                        orientation='vertical'
+                        className='border-neutral-100/10 max-h-20'
+                    />
+                </div>
+                <div className='flex flex-col items-start px-6 place-content-around'>
+                    <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
+                        Legal
+                    </h1>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Privacy Policy
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Terms of Service
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Return & Refund Policy
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Cookie Policy
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>
