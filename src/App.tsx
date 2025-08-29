@@ -44,7 +44,7 @@ function App() {
                             showPreferencesBtn: 'Manage Individual preferences',
                             // closeIconLabel: 'Reject all and close modal',
                             footer: `
-                                <a href="/privicy-policy" target="_blank">Privacy Policy</a>
+                                <a href="/privacy-policy" target="_blank">Privacy Policy</a>
                                 <a href="/terms-&-conditions" target="_blank">Terms & Conditions</a>
                             `,
                         },

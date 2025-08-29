@@ -110,14 +110,14 @@ function Footer() {
                         Legal
                     </h1>
                     <a
-                        href='/'
+                        href='/privacy-policy'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Privacy Policy
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/terms-&-conditions'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Terms of Service
@@ -131,7 +131,7 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/cookies'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Cookie Policy
