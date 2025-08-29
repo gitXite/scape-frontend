@@ -14,7 +14,7 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/#about'
+                        href='/#our-story'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
                     >
                         Our Story
@@ -46,17 +46,17 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/gallery'
-                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                    >
-                        Gallery
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
                         href='/'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Testimonials
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/gallery'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Gallery
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>

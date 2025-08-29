@@ -36,7 +36,7 @@ function About() {
 
     return (
         <div
-            id='about'
+            id='our-story'
             className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'
         >
             <div className='flex flex-col items-center gap-y-80 mt-20'>
