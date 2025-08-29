@@ -4,7 +4,7 @@ import Socials from './Socials';
 function Footer() {
     return (
         <footer className='flex justify-center place-items-end h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex absolute left-0 ml-20 h-40 text-center'>
+            <div className='flex absolute left-0 ml-15 h-40 text-center'>
                 <div className='flex flex-col items-start px-6 place-content-around'>
                     <a
                         href='/#home'
@@ -34,7 +34,7 @@ function Footer() {
                         className='border-neutral-100/10 max-h-20'
                     />
                 </div>
-                <div className='flex flex-col items-start px-6 place-content-around'>
+                <div className='flex flex-col items-start px-6 place-content-around relative bottom-1'>
                     <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                         Company
                     </h1>
@@ -140,8 +140,8 @@ function Footer() {
                 </div>
             </div>
             <div className='flex-col place-items-center'>
-                <div className='h-fit w-auto text-2xl text-neutral-100 p-2 pb-15'>
-                    <p className=''>S c a p e</p>
+                <div className='h-fit w-auto text-4xl text-neutral-100 p-2 pb-15'>
+                    <h1 className=''>S c a p e</h1>
                 </div>
                 <small className=''>
                     Copyright © {new Date().getFullYear()} by Daniel Halås. All
