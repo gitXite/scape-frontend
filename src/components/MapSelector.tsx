@@ -157,11 +157,11 @@ function MapSelector({ mode }: MapSelectorProps) {
                             <Rectangle
                                 bounds={rectangleBounds}
                                 options={{
-                                    strokeColor: '#ff0000',
-                                    strokeOpacity: 0.8,
+                                    strokeColor: '#000000',
+                                    strokeOpacity: 1,
                                     strokeWeight: 1,
-                                    fillColor: '#ff0000',
-                                    fillOpacity: 0.2,
+                                    fillColor: '#000000',
+                                    fillOpacity: 0.5,
                                     draggable: false,
                                     editable: false,
                                     clickable: false,
