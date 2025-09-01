@@ -144,7 +144,7 @@ function Footer() {
                     <h1 className=''>S c a p e</h1>
                 </div>
                 <small className=''>
-                    Copyright © {new Date().getFullYear()} by Daniel Halås. All
+                    Copyright © {new Date().getFullYear()} by MD Design. All
                     Rights Reserved.
                 </small>
             </div>
