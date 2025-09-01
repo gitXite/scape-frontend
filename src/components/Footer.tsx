@@ -1,46 +1,11 @@
 import { Separator } from './ui/separator';
 import Socials from './Socials';
+import Logo from '@/assets/scape-logo.png';
 
 function Footer() {
     return (
         <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-20 h-40 text-center space-x-2'>
-                {/* <div className='flex flex-col items-start px-6 place-content-around'>
-                    <a
-                        href='/#home'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
-                    >
-                        Home
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/customize'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
-                    >
-                        Get Started
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/#story'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
-                    >
-                        Story
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/#map'
-                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
-                    >
-                        Map
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                </div>
-                <div className='flex items-center justify-center h-full'>
-                    <Separator
-                        orientation='vertical'
-                        className='border-neutral-100/10 max-h-20'
-                    />
-                </div> */}
                 <div className='flex flex-col items-start px-6 place-content-around relative bottom-1'>
                     <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                         Company
@@ -146,15 +111,16 @@ function Footer() {
                     </a>
                 </div>
             </div>
-            <div className='flex-col place-items-center'>
-                <div className='h-fit w-auto text-4xl text-center text-neutral-100 p-2 pb-10'>
+            <div className='flex-col place-items-center space-y-5'>
+                <div className='h-fit w-auto text-4xl text-center text-neutral-100'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2'>by md</p>
                 </div>
-                <small className=''>
+                <img src={Logo} alt="Logo" className='w-[10%]' />
+                <p className='text-xs'>
                     Copyright © {new Date().getFullYear()} by md design. All
                     Rights Reserved.
-                </small>
+                </p>
             </div>
             <div className='flex absolute right-0 items-center'>
                 <Socials />

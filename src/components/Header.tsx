@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Logo from '@/assets/scape-logo.png';
 
 function Header() {
     const [showHeader, setShowHeader] = useState(false);
@@ -54,7 +55,7 @@ function Header() {
                 isHoveredRef.current = false;
                 startHideTimeout();
             }}
-            className={`flex h-auto w-full p-4 fixed mix-blend-difference bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
+            className={`flex h-auto w-full p-2 fixed mix-blend-difference bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
                 showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
@@ -67,10 +68,13 @@ function Header() {
                     The Scape
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <div className='flex flex-col text-center text-5xl text-neutral-100 mix-blend-difference'>
+                <div className='flex justify-center'>
+                    <img src={Logo} alt="Logo" className='w-[22%]'/>
+                </div>
+                {/* <div className='flex flex-col text-center text-5xl text-neutral-100'>
                     S C /\ P E
                     <small className='text-sm pt-2'>by md</small>
-                </div>
+                </div> */}
                 <a href='/customize' className='group fixed right-3/9 transition duration-300 tracking-widest'>
                     Get Started
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
