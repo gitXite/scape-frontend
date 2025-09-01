@@ -1,4 +1,4 @@
-# MD // Design
+# Scape - by MD
 
 ## From Map To Masterpiece
 Our customizable landscapes become instant conversation starters
