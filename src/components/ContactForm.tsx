@@ -25,7 +25,7 @@ const formSchema = z.object({
         }),
     email: z.email(),
     content: z.string().min(10, {
-        message: 'Please provide a content body'
+        message: 'Please provide a message',
     }),
 });
 
