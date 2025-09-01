@@ -1,8 +1,14 @@
 import { useHotkeys } from 'react-hotkeys-hook';
 import { X } from 'lucide-react';
+import type React from 'react';
 
 
-function ModelPreview({ showModal, setShowModal }) {
+type ModelPreviewProps = {
+    showModal: boolean,
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
+};
+
+function ModelPreview({ showModal, setShowModal }: ModelPreviewProps) {
     useHotkeys('escape', (event) => {
         event.preventDefault();
         if (showModal) setShowModal(false);
