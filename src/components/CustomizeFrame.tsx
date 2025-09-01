@@ -27,7 +27,7 @@ function CustomizeFrame() {
                     onClick={handleClick}
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center bg-neutral-200/20 hover:bg-neutral-100 items-center peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Oak Frame' className='w-50 rounded mb-2' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Fitted with an oak frame -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Natural and timeless</p>
@@ -45,7 +45,7 @@ function CustomizeFrame() {
                     onClick={handleClick}
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Walnut Frame' className='w-50 rounded mb-2' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Fitted with a walnut frame -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Rich and elegant</p>
@@ -63,7 +63,7 @@ function CustomizeFrame() {
                     onClick={handleClick}
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='White Frame' className='w-50 rounded mb-2' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Fitted with a white frame -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Clean and minimal</p>
@@ -81,7 +81,7 @@ function CustomizeFrame() {
                     onClick={handleClick}
                     className='peer hidden'
                 />
-                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+                <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                     <img src='src/assets/product-image-without-pp.png' alt='Black Frame' className='w-50 rounded mb-2' />
                     <p className='text-neutral-500 w-60 pt-10 px-2'>Fitted with a black frame -</p>
                     <p className='text-neutral-500 w-60 pb-10 px-2'>Bold and classic</p>
