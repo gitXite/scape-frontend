@@ -4,13 +4,20 @@ import Socials from './Socials';
 function Footer() {
     return (
         <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex absolute left-0 ml-15 h-40 text-center'>
-                <div className='flex flex-col items-start px-6 place-content-around'>
+            <div className='flex absolute left-0 ml-32 h-40 text-center space-x-2'>
+                {/* <div className='flex flex-col items-start px-6 place-content-around'>
                     <a
                         href='/#home'
                         className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
                     >
                         Home
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
+                        href='/customize'
+                        className='text-neutral-300 group hover:text-white transition duration-200 font-medium tracking-wide'
+                    >
+                        Get Started
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
@@ -33,7 +40,7 @@ function Footer() {
                         orientation='vertical'
                         className='border-neutral-100/10 max-h-20'
                     />
-                </div>
+                </div> */}
                 <div className='flex flex-col items-start px-6 place-content-around relative bottom-1'>
                     <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                         Company
@@ -140,8 +147,9 @@ function Footer() {
                 </div>
             </div>
             <div className='flex-col place-items-center'>
-                <div className='h-fit w-auto text-4xl text-neutral-100 p-2 pb-15'>
-                    <h1 className=''>S c a p e</h1>
+                <div className='h-fit w-auto text-4xl text-center text-neutral-100 p-2 pb-10'>
+                    <h1 className=''>S C /\ P E</h1>
+                    <p className='text-sm pt-2'>By MD</p>
                 </div>
                 <small className=''>
                     Copyright © {new Date().getFullYear()} by MD Design. All

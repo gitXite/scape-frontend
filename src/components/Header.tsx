@@ -59,18 +59,23 @@ function Header() {
             }`}
         >
             <nav className='flex place-items-center'>
-                <a href='#home' className='group fixed left-3/9 transition duration-300 tracking-wide'>
+                <a href='#home' className='group fixed left-3/11 transition duration-300 tracking-widest'>
                     Home
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <div className='text-4xl text-neutral-100 mix-blend-difference'>
-                    S c a p e
+                <a href='/customize' className='group fixed left-3/9 transition duration-300 tracking-widest'>
+                    Get Started
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                </a>
+                <div className='flex flex-col text-center text-4xl text-neutral-100 mix-blend-difference'>
+                    S C /\ P E
+                    <small className='text-xs'>By MD</small>
                 </div>
-                <a href='#story' className='group fixed right-3/9 transition duration-300 tracking-wide'>
+                <a href='#story' className='group fixed right-3/9 transition duration-300 tracking-widest'>
                     Story
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#map' className='group fixed right-3/11 transition duration-300 tracking-wide'>
+                <a href='#map' className='group fixed right-3/11 transition duration-300 tracking-widest'>
                     Map
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
