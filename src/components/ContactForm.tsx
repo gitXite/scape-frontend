@@ -75,7 +75,7 @@ function Contact() {
                     />
                     <Button 
                         type='submit'
-                        className='cursor-pointer rounded-full'
+                        className='bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-neutral-50 text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                     >
                         Submit
                     </Button>
