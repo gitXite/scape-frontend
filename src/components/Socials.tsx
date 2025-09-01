@@ -4,7 +4,7 @@
 function Socials() {
     return (
         <div className='flex relative right-50 top-2 gap-5'>
-            <a href='' target="_blank" rel="noopener noreferrer">
+            <a href='https://www.instagram.com/scapebymd' target="_blank" rel="noopener noreferrer">
                 <svg
                     role='img'
                     viewBox='0 0 24 24'
