@@ -27,6 +27,7 @@ const formSchema = z.object({
     content: z.string().min(10, {
         message: 'Please provide a message',
     }),
+    honey: z.string().max(0, 'Bot detected'),
 });
 
 function Contact() {
@@ -36,6 +37,7 @@ function Contact() {
             name: '',
             email: '',
             content: '',
+            honey: '',
         }
     });
 
@@ -84,11 +86,22 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 h-20' placeholder='What is on your mind?' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 h-20' autoComplete='off' placeholder='What is on your mind?' {...field} />
                                 </FormControl>
                                 <FormDescription>
                                 </FormDescription>
                                 <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField 
+                        control={form.control}
+                        name='honey'
+                        render={({ field }) => (
+                            <FormItem className='honeypot'>
+                                <FormControl>
+                                    <Input className='' autoComplete='off' {...field} />
+                                </FormControl>
                             </FormItem>
                         )}
                     />
