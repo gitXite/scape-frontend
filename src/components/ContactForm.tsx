@@ -30,6 +30,7 @@ const formSchema = z.object({
     honey: z.string().max(0, 'Bot detected'),
 });
 
+
 function Contact() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,6 +44,7 @@ function Contact() {
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values);
+        form.reset();
     };
 
     return (
