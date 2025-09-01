@@ -54,7 +54,7 @@ function Header() {
                 isHoveredRef.current = false;
                 startHideTimeout();
             }}
-            className={`flex h-auto w-full p-5 fixed mix-blend-difference bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
+            className={`flex h-auto w-full p-4 fixed mix-blend-difference bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
                 showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
@@ -69,7 +69,7 @@ function Header() {
                 </a>
                 <div className='flex flex-col text-center text-4xl text-neutral-100 mix-blend-difference'>
                     S C /\ P E
-                    <small className='text-xs'>By MD</small>
+                    <small className='text-xs pt-2'>By MD</small>
                 </div>
                 <a href='#story' className='group fixed right-3/9 transition duration-300 tracking-widest'>
                     Story
