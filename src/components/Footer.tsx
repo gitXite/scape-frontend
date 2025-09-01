@@ -3,7 +3,7 @@ import Socials from './Socials';
 
 function Footer() {
     return (
-        <footer className='flex justify-center place-items-end h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
+        <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-15 h-40 text-center'>
                 <div className='flex flex-col items-start px-6 place-content-around'>
                     <a
