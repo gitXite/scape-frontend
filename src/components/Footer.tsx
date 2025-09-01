@@ -4,7 +4,7 @@ import Socials from './Socials';
 function Footer() {
     return (
         <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex absolute left-0 ml-32 h-40 text-center space-x-2'>
+            <div className='flex absolute left-0 ml-20 h-40 text-center space-x-2'>
                 {/* <div className='flex flex-col items-start px-6 place-content-around'>
                     <a
                         href='/#home'
