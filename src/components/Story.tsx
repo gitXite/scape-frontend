@@ -122,8 +122,8 @@ function About() {
                             ))}
                         </div>
                         
-                        <CarouselPrevious className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
-                        <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-neutral-50' />
+                        <CarouselPrevious className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-white' />
+                        <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-white' />
                     </Carousel>
                 </div>
                 <div
