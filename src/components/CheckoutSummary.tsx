@@ -39,7 +39,7 @@ function CheckoutSummary() {
                 <h1 className='text-neutral-900'>Total</h1>
                 <p className='text-neutral-900'>347kr</p>
             </div>
-            <Button className='h-12 w-3/9 rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-neutral-50 cursor-pointer'>Order Now</Button>
+            <Button className='h-12 w-3/9 rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white cursor-pointer'>Order Now</Button>
         </div>
     );
 }
