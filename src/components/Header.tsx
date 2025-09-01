@@ -63,16 +63,16 @@ function Header() {
                     Home
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='/customize' className='group fixed left-3/9 transition duration-300 tracking-widest'>
-                    Get Started
+                <a href='#story' className='group fixed left-3/9 transition duration-300 tracking-widest'>
+                    The Scape
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <div className='flex flex-col text-center text-4xl text-neutral-100 mix-blend-difference'>
+                <div className='flex flex-col text-center text-5xl text-neutral-100 mix-blend-difference'>
                     S C /\ P E
-                    <small className='text-xs pt-2'>By MD</small>
+                    <small className='text-sm pt-2'>by md</small>
                 </div>
-                <a href='#story' className='group fixed right-3/9 transition duration-300 tracking-widest'>
-                    Story
+                <a href='/customize' className='group fixed right-3/9 transition duration-300 tracking-widest'>
+                    Get Started
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
                 <a href='#map' className='group fixed right-3/11 transition duration-300 tracking-widest'>

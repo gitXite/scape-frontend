@@ -149,10 +149,10 @@ function Footer() {
             <div className='flex-col place-items-center'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100 p-2 pb-10'>
                     <h1 className=''>S C /\ P E</h1>
-                    <p className='text-sm pt-2'>By MD</p>
+                    <p className='text-sm pt-2'>by md</p>
                 </div>
                 <small className=''>
-                    Copyright © {new Date().getFullYear()} by MD Design. All
+                    Copyright © {new Date().getFullYear()} by md design. All
                     Rights Reserved.
                 </small>
             </div>
