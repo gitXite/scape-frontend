@@ -207,7 +207,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </div>
             </div>
             {showModal && (
-                <ModelPreview />
+                <ModelPreview showModal={showModal} setShowModal={setShowModal} />
             )}
         </div>
     );
