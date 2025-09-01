@@ -4,10 +4,10 @@ import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
 import CustomizeFrame from '../components/CustomizeFrame';
 import CustomizePassePartout from '../components/CustomizePassePartout';
-import { Stepper } from '@/components/ui/Stepper';
+import { Stepper } from '@/components/ui/stepper';
 import { CircleQuestionMark } from 'lucide-react';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/HoverCard';
-import { Separator } from '@/components/ui/Separator';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hoverCard';
+import { Separator } from '@/components/ui/separator';
 
 
 

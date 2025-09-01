@@ -3,7 +3,9 @@
 
 function Contact() {
     return (
-        <div className='bg-neutral-100'>Contact</div>
+        <div className='h-full w-full bg-neutral-100'>
+            
+        </div>
     );
 }
 

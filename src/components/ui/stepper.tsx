@@ -1,6 +1,6 @@
 import { type JSX,  useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { RippleButton } from './Ripple';
+import { RippleButton } from './ripple';
 import { useNavigate } from 'react-router';
 
 interface StepperProps {

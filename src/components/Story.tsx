@@ -6,8 +6,8 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from './ui/Carousel';
-import type { CarouselApi } from './ui/Carousel';
+} from './ui/carousel';
+import type { CarouselApi } from './ui/carousel';
 
 const options = {
     triggerOnce: false,

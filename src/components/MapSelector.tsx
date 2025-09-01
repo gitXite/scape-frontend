@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 import { useInView } from 'react-intersection-observer';
-import { Slider } from './ui/Slider';
+import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 
 type LatLngLiteral = google.maps.LatLngLiteral;

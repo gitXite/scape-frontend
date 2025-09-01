@@ -1,5 +1,5 @@
-import { Button } from './ui/Button';
-import { Separator } from './ui/Separator';
+import { Button } from './ui/button';
+import { Separator } from './ui/separator';
 
 
 function CheckoutSummary() {

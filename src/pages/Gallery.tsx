@@ -5,7 +5,7 @@ import {
     CarouselNext,
     CarouselPrevious,
     type CarouselApi,
-} from '@/components/ui/Carousel';
+} from '@/components/ui/carousel';
 import { useEffect, useState } from 'react';
 
 function Gallery() {
