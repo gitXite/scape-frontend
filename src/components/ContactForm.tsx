@@ -24,6 +24,9 @@ const formSchema = z.object({
             message: 'Name cannot be over 25 characters',
         }),
     email: z.email(),
+    content: z.string().min(10, {
+        message: 'Please provide a content body'
+    }),
 });
 
 function Contact() {
@@ -32,6 +35,7 @@ function Contact() {
         defaultValues: {
             name: '',
             email: '',
+            content: '',
         }
     });
 
@@ -40,7 +44,7 @@ function Contact() {
     };
 
     return (
-        <div className='h-2/4 w-2/8 text-neutral-900'>
+        <div className='w-2/8 text-neutral-900 bg-neutral-200/20 border-1 p-10 rounded-sm'>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5 flex flex-col items-center'>
                     <FormField 
@@ -50,7 +54,7 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Name</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-50 rounded-sm p-5' placeholder='Your Name Here' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Your Name' {...field} />
                                 </FormControl>
                                 <FormDescription>
                                 </FormDescription>
@@ -65,7 +69,22 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Email</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-50 rounded-sm p-5' placeholder='Your Email' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='example@gmail.com' {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField 
+                        control={form.control}
+                        name='content'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
+                                <FormControl>
+                                    <Input className='bg-white w-70 rounded-sm p-5 h-20' placeholder='What is on your mind?' {...field} />
                                 </FormControl>
                                 <FormDescription>
                                 </FormDescription>
@@ -75,7 +94,7 @@ function Contact() {
                     />
                     <Button 
                         type='submit'
-                        className='bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-neutral-50 text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                        className='bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                     >
                         Submit
                     </Button>
