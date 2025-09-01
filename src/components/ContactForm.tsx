@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import {
     Form,
     FormControl,
-    FormDescription,
+    // FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -48,7 +48,7 @@ function Contact() {
     };
 
     return (
-        <div className='w-2/8 text-neutral-900 bg-neutral-200/20 border-1 p-10 rounded-sm'>
+        <div className='w-full text-neutral-900 p-10'>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5 flex flex-col items-center'>
                     <FormField 
@@ -60,8 +60,8 @@ function Contact() {
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5' placeholder='Your Name' {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                </FormDescription>
+                                {/* <FormDescription>
+                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -75,8 +75,8 @@ function Contact() {
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5' placeholder='example@gmail.com' {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                </FormDescription>
+                                {/* <FormDescription>
+                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -90,8 +90,8 @@ function Contact() {
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5 h-20' autoComplete='off' placeholder='What is on your mind?' {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                </FormDescription>
+                                {/* <FormDescription>
+                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -109,7 +109,7 @@ function Contact() {
                     />
                     <Button 
                         type='submit'
-                        className='bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                        className='p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                     >
                         Submit
                     </Button>
