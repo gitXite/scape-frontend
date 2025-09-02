@@ -38,7 +38,7 @@ function Feedback() {
                                 value={feedbackMessage}
                                 onChange={handleChange}
                                 placeholder='Enter your message'
-                                className='text-neutral-700 font-normal border-1 drop-shadow-sm bg-white rounded-sm p-5 h-50 w-6/10 resize-none'
+                                className='text-neutral-700 font-normal border-1 border-neutral-300 drop-shadow-sm bg-white rounded-sm p-5 h-50 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                             />
                         </div>
                         <div className='flex flex-col text-center items-center relative -bottom-15'>
