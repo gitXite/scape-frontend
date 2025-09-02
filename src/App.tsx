@@ -38,7 +38,8 @@ function App() {
                     enabled: true,
                     readOnly: true,
                 },
-                analytics: {},
+                // analytics: {},
+                // ads: {},
             },
             language: {
                 default: 'en',
@@ -47,7 +48,7 @@ function App() {
                         consentModal: {
                             title: 'We use cookies',
                             description:
-                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+                                'We value your privacy. Choose which cookies you want to allow. Essential cookies are always enabled as they are necessary for the website to function properly.',
                             acceptAllBtn: 'Accept all',
                             acceptNecessaryBtn: 'Reject all',
                             showPreferencesBtn: 'Manage Individual preferences',
@@ -82,26 +83,6 @@ function App() {
                                     description:
                                         'These cookies collect information about how you use our website. All of the data is anonymized and cannot be used to identify you.',
                                     linkedCategory: 'analytics',
-                                    cookieTable: {
-                                        caption: 'Cookie table',
-                                        headers: {
-                                            name: 'Cookie',
-                                            domain: 'Domain',
-                                            desc: 'Description',
-                                        },
-                                        body: [
-                                            {
-                                                name: '_ga',
-                                                domain: location.hostname,
-                                                desc: 'Description 1',
-                                            },
-                                            {
-                                                name: '_gid',
-                                                domain: location.hostname,
-                                                desc: 'Description 2',
-                                            },
-                                        ],
-                                    },
                                 },
                                 {
                                     title: 'Targeting and Advertising',
@@ -112,7 +93,7 @@ function App() {
                                 {
                                     title: 'More information',
                                     description:
-                                        'For any queries in relation to my policy on cookies and your choices, please <a href="/contact">contact us</a>',
+                                        'For any queries in relation to my policy on cookies and your choices, please <a href="/contact-us">contact us</a>',
                                 },
                             ],
                         },
