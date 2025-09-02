@@ -7,7 +7,10 @@ import StarRating from '@/components/ui/starRating';
 
 function Feedback() {
     const [userRating, setUserRating] = useState(0);
-    const [submittedRating, setSubmittedRating] = useState<number | null>(null);
+    const [submittedRating, setSubmittedRating] = useState<number | null>((): (number | null) => {
+        const storedRating = localStorage.getItem('feedbackRating');
+        return storedRating ? Number(storedRating) : null;
+    });
     const [feedbackMessage, setFeedbackMessage] = useState('');
 
     // mock variables
