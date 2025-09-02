@@ -7,6 +7,7 @@ import Checkout from './pages/Checkout';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import { useEffect } from 'react';
+import Feedback from './pages/Feedback';
 
 function App() {
     useEffect(() => {
@@ -121,6 +122,7 @@ function App() {
                 <Route path='/checkout' element={<Checkout />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/gallery' element={<Gallery />} />
+                <Route path='/feedback' element={<Feedback />} />
             </Routes>
         </Router>
     );
