@@ -18,14 +18,14 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/about-us'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         About Us
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/testimonials'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Testimonials
@@ -50,14 +50,14 @@ function Footer() {
                         Support
                     </h1>
                     <a
-                        href='/'
+                        href='/faq'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         FAQ
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/shipping'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Orders & Shipping
@@ -103,10 +103,10 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
-                        href='/'
+                        href='/returns'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
-                        Return & Refund Policy
+                        Returns & Refunds
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
