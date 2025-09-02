@@ -8,7 +8,12 @@ function Cookies() {
         <div className='flex flex-col h-full w-full bg-neutral-100 items-center'>
             <BackButton />
             <div className='flex flex-col items-center space-y-5 min-h-full p-10 w-200 text-center text-neutral-900'>
-                <h1 className='text-2xl tracking-widest font-normal mb-10'>COOKIE POLICY</h1>
+                <h1 className='text-2xl tracking-widest font-normal mb-2'>
+                    COOKIE POLICY
+                </h1>
+                <h2 className='text-neutral-400 font-normal'>
+                    Last updated September 02, 2025
+                </h2>
                 <p className='mb-8'>
                     Our website uses only <b>neccessary cookies</b> to ensure the proper functioning of the site. 
                     These cookies are essential for things like payment and transactions. 
