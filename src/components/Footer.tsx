@@ -131,11 +131,11 @@ function Footer() {
             </div>
             <div className='flex absolute right-0 items-center'>
                 <Socials />
-                <small className='relative -bottom-2'>Powered by</small>
+                <small className='relative left-2 -bottom-2'>Powered by</small>
                 <img
                     className='max-w-20 mr-10 p-0 relative -bottom-2'
-                    src='src/assets/Stripe_Logo.png'
-                    alt='Stripe Logo'
+                    src='src/assets/Vipps-Logo.wine.png'
+                    alt='Vipps Logo'
                 />
             </div>
         </footer>
