@@ -4,7 +4,7 @@ import Logo from '@/assets/scape-logo.png';
 
 function Footer() {
     return (
-        <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
+        <footer className='flex justify-center place-items-end min-h-50 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-20 h-40 text-center space-x-2'>
                 <div className='flex flex-col items-start px-6 place-content-around relative'>
                     <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
@@ -118,12 +118,12 @@ function Footer() {
                     </a>
                 </div>
             </div>
-            <div className='flex-col place-items-center space-y-5'>
+            <div className='flex-col place-items-center space-y-2'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2'>by md</p>
                 </div>
-                <img src={Logo} alt="Logo" className='w-[10%]' />
+                <img src={Logo} alt="Logo" className='w-[15%]' />
                 <p className='text-xs'>
                     Copyright © {new Date().getFullYear()} by md design. All
                     Rights Reserved.
