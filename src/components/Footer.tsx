@@ -6,10 +6,17 @@ function Footer() {
     return (
         <footer className='flex justify-center place-items-end min-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex absolute left-0 ml-20 h-40 text-center space-x-2'>
-                <div className='flex flex-col items-start px-6 place-content-around relative bottom-1'>
+                <div className='flex flex-col items-start px-6 place-content-around relative'>
                     <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                         Company
                     </h1>
+                    <a
+                        href='/'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Home
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
                     <a
                         href='/'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
