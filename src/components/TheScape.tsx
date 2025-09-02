@@ -47,7 +47,7 @@ function TheScape() {
                     }`}
                 >
                     <h1 className='text-6xl text-neutral-900 pb-10'>
-                        From Map To Masterpiece
+                        From Map To Frame
                     </h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.

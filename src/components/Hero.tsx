@@ -15,7 +15,7 @@ function Hero() {
                     <h2 className=''>F r o m</h2>
                     <h2 className=''>M a p</h2>
                     <h2 className=''>T o</h2>
-                    <h2 className=''>M a s t e r p i e c e</h2>
+                    <h2 className=''>F r a m e</h2>
                 </div>
                 <button 
                     className='z-2 flex mt-20 p-5 pl-12 pr-12 text-xl backdrop-blur-md text-neutral-100 border-1 transition duration-150 shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] hover:shadow-[inset_0px_0px_15px_rgba(0,0,0,0.6)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] shadow-neutral-950 border-neutral-100 rounded-full hover:drop-shadow-xl hover:cursor-pointer'
