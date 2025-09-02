@@ -171,7 +171,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center relative left-23'>
+                <div className='flex place-items-center relative left-24'>
                     <button 
                         onClick={() => setShowModal(true)}
                         className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer'

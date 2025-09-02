@@ -13,9 +13,9 @@ function Hero() {
                 <h1 className='z-2 mt-10 text-9xl drop-shadow-black drop-shadow-2xl tracking-widest [text-shadow:0_4px_10px_rgba(0,0,0,0.6)]'>S C /\ P E</h1>
                 <div className='flex tracking-widest text-4xl z-2 drop-shadow-black drop-shadow-2xl mt-10 space-x-10 [text-shadow:0_2px_8px_rgba(0,0,0,1)]'>
                     <h2 className=''>F r o m</h2>
-                    <h2 className=''>L a n d s c a p e</h2>
+                    <h2 className=''>M a p</h2>
                     <h2 className=''>T o</h2>
-                    <h2 className=''>K e e p s a k e</h2>
+                    <h2 className=''>M a s t e r p i e c e</h2>
                 </div>
                 <button 
                     className='z-2 flex mt-20 p-5 pl-12 pr-12 text-xl backdrop-blur-md text-neutral-100 border-1 transition duration-150 shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] hover:shadow-[inset_0px_0px_15px_rgba(0,0,0,0.6)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.6)] shadow-neutral-950 border-neutral-100 rounded-full hover:drop-shadow-xl hover:cursor-pointer'
