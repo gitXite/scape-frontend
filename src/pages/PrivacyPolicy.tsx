@@ -9,13 +9,13 @@ function PrivacyPolicy() {
                 <h1 className='text-2xl tracking-widest font-normal mb-10'>
                     Privacy Policy
                 </h1>
-                <h2 className='text-xl tracking-widest m-2'>1. Introduction</h2>
+                <h2 className='text-xl font-normal tracking-widest m-2'>1. Introduction</h2>
                 <p className='mb-8'>
                     We value your privacy. This policy explains what information
                     we collect, how we use it, and your rights.
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>
+                <h2 className='text-xl font-normal tracking-widest m-2'>
                     2. Information We Collect
                 </h2>
                 <p className='mb-8'>
@@ -33,7 +33,7 @@ function PrivacyPolicy() {
                     transactions.
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>
+                <h2 className='text-xl font-normal tracking-widest m-2'>
                     3. How We Use Your Information
                 </h2>
                 <p className='mb-8'>
@@ -47,7 +47,7 @@ function PrivacyPolicy() {
                     (e.g., payment processors, shipping services).
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>
+                <h2 className='text-xl font-normal tracking-widest m-2'>
                     4. Cookies and Third-Party Services
                 </h2>
                 <p className='mb-8'>
@@ -59,18 +59,18 @@ function PrivacyPolicy() {
                         </ul>
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>5. Data Security</h2>
+                <h2 className='text-xl font-normal tracking-widest m-2'>5. Data Security</h2>
                 <p className='mb-8'>
                     We take reasonable measures to protect your data, 
                     including using secure transmission (HTTPS) and working with trusted service providers for payment and shipping.
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>6. Your Rights</h2>
+                <h2 className='text-xl font-normal tracking-widest m-2'>6. Your Rights</h2>
                 <p className='mb-8'>
                     You may request access to your personal data, corrections, or deletion by contacting us at: <b>contact@scapebymd.no</b>
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>
+                <h2 className='text-xl font-normal tracking-widest m-2'>
                     7. Changes to This Policy
                 </h2>
                 <p className='mb-8'>
@@ -78,7 +78,7 @@ function PrivacyPolicy() {
                     Any changes will be posted on this page with the date of the latest revision.
                 </p>
 
-                <h2 className='text-xl tracking-widest m-2'>8. Contact</h2>
+                <h2 className='text-xl font-normal tracking-widest m-2'>8. Contact</h2>
                 <p className='mb-8'>
                     If you have questions about this Privacy Policy, please contact us at: <b>contact@scapebymd.no</b>
                 </p>
