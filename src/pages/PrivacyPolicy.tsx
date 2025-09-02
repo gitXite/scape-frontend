@@ -7,7 +7,7 @@ function PrivacyPolicy() {
             <BackButton />
             <div className='flex flex-col items-center space-y-5 min-h-full p-10 w-200 text-center text-neutral-900'>
                 <h1 className='text-2xl tracking-widest font-normal mb-10'>
-                    Privacy Policy
+                    PRIVACY POLICY
                 </h1>
                 <h2 className='text-xl font-normal tracking-widest m-2'>1. Introduction</h2>
                 <p className='mb-8'>
