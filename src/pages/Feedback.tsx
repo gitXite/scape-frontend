@@ -11,8 +11,8 @@ function Feedback() {
     const [feedbackMessage, setFeedbackMessage] = useState('');
 
     // mock variables
-    let averageRating = 4.2;
-    let totalReviews = 127;
+    // let averageRating = 4.2;
+    // let totalReviews = 127;
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setFeedbackMessage(event.target.value)
