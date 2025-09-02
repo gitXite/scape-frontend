@@ -121,9 +121,9 @@ function Footer() {
             <div className='flex-col place-items-center space-y-2'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100'>
                     <h1 className=''>S C /\ P E</h1>
-                    <p className='text-sm pt-2'>by md</p>
+                    <p className='text-sm pt-2 pb-1'>by md</p>
                 </div>
-                <img src={Logo} alt="Logo" className='w-[15%]' />
+                <img src={Logo} alt="Logo" className='w-[14%]' />
                 <p className='text-xs'>
                     Copyright © {new Date().getFullYear()} by md design. All
                     Rights Reserved.
