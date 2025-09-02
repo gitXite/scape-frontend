@@ -6,10 +6,10 @@ import { Separator } from '@/components/ui/separator';
 function Contact() {
     return (
         <div className='flex flex-col h-full w-full bg-neutral-100'>
-            <div className='flex h-full w-full justify-center items-center py-10'>
+            <div className='flex min-h-full w-full justify-center items-center py-20'>
                 <BackButton />
                 <div className='flex h-full w-3/5 text-center justify-center bg-neutral-200/20 border-1 border-neutral-300 rounded-sm'>
-                    <div className='flex h-full w-2/4 flex-col py-10'>
+                    <div className='flex h-full w-2/4 flex-col py-10 justify-center'>
                         <h1 className='text-neutral-900 text-6xl tracking-widest'>
                             Contact Us
                         </h1>
@@ -25,7 +25,7 @@ function Contact() {
                     </div>
                     <Separator
                         orientation='vertical'
-                        className='max-h-80 self-center border-neutral-300'
+                        className='max-h-120 self-center border-neutral-300'
                     />
                     <div className='flex h-full w-2/4 items-center'>
                         <ContactForm />

@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import {
     Form,
     FormControl,
-    // FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -60,8 +59,6 @@ function Contact() {
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5' placeholder='Your Name' {...field} />
                                 </FormControl>
-                                {/* <FormDescription>
-                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -75,8 +72,6 @@ function Contact() {
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5' placeholder='example@gmail.com' {...field} />
                                 </FormControl>
-                                {/* <FormDescription>
-                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -88,10 +83,8 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 h-20' autoComplete='off' placeholder='What is on your mind?' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 h-40' autoComplete='off' placeholder='What is on your mind?' {...field} />
                                 </FormControl>
-                                {/* <FormDescription>
-                                </FormDescription> */}
                                 <FormMessage />
                             </FormItem>
                         )}
