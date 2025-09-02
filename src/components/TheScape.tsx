@@ -14,7 +14,7 @@ const options = {
     threshold: 0.1,
 };
 
-function About() {
+function TheScape() {
     const { ref: ref1, inView: inView1 } = useInView(options);
     const { ref: ref2, inView: inView2 } = useInView(options);
     const { ref: ref3, inView: inView3 } = useInView(options);
@@ -36,7 +36,7 @@ function About() {
 
     return (
         <div
-            id='story'
+            id='thescape'
             className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'
         >
             <div className='flex flex-col items-center gap-y-80 mt-20'>
@@ -148,4 +148,4 @@ function About() {
     );
 }
 
-export default About;
+export default TheScape;

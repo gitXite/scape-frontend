@@ -11,7 +11,7 @@ import { Separator } from '@/components/ui/separator';
 
 
 
-function Customize() {
+function GetStarted() {
     const [activeStep, setActiveStep] = useState(() => {
         const step = localStorage.getItem('step');
         return step ? +step : 0;
@@ -60,4 +60,4 @@ function Customize() {
 }
 
 
-export default Customize;
+export default GetStarted;

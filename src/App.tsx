@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import 'vanilla-cookieconsent/dist/cookieconsent.css';
 import * as CookieConsent from 'vanilla-cookieconsent';
 import Home from './pages/Home';
-import Customize from './pages/Customize';
+import GetStarted from './pages/GetStarted';
 import Checkout from './pages/Checkout';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
@@ -118,10 +118,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/customize' element={<Customize />} />
+                <Route path='/get-started' element={<GetStarted />} />
                 <Route path='/checkout' element={<Checkout />} />
-                <Route path='/contact' element={<Contact />} />
                 <Route path='/gallery' element={<Gallery />} />
+                <Route path='/contact-us' element={<Contact />} />
                 <Route path='/feedback' element={<Feedback />} />
             </Routes>
         </Router>
