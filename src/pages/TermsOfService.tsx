@@ -1,4 +1,5 @@
 import BackButton from '@/components/BackButton';
+import Footer from '@/components/Footer';
 
 function TermsOfService() {
     return (
@@ -10,6 +11,7 @@ function TermsOfService() {
                 width='100%'
                 style={{ minHeight: '100vh' }}
             />
+            <Footer />
         </div>
     );
 }
