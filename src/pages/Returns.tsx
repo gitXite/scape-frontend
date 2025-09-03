@@ -24,7 +24,7 @@ function Returns() {
                     and we will work with you to resolve the problem as quickly as possible.
                 </p>
                 <p className=''>
-                    We want you to be happy with your order, and we’ll do our best to make things right in case of any mistakes on our side.
+                    We want you to be happy with your order, and we'll do our best to make things right in case of any mistakes on our side.
                 </p>
                 <Separator orientation='horizontal' className='border-neutral-400 max-w-100' />
                 <h2 className='text-xl font-regular tracking-widest'>
