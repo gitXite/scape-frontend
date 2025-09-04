@@ -25,7 +25,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do I have a right to return my order?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -41,7 +41,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 What if my order arrives damaged or with a
                                 mistake?
                             </AccordionTrigger>
@@ -61,7 +61,7 @@ function FAQ() {
                             value='item-3'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Can I cancel my order after placing it?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -81,7 +81,7 @@ function FAQ() {
                             value='item-4'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do these rules apply if I order as a business?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -106,7 +106,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Which payment methods do you accept?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-neutral-600 text-lg'>
@@ -125,7 +125,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Is payment secure?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -149,7 +149,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 My order arrived damaged - what do I do?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-neutral-600 text-lg'>
@@ -164,7 +164,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 I made a mistake in my order - can it be fixed?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -183,7 +183,7 @@ function FAQ() {
                             value='item-3'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 How can I contact you?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -215,7 +215,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 How long does it take to receive my order?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -235,7 +235,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do you ship internationally?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -249,7 +249,7 @@ function FAQ() {
                             value='item-3'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 How can I track my order?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -272,7 +272,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 What kind of customization can I request?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -296,7 +296,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Can I see a preview before production?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -316,7 +316,7 @@ function FAQ() {
                             value='item-3'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 What if I want something completely unique?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
@@ -341,7 +341,7 @@ function FAQ() {
                             value='item-1'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do you use cookies on this website?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -357,7 +357,7 @@ function FAQ() {
                             value='item-2'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do you use cookies for advertising or tracking?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -372,7 +372,7 @@ function FAQ() {
                             value='item-3'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Can I disable cookies?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
@@ -391,7 +391,7 @@ function FAQ() {
                             value='item-4'
                             className='pb-5 border-neutral-300'
                         >
-                            <AccordionTrigger className='text-xl cursor-pointer'>
+                            <AccordionTrigger className='text-xl cursor-pointer text-neutral-800 tracking-wide'>
                                 Do you collect personal data?
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
