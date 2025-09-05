@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
 
 interface CustomizationContextType {
@@ -23,6 +23,19 @@ export function CustomizationProvider({ children }: { children: ReactNode }) {
         setPassePartoutType(type);
         localStorage.setItem('selectedPassePartout', type);
     };
+
+    useEffect(() => {
+        const handleResetFrame = () => setFrameType('');
+        const handleResetPassePartout = () => setPassePartoutType('');
+
+        window.addEventListener('frame-removed', handleResetFrame);
+        window.addEventListener('passe-partout-removed', handleResetPassePartout);
+
+        return () => {
+            window.removeEventListener('frame-removed', handleResetFrame);
+            window.removeEventListener('passe-partout-removed', handleResetPassePartout);
+        }
+    }, []);
 
     return (
         <CustomizationContext.Provider

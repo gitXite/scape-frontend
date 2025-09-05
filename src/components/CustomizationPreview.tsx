@@ -4,12 +4,8 @@ import Frame_White from '@/assets/frame_white.avif';
 import Frame_Black from '@/assets/frame_black.webp';
 import PassePartout_White from '@/assets/Passepartout_White.webp';
 import PassePartout_Black from '@/assets/Passepartout_Black.webp';
+import { useCustomization } from '@/context/CustomizationContext';
 
-
-type CustomizationPreviewProps = {
-    frameType: string;
-    passePartoutType: string;
-};
 
 const frameImages: Record<string, string> = {
     oak: Frame_Oak,
@@ -25,10 +21,9 @@ const passePartoutImages: Record<string, string> = {
 };
 
 
-function CustomizationPreview({
-    frameType,
-    passePartoutType,
-}: CustomizationPreviewProps) {
+function CustomizationPreview() {
+    const { frameType, passePartoutType } = useCustomization();
+
     const frame = frameImages[frameType] ?? '';
     const passePartout = passePartoutImages[passePartoutType] ?? '';
 

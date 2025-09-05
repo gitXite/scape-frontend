@@ -1,37 +1,22 @@
+import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function CustomizePassePartout() {
-    const [selectedValue, setSelectedValue] = useState<string>((): string => {
-        const storedValue = localStorage.getItem('selectedPassePartout');
-        return storedValue ? storedValue : '';
-    });
+    const { passePartoutType, setPassePartoutType } = useCustomization();
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
 
-        setSelectedValue(value);
-        localStorage.setItem('selectedPassePartout', value);
+        setPassePartoutType(value);
         window.dispatchEvent(new Event('passe-partout-updated'));
     };
-
-    useEffect(() => {
-        const handleReset = () => {
-            setSelectedValue('');
-        };
-
-        window.addEventListener('passe-partout-removed', handleReset);
-        return () => window.removeEventListener('passe-partout-removed', handleReset);
-    }, []);
 
     return (
         <div className='flex h-full w-full'>
             <div className='flex h-full w-1/3 justify-center items-center pb-20'>
-                <CustomizationPreview
-                    frameType=''
-                    passePartoutType={selectedValue}
-                />
+                <CustomizationPreview />
             </div>
             <div className='flex h-full w-2/3 justify-center items-center pb-20'>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
@@ -39,7 +24,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='without'
-                        checked={selectedValue === 'without'}
+                        checked={passePartoutType === 'without'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
@@ -67,7 +52,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='white'
-                        checked={selectedValue === 'white'}
+                        checked={passePartoutType === 'white'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
@@ -95,7 +80,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='black'
-                        checked={selectedValue === 'black'}
+                        checked={passePartoutType === 'black'}
                         onChange={handleClick}
                         className='peer hidden'
                     />

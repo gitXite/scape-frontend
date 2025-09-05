@@ -8,6 +8,7 @@ import { Stepper } from '@/components/ui/stepper';
 import { CircleQuestionMark } from 'lucide-react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hoverCard';
 import { Separator } from '@/components/ui/separator';
+import { CustomizationProvider } from '@/context/CustomizationContext';
 
 
 
@@ -18,9 +19,9 @@ function GetStarted() {
     });
 
     const steps = [
-        { component: MapSelector({ mode: 'real' }) },
-        { component: CustomizeFrame() },
-        { component: CustomizePassePartout() },
+        { component: <MapSelector mode='real' /> },
+        { component: <CustomizeFrame /> },
+        { component: <CustomizePassePartout /> },
     ];
 
     useEffect(() => {
@@ -51,7 +52,9 @@ function GetStarted() {
                 </HoverCardContent>
             </HoverCard>
             <div className='flex h-full w-full place-items-center'>
-                <Stepper steps={steps} currentStep={activeStep} onStepChange={setActiveStep} />
+                <CustomizationProvider>
+                    <Stepper steps={steps} currentStep={activeStep} onStepChange={setActiveStep} />
+                </CustomizationProvider>
             </div>
 
             <Footer />

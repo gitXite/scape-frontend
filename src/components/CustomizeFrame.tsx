@@ -1,35 +1,23 @@
+import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 
 function CustomizeFrame() {
-    const [selectedValue, setSelectedValue] = useState<string>((): string => {
-        const storedValue = localStorage.getItem('selectedFrame');
-        return storedValue ? storedValue : '';
-    });
+    const { frameType, setFrameType } = useCustomization();
     
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
 
-        setSelectedValue(value);
-        localStorage.setItem('selectedFrame', value);
+        setFrameType(value);
         window.dispatchEvent(new Event('frame-updated'));
     };
-
-    useEffect(() => {
-        const handleReset = () => {
-            setSelectedValue('');
-        };
-
-        window.addEventListener('frame-removed', handleReset);
-        return () => window.removeEventListener('frame-removed', handleReset);
-    }, []);
     
     return (
         <div className='flex h-full w-full'>
             <div className='flex h-full w-1/3 items-center justify-center pb-20'>
-                <CustomizationPreview frameType={selectedValue} passePartoutType='' />
+                <CustomizationPreview />
             </div>
             <div className='flex h-full w-2/3 items-center justify-center pb-20'>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
@@ -37,7 +25,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='oak'
-                        checked={selectedValue === 'oak'}
+                        checked={frameType === 'oak'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
@@ -55,7 +43,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='walnut'
-                        checked={selectedValue === 'walnut'}
+                        checked={frameType === 'walnut'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
@@ -73,7 +61,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='white'
-                        checked={selectedValue === 'white'}
+                        checked={frameType === 'white'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
@@ -91,7 +79,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='black'
-                        checked={selectedValue === 'black'}
+                        checked={frameType === 'black'}
                         onChange={handleClick}
                         className='peer hidden'
                     />
