@@ -241,7 +241,7 @@ function FAQ() {
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
                                 <p className='text-lg text-neutral-600'>
                                     No, as of right now we only ship within
-                                    Norway
+                                    Norway. 
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
