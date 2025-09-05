@@ -34,14 +34,14 @@ function CustomizationPreview() {
                     <img
                         src={frame}
                         alt='Preview Frame'
-                        className='z-3 w-[40%] absolute'
+                        className='z-3 w-[35%] absolute'
                     />
                 )}
                 {passePartoutType && (
                     <img
                         src={passePartout}
                         alt='Preview Passe-Partout'
-                        className='z-2 w-[40%] absolute'
+                        className='z-2 w-[35%] absolute'
                     />
                 )}
                 {/* <img src='' alt='Preview Model' className='z-1 w-2/4 absolute' /> */}
