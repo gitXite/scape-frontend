@@ -1,78 +1,119 @@
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 
 function CustomizePassePartout() {
     const [selectedValue, setSelectedValue] = useState<string>((): string => {
         const storedValue = localStorage.getItem('selectedPassePartout');
         return storedValue ? storedValue : '';
     });
-    
-    const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value;
+
+    const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
 
         setSelectedValue(value);
         localStorage.setItem('selectedPassePartout', value);
         window.dispatchEvent(new Event('passe-partout-updated'));
     };
-    
+
+    useEffect(() => {
+        const handleReset = () => {
+            setSelectedValue('');
+        };
+
+        window.addEventListener('passe-partout-removed', handleReset);
+        return () => window.removeEventListener('passe-partout-removed', handleReset);
+    }, []);
+
     return (
         <div className='flex h-full w-full'>
             <div className='flex h-full w-1/3 justify-center items-center pb-20'>
-                <CustomizationPreview frameType='' passePartoutType={selectedValue} />
+                <CustomizationPreview
+                    frameType=''
+                    passePartoutType={selectedValue}
+                />
             </div>
             <div className='flex h-full w-2/3 justify-center items-center pb-20'>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                    <input 
+                    <input
                         type='radio'
                         name='passe-partout'
                         value='without'
-                        defaultChecked={selectedValue === 'without'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'without'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                        <img src='src/assets/product-image-without-pp.png' alt='Without' className='w-50 mb-2 rounded' />
-                        <p className='text-neutral-500 w-60 pt-10 px-2'>Without a passe-partout -</p>
-                        <p className='text-neutral-500 w-60 pb-10 px-2'>Pure focus on the model</p>
-                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>Without</p>
+                        <img
+                            src='src/assets/product-image-without-pp.png'
+                            alt='Without'
+                            className='w-50 mb-2 rounded'
+                        />
+                        <p className='text-neutral-500 w-60 pt-10 px-2'>
+                            Without a passe-partout -
+                        </p>
+                        <p className='text-neutral-500 w-60 pb-10 px-2'>
+                            Pure focus on the model
+                        </p>
+                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>
+                            Without
+                        </p>
                         <Separator orientation='horizontal' />
                         <p className='text-neutral-600 pt-4'>19kr</p>
                     </div>
                 </label>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                    <input 
+                    <input
                         type='radio'
                         name='passe-partout'
                         value='white'
-                        defaultChecked={selectedValue === 'white'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'white'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                        <img src='src/assets/product-image-without-pp.png' alt='White' className='w-50 mb-2 rounded' />
-                        <p className='text-neutral-500 w-60 pt-10 px-2'>Enclosed by white -</p>
-                        <p className='text-neutral-500 w-60 pb-10 px-2'>Bright, airy, and classic</p>
-                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>White</p>
+                        <img
+                            src='src/assets/product-image-without-pp.png'
+                            alt='White'
+                            className='w-50 mb-2 rounded'
+                        />
+                        <p className='text-neutral-500 w-60 pt-10 px-2'>
+                            Enclosed by white -
+                        </p>
+                        <p className='text-neutral-500 w-60 pb-10 px-2'>
+                            Bright, airy, and classic
+                        </p>
+                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>
+                            White
+                        </p>
                         <Separator orientation='horizontal' />
                         <p className='text-neutral-600 pt-4'>49kr</p>
                     </div>
                 </label>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                    <input 
+                    <input
                         type='radio'
                         name='passe-partout'
                         value='black'
-                        defaultChecked={selectedValue === 'black'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'black'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-start items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                        <img src='src/assets/product-image-without-pp.png' alt='Black' className='w-50 mb-2 rounded' />
-                        <p className='text-neutral-500 w-60 pt-10 px-2'>Enclosed by black -</p>
-                        <p className='text-neutral-500 w-60 pb-10 px-2'>Sharp contrast for a bold look</p>
-                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>Black</p>
+                        <img
+                            src='src/assets/product-image-without-pp.png'
+                            alt='Black'
+                            className='w-50 mb-2 rounded'
+                        />
+                        <p className='text-neutral-500 w-60 pt-10 px-2'>
+                            Enclosed by black -
+                        </p>
+                        <p className='text-neutral-500 w-60 pb-10 px-2'>
+                            Sharp contrast for a bold look
+                        </p>
+                        <p className='text-neutral-900 text-xl mt-2 pb-4 font-normal'>
+                            Black
+                        </p>
                         <Separator orientation='horizontal' />
                         <p className='text-neutral-600 pt-4'>49kr</p>
                     </div>
@@ -81,6 +122,5 @@ function CustomizePassePartout() {
         </div>
     );
 }
-
 
 export default CustomizePassePartout;

@@ -1,6 +1,6 @@
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 function CustomizeFrame() {
@@ -9,13 +9,22 @@ function CustomizeFrame() {
         return storedValue ? storedValue : '';
     });
     
-    const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-        const value = (event.target as HTMLInputElement).value;
+    const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
 
         setSelectedValue(value);
         localStorage.setItem('selectedFrame', value);
         window.dispatchEvent(new Event('frame-updated'));
     };
+
+    useEffect(() => {
+        const handleReset = () => {
+            setSelectedValue('');
+        };
+
+        window.addEventListener('frame-removed', handleReset);
+        return () => window.removeEventListener('frame-removed', handleReset);
+    }, []);
     
     return (
         <div className='flex h-full w-full'>
@@ -28,8 +37,8 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='oak'
-                        defaultChecked={selectedValue === 'oak'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'oak'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center bg-neutral-200/20 hover:bg-neutral-100 items-center peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -46,8 +55,8 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='walnut'
-                        defaultChecked={selectedValue === 'walnut'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'walnut'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -64,8 +73,8 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='white'
-                        defaultChecked={selectedValue === 'white'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'white'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
@@ -82,8 +91,8 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='black'
-                        defaultChecked={selectedValue === 'black'}
-                        onClick={handleClick}
+                        checked={selectedValue === 'black'}
+                        onChange={handleClick}
                         className='peer hidden'
                     />
                     <div className='flex flex-col min-h-80 min-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>

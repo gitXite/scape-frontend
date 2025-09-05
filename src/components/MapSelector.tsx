@@ -123,8 +123,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                     localStorage.removeItem('selectedPassePartout');
                     setTimeout(() => {
                         window.dispatchEvent(new Event('coordinates-updated'));
-                        window.dispatchEvent(new Event('frame-updated'));
-                        window.dispatchEvent(new Event('passe-partout-updated'));
+                        window.dispatchEvent(new Event('frame-removed'));
+                        window.dispatchEvent(new Event('passe-partout-removed'));
                     });
                     break;
             }
