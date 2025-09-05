@@ -42,7 +42,7 @@ function CustomizePassePartout() {
                         <p className='text-neutral-500 w-60 pb-5 px-2'>
                             Bright, airy, and classic
                         </p>
-                        <p className='text-neutral-900 text-xl pb-2 font-normal'>
+                        <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
                             White
                         </p>
                         <Separator orientation='horizontal' />
@@ -70,7 +70,7 @@ function CustomizePassePartout() {
                         <p className='text-neutral-500 w-60 pb-5 px-2'>
                             Sharp contrast for a bold look
                         </p>
-                        <p className='text-neutral-900 text-xl pb-2 font-normal'>
+                        <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
                             Black
                         </p>
                         <Separator orientation='horizontal' />
