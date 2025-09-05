@@ -1,5 +1,6 @@
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
+import { Separator } from '@/components/ui/separator';
 
 function PrivacyPolicy() {
     return (
@@ -28,8 +29,7 @@ function PrivacyPolicy() {
                             <li>• Name</li>
                             <li>• Email address</li>
                             <li>• Shipping address</li>
-                            <li>• Payment information</li>
-                            <li>(processed securely through third-party providers like Vipps)</li>
+                            <li>• Payment information (processed securely through third-party providers like Vipps)</li>
                         </ul>
                     We do <b>not</b> collect personal data automatically or through tracking cookies, except for
                     essential cookies needed by third-party services to complete
@@ -85,6 +85,11 @@ function PrivacyPolicy() {
                 <p className='mb-8'>
                     If you have questions about this Privacy Policy, please contact us at: <b>contact@scapebymd.no</b>
                 </p>
+                <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
+                <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>
+                    S C /\ P E
+                    <p className='text-sm content-end tracking-widest'>by md</p>
+                </h2>
             </div>
             <Footer />
         </div>

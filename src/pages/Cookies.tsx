@@ -1,11 +1,12 @@
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
+import { Separator } from '@/components/ui/separator';
 
 
 
 function Cookies() {
     return (
-        <div className='flex flex-col h-full w-full bg-neutral-100 items-center'>
+        <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
             <BackButton />
             <div className='flex flex-col items-center space-y-5 min-h-full p-10 w-200 text-center text-neutral-900'>
                 <h1 className='text-2xl tracking-widest font-normal mb-2'>
@@ -49,6 +50,11 @@ function Cookies() {
                 <p>
                     For more information on how we handle your personal data, please see our <a href="/privacy-policy" target='_blank'><b>Privacy Policy</b></a>. 
                 </p>
+                <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
+                <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>
+                    S C /\ P E
+                    <p className='text-sm content-end tracking-widest'>by md</p>
+                </h2>
             </div>
             <Footer />
         </div>

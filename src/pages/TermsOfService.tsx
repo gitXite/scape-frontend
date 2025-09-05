@@ -1,5 +1,6 @@
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
+import { Separator } from '@/components/ui/separator';
 
 function TermsOfService() {
     return (
@@ -483,6 +484,11 @@ function TermsOfService() {
                     Phone: +4793874223 <br />
                     contact@scapebymd.no
                 </b></p>
+                <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
+                <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>
+                    S C /\ P E
+                    <p className='text-sm content-end tracking-widest'>by md</p>
+                </h2>
             </div>
             <Footer />
         </div>
