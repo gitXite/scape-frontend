@@ -28,7 +28,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='oak'
-                        checked={selectedValue === 'oak'}
+                        defaultChecked={selectedValue === 'oak'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
@@ -46,7 +46,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='walnut'
-                        checked={selectedValue === 'walnut'}
+                        defaultChecked={selectedValue === 'walnut'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
@@ -64,7 +64,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='white'
-                        checked={selectedValue === 'white'}
+                        defaultChecked={selectedValue === 'white'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
@@ -82,7 +82,7 @@ function CustomizeFrame() {
                         type='radio'
                         name='frame'
                         value='black'
-                        checked={selectedValue === 'black'}
+                        defaultChecked={selectedValue === 'black'}
                         onClick={handleClick}
                         className='peer hidden'
                     />

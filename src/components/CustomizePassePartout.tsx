@@ -28,7 +28,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='without'
-                        checked={selectedValue === 'without'}
+                        defaultChecked={selectedValue === 'without'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
@@ -46,7 +46,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='white'
-                        checked={selectedValue === 'white'}
+                        defaultChecked={selectedValue === 'white'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
@@ -64,7 +64,7 @@ function CustomizePassePartout() {
                         type='radio'
                         name='passe-partout'
                         value='black'
-                        checked={selectedValue === 'black'}
+                        defaultChecked={selectedValue === 'black'}
                         onClick={handleClick}
                         className='peer hidden'
                     />
