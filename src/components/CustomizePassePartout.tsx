@@ -77,7 +77,7 @@ function CustomizePassePartout() {
                         <p className='text-neutral-600 pt-2'>49kr</p>
                     </div>
                 </label>
-                <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
+                {/* <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
                     <input
                         type='radio'
                         name='passe-partout'
@@ -87,11 +87,11 @@ function CustomizePassePartout() {
                         className='peer hidden'
                     />
                     <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                        {/* <img
+                        <img
                             src=''
                             alt='Without'
                             className='w-40 mb-2 rounded'
-                        /> */}
+                        />
                         <p className='text-neutral-500 w-60 px-2'>
                             Without a passe-partout -
                         </p>
@@ -104,7 +104,7 @@ function CustomizePassePartout() {
                         <Separator orientation='horizontal' />
                         <p className='text-neutral-600 pt-2'>19kr</p>
                     </div>
-                </label>
+                </label> */}
             </div>
         </div>
     );
