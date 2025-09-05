@@ -20,7 +20,7 @@ function CustomizePassePartout() {
             <div className='flex h-full w-2/4'>
                 <CustomizationPreview />
             </div>
-            <div className='flex h-full w-2/4 justify-center items-center pr-100'>
+            <div className='flex h-full w-2/4 justify-center items-center pr-100 pb-20'>
                 <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
                     <input
                         type='radio'
