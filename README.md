@@ -2,6 +2,16 @@
 
 **Frontend** repository for **SCAPE by md**, a hybrid full‑stack e‑commerce service that prints, frames, and delivers beautiful, sentimental decoration pieces. 
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/vite">
+    <img src="https://img.shields.io/badge/Bundler-Vite-blueviolet" alt="Vite">
+  </a>
+  <img src="https://img.shields.io/badge/TypeScript-%E2%9C%94-blue?logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome">
+  <img src="https://img.shields.io/github/last-commit/gitXite/scape-frontend" alt="Last Commit">
+  <img src="https://img.shields.io/github/languages/top/gitXite/scape-frontend" alt="Top Language">
+</p>
+
 ---
 
 ## Table of Contents
