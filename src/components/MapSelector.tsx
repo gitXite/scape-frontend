@@ -44,12 +44,15 @@ function MapSelector({ mode }: MapSelectorProps) {
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
     const [sliderValue, setSliderValue] = useState([33]);
+    const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
         triggerOnce: false,
         threshold: 0.1,
     });
-    const [showModal, setShowModal] = useState(false);
+    const [hasCoordinates, setHasCoordinates] = useState(
+        !!localStorage.getItem('coordinates')
+    );
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -135,6 +138,20 @@ function MapSelector({ mode }: MapSelectorProps) {
         }
     };
 
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setHasCoordinates(!!localStorage.getItem('coordinates'));
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('coordinates-updated', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('coordinates-updated', handleStorageChange);
+        };
+    }, []);
+
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
             window.location.reload();
@@ -180,7 +197,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 <div className='flex place-items-center relative left-23'>
                     <button 
                         onClick={() => setShowModal(true)}
-                        disabled={mode === 'dummy' || !localStorage.getItem('coordinates')} // asynchronous localStorage needs fix
+                        disabled={mode === 'dummy' || !hasCoordinates}
                         className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
