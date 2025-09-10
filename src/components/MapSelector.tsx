@@ -99,7 +99,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         window.dispatchEvent(new Event('coordinates-updated'));
                     });
                     toast.success("Coordinates captured successfully", {
-                        description: "Preview to check it out"
+                        description: "Proceed or preview your model"
                     });
                     break;
             }
@@ -124,6 +124,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                         window.dispatchEvent(new Event('coordinates-updated'));
                         window.dispatchEvent(new Event('frame-removed'));
                         window.dispatchEvent(new Event('passe-partout-removed'));
+                    });
+                    toast.success('Your Scape has been reset', {
+                        description: 'Please select your coordinates'
                     });
                     break;
             }
@@ -176,7 +179,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     <button 
                         onClick={() => setShowModal(true)}
                         disabled={mode === 'dummy' || !localStorage.getItem('coordinates')} // asynchronous localStorage needs fix
-                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-400'
+                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
                     </button>
