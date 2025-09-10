@@ -88,16 +88,9 @@ function MapSelector({ mode }: MapSelectorProps) {
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast("Coordinates captured successfully", {
-                        description: JSON.stringify(rectangleBounds, null, 2)
-                    })
-                    // alert(
-                    //     `Coordinates captured successfully:\n${JSON.stringify(
-                    //         rectangleBounds,
-                    //         null,
-                    //         2
-                    //     )}`
-                    // );
+                    toast.success("Coordinates captured in test mode", {
+                        description: "Preview unavailable in test mode"
+                    });
                     break;
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
@@ -105,7 +98,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setTimeout(() => {
                         window.dispatchEvent(new Event('coordinates-updated'));
                     });
-                    // toast message here
+                    toast.success("Coordinates captured successfully", {
+                        description: "Preview to check it out"
+                    });
                     break;
             }
         }
@@ -180,7 +175,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                 <div className='flex place-items-center relative left-24'>
                     <button 
                         onClick={() => setShowModal(true)}
-                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer'
+                        disabled={mode === 'dummy' || !localStorage.getItem('coordinates')}
+                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-400'
                     >
                         Preview
                     </button>

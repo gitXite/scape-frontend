@@ -124,7 +124,7 @@ function App() {
                     <Route path='/cookies' element={<Cookies />} />
                 </Routes>
             </Router>
-            <Toaster />
+            <Toaster position='top-center' />
         </>
     );
 }
