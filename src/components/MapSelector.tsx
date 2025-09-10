@@ -209,7 +209,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </div>
             </div>
             {showModal && (
-                <ModelPreview showModal={showModal} setShowModal={setShowModal} />
+                <ModelPreview showModal={showModal} setShowModal={setShowModal} className='drop-shadow-2xl drop-shadow-black/70' />
             )}
         </div>
     );
