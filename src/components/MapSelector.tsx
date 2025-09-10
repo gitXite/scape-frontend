@@ -89,7 +89,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast.success("Test mode", {
+                    toast.success("Coordinates captured in test mode", {
                         description: "Preview unavailable."
                     });
                     break;
