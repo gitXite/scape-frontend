@@ -1,6 +1,6 @@
 import { Separator } from './ui/separator';
 import Socials from './Socials';
-import Logo from '@/assets/scape-logo.png';
+// import Logo from '@/assets/scape-logo.png';
 
 function Footer() {
     return (
@@ -119,11 +119,11 @@ function Footer() {
                 </div>
             </div>
             <div className='flex-col place-items-center space-y-2'>
-                <div className='h-fit w-auto text-4xl text-center text-neutral-100'>
+                <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-10'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2 pb-1 tracking-widest'>by md</p>
                 </div>
-                <img src={Logo} alt="Logo" className='w-[14%]' />
+                {/* <img src={Logo} alt="Logo" className='w-[14%]' /> */}
                 <p className='text-xs'>
                     Copyright © {new Date().getFullYear()} by md design. All
                     Rights Reserved.
