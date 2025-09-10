@@ -27,6 +27,8 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     useEffect(() => {
         if (!mountRef.current) return;
 
+        setIsLoading(true);
+
         const width = mountRef.current.clientWidth;
         const height = mountRef.current.clientHeight;
 
@@ -48,11 +50,9 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
         scene.add(light);
-
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
         scene.add(ambientLight);
 
-        setIsLoading(true);
         const loader = new STLLoader();
         loader.load('/models/terrain-33531.stl', (geometry) => {
             geometry.computeBoundingBox();
