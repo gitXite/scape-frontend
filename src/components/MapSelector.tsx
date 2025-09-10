@@ -3,6 +3,7 @@ import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 import { useInView } from 'react-intersection-observer';
 import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
+import { toast } from 'sonner';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -87,13 +88,16 @@ function MapSelector({ mode }: MapSelectorProps) {
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    alert(
-                        `Coordinates captured successfully:\n${JSON.stringify(
-                            rectangleBounds,
-                            null,
-                            2
-                        )}`
-                    );
+                    toast("Coordinates captured successfully", {
+                        description: JSON.stringify(rectangleBounds, null, 2)
+                    })
+                    // alert(
+                    //     `Coordinates captured successfully:\n${JSON.stringify(
+                    //         rectangleBounds,
+                    //         null,
+                    //         2
+                    //     )}`
+                    // );
                     break;
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
