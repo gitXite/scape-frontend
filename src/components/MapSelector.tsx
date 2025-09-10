@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
+import { Button } from './ui/button';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -88,8 +89,8 @@ function MapSelector({ mode }: MapSelectorProps) {
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast.success("Coordinates captured in test mode", {
-                        description: "Preview unavailable in test mode"
+                    toast.success("Test mode", {
+                        description: "Preview unavailable."
                     });
                     break;
                 case 'real':
@@ -98,8 +99,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setTimeout(() => {
                         window.dispatchEvent(new Event('coordinates-updated'));
                     });
-                    toast.success("Coordinates captured successfully", {
-                        description: "Proceed or preview your model"
+                    toast.success("Coordinates captured!", {
+                        description: "You can now proceed or preview your model."
                     });
                     break;
             }
@@ -127,7 +128,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         window.dispatchEvent(new Event('passe-partout-removed'));
                     });
                     toast.success('Your Scape has been reset', {
-                        description: 'Please select your coordinates'
+                        description: 'Please capture your coordinates to proceed.'
                     });
                     break;
             }
@@ -184,12 +185,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         Preview
                     </button>
-                    <button
-                        className='flex border-neutral-100 text-neutral-100 bg-neutral-900 text-xl border-1 mt-8 ml-10 mr-10 p-5 pl-10 pr-10 transition duration-150 shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] hover:drop-shadow-xl hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.3)] active:shadow-[inset_0_0_10px_rgba(0,0,0,0.3)] rounded-full active:text-neutral-600 hover:bg-neutral-100 hover:border-neutral-900 hover:text-neutral-900 hover:cursor-pointer'
+                    <Button
+                        className='mt-8 ml-10 mr-10 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all duration-200 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
                         onClick={handleCapture}
                     >
                         Capture Coordinates
-                    </button>
+                    </Button>
                     <button 
                         className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
                         onClick={resetMap}
