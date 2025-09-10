@@ -40,8 +40,10 @@
 
 ## Tech Stack
 
-- **Language:** TypeScript 
-- **Styling:** Tailwind CSS  
+- **Language:** TypeScript + React
+- **Styling:** Tailwind CSS
+- **UI Library:** shadcn/ui
+- **3D:** Three.js
 - **Bundler / Dev Server:** Vite  
 - **Linting / Formatting:** ESLint / Prettier (configured via `eslint.config.js`)
 
