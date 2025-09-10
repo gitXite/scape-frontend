@@ -39,13 +39,13 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         );
         camera.position.z = 5;
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
         mountRef.current!.innerHTML = '';
         mountRef.current.appendChild(renderer.domElement);
-        renderer.setClearColor(0x1e1e1e); 
+        scene.background = null;
 
-        const light = new THREE.DirectionalLight(0xffffff, 2);
+        const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
         scene.add(light);
 
@@ -108,7 +108,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
             >
                 <X size={25} className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-100' />
             </button>
-            <div ref={mountRef} className='h-full w-full'>
+            <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'>
 
             </div>
         </div>
