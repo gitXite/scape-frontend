@@ -1,6 +1,6 @@
 # SCAPE by md
 
-> **Frontend** repository for **SCAPE by md**, a hybrid full‑stack e‑commerce service that prints, frames, and delivers beautiful, sentimental decoration pieces. 
+**Frontend** repository for **SCAPE by md**, a hybrid full‑stack e‑commerce service that prints, frames, and delivers beautiful, sentimental decoration pieces. 
 
 ---
 
