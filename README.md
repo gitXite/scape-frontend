@@ -24,7 +24,7 @@
 ## Features
 
 - A responsive, performant frontend powering a hybrid e‑commerce experience.  
-- Built using modern tools and frameworks: TypeScript, Vite, and CSS.
+- Built using modern tools and frameworks: TypeScript, React + Vite, and Tailwind CSS.
 - Modular, scalable architecture—designed for easy integration with backend APIs and future enhancements.
 
 ---
