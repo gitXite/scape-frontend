@@ -177,7 +177,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center relative left-24'>
+                <div className='flex place-items-center relative left-23'>
                     <button 
                         onClick={() => setShowModal(true)}
                         disabled={mode === 'dummy' || !localStorage.getItem('coordinates')} // asynchronous localStorage needs fix
