@@ -19,6 +19,17 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
 
+    // example response from microservice
+    // const resp = await fetch('/generate', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ lat, lng, widt, height, verticalScale }),
+    // });
+    // const arrayBuffer = await resp.arrayBuffer();
+    // const blob = new Blob([arrayBuffer], { type: 'application/sla' });
+    // const url = URL.createObjectURL(blob);
+    // then in loader, put loader.load(url, mesh)
+
     useHotkeys('escape', (event) => {
         event.preventDefault();
         if (showModal) setShowModal(false);
