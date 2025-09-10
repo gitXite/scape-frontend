@@ -175,7 +175,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 <div className='flex place-items-center relative left-24'>
                     <button 
                         onClick={() => setShowModal(true)}
-                        disabled={mode === 'dummy' || !localStorage.getItem('coordinates')}
+                        disabled={mode === 'dummy' || !localStorage.getItem('coordinates')} // asynchronous localStorage needs fix
                         className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-400'
                     >
                         Preview
