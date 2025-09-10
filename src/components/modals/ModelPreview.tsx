@@ -108,9 +108,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
             >
                 <X size={25} className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-100' />
             </button>
-            <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'>
-
-            </div>
+            <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'></div>
         </div>
     );
 }
