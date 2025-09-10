@@ -194,7 +194,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </button>
                     <div className='flex flex-col ml-10 w-40 relative top-4 items-center group'>
                         <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
-                            Terrain Depth
+                            Vertical Scale
                         </p>
                         <Slider 
                             defaultValue={[33]}
