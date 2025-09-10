@@ -98,7 +98,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     }, []);
 
     return (
-        <div className={cn('absolute h-6/7 w-3/4 -translate-y-10 bg-neutral-900 rounded-sm z-50 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)]', className)}>
+        <div className={cn('absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)]', className)}>
             {isLoading && (
                 <Spinner variant='circle' size={42} className='relative justify-self-center top-2/4 -translate-y-2/4' />
             )}
