@@ -112,6 +112,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 case 'dummy':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
                     setSliderValue([33]);
+                    toast.success('Map has been reset');
                     break;
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
@@ -212,7 +213,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </div>
             </div>
             {showModal && (
-                <ModelPreview showModal={showModal} setShowModal={setShowModal} className='drop-shadow-2xl drop-shadow-black/70' />
+                <ModelPreview showModal={showModal} setShowModal={setShowModal} className='drop-shadow-2xl drop-shadow-black/50' />
             )}
         </div>
     );

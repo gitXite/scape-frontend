@@ -98,18 +98,27 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     }, []);
 
     return (
-        <div className={cn('absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)]', className)}>
-            {isLoading && (
-                <Spinner variant='circle' size={42} className='relative justify-self-center top-2/4 -translate-y-2/4' />
+        <>
+            {showModal && (
+                <div
+                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10"
+                    onClick={() => setShowModal(false)}
+                />
             )}
-            <button 
-                onClick={() => setShowModal(false)}
-                className='absolute group top-0 right-0 p-2 px-5 hover:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] hover:bg-neutral-100 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-100'
-            >
-                <X size={25} className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-100' />
-            </button>
-            <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'></div>
-        </div>
+            
+            <div className={cn('absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)]', className)}>
+                {isLoading && (
+                    <Spinner variant='circle' size={42} className='relative justify-self-center top-2/4 -translate-y-2/4' />
+                )}
+                <button 
+                    onClick={() => setShowModal(false)}
+                    className='absolute group top-0 right-0 p-2 px-5 hover:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] hover:bg-neutral-100 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-100'
+                >
+                    <X size={25} className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-100' />
+                </button>
+                <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'></div>
+            </div>
+        </>
     );
 }
 
