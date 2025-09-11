@@ -18,6 +18,11 @@ type ModelPreviewProps = {
 function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps) {
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
+    
+    useHotkeys('escape', (event) => {
+        event.preventDefault();
+        if (showModal) setShowModal(false);
+    });
 
     // example response from microservice
 
@@ -31,11 +36,6 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     // const url = URL.createObjectURL(blob);
 
     // then in loader, put loader.load(url, mesh)
-
-    useHotkeys('escape', (event) => {
-        event.preventDefault();
-        if (showModal) setShowModal(false);
-    });
 
     useEffect(() => {
         if (!mountRef.current) return;
