@@ -203,7 +203,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         Preview
                     </button>
                     <Button
-                        className='mt-8 ml-10 mr-10 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all duration-200 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
+                        className='mt-8 ml-10 mr-10 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
                         onClick={handleCapture}
                     >
                         Capture Coordinates
