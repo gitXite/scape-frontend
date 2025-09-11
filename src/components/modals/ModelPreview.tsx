@@ -20,7 +20,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     const mountRef = useRef<HTMLDivElement | null>(null);
 
     // example response from microservice
-    
+
     // const resp = await fetch('/generate', {
     //     method: 'POST',
     //     headers: { 'Content-Type': 'application/json' },
@@ -67,7 +67,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         scene.add(ambientLight);
 
         const loader = new STLLoader();
-        loader.load('/models/terrain-33531.stl', (geometry) => {
+        loader.load('/models/terrain.stl', (geometry) => {
             geometry.computeBoundingBox();
             const center = new THREE.Vector3();
             geometry.boundingBox?.getCenter(center);
