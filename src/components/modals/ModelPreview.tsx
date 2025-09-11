@@ -20,6 +20,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     const mountRef = useRef<HTMLDivElement | null>(null);
 
     // example response from microservice
+    
     // const resp = await fetch('/generate', {
     //     method: 'POST',
     //     headers: { 'Content-Type': 'application/json' },
@@ -28,6 +29,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     // const arrayBuffer = await resp.arrayBuffer();
     // const blob = new Blob([arrayBuffer], { type: 'application/sla' });
     // const url = URL.createObjectURL(blob);
+
     // then in loader, put loader.load(url, mesh)
 
     useHotkeys('escape', (event) => {
