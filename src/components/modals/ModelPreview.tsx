@@ -47,12 +47,11 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
-            75,
+            50,
             mountRef.current.clientWidth / mountRef.current.clientHeight,
             0.1,
             1000
         );
-        camera.position.z = 5;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
@@ -63,6 +62,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
         scene.add(light);
+
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
         scene.add(ambientLight);
 
