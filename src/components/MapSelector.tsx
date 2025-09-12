@@ -45,7 +45,10 @@ function MapSelector({ mode }: MapSelectorProps) {
         });
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
-    const [sliderValue, setSliderValue] = useState([2.5]);
+    const [sliderValues, setSliderValues] = useState({
+        verticalScale: [2.5],
+        boxSize: [33],
+    });
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
@@ -100,7 +103,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                     break;
                 case 'real':
                     localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
-                    localStorage.setItem('terrainDepth', sliderValue[0].toString());
+                    localStorage.setItem('verticalScale', sliderValues.verticalScale[0].toString());
+                    localStorage.setItem('boxSize', sliderValues.boxSize[0].toString());
                     setTimeout(() => {
                         window.dispatchEvent(new Event('coordinates-updated'));
                     });
@@ -117,14 +121,21 @@ function MapSelector({ mode }: MapSelectorProps) {
             switch (mode) {
                 case 'dummy':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValue([2.5]);
+                    setSliderValues({
+                        verticalScale: [2.5],
+                        boxSize: [33],
+                    });
                     toast.success('Map has been reset');
                     break;
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValue([2.5]);
+                    setSliderValues({
+                        verticalScale: [2.5],
+                        boxSize: [33],
+                    });
                     localStorage.removeItem('coordinates');
-                    localStorage.removeItem('terrainDepth');
+                    localStorage.removeItem('verticalScale');
+                    localStorage.removeItem('boxSize');
                     localStorage.removeItem('selectedFrame');
                     localStorage.removeItem('selectedPassePartout');
                     setTimeout(() => {
@@ -196,7 +207,21 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center relative left-23'>
+                <div className='flex place-items-center relative'>
+                    <div className='flex flex-col mr-10 w-40 relative top-4 items-center group'>
+                        <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
+                            Box Size
+                        </p>
+                        <Slider 
+                            defaultValue={[33]}
+                            value={sliderValues.boxSize}
+                            onValueChange={(value) => setSliderValues({ ...sliderValues, boxSize: value })}
+                            className='w-full'
+                        />
+                        <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
+                            {sliderValues.boxSize[0]}%
+                        </p>
+                    </div>
                     <button 
                         onClick={() => setShowModal(true)}
                         disabled={mode === 'dummy' || !hasCoordinates}
@@ -225,12 +250,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                             max={5}
                             step={0.1}
                             defaultValue={[2.5]}
-                            value={sliderValue}
-                            onValueChange={(value) => setSliderValue(value)}
+                            value={sliderValues.verticalScale}
+                            onValueChange={(value) => setSliderValues({ ...sliderValues, verticalScale: value })}
                             className='w-full'
                         />
                         <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
-                            {sliderValue[0].toFixed(1)}
+                            {sliderValues.verticalScale[0].toFixed(1)}
                         </p>
                     </div>
                 </div>
