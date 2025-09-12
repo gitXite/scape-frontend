@@ -45,7 +45,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         });
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
-    const [sliderValue, setSliderValue] = useState([33]);
+    const [sliderValue, setSliderValue] = useState([2.5]);
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
@@ -117,12 +117,12 @@ function MapSelector({ mode }: MapSelectorProps) {
             switch (mode) {
                 case 'dummy':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValue([33]);
+                    setSliderValue([2.5]);
                     toast.success('Map has been reset');
                     break;
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValue([33]);
+                    setSliderValue([2.5]);
                     localStorage.removeItem('coordinates');
                     localStorage.removeItem('terrainDepth');
                     localStorage.removeItem('selectedFrame');
@@ -221,13 +221,16 @@ function MapSelector({ mode }: MapSelectorProps) {
                             Vertical Scale
                         </p>
                         <Slider 
-                            defaultValue={[33]}
+                            min={1}
+                            max={5}
+                            step={0.1}
+                            defaultValue={[2.5]}
                             value={sliderValue}
                             onValueChange={(value) => setSliderValue(value)}
                             className='w-full'
                         />
                         <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
-                            {sliderValue[0]}%
+                            {sliderValue[0].toFixed(1)}
                         </p>
                     </div>
                 </div>
