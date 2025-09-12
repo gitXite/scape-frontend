@@ -17,9 +17,11 @@ type MapSelectorProps = {
     mode: 'dummy' | 'real',
 };
 
-// placeholder, to scale with zoom
-const RECT_HEIGHT_SCALE = 12000 * 2; // in meters
-const RECT_WIDTH_SCALE = 9500 * 2; // in meters
+const BASE_SCALE = 1500;
+const RATIO_HEIGHT = 19;
+const RATIO_WIDTH = 14;
+const RECT_HEIGHT = BASE_SCALE * RATIO_HEIGHT;
+const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
 const containerStyle: React.CSSProperties = {
     height: '80%',
@@ -63,16 +65,16 @@ function MapSelector({ mode }: MapSelectorProps) {
         const latLng = new google.maps.LatLng(point.lat, point.lng);
 
         const north = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 0)
+            .computeOffset(latLng, RECT_HEIGHT / 2, 0)
             .lat();
         const south = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT_SCALE / 2, 180)
+            .computeOffset(latLng, RECT_HEIGHT / 2, 180)
             .lat();
         const east = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH_SCALE / 2, 90)
+            .computeOffset(latLng, RECT_WIDTH / 2, 90)
             .lng();
         const west = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH_SCALE / 2, 270)
+            .computeOffset(latLng, RECT_WIDTH / 2, 270)
             .lng();
 
         setRectangleBounds({ north, south, east, west });
