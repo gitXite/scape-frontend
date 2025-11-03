@@ -45,9 +45,16 @@ function MapSelector({ mode }: MapSelectorProps) {
         });
     });
     const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
-    const [sliderValues, setSliderValues] = useState({
-        verticalScale: [2.5],
-        boxSize: [33],
+    const [sliderValues, setSliderValues] = useState(() => {
+        const verticalScale = localStorage.getItem('verticalScale');
+        const boxSize = localStorage.getItem('boxSize');
+        return verticalScale && boxSize ? ({
+            verticalScale: [parseFloat(verticalScale)],
+            boxSize: [parseInt(boxSize)],
+        }) : ({
+            verticalScale: [2.5],
+            boxSize: [33],
+        });
     });
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
@@ -68,20 +75,20 @@ function MapSelector({ mode }: MapSelectorProps) {
         const latLng = new google.maps.LatLng(point.lat, point.lng);
 
         const north = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2, 0)
+            .computeOffset(latLng, RECT_HEIGHT / 2 * ((sliderValues.boxSize[0] + 67) / 100), 0)
             .lat();
         const south = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2, 180)
+            .computeOffset(latLng, RECT_HEIGHT / 2 * ((sliderValues.boxSize[0] + 67) / 100), 180)
             .lat();
         const east = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2, 90)
+            .computeOffset(latLng, RECT_WIDTH / 2 * ((sliderValues.boxSize[0] + 67) / 100), 90)
             .lng();
         const west = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2, 270)
+            .computeOffset(latLng, RECT_WIDTH / 2 * ((sliderValues.boxSize[0] + 67) / 100), 270)
             .lng();
 
         setRectangleBounds({ north, south, east, west });
-    }, []);
+    }, [sliderValues.boxSize]);
 
     const handleMapClick = useCallback((e: google.maps.MapMouseEvent) => {
         if (!e.latLng) return;
@@ -91,7 +98,7 @@ function MapSelector({ mode }: MapSelectorProps) {
 
     useEffect(() => {
         if (mapRef.current) computeRectangleBounds(center);
-    }, [center, computeRectangleBounds]);
+    }, [center, computeRectangleBounds, sliderValues.boxSize]);
 
     const handleCapture = () => {
         if (rectangleBounds) {
@@ -213,6 +220,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                             Box Size
                         </p>
                         <Slider 
+                            min={5}
+                            max={200}
                             defaultValue={[33]}
                             value={sliderValues.boxSize}
                             onValueChange={(value) => setSliderValues({ ...sliderValues, boxSize: value })}
