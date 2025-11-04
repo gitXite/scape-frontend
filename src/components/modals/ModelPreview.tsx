@@ -29,7 +29,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
     // const resp = await fetch('/generate', {
     //     method: 'POST',
     //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ lat, lng, widt, height, verticalScale }),
+    //     body: JSON.stringify({ lat, lng, verticalScale, scale }),
     // });
     // const arrayBuffer = await resp.arrayBuffer();
     // const blob = new Blob([arrayBuffer], { type: 'application/sla' });
@@ -83,9 +83,11 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
             camera.position.z = maxDim * 1.5;
             controls.update();
 
+            // URL.revokeObjectURL(url);
             setIsLoading(false);
         }, undefined, (error) => {
             console.error('Error loading STL:', error);
+            // URL.revokeObjectURL(url);
             setIsLoading(false);
         });
 
