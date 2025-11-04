@@ -226,7 +226,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                             </HoverCardTrigger>
                             <HoverCardContent className='text-center'>
                                 <p className='pb-2'>
-                                    Adjust the slider to set the desired size
+                                    Adjust the slider to set the desired area
                                 </p>
                                 <Separator orientation='horizontal' />
                                 <p className='pt-2'>
