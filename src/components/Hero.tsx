@@ -8,7 +8,7 @@ function Hero() {
 
     return (
         <div id='home' className='h-full w-full place-content-center'>
-            <div className='flex flex-col place-items-center place-content-center  h-8/12 w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-neutral-900 drop-shadow-2xl drop-shadow-neutral-500'>
+            <div className='flex flex-col place-items-center place-content-center  h-8/12 w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-neutral-900 drop-shadow-xl drop-shadow-neutral-500'>
                 <VideoBackground />
                 <h1 className='z-2 mt-10 text-9xl drop-shadow-black drop-shadow-2xl tracking-widest [text-shadow:0_4px_10px_rgba(0,0,0,0.6)]'>S C /\ P E</h1>
                 <div className='flex tracking-widest text-4xl z-2 drop-shadow-black drop-shadow-2xl mt-10 space-x-10 [text-shadow:0_2px_8px_rgba(0,0,0,1)]'>
