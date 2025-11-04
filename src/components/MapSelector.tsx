@@ -5,6 +5,8 @@ import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
+import { Separator } from './ui/separator';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -216,9 +218,22 @@ function MapSelector({ mode }: MapSelectorProps) {
                 
                 <div className='flex place-items-center relative'>
                     <div className='flex flex-col mr-10 w-40 relative top-4 items-center group'>
-                        <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
-                            Box Size
-                        </p>
+                        <HoverCard>
+                            <HoverCardTrigger>
+                                <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
+                                    Box Size
+                                </p>
+                            </HoverCardTrigger>
+                            <HoverCardContent className='text-center'>
+                                <p className='pb-2'>
+                                    Adjust the slider to set the desired size
+                                </p>
+                                <Separator orientation='horizontal' />
+                                <p className='pt-2'>
+                                    Default: 100%
+                                </p>
+                            </HoverCardContent>
+                        </HoverCard>
                         <Slider 
                             min={40}
                             max={200}
@@ -251,9 +266,22 @@ function MapSelector({ mode }: MapSelectorProps) {
                         Reset
                     </button>
                     <div className='flex flex-col ml-10 w-40 relative top-4 items-center group'>
-                        <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
-                            Vertical Scale
-                        </p>
+                        <HoverCard>
+                            <HoverCardTrigger>
+                                <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
+                                    Vertical Scale
+                                </p>
+                            </HoverCardTrigger>
+                            <HoverCardContent className='text-center'>
+                                <p className='pb-2'>
+                                    Adjust the slider to set the desired vertical exaggeration
+                                </p>
+                                <Separator orientation='horizontal' />
+                                <p className='pt-2'>
+                                    Default: 2.0
+                                </p>
+                            </HoverCardContent>
+                        </HoverCard>
                         <Slider 
                             min={1}
                             max={4}
