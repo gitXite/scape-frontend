@@ -53,7 +53,7 @@ function MapSelector({ mode }: MapSelectorProps) {
             boxSize: [parseInt(boxSize)],
         }) : ({
             verticalScale: [2.5],
-            boxSize: [33],
+            boxSize: [100],
         });
     });
     const [showModal, setShowModal] = useState(false);
@@ -75,16 +75,16 @@ function MapSelector({ mode }: MapSelectorProps) {
         const latLng = new google.maps.LatLng(point.lat, point.lng);
 
         const north = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2 * ((sliderValues.boxSize[0] + 67) / 100), 0)
+            .computeOffset(latLng, RECT_HEIGHT / 2 * (sliderValues.boxSize[0] / 100), 0)
             .lat();
         const south = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2 * ((sliderValues.boxSize[0] + 67) / 100), 180)
+            .computeOffset(latLng, RECT_HEIGHT / 2 * (sliderValues.boxSize[0] / 100), 180)
             .lat();
         const east = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2 * ((sliderValues.boxSize[0] + 67) / 100), 90)
+            .computeOffset(latLng, RECT_WIDTH / 2 * (sliderValues.boxSize[0] / 100), 90)
             .lng();
         const west = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2 * ((sliderValues.boxSize[0] + 67) / 100), 270)
+            .computeOffset(latLng, RECT_WIDTH / 2 * (sliderValues.boxSize[0] / 100), 270)
             .lng();
 
         setRectangleBounds({ north, south, east, west });
@@ -130,7 +130,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setCenter({ lat: 60.39299, lng: 5.32415 });
                     setSliderValues({
                         verticalScale: [2.5],
-                        boxSize: [33],
+                        boxSize: [100],
                     });
                     toast.success('Map has been reset');
                     break;
@@ -138,7 +138,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setCenter({ lat: 60.39299, lng: 5.32415 });
                     setSliderValues({
                         verticalScale: [2.5],
-                        boxSize: [33],
+                        boxSize: [100],
                     });
                     localStorage.removeItem('coordinates');
                     localStorage.removeItem('verticalScale');
@@ -220,9 +220,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                             Box Size
                         </p>
                         <Slider 
-                            min={5}
+                            min={40}
                             max={200}
-                            defaultValue={[33]}
+                            defaultValue={[100]}
                             value={sliderValues.boxSize}
                             onValueChange={(value) => setSliderValues({ ...sliderValues, boxSize: value })}
                             className='w-full'
