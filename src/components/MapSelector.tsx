@@ -52,7 +52,7 @@ function MapSelector({ mode }: MapSelectorProps) {
             verticalScale: [parseFloat(verticalScale)],
             boxSize: [parseInt(boxSize)],
         }) : ({
-            verticalScale: [2.5],
+            verticalScale: [2.0],
             boxSize: [100],
         });
     });
@@ -129,7 +129,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 case 'dummy':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
                     setSliderValues({
-                        verticalScale: [2.5],
+                        verticalScale: [2.0],
                         boxSize: [100],
                     });
                     toast.success('Map has been reset');
@@ -137,7 +137,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 case 'real':
                     setCenter({ lat: 60.39299, lng: 5.32415 });
                     setSliderValues({
-                        verticalScale: [2.5],
+                        verticalScale: [2.0],
                         boxSize: [100],
                     });
                     localStorage.removeItem('coordinates');
@@ -258,7 +258,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                             min={1}
                             max={5}
                             step={0.1}
-                            defaultValue={[2.5]}
+                            defaultValue={[2.0]}
                             value={sliderValues.verticalScale}
                             onValueChange={(value) => setSliderValues({ ...sliderValues, verticalScale: value })}
                             className='w-full'
