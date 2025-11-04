@@ -256,7 +256,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         </p>
                         <Slider 
                             min={1}
-                            max={5}
+                            max={4}
                             step={0.1}
                             defaultValue={[2.0]}
                             value={sliderValues.verticalScale}
