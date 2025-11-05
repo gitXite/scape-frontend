@@ -22,7 +22,8 @@ const formSchema = z.object({
         .max(25, {
             message: 'Name cannot be over 25 characters',
         }),
-    email: z.email(),
+    email: z.string().email(),
+    orderId: z.string().optional(),
     content: z.string().min(10, {
         message: 'Please provide a message',
     }),
@@ -36,6 +37,7 @@ function Contact() {
         defaultValues: {
             name: '',
             email: '',
+            orderId: '',
             content: '',
             honey: '',
         }
@@ -73,6 +75,19 @@ function Contact() {
                                 <FormLabel className='ml-2 text-neutral-800'>Email</FormLabel>
                                 <FormControl>
                                     <Input className='bg-white w-70 rounded-sm p-5' placeholder='example@gmail.com' {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField 
+                        control={form.control}
+                        name='orderId'
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className='ml-2 text-neutral-800'>Order Id</FormLabel>
+                                <FormControl>
+                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Please provide an order id (optional)' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
