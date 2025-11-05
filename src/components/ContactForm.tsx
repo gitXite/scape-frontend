@@ -42,6 +42,8 @@ function Contact() {
     });
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
+        // API call here to backend endpoint
+        // to send an email
         console.log(values);
         form.reset();
     };
