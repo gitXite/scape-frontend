@@ -2,16 +2,12 @@ import { type JSX,  useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './ripple';
 import { useNavigate } from 'react-router';
+import type { StoredStates } from '@/types';
 
 interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
     currentStep: number;
     onStepChange: (step: number) => void;
-};
-type StoredStates = {
-    coordinates: boolean,
-    selectedFrame: boolean,
-    selectedPassePartout: boolean,
 };
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
