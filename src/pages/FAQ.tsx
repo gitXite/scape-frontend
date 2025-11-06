@@ -18,7 +18,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Returns & Refunds
                         </h1>
                         <AccordionItem
@@ -99,7 +99,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Payments & Security
                         </h1>
                         <AccordionItem
@@ -142,7 +142,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Problems & Support
                         </h1>
                         <AccordionItem
@@ -208,7 +208,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Shipping & Delivery
                         </h1>
                         <AccordionItem
@@ -265,7 +265,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Product & Customization
                         </h1>
                         <AccordionItem
@@ -334,7 +334,7 @@ function FAQ() {
                         collapsible
                         className='w-full p-20 space-y-5 pt-5'
                     >
-                        <h1 className='text-2xl font-normal tracking-widest'>
+                        <h1 className='text-2xl font-medium tracking-widest'>
                             Cookies & Privacy
                         </h1>
                         <AccordionItem
