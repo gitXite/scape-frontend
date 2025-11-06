@@ -62,7 +62,7 @@ function TheScape() {
                 </div>
                 <div
                     ref={ref2}
-                    className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
+                    className={`place-items-center mt-80 transition-opacity duration-600 ease-in ${
                         inView2 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
@@ -131,7 +131,7 @@ function TheScape() {
                 </div>
                 <div
                     ref={ref4}
-                    className={`place-items-center mt-40 transition-opacity duration-600 ease-in ${
+                    className={`place-items-center mt-60 transition-opacity duration-600 ease-in ${
                         inView4 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
