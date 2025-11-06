@@ -5,12 +5,12 @@ import { Separator } from '@/components/ui/separator';
 
 function Shipping() {
     return (
-        <div className='flex flex-col h-full w-full bg-neutral-100 items-center'>
-            <BackButton />
-            <div className='flex flex-col h-full w-full'>
-                <div className='flex h-full w-full'>
-                    <div className='flex flex-col'>
-                        <h1>Shipping</h1>
+        <div className='flex flex-col h-full w-full bg-neutral-100 items-center tracking-wide'>
+            <BackButton page='home' />
+            <div className='flex flex-col min-h-full w-full items-center'>
+                <div className='flex h-full w-full place-content-evenly'>
+                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 gap-5'>
+                        <h1 className='text-2xl tracking-widest font-medium'>Shipping</h1>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. 
                             Quisque faucibus ex sapien vitae pellentesque sem placerat. 
@@ -22,9 +22,9 @@ function Shipping() {
                             Ad litora torquent per conubia nostra inceptos himenaeos.
                         </p>
                     </div>
-                    <div className='flex flex-col'>
-                        <h1>Orders</h1>
-                        <p>
+                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 gap-5'>
+                        <h1 className='text-2xl tracking-widest font-medium'>Orders</h1>
+                        <p className=''>
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. 
                             Quisque faucibus ex sapien vitae pellentesque sem placerat. 
                             In id cursus mi pretium tellus duis convallis. 
@@ -34,11 +34,11 @@ function Shipping() {
                             Ut hendrerit semper vel class aptent taciti sociosqu. 
                             Ad litora torquent per conubia nostra inceptos himenaeos.
                         </p>
-                        <p>Contact us </p></><a href='/contact'><b>here</b></a>
+                        <p>Contact us <a href='/contact-us'><b>here</b></a></p>
                     </div>
                 </div>
-                <Separator orientation='horizontal' className='border-neutral-400 max-w-100' />
-                <h2 className='flex flex-col text-2xl font-normal gap-2'>
+                <Separator orientation='horizontal' className='border-neutral-400 w-1/4 self-center' />
+                <h2 className='flex flex-col text-2xl font-normal gap-2 text-neutral-900 text-center my-10 mb-20'>
                     S C /\ P E
                     <p className='text-sm content-end tracking-widest'>by md</p>
                 </h2>

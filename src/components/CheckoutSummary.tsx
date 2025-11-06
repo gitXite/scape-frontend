@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { useCustomization } from '@/context/CustomizationContext';
@@ -35,9 +34,9 @@ function CheckoutSummary() {
     return (
         <div className='flex-col h-full w-2/4 p-20 pt-10 content-center text-center'>
             <div className='flex-col pb-5'>
-                <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl'>Order Summary</h1>
+                <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl font-medium'>Order Summary</h1>
                 <Separator orientation='horizontal' className='relative bottom-5'/>
-                <div className='flex justify-between py-5'>
+                <div className='flex justify-between items-center py-5 font-normal tracking-wide'>
                     <img 
                         src={modelImage} 
                         alt='Model' 
@@ -46,7 +45,7 @@ function CheckoutSummary() {
                     <h2 className='text-neutral-900'>Model</h2>
                     <p className='text-neutral-600'>199kr</p>
                 </div>
-                <div className='flex justify-between py-2'>
+                <div className='flex justify-between items-center py-2 font-normal tracking-wide'>
                     {frameType && (
                         <img 
                             src={frame} 
@@ -54,38 +53,34 @@ function CheckoutSummary() {
                             className='w-50 rounded-sm object-cover' 
                         />
                     )}
-                    <h2 className='text-neutral-900'>Frame</h2>
-                    <p className='text-neutral-600'>99kr</p>
-                </div>
-                <div className='flex justify-between py-2'>
                     {passePartoutType && (
                         <img 
                             src={passePartout} 
                             alt='Passe Partout' 
-                            className='w-50 rounded-sm object-cover' 
+                            className='w-50 rounded-sm object-cover absolute' 
                         />
                     )}
-                    <h2 className='text-neutral-900'>Passe Partout</h2>
-                    <p className='text-neutral-600'>49kr</p>
+                    <h2 className='text-neutral-900'>Frame & Passe Partout</h2>
+                    <p className='text-neutral-600'>148kr</p>
                 </div>
             </div>
             <Separator orientation='horizontal'/>
             <div className='flex-col pt-5 pb-5'>
-                <div className='flex justify-between pb-2'>
+                <div className='flex justify-between pb-2 font-normal tracking-wide'>
                     <p className='text-neutral-900'>Subtotal</p>
                     <p className='text-neutral-600'>347kr</p>
                 </div>
-                <div className='flex justify-between'>
+                <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900 pb-2'>Tax Included</p>
                     <p className='text-neutral-600'>86.75kr</p>
                 </div>
-                <div className='flex justify-between'>
+                <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900'>Shipping</p>
                     <p className='text-neutral-600'>49kr</p>
                 </div>
             </div>
             <Separator orientation='horizontal'/>
-            <div className='flex justify-between py-5'>
+            <div className='flex justify-between py-5 font-medium tracking-wide'>
                 <h1 className='text-neutral-900'>Total</h1>
                 <p className='text-neutral-900'>396kr</p>
             </div>

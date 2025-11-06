@@ -7,8 +7,8 @@ import { Separator } from '@/components/ui/separator';
 function Returns() {
     return (
         <div className='flex flex-col h-full w-full bg-neutral-100 items-center'>
-            <BackButton />
-            <div className='flex flex-col items-center space-y-10 min-h-full p-10 w-200 text-center text-neutral-900 text-lg'>
+            <BackButton page='home' />
+            <div className='flex flex-col justify-center items-center space-y-10 min-h-full p-10 w-200 text-center text-neutral-900 text-lg'>
                 <h1 className='text-2xl tracking-widest font-normal mb-10'>
                     RETURN POLICY
                 </h1>
@@ -26,7 +26,7 @@ function Returns() {
                 <p className=''>
                     We want you to be happy with your order, and we'll do our best to make things right in case of any mistakes on our side.
                 </p>
-                <Separator orientation='horizontal' className='border-neutral-400 max-w-100' />
+                <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-10' />
                 <h2 className='text-xl font-regular tracking-widest'>
                     Regards,
                 </h2>

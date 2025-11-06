@@ -133,7 +133,7 @@ function Footer() {
                 <Socials />
                 <small className='relative left-2 -bottom-2'>Powered by</small>
                 <img
-                    className='max-w-20 mr-10 p-0 relative bottom-[-9px]'
+                    className='max-w-20 mr-20 p-0 relative bottom-[-9px]'
                     src='src/assets/Vipps-Logo.wine.png'
                     alt='Vipps Logo'
                 />

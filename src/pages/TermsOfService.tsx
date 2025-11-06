@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator';
 function TermsOfService() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
-            <BackButton />
+            <BackButton page='home' />
             <div className='flex flex-col min-h-full w-250 items-center text-neutral-900 p-10 space-y-5 text-center'>
                 <h1 className='text-2xl tracking-widest font-normal mb-2'>
                     TERMS OF SERVICE

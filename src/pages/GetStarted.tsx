@@ -30,7 +30,7 @@ function GetStarted() {
     
     return (
         <div className='bg-neutral-100 h-full w-full'>
-            <BackButton />
+            <BackButton page='home' />
             <HoverCard>
                 <HoverCardTrigger className='absolute m-10 top-0 mt-9 mr-100 right-0'><CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' /></HoverCardTrigger>
                 <HoverCardContent className='bg-neutral-900 text-neutral-100 text-center justify-center'>

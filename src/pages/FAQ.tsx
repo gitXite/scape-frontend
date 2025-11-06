@@ -10,7 +10,7 @@ import {
 function FAQ() {
     return (
         <div className='flex flex-col min-h-full w-full items-center bg-neutral-100'>
-            <BackButton />
+            <BackButton page='home' />
             <div className='flex h-full w-full py-20 text-neutral-900'>
                 <div className='flex flex-col min-h-full w-2/4 items-center ml-20'>
                     <Accordion

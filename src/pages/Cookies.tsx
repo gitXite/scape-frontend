@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 function Cookies() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
-            <BackButton />
+            <BackButton page='home' />
             <div className='flex flex-col items-center space-y-5 min-h-full p-10 w-200 text-center text-neutral-900'>
                 <h1 className='text-2xl tracking-widest font-normal mb-2'>
                     COOKIE POLICY

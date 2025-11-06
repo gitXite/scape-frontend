@@ -22,7 +22,7 @@ const formSchema = z.object({
         .max(25, {
             message: 'Name cannot be over 25 characters',
         }),
-    email: z.string().email(),
+    email: z.email(),
     orderId: z.string().optional(),
     content: z.string().min(10, {
         message: 'Please provide a message',
