@@ -8,7 +8,7 @@ function Contact() {
         <div className='flex flex-col h-full w-full bg-neutral-100'>
             <div className='flex min-h-full w-full justify-center items-center py-20'>
                 <BackButton page='home' />
-                <div className='flex h-full w-3/5 text-center justify-center bg-neutral-200/20 border-1 border-neutral-300 rounded-sm'>
+                <div className='flex h-full w-3/5 text-center justify-center bg-neutral-200/40 border-1 border-neutral-300 rounded-sm'>
                     <div className='flex h-full w-2/4 flex-col py-10 justify-center'>
                         <h1 className='text-neutral-900 text-6xl tracking-widest'>
                             Contact Us

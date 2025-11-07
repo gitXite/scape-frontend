@@ -34,7 +34,7 @@ function Shipping() {
                             Ut hendrerit semper vel class aptent taciti sociosqu. 
                             Ad litora torquent per conubia nostra inceptos himenaeos.
                         </p>
-                        <p>Contact us <a href='/contact-us'><b>here</b></a></p>
+                        <p className='text-lg font-medium'>Contact us <a href='/contact-us'><b>here</b></a></p>
                     </div>
                 </div>
                 <Separator orientation='horizontal' className='border-neutral-400 w-1/4 self-center' />
