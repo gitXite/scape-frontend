@@ -15,7 +15,8 @@
 
 ## Table of Contents
 
-- [Features](#features)  
+- [Overview](#overview)
+- [Features](#features)
 - [Demo / Screenshots](#demo--screenshots)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
@@ -27,6 +28,14 @@
 - [Linting & Testing](#linting--testing) 
 - [Deployment](#deployment)  
 - [Contact](#contact)
+
+---
+
+## Overview
+
+SCAPE by md is the frontend application powering a hybrid full-stack e-commerce experience designed around personalized 3D-printed models. The platform allows users to create, visualize, and purchase custom-printed and framed pieces that hold personal or sentimental value.
+
+This repository contains the React + TypeScript frontend, built with Vite for fast development and Tailwind CSS for responsive styling. It focuses on delivering a smooth, interactive, and visually rich user interface that integrates seamlessly with backend APIs for product customization, checkout, and order management.
 
 ---
 
