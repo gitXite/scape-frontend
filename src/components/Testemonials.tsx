@@ -6,3 +6,6 @@ function Testemonials() {
         <div></div>
     );
 }
+
+
+export default Testemonials;
