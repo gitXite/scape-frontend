@@ -90,7 +90,7 @@ function StarRating({
                             {isPartiallyFilled && (
                                 <Star 
                                     className={cn('absolute inset-0 fill-yellow-400 text-yellow-400', sizeClasses[size])}
-                                    style={{ clipPath: `inset(0 ${100 - (displayRating - index) * 100}% 0 0}`}}
+                                    style={{ clipPath: `inset(0 ${100 - (displayRating - index) * 100}% 0 0)`}}
                                 />
                             )}
                         </button>
@@ -98,7 +98,7 @@ function StarRating({
                 })}
             </div>
             {showValue && (
-                <span className='text-sm text-muted-foreground ml-2'>
+                <span className='text-sm text-background ml-2'>
                     {rating.toFixed(1)} / {maxRating}
                 </span>
             )}
