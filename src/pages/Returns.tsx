@@ -9,7 +9,7 @@ function Returns() {
         <div className='flex flex-col h-full w-full bg-neutral-100 items-center'>
             <BackButton page='home' />
             <div className='flex flex-col justify-center items-center space-y-10 min-h-full p-10 w-200 text-center text-neutral-900 text-lg'>
-                <h1 className='text-2xl tracking-widest font-normal mb-10'>
+                <h1 className='text-2xl tracking-widest font-medium mb-10'>
                     RETURN POLICY
                 </h1>
                 <p>

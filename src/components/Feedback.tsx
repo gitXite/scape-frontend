@@ -11,13 +11,14 @@ function Feedback() {
         }
     );
     const [feedbackMessage, setFeedbackMessage] = useState('');
+    const [orderId, setOrderId] = useState('');
 
-    // mock variables
-    // let averageRating = 4.2;
-    // let totalReviews = 127;
-
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setFeedbackMessage(event.target.value);
+    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>, type: string) => {
+        if (type === 'feedback') {
+            setFeedbackMessage(event.target.value);
+        } else if (type === 'orderId') {
+            setOrderId(event.target.value);
+        }
     };
 
     const handleSubmitReview = () => {
@@ -25,6 +26,7 @@ function Feedback() {
             setSubmittedRating(userRating);
             localStorage.setItem('feedbackRating', userRating.toString());
             localStorage.setItem('feedbackMessage', feedbackMessage);
+            localStorage.setItem('orderId', orderId);
         }
         // Store the review on the backend
     };
@@ -34,15 +36,21 @@ function Feedback() {
             <div className='flex flex-col h-full w-3/5 bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 place-content-evenly'>
                 {!submittedRating ? (
                     <>
-                        <div className='flex flex-col items-center w-full'>
-                            <h1 className='text-neutral-900 text-5xl tracking-widest pb-15'>
+                        <div className='flex flex-col items-center w-full gap-2'>
+                            <h1 className='text-neutral-900 text-6xl tracking-widest pb-15 font-normal'>
                                 Rate Your Experience
                             </h1>
                             <textarea
                                 value={feedbackMessage}
-                                onChange={handleChange}
+                                onChange={(event) => handleChange(event, 'feedback')}
                                 placeholder='We would love your feedback'
-                                className='text-neutral-700 font-normal border-1 border-neutral-300 drop-shadow-sm bg-white rounded-sm p-5 h-70 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                                className='text-neutral-700 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-70 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                            />
+                            <textarea
+                                value={orderId}
+                                onChange={(event) => handleChange(event, 'orderId')}
+                                placeholder='Order ID (required)' 
+                                className='text-neutral-900 h-10.5 overflow-hidden p-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400' 
                             />
                         </div>
                         <div className='flex flex-col text-center items-center relative'>
@@ -62,7 +70,7 @@ function Feedback() {
                             )}
                             <Button
                                 onClick={handleSubmitReview}
-                                disabled={userRating === 0}
+                                disabled={userRating === 0 || orderId === ''}
                                 className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                             >
                                 Submit Feedback

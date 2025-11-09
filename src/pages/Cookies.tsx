@@ -9,7 +9,7 @@ function Cookies() {
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
             <BackButton page='home' />
             <div className='flex flex-col items-center space-y-5 min-h-full p-10 w-200 text-center text-neutral-900'>
-                <h1 className='text-2xl tracking-widest font-normal mb-2'>
+                <h1 className='text-2xl tracking-widest font-medium mb-2'>
                     COOKIE POLICY
                 </h1>
                 <h2 className='text-neutral-400 font-normal'>

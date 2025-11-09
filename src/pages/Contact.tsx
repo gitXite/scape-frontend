@@ -10,7 +10,7 @@ function Contact() {
                 <BackButton page='home' />
                 <div className='flex h-full w-3/5 text-center justify-center bg-neutral-200/40 border-1 border-neutral-300 rounded-sm'>
                     <div className='flex h-full w-2/4 flex-col py-10 justify-center'>
-                        <h1 className='text-neutral-900 text-6xl tracking-widest'>
+                        <h1 className='text-neutral-900 text-6xl tracking-widest font-medium'>
                             Contact Us
                         </h1>
                         <p className='px-15 pt-15 text-neutral-600 tracking-wide'>

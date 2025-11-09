@@ -7,7 +7,7 @@ function TermsOfService() {
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
             <BackButton page='home' />
             <div className='flex flex-col min-h-full w-250 items-center text-neutral-900 p-10 space-y-5 text-center'>
-                <h1 className='text-2xl tracking-widest font-normal mb-2'>
+                <h1 className='text-2xl tracking-widest font-medium mb-2'>
                     TERMS OF SERVICE
                 </h1>
                 <h2 className='text-neutral-400 mb-10 font-normal'>

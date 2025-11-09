@@ -249,7 +249,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     <button 
                         onClick={() => setShowModal(true)}
                         disabled={mode === 'dummy' || !hasCoordinates}
-                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
+                        className='flex place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
                     </button>
@@ -260,7 +260,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                         Capture Coordinates
                     </Button>
                     <button 
-                        className='flex place-content-center place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
+                        className='flex place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
                         onClick={resetMap}
                     >
                         Reset

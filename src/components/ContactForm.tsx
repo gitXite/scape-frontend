@@ -85,9 +85,9 @@ function Contact() {
                         name='orderId'
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className='ml-2 text-neutral-800'>Order Id</FormLabel>
+                                <FormLabel className='ml-2 text-neutral-800'>Order ID</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Please provide an order id (optional)' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Please provide an order ID (optional)' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

@@ -25,17 +25,17 @@ function Footer() {
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                     <a
+                        href='/get-started'
+                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
+                    >
+                        Get Started
+                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
+                    </a>
+                    <a
                         href='/testimonials'
                         className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
                     >
                         Testimonials
-                        <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                    </a>
-                    <a
-                        href='/gallery'
-                        className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                    >
-                        Gallery
                         <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                     </a>
                 </div>
