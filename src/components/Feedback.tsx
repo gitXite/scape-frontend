@@ -31,7 +31,7 @@ function Feedback() {
 
     return (
         <div className='flex flex-col min-h-full w-full items-center py-20'>
-            <div className='flex flex-col h-full w-3/5 bg-neutral-200/20 border-1 border-neutral-300 rounded-sm items-center py-10 place-content-evenly'>
+            <div className='flex flex-col h-full w-3/5 bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 place-content-evenly'>
                 {!submittedRating ? (
                     <>
                         <div className='flex flex-col items-center w-full'>

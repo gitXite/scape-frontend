@@ -130,8 +130,9 @@ function Footer() {
                 </p>
             </div>
             <div className='flex absolute right-0 items-center'>
+                <small className='relative right-20 top-2'>contact@scapebymd.no</small>
                 <Socials />
-                <small className='relative left-2 -bottom-2'>Powered by</small>
+                <small className='relative left-2 top-2'>Powered by</small>
                 <img
                     className='max-w-20 mr-20 p-0 relative bottom-[-9px]'
                     src='src/assets/Vipps-Logo.wine.png'
