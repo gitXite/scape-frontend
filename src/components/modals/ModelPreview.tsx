@@ -24,19 +24,6 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         if (showModal) setShowModal(false);
     });
 
-    // example response from microservice
-
-    // const resp = await fetch('/generate', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ lat, lng, verticalScale, scale }),
-    // });
-    // const arrayBuffer = await resp.arrayBuffer();
-    // const blob = new Blob([arrayBuffer], { type: 'application/sla' });
-    // const url = URL.createObjectURL(blob);
-
-    // then in loader, put loader.load(url, mesh)
-
     useEffect(() => {
         if (!mountRef.current) return;
 
@@ -67,29 +54,64 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         scene.add(ambientLight);
 
         const loader = new STLLoader();
-        loader.load('/models/terrain.stl', (geometry) => {
-            geometry.computeBoundingBox();
-            const center = new THREE.Vector3();
-            geometry.boundingBox?.getCenter(center);
-            geometry.center();
 
-            const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-            const mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
+        const downloadSTL = async () => {
+            const coords = localStorage.getItem('coordinates');
+            const verticalScale = localStorage.getItem('verticalScale');
+            const scale = localStorage.getItem('boxSize');
+            
+            if (coords && verticalScale && scale) {
+                try {
+                    const resp = await fetch(`${import.meta.env.VITE_APP_API_URL}/stl/download`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            lat: JSON.parse(coords).north, 
+                            lng: JSON.parse(coords).west, 
+                            verticalScale: verticalScale, 
+                            scale: scale
+                        }),
+                    });
 
-            const size = new THREE.Vector3();
-            geometry.boundingBox?.getSize(size);
-            const maxDim = Math.max(size.x, size.y, size.z);
-            camera.position.z = maxDim * 1.5;
-            controls.update();
+                    if (!resp.ok) {
+                        const text = await resp.text();
+                        throw new Error(`Download failed: ${text}`);
+                    }
 
-            // URL.revokeObjectURL(url);
-            setIsLoading(false);
-        }, undefined, (error) => {
-            console.error('Error loading STL:', error);
-            // URL.revokeObjectURL(url);
-            setIsLoading(false);
-        });
+                    const arrayBuffer = await resp.arrayBuffer();
+                    const blob = new Blob([arrayBuffer], { type: 'application/sla' });
+                    const url = URL.createObjectURL(blob);
+
+                    loader.load(url, (geometry) => {
+                        geometry.computeBoundingBox();
+                        const center = new THREE.Vector3();
+                        geometry.boundingBox?.getCenter(center);
+                        geometry.center();
+
+                        const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+                        const mesh = new THREE.Mesh(geometry, material);
+                        scene.add(mesh);
+
+                        const size = new THREE.Vector3();
+                        geometry.boundingBox?.getSize(size);
+                        const maxDim = Math.max(size.x, size.y, size.z);
+                        camera.position.z = maxDim * 1.5;
+                        controls.update();
+
+                        URL.revokeObjectURL(url);
+                        setIsLoading(false);
+                    }, undefined, (error) => {
+                        console.error('Error loading STL:', error);
+                        URL.revokeObjectURL(url);
+                        setIsLoading(false);
+                    });
+                } catch (err) {
+                    console.error('Error downloading stl: ', err);
+                }
+            }
+        };
+
+        downloadSTL();
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
