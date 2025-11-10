@@ -26,13 +26,14 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
 
     useEffect(() => {
         if (!mountRef.current) return;
-
         setIsLoading(true);
 
         const width = mountRef.current.clientWidth;
         const height = mountRef.current.clientHeight;
 
         const scene = new THREE.Scene();
+        scene.background = null;
+
         const camera = new THREE.PerspectiveCamera(
             50,
             mountRef.current.clientWidth / mountRef.current.clientHeight,
@@ -44,7 +45,6 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         renderer.setSize(width, height);
         mountRef.current!.innerHTML = '';
         mountRef.current.appendChild(renderer.domElement);
-        scene.background = null;
 
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
@@ -55,8 +55,8 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
 
         const loader = new STLLoader();
 
-        const downloadSTL = async () => {
-            const coords = localStorage.getItem('coordinates');
+        const previewSTL = async () => {
+            const coords = JSON.parse(localStorage.getItem('coordinates') || '{}');
             const verticalScale = localStorage.getItem('verticalScale');
             const scale = localStorage.getItem('boxSize');
             
@@ -66,8 +66,8 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
-                            lat: JSON.parse(coords).north, 
-                            lng: JSON.parse(coords).west, 
+                            lat: coords.north, 
+                            lng: coords.west, 
                             verticalScale: verticalScale, 
                             scale: scale
                         }),
@@ -111,7 +111,7 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
             }
         };
 
-        downloadSTL();
+        previewSTL();
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
