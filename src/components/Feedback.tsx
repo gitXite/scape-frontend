@@ -13,7 +13,10 @@ function Feedback() {
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [orderId, setOrderId] = useState('');
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>, type: string) => {
+    const handleChange = (
+        event: React.ChangeEvent<HTMLTextAreaElement>,
+        type: string
+    ) => {
         if (type === 'feedback') {
             setFeedbackMessage(event.target.value);
         } else if (type === 'orderId') {
@@ -32,42 +35,46 @@ function Feedback() {
     };
 
     return (
-        <div className='flex flex-col min-h-full w-full items-center py-20'>
-            <div className='flex flex-col h-full w-3/5 bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 place-content-evenly'>
+        <div className='flex flex-col min-h-full w-full items-center justify-center'>
+            <div className='flex flex-col max-h-3/5 bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 place-content-evenly'>
                 {!submittedRating ? (
                     <>
                         <div className='flex flex-col items-center w-full gap-2'>
-                            <h1 className='text-neutral-900 text-6xl tracking-widest pb-15 font-normal'>
-                                Rate Your Experience
+                            <h1 className='text-neutral-900 text-6xl tracking-wide mb-5 font-medium'>
+                                We value your opinion
                             </h1>
+                            <div className='flex flex-col text-center items-center relative'>
+                                <label className='text-neutral-900 text-xl font-normal mb-3 block'>
+                                    How would you rate your overall experience?
+                                </label>
+                                <StarRating
+                                    rating={userRating || 4}
+                                    onRatingChange={setUserRating}
+                                    size='lg'
+                                    className='mb-2'
+                                />
+                                {userRating > 0 && (
+                                    <p className='text-sm text-muted-foreground mb-2'>
+                                        You rated: {userRating} out of 5 stars
+                                    </p>
+                                )}
+                            </div>
                             <textarea
                                 value={feedbackMessage}
-                                onChange={(event) => handleChange(event, 'feedback')}
+                                onChange={(event) =>
+                                    handleChange(event, 'feedback')
+                                }
                                 placeholder='We would love your feedback'
-                                className='text-neutral-700 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-70 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                                className='text-neutral-700 font-normal mb-2 border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-35 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                             />
                             <textarea
                                 value={orderId}
-                                onChange={(event) => handleChange(event, 'orderId')}
-                                placeholder='Order ID (required)' 
-                                className='text-neutral-900 h-10.5 overflow-hidden p-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400' 
+                                onChange={(event) =>
+                                    handleChange(event, 'orderId')
+                                }
+                                placeholder='Order ID (required)'
+                                className='text-neutral-900 h-10.5 text-center overflow-hidden p-2 mb-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                             />
-                        </div>
-                        <div className='flex flex-col text-center items-center relative'>
-                            <label className='text-neutral-900 text-sm font-medium mb-2 block'>
-                                Your Rating
-                            </label>
-                            <StarRating
-                                rating={userRating || 4}
-                                onRatingChange={setUserRating}
-                                size='lg'
-                                className='mb-2'
-                            />
-                            {userRating > 0 && (
-                                <p className='text-sm text-muted-foreground mb-2'>
-                                    You rated: {userRating} out of 5 stars
-                                </p>
-                            )}
                             <Button
                                 onClick={handleSubmitReview}
                                 disabled={userRating === 0 || orderId === ''}
