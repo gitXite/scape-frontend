@@ -27,20 +27,42 @@ function Feedback() {
         }
     };
 
-    const handleSubmitReview = () => {
-        // if (userRating > 0) {
-        //     setSubmittedRating(userRating);
-        //     localStorage.setItem('feedbackRating', userRating.toString());
-        //     localStorage.setItem('feedbackMessage', feedbackMessage);
-        //     localStorage.setItem('orderId', orderId);
-        // }
+    const handleSubmitReview = async () => {
         setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
+        if (userRating > 0) {
+            localStorage.setItem('feedbackRating', userRating.toString());
+            localStorage.setItem('feedbackMessage', feedbackMessage);
+            localStorage.setItem('orderId', orderId);
+        }
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    rating: userRating,
+                    message: feedbackMessage,
+                    orderID: orderId,
+                }),
+            });
+            if (!response.ok) {
+                toast.error('Failed to submit review', {});
+                return;
+            }
+
             toast.success('Feedback received', {
                 description: 'Thank you for your review',
             });
-        }, 3000);
+            setIsLoading(false);
+            setSubmittedRating(userRating);
+        } catch (err) {
+            toast.error('Failed to submit review', {
+                description: 'Please try again later',
+            });
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -88,7 +110,7 @@ function Feedback() {
                                 <Button
                                     onClick={handleSubmitReview}
                                     disabled
-                                    className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                                 >
                                     <Spinner variant={'ellipsis'} />
                                 </Button>
@@ -96,7 +118,7 @@ function Feedback() {
                                 <Button
                                     onClick={handleSubmitReview}
                                     disabled={userRating === 0 || orderId === ''}
-                                    className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                                 >
                                     Submit Feedback
                                 </Button>
