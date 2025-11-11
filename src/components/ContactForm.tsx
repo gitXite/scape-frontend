@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -13,6 +14,8 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
+import { cn } from '@/lib/utils';
+import { Spinner } from './ui/shadcn-io/spinner/spinner';
 
 
 const formSchema = z.object({
@@ -33,6 +36,7 @@ const formSchema = z.object({
 
 
 function Contact() {
+    const [isLoading, setIsLoading] = useState(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,6 +50,7 @@ function Contact() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            setIsLoading(true);
             const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/contact/submit`, {
                 method: 'POST',
                 headers: {
@@ -59,7 +64,7 @@ function Contact() {
                     honey: values.honey,
                 }),
             });
-            
+
             if (!response.ok) {
                 toast.error('Failed to submit form', {});
                 return;
@@ -68,12 +73,14 @@ function Contact() {
             toast.success('Contact form submitted', {
                 description: 'We will reach out to you shortly',
             });
+            setIsLoading(false);
             form.reset();
         } catch (err) {
             console.log('Failed to submit form: ', err);
             toast.error('Failed to submit form', {
                 description: err instanceof Error ? err.message : 'Please try again later'
             });
+            setIsLoading(false);
         }
     };
 
@@ -88,7 +95,7 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Name</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Your Name' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='Your Name' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -101,7 +108,7 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Email</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='example@gmail.com' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='example@gmail.com' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -114,7 +121,7 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Order ID</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5' placeholder='Please provide an order ID (optional)' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='Please provide an order ID (optional)' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -127,7 +134,13 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 h-40 font-normal' autoComplete='off' placeholder='What is on your mind?' {...field} />
+                                    {/* <Input className='bg-white w-70 rounded-sm p-5 h-40 font-normal' autoComplete='off' placeholder='What is on your mind?' {...field} /> */}
+                                    <textarea id="message" className={cn(
+                                            "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                                            "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                            "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+                                            "bg-white h-30 w-70 rounded-sm p-5 font-normal resize-none"
+                                          )} autoComplete='off' placeholder='What is on your mind?' {...field} ></textarea>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -144,12 +157,22 @@ function Contact() {
                             </FormItem>
                         )}
                     />
-                    <Button 
-                        type='submit'
-                        className='p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                    >
-                        Submit
-                    </Button>
+                    {isLoading ? (
+                        <Button
+                            type='submit'
+                            disabled
+                            className='p-5 min-w-30 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                        >
+                            <Spinner variant={'ellipsis'} />
+                        </Button>
+                    ) : (
+                        <Button 
+                            type='submit'
+                            className='p-5 min-w-30 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                        >
+                            Submit
+                        </Button>
+                    )}
                 </form>
             </Form>
         </div>
