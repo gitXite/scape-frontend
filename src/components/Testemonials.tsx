@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import ReviewCard from './ReviewCard';
-import { Marquee, MarqueeContent, MarqueeFade } from './ui/shadcn-io/marquee/Marquee';
+import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from './ui/shadcn-io/marquee/Marquee';
 import StarRating from './ui/starRating';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 
@@ -10,6 +9,7 @@ function Testemonials() {
     const [totalReviews, setTotalReviews] = useState();
     const [averageRating, setAverageRating] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [reviews, setReviews] = useState<any[]>([]);
 
     useEffect(() => {
         const getReviewStats = async () => {
@@ -28,7 +28,22 @@ function Testemonials() {
                 setIsLoading(false);
             }
         };
+        const getReviews = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/`, {
+                    method: 'GET'
+                });
+                if (!response) return;
+                const data = await response.json();
+
+                setReviews(data);
+            } catch (err) {
+                setIsLoading(false);
+            }
+        };
         getReviewStats();
+        getReviews();
     }, []);
 
     return (
@@ -47,20 +62,24 @@ function Testemonials() {
                             <MarqueeFade side='left' />
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} className='py-2'>
-                                <ReviewCard />
-                                <ReviewCard />
-                                <ReviewCard />
-                                <ReviewCard />
+                                {reviews.map((review, index) => (
+                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                        <p>"{review.message}"</p>
+                                        <StarRating readonly rating={review.rating} size='lg' />
+                                    </MarqueeItem>
+                                ))}
                             </MarqueeContent>
                         </Marquee>
                         <Marquee>
                             <MarqueeFade side='left' />
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} direction='right' className='py-2'>
-                                <ReviewCard />
-                                <ReviewCard />
-                                <ReviewCard />
-                                <ReviewCard />
+                                {reviews.map((review, index) => (
+                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                        <p>"{review.message}"</p>
+                                        <StarRating readonly rating={review.rating} size='lg' />
+                                    </MarqueeItem>
+                                ))}
                             </MarqueeContent>
                         </Marquee>
                     </div>
