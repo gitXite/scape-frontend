@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -43,11 +44,37 @@ function Contact() {
         }
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        // API call here to backend endpoint
-        // to send an email
-        console.log(values);
-        form.reset();
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/contact/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: values.name,
+                    email: values.email,
+                    orderID: values.orderId,
+                    content: values.content,
+                    honey: values.honey,
+                }),
+            });
+            
+            if (!response.ok) {
+                toast.error('Failed to submit form', {});
+                return;
+            }
+
+            toast.success('Contact form submitted', {
+                description: 'We will reach out to you shortly',
+            });
+            form.reset();
+        } catch (err) {
+            console.log('Failed to submit form: ', err);
+            toast.error('Failed to submit form', {
+                description: err instanceof Error ? err.message : 'Please try again later'
+            });
+        }
     };
 
     return (
@@ -100,7 +127,7 @@ function Contact() {
                             <FormItem>
                                 <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 h-40' autoComplete='off' placeholder='What is on your mind?' {...field} />
+                                    <Input className='bg-white w-70 rounded-sm p-5 h-40 font-normal' autoComplete='off' placeholder='What is on your mind?' {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
