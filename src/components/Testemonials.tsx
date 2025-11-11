@@ -10,6 +10,7 @@ function Testemonials() {
     const [averageRating, setAverageRating] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState<any[]>([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const getReviewStats = async () => {
@@ -18,13 +19,16 @@ function Testemonials() {
                 const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/stats`, {
                     method: 'GET',
                 });
-                if (!response) return;
-                const data = await response.json();
+                if (!response.ok) return;
 
-                setTotalReviews(data.data.totalReviews);
-                setAverageRating(data.data.averageRating);
+                const { data } = await response.json();
+                setTotalReviews(data.totalReviews);
+                setAverageRating(data.averageRating);
                 setIsLoading(false);
             } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
                 setIsLoading(false);
             }
         };
@@ -34,9 +38,9 @@ function Testemonials() {
                 const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/`, {
                     method: 'GET'
                 });
-                if (!response) return;
-                const data = await response.json();
+                if (!response.ok) return;
 
+                const data = await response.json();
                 setReviews(data);
             } catch (err) {
                 setIsLoading(false);
@@ -48,14 +52,17 @@ function Testemonials() {
 
     return (
         <div className='min-h-full w-full p-5'>
+            {error && (
+                <h1 className='text-neutral-900 place-self-center font-normal'>{error}</h1>
+            )}
             {isLoading ? (
-                <Spinner variant={'circle'} size={64} className='text-neutral-900 relative justify-self-center top-2/4 -translate-y-2/4' />
+                <Spinner variant={'circle'} size={42} className='text-neutral-900 relative justify-self-center top-2/4 -translate-y-2/4' />
             ) : (
                 <div className='flex flex-col h-full items-center justify-evenly'>
                     <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
                     <div className='rounded-full bg-neutral-900 px-5 py-1.5 drop-shadow-lg'>
                         <StarRating readonly rating={averageRating!} showValue size='lg' />
-                        <p className='text-neutral-200 tracking-wide text-center font-normal text-lg'>Total reviews: <small>{totalReviews}</small></p>
+                        <p className='text-neutral-200 tracking-wide text-center font-normal text-lg'>Total reviews: {totalReviews}</p>
                     </div>
                     <div className='flex flex-col gap-10 w-3/5'>
                         <Marquee>
@@ -65,7 +72,7 @@ function Testemonials() {
                                 {reviews.map((review, index) => (
                                     <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
                                         <p>"{review.message}"</p>
-                                        <StarRating readonly rating={review.rating} size='lg' />
+                                        <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
                                     </MarqueeItem>
                                 ))}
                             </MarqueeContent>
@@ -77,7 +84,7 @@ function Testemonials() {
                                 {reviews.map((review, index) => (
                                     <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
                                         <p>"{review.message}"</p>
-                                        <StarRating readonly rating={review.rating} size='lg' />
+                                        <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
                                     </MarqueeItem>
                                 ))}
                             </MarqueeContent>
