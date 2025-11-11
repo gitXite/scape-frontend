@@ -70,7 +70,6 @@ function ModelPreview({
         scene.add(ambientLight);
 
         const loader = new STLLoader();
-
         const loadModel = async () => {
             const url = await generateAndFetchSTL();
             if (!url) {
@@ -110,22 +109,34 @@ function ModelPreview({
         }
         loadModel();
 
+        let frameID: number;
         const animate = () => {
-            requestAnimationFrame(animate);
+            frameID = requestAnimationFrame(animate);
             controls.update();
             renderer.render(scene, camera);
         };
         animate();
 
         return () => {
+            cancelAnimationFrame(frameID);
+            renderer.dispose();
+            controls.dispose();
+
+            scene.traverse((obj) => {
+                if (obj instanceof THREE.Mesh) {
+                    obj.geometry.dispose();
+                    if (obj.material instanceof THREE.Material) {
+                        obj.material.dispose();
+                    }
+                }
+            });
+
             if (
                 mountRef.current &&
                 renderer.domElement.parentNode === mountRef.current
             ) {
                 mountRef.current.removeChild(renderer.domElement);
             }
-            renderer.dispose();
-            controls.dispose();
         };
     }, []);
 
