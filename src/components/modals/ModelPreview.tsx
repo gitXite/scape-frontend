@@ -1,24 +1,32 @@
-import { useHotkeys } from 'react-hotkeys-hook';
-import { X } from 'lucide-react';
-import type React from 'react';
-import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { useEffect, useRef, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+
+import type React from 'react';
+
+import { X } from 'lucide-react';
+import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
+
+import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 
 
 type ModelPreviewProps = {
-    showModal: boolean,
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
-    className: string,
+    showModal: boolean;
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    className: string;
 };
 
-function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps) {
+function ModelPreview({
+    showModal,
+    setShowModal,
+    className,
+}: ModelPreviewProps) {
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
-    
+
     useHotkeys('escape', (event) => {
         event.preventDefault();
         if (showModal) setShowModal(false);
@@ -41,82 +49,66 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
             1000
         );
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+        });
         renderer.setSize(width, height);
         mountRef.current!.innerHTML = '';
         mountRef.current.appendChild(renderer.domElement);
+        
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = true;
 
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
         scene.add(light);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
         scene.add(ambientLight);
 
         const loader = new STLLoader();
 
-        const previewSTL = async () => {
-            const coords = JSON.parse(localStorage.getItem('coordinates') || '{}');
-            const verticalScale = localStorage.getItem('verticalScale');
-            const scale = localStorage.getItem('boxSize');
-            
-            if (coords && verticalScale && scale) {
-                try {
-                    const resp = await fetch(`${import.meta.env.VITE_APP_API_URL}/stl/download`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            lat: coords.north, 
-                            lng: coords.west, 
-                            verticalScale: verticalScale, 
-                            scale: scale
-                        }),
-                    });
-
-                    if (!resp.ok) {
-                        const text = await resp.text();
-                        throw new Error(`Download failed: ${text}`);
-                    }
-
-                    const arrayBuffer = await resp.arrayBuffer();
-                    const blob = new Blob([arrayBuffer], { type: 'application/sla' });
-                    const url = URL.createObjectURL(blob);
-
-                    loader.load(url, (geometry) => {
-                        geometry.computeBoundingBox();
-                        const center = new THREE.Vector3();
-                        geometry.boundingBox?.getCenter(center);
-                        geometry.center();
-
-                        const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-                        const mesh = new THREE.Mesh(geometry, material);
-                        scene.add(mesh);
-
-                        const size = new THREE.Vector3();
-                        geometry.boundingBox?.getSize(size);
-                        const maxDim = Math.max(size.x, size.y, size.z);
-                        camera.position.z = maxDim * 1.5;
-                        controls.update();
-
-                        URL.revokeObjectURL(url);
-                        setIsLoading(false);
-                    }, undefined, (error) => {
-                        console.error('Error loading STL:', error);
-                        URL.revokeObjectURL(url);
-                        setIsLoading(false);
-                    });
-                } catch (err) {
-                    console.error('Error downloading stl: ', err);
-                }
+        const loadModel = async () => {
+            const url = await generateAndFetchSTL();
+            if (!url) {
+                return;
             }
-        };
 
-        previewSTL();
-
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.enableZoom = true;
+            loader.load(
+                url,
+                (geometry) => {
+                    geometry.computeBoundingBox();
+                    const center = new THREE.Vector3();
+                    geometry.boundingBox?.getCenter(center);
+                    geometry.center();
+    
+                    const material = new THREE.MeshStandardMaterial({
+                        color: 0xffffff,
+                    });
+                    const mesh = new THREE.Mesh(geometry, material);
+                    scene.add(mesh);
+    
+                    const size = new THREE.Vector3();
+                    geometry.boundingBox?.getSize(size);
+                    const maxDim = Math.max(size.x, size.y, size.z);
+                    camera.position.z = maxDim * 1.5;
+                    controls.update();
+    
+                    URL.revokeObjectURL(url);
+                    setIsLoading(false);
+                },
+                undefined,
+                (error) => {
+                    console.error('Error loading STL:', error);
+                    URL.revokeObjectURL(url);
+                    setIsLoading(false);
+                }
+            );
+        }
+        loadModel();
 
         const animate = () => {
             requestAnimationFrame(animate);
@@ -126,7 +118,10 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         animate();
 
         return () => {
-            if (mountRef.current && renderer.domElement.parentNode === mountRef.current) {
+            if (
+                mountRef.current &&
+                renderer.domElement.parentNode === mountRef.current
+            ) {
                 mountRef.current.removeChild(renderer.domElement);
             }
             renderer.dispose();
@@ -138,26 +133,40 @@ function ModelPreview({ showModal, setShowModal, className }: ModelPreviewProps)
         <>
             {showModal && (
                 <div
-                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10"
+                    className='fixed inset-0 bg-black/20 backdrop-blur-sm z-10'
                     onClick={() => setShowModal(false)}
                 />
             )}
-            
-            <div className={cn('absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)]', className)}>
-                {isLoading && (
-                    <Spinner variant='circle' size={42} className='relative justify-self-center top-2/4 -translate-y-2/4' />
+
+            <div
+                className={cn(
+                    'absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 ',
+                    className
                 )}
-                <button 
+            >
+                {isLoading && (
+                    <Spinner
+                        variant='circle'
+                        size={42}
+                        className='relative justify-self-center top-2/4 -translate-y-2/4'
+                    />
+                )}
+                <button
                     onClick={() => setShowModal(false)}
-                    className='absolute group top-0 right-0 p-2 px-5 hover:shadow-[inset_0px_0px_4px_rgba(0,0,0,0.4)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.4)] hover:bg-neutral-300 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-100'
+                    className='absolute group top-0 right-0 p-2 px-5 hover:bg-neutral-300 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-150'
                 >
-                    <X size={25} className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-100' />
+                    <X
+                        size={25}
+                        className='text-neutral-300 group-hover:text-neutral-900 transition-all duration-150'
+                    />
                 </button>
-                <div ref={mountRef} className='h-full w-full rounded-sm overflow-hidden'></div>
+                <div
+                    ref={mountRef}
+                    className='h-full w-full rounded-sm overflow-hidden'
+                ></div>
             </div>
         </>
     );
 }
-
 
 export default ModelPreview;
