@@ -25,7 +25,7 @@ function TermsOfService() {
                     as well as any other related products and services that refer or link to these legal terms (the 'Legal Terms') (collectively, the 'Services').
                 </p>
                 <p>
-                    You can contact us by phone at 93874223, email at <b>contact@scapebymd.no</b>, or by mail to <br />Schweigårds vei 30A, BERGEN 5063, Norway.
+                    You can contact us by phone at 93874223, email at <b>scapebymd@gmail.com</b>, or by mail to <br />Schweigårds vei 30A, BERGEN 5063, Norway.
                 </p>
                 <p>
                     These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ('you'), and Maren Stenersen, concerning your access to and use of the Services. 
@@ -34,7 +34,7 @@ function TermsOfService() {
                 </p>
                 <p>
                     We will provide you with prior notice of any scheduled changes to the Services you are using. 
-                    The modified Legal Terms will become effective upon posting or notifying you by <b>noreply@scapebymd.no</b>, as stated in the email message. 
+                    The modified Legal Terms will become effective upon posting or notifying you by <b>scapebymd@gmail.com</b>, as stated in the email message. 
                     By continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.
                 </p>
                 <p>
@@ -482,7 +482,7 @@ function TermsOfService() {
                     BERGEN 5063 <br />
                     Norway <br />
                     Phone: +4793874223 <br />
-                    contact@scapebymd.no
+                    scapebymd@gmail.com
                 </b></p>
                 <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
                 <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>

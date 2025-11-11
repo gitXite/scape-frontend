@@ -130,7 +130,7 @@ function Footer() {
                 </p>
             </div>
             <div className='flex absolute right-0 items-center'>
-                <small className='relative right-20 top-2'>contact@scapebymd.no</small>
+                <small className='relative right-20 top-2'>scapebymd@gmail.com</small>
                 <Socials />
                 <small className='relative left-2 top-2'>Powered by</small>
                 <img

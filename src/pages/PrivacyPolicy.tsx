@@ -70,7 +70,7 @@ function PrivacyPolicy() {
 
                 <h2 className='text-xl font-normal tracking-widest m-2'>6. Your Rights</h2>
                 <p className='mb-8'>
-                    You may request access to your personal data, corrections, or deletion by contacting us at: <b>contact@scapebymd.no</b>
+                    You may request access to your personal data, corrections, or deletion by contacting us at: <b>scapebymd@gmail.com</b>
                 </p>
 
                 <h2 className='text-xl font-normal tracking-widest m-2'>
@@ -83,7 +83,7 @@ function PrivacyPolicy() {
 
                 <h2 className='text-xl font-normal tracking-widest m-2'>8. Contact</h2>
                 <p className='mb-8'>
-                    If you have questions about this Privacy Policy, please contact us at: <b>contact@scapebymd.no</b>
+                    If you have questions about this Privacy Policy, please contact us at: <b>scapebymd@gmail.com</b>
                 </p>
                 <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
                 <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>

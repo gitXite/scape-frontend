@@ -188,7 +188,7 @@ function FAQ() {
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-lg text-neutral-600'>
                                 <p>
-                                    Contact us at <b>contact@scapebymd.no</b>
+                                    Contact us at <b>scapebymd@gmail.com</b>
                                 </p>
                                 <p>
                                     Or by going to the{' '}
