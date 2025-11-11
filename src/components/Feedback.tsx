@@ -71,7 +71,7 @@ function Feedback() {
                 {!submittedRating ? (
                     <>
                         <div className='flex flex-col items-center w-full gap-2'>
-                            <h1 className='text-neutral-900 text-6xl tracking-wide mb-5 font-medium'>
+                            <h1 className='text-neutral-900 text-6xl tracking-wide mb-5 font-medium text-shadow-md'>
                                 We value your opinion
                             </h1>
                             <div className='flex flex-col text-center items-center relative'>
