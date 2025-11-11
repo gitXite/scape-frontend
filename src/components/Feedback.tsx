@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import StarRating from '@/components/ui/starRating';
+import { Spinner } from './ui/shadcn-io/spinner/spinner';
+import { toast } from 'sonner';
 
 function Feedback() {
     const [userRating, setUserRating] = useState(0);
@@ -12,6 +14,7 @@ function Feedback() {
     );
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [orderId, setOrderId] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (
         event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -25,13 +28,19 @@ function Feedback() {
     };
 
     const handleSubmitReview = () => {
-        if (userRating > 0) {
-            setSubmittedRating(userRating);
-            localStorage.setItem('feedbackRating', userRating.toString());
-            localStorage.setItem('feedbackMessage', feedbackMessage);
-            localStorage.setItem('orderId', orderId);
-        }
-        // Store the review on the backend
+        // if (userRating > 0) {
+        //     setSubmittedRating(userRating);
+        //     localStorage.setItem('feedbackRating', userRating.toString());
+        //     localStorage.setItem('feedbackMessage', feedbackMessage);
+        //     localStorage.setItem('orderId', orderId);
+        // }
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            toast.success('Feedback received', {
+                description: 'Thank you for your review',
+            });
+        }, 3000);
     };
 
     return (
@@ -75,13 +84,23 @@ function Feedback() {
                                 placeholder='Order ID (required)'
                                 className='text-neutral-900 h-10.5 text-center overflow-hidden p-2 mb-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                             />
-                            <Button
-                                onClick={handleSubmitReview}
-                                disabled={userRating === 0 || orderId === ''}
-                                className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                            >
-                                Submit Feedback
-                            </Button>
+                            {isLoading ? (
+                                <Button
+                                    onClick={handleSubmitReview}
+                                    disabled
+                                    className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                >
+                                    <Spinner variant={'ellipsis'} />
+                                </Button>
+                            ) : (
+                                <Button
+                                    onClick={handleSubmitReview}
+                                    disabled={userRating === 0 || orderId === ''}
+                                    className='w-50 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                >
+                                    Submit Feedback
+                                </Button>
+                            )}
                         </div>
                     </>
                 ) : (
