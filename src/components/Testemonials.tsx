@@ -43,6 +43,9 @@ function Testemonials() {
                 const data = await response.json();
                 setReviews(data);
             } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
                 setIsLoading(false);
             }
         };
@@ -70,7 +73,7 @@ function Testemonials() {
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} className='py-2'>
                                 {reviews.map((review, index) => (
-                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
                                         <p>"{review.message}"</p>
                                         <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
                                     </MarqueeItem>
@@ -82,7 +85,7 @@ function Testemonials() {
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} direction='right' className='py-2'>
                                 {reviews.map((review, index) => (
-                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly h-40 w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
                                         <p>"{review.message}"</p>
                                         <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
                                     </MarqueeItem>
