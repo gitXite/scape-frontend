@@ -26,6 +26,7 @@ function ModelPreview({
 }: ModelPreviewProps) {
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
+    const [error, setError] = useState('');
 
     useHotkeys('escape', (event) => {
         event.preventDefault();
@@ -73,6 +74,8 @@ function ModelPreview({
         const loadModel = async () => {
             const url = await generateAndFetchSTL();
             if (!url) {
+                setIsLoading(false);
+                setError('Failed to fetch STL');
                 return;
             }
 
@@ -155,6 +158,9 @@ function ModelPreview({
                     className
                 )}
             >
+                {error && (
+                    <p className='text-neutral-100 relative justify-self-center top-2/4 -translate-y-2/4 font-normal'>{error}</p>
+                )}
                 {isLoading && (
                     <Spinner
                         variant='circle'
