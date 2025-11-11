@@ -46,7 +46,7 @@ function ModelPreview({
             50,
             mountRef.current.clientWidth / mountRef.current.clientHeight,
             0.1,
-            1000
+            5000
         );
 
         const renderer = new THREE.WebGLRenderer({
@@ -66,7 +66,7 @@ function ModelPreview({
         light.position.set(1, 1, 1);
         scene.add(light);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
 
         const loader = new STLLoader();
