@@ -170,7 +170,7 @@ function ModelPreview({
                         className='relative justify-self-center top-2/4 -translate-y-2/4'
                     />
                 )}
-                <div className='flex flex-col font-normal gap-1 absolute bottom-0 left-0 w-40 rounded-bl-sm rounded-tr-sm border-1 text-center border-neutral-500 pb-2'>
+                <div className='flex flex-col pointer-events-none font-normal gap-1 absolute bottom-0 left-0 w-40 rounded-bl-sm rounded-tr-sm border-1 text-center border-neutral-500 pb-2'>
                     <p className='font-medium'>Coordinates</p>
                     <Separator orientation='horizontal' className='border-neutral-500 place-self-center' />
                     <p>NW: {coords.north.toFixed(2)} {coords.west.toFixed(2)}</p>
