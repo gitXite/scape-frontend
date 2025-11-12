@@ -126,7 +126,7 @@ function Hero3D() {
                 currentRotationY += (targetRotationY - currentRotationY) * 0.05;
                 currentRotationZ += (targetRotationZ - currentRotationZ) * 0.05;
                 mesh.rotation.x = -Math.PI / 2.5 + currentRotationX;
-                mesh.rotation.y = Math.PI / 7 + currentRotationY;
+                mesh.rotation.y = Math.PI / 12 + currentRotationY;
                 mesh.rotation.z = -Math.PI / 5 + currentRotationZ;
             }
             renderer.render(scene, camera);
