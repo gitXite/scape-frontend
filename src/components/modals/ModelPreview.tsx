@@ -11,6 +11,7 @@ import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
 
 import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
+import { Separator } from '../ui/separator';
 
 
 type ModelPreviewProps = {
@@ -27,6 +28,7 @@ function ModelPreview({
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
     const [error, setError] = useState('');
+    const coords = JSON.parse(localStorage.getItem('coordinates') || '{}');
 
     useHotkeys('escape', (event) => {
         event.preventDefault();
@@ -168,6 +170,17 @@ function ModelPreview({
                         className='relative justify-self-center top-2/4 -translate-y-2/4'
                     />
                 )}
+                <div className='flex flex-col font-normal gap-1 absolute bottom-0 left-0 w-40 rounded-bl-sm rounded-tr-sm border-1 text-center border-neutral-500 pb-2'>
+                    <p className='font-medium'>Coordinates</p>
+                    <Separator orientation='horizontal' className='border-neutral-500 place-self-center' />
+                    <p>NW: {coords.north.toFixed(2)} {coords.west.toFixed(2)}</p>
+                    <p>NE: {coords.north.toFixed(2)} {coords.east.toFixed(2)}</p>
+                    <p>SE: {coords.south.toFixed(2)} {coords.east.toFixed(2)}</p>
+                    <p>SW: {coords.south.toFixed(2)} {coords.west.toFixed(2)}</p>
+                    <Separator orientation='horizontal' className='border-neutral-500 place-self-center' />
+                    <p>Box Size: {localStorage.getItem('boxSize')}%</p>
+                    <p>Vertical Scale: {localStorage.getItem('verticalScale')}</p>
+                </div>
                 <button
                     onClick={() => setShowModal(false)}
                     className='absolute group top-0 right-0 p-2 px-5 hover:bg-neutral-300 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-150'
