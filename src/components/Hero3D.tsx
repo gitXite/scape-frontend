@@ -23,7 +23,7 @@ function Hero3D() {
             5000
         );
         camera.position.set(0, 0, 0);
-        const targetPosition = new THREE.Vector3(0, 0, 180);
+        const targetPosition = new THREE.Vector3(-50, 0, 200);
         let progress = 0;
 
         const introCamera = () => {
@@ -31,7 +31,7 @@ function Hero3D() {
                 progress += 0.002;
                 const t = 1 - Math.pow(1 - progress, 3);
                 camera.position.lerpVectors(
-                    new THREE.Vector3(500, 200, 180),
+                    new THREE.Vector3(500, 500, 500),
                     targetPosition,
                     t
                 );
@@ -69,26 +69,12 @@ function Hero3D() {
                     color: 0xffffff,
                 });
                 mesh = new THREE.Mesh(geometry, material);
-                // mesh.position.x = -50;
                 mesh.rotation.x = -Math.PI / 2;
                 mesh.rotation.y = Math.PI / 2;
                 scene.add(mesh);
 
-                // let progress = 0;
-                // const intro = () => {
-                //     if (progress < 1) {
-                //         progress += 0.002;
-                //         const t = 1 - Math.pow(1 - progress, 3);
-                //         mesh.position.x = -50 + t * 50; 
-                //         requestAnimationFrame(intro);
-                //     }
-                // };
-                // intro();
-
                 const size = new THREE.Vector3();
                 geometry.boundingBox?.getSize(size);
-                camera.position.z = 180;
-                camera.position.x = 0;
 
                 URL.revokeObjectURL('/models/terrain.stl');
             },
