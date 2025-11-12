@@ -40,7 +40,7 @@ function TheScape() {
     return (
         <div
             id='thescape'
-            className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10'
+            className='grid grid-cols-2 gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10 py-10'
         >
             <div className='flex flex-col items-center gap-y-80 mt-20'>
                 <div
