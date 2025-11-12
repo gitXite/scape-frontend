@@ -21,6 +21,24 @@ function Hero3D() {
             0.1,
             5000
         );
+        camera.position.set(0, 0, 0);
+        const targetPosition = new THREE.Vector3(0, 0, 180);
+        let progress = 0;
+
+        const introCamera = () => {
+            if (progress < 1) {
+                progress += 0.002;
+                const t = 1 - Math.pow(1 - progress, 3);
+                camera.position.lerpVectors(
+                    new THREE.Vector3(500, 200, 180),
+                    targetPosition,
+                    t
+                );
+                camera.lookAt(0, 0, 0);
+                requestAnimationFrame(introCamera);
+            }
+        };
+        introCamera();
 
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
@@ -48,12 +66,23 @@ function Hero3D() {
 
                 const material = new THREE.MeshStandardMaterial({
                     color: 0xffffff,
-                    
                 });
                 mesh = new THREE.Mesh(geometry, material);
+                // mesh.position.x = -50;
                 mesh.rotation.x = -Math.PI / 2;
                 mesh.rotation.y = Math.PI / 2;
                 scene.add(mesh);
+
+                // let progress = 0;
+                // const intro = () => {
+                //     if (progress < 1) {
+                //         progress += 0.002;
+                //         const t = 1 - Math.pow(1 - progress, 3);
+                //         mesh.position.x = -50 + t * 50; 
+                //         requestAnimationFrame(intro);
+                //     }
+                // };
+                // intro();
 
                 const size = new THREE.Vector3();
                 geometry.boundingBox?.getSize(size);
@@ -104,7 +133,7 @@ function Hero3D() {
         animate();
 
         return () => {
-            container.removeEventListener("mousemove", onMouseMove);
+            container.removeEventListener('mousemove', onMouseMove);
             cancelAnimationFrame(frameID);
             renderer.dispose();
 
@@ -126,7 +155,12 @@ function Hero3D() {
         };
     }, []);
 
-    return <div ref={mountRef} className='absolute top-0 left-0 h-full w-full object-cover' />;
+    return (
+        <div
+            ref={mountRef}
+            className='absolute top-0 left-0 h-full w-full object-cover'
+        />
+    );
 }
 
 export default Hero3D;
