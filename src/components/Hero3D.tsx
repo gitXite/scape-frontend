@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 
 function Hero3D() {
     const mountRef = useRef<HTMLDivElement | null>(null);
@@ -155,9 +156,25 @@ function Hero3D() {
         };
     }, []);
 
+    const fadeInVariants = {
+        hidden: { opacity: 0 },
+        visible: (i: number) => ({
+            opacity: 1,
+            transition: {
+                duration: 2,
+                delay: 0.5 + i * 0.2,
+                ease: [0.25, 0.4, 0.25, 1] as const,
+            },
+        }),
+    };
+
     return (
-        <div
+        <motion.div
             ref={mountRef}
+            custom={1}
+            variants={fadeInVariants}
+            initial='hidden'
+            animate='visible'
             className='absolute top-0 left-0 h-full w-full object-cover'
         />
     );
