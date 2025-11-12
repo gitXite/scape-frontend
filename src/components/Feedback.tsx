@@ -29,11 +29,6 @@ function Feedback() {
 
     const handleSubmitReview = async () => {
         setIsLoading(true);
-        if (userRating > 0) {
-            localStorage.setItem('feedbackRating', userRating.toString());
-            localStorage.setItem('feedbackMessage', feedbackMessage);
-            localStorage.setItem('orderId', orderId);
-        }
 
         try {
             const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/submit`, {
@@ -50,6 +45,12 @@ function Feedback() {
             if (!response.ok) {
                 toast.error('Failed to submit review', {});
                 return;
+            }
+
+            if (userRating > 0) {
+                localStorage.setItem('feedbackRating', userRating.toString());
+                localStorage.setItem('feedbackMessage', feedbackMessage);
+                localStorage.setItem('orderId', orderId);
             }
 
             toast.success('Feedback received', {
