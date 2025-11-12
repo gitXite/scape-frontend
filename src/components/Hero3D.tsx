@@ -13,18 +13,6 @@ function Hero3D() {
         const height = mountRef.current.clientHeight;
 
         const scene = new THREE.Scene();
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d')!;
-        canvas.width = 32;
-        canvas.height = 512;
-
-        const gradient = context.createLinearGradient(0, 0, 0, 512);
-        gradient.addColorStop(0, '#171717');
-        gradient.addColorStop(1, '#000000');
-        context.fillStyle = gradient;
-        context.fillRect(0, 0, 32, 512);
-
-        // const texture = new THREE.CanvasTexture(canvas);
         scene.background = null;
 
         const camera = new THREE.PerspectiveCamera(
@@ -45,7 +33,7 @@ function Hero3D() {
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         const dirLight = new THREE.DirectionalLight(0xffffff, 2);
-        dirLight.position.set(1, 1, 1);
+        dirLight.position.set(5, 1, 5);
         scene.add(ambientLight, dirLight);
 
         const loader = new STLLoader();
