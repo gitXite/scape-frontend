@@ -197,6 +197,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                         mapTypeId='terrain'
                         onLoad={onLoad}
                         onClick={handleMapClick}
+                        options={{
+                            streetViewControl: false,
+                            fullscreenControl: false,
+                            mapTypeId: 'terrain',
+                            cameraControl: false,
+                        }}
                     >
                         {rectangleBounds && (
                             <Rectangle
