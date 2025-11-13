@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import Hero3D from './Hero3D';
 import { motion } from 'motion/react';
 
@@ -62,10 +62,10 @@ function Hero() {
                     variants={fadeUpVariants}
                     initial='hidden'
                     animate='visible'
-                    className='backdrop-blur-sm rounded-full'
+                    className='backdrop-blur-sm rounded-full relative top-30'
                 >
                     <button
-                        className='z-2 flex p-5 pl-12 pr-12 text-xl font-normal backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
+                        className='flex z-2 p-5 pl-12 pr-12 text-xl font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
                         onClick={() => {
                             navigate('/get-started');
                         }}
@@ -73,6 +73,7 @@ function Hero() {
                         <p>G e t</p>
                         <span className='w-4'></span>
                         <p>S t a r t e d</p>
+                        <ChevronRight className='self-center relative left-4 p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
                     </button>
                 </motion.div>
                 <motion.div
