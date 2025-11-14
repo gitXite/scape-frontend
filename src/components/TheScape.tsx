@@ -14,7 +14,7 @@ import productAlps from '@/assets/product-image-angle-alps.png';
 
 const options = {
     triggerOnce: false,
-    threshold: 0.1,
+    threshold: 0.3,
 };
 
 function TheScape() {
