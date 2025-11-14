@@ -72,24 +72,30 @@ function Testemonials() {
                             <MarqueeFade side='left' />
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} className='py-2'>
-                                {reviews.map((review, index) => (
-                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
-                                        <p>"{review.message}"</p>
-                                        <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
-                                    </MarqueeItem>
-                                ))}
+                                {reviews.map((review) => ({ sort: Math.random(), sorted: review }))
+                                    .sort((a, b) => a.sort - b.sort)
+                                    .map((review, index) => (
+                                        <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                            <p>"{review.sorted.message}"</p>
+                                            <StarRating readonly rating={review.sorted.rating} size='lg' className='mt-5' />
+                                        </MarqueeItem>
+                                    ))
+                                }
                             </MarqueeContent>
                         </Marquee>
                         <Marquee>
                             <MarqueeFade side='left' />
                             <MarqueeFade side='right' />
                             <MarqueeContent speed={100} direction='right' className='py-2'>
-                                {reviews.map((review, index) => (
-                                    <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
-                                        <p>"{review.message}"</p>
-                                        <StarRating readonly rating={review.rating} size='lg' className='mt-5' />
-                                    </MarqueeItem>
-                                ))}
+                                {reviews.map((review) => ({ sort: Math.random(), sorted: review }))
+                                    .sort((a, b) => a.sort - b.sort)
+                                    .map((review, index) => (
+                                        <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
+                                            <p>"{review.sorted.message}"</p>
+                                            <StarRating readonly rating={review.sorted.rating} size='lg' className='mt-5' />
+                                        </MarqueeItem>
+                                    ))
+                                }
                             </MarqueeContent>
                         </Marquee>
                     </div>
