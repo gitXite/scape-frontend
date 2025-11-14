@@ -41,7 +41,7 @@ function CustomizeFrame() {
                         <p className='text-neutral-500 w-60 px-2'>
                             Fitted with an oak frame -
                         </p>
-                        <p className='text-neutral-500 w-60 pb-2 px-2'>
+                        <p className='text-neutral-500 w-60 pb-5 px-2'>
                             Natural and timeless
                         </p>
                         <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
@@ -107,7 +107,7 @@ function CustomizeFrame() {
                         <p className='text-neutral-600 pt-2'>99kr</p>
                     </div>
                 </label>
-                <label className='flex flex-col h-fit items-center cursor-pointer'>
+                <label className='flex flex-col h-fit items-center cursor-pointer mb-5'>
                     <input
                         type='radio'
                         name='frame'
