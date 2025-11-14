@@ -2,9 +2,9 @@ import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
 import React from 'react';
-import frame_oak from '@/assets/frame_oak.avif';
-import frame_dark_oak from '@/assets/frame_darkoak.avif';
-import frame_white from '@/assets/frame_white.avif';
+import frame_oak from '@/assets/frame_oak.webp';
+import frame_dark_oak from '@/assets/frame_darkoak.webp';
+import frame_white from '@/assets/frame_white.webp';
 import frame_black from '@/assets/frame_black.webp';
 
 function CustomizeFrame() {
