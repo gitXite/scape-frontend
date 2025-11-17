@@ -69,8 +69,8 @@ function Hero3D() {
                     color: 0xffffff,
                 });
                 mesh = new THREE.Mesh(geometry, material);
-                mesh.rotation.x = -Math.PI / 2;
-                mesh.rotation.y = Math.PI / 2;
+                // mesh.rotation.x = -Math.PI / 2;
+                // mesh.rotation.y = Math.PI / 2;
                 scene.add(mesh);
 
                 const size = new THREE.Vector3();
@@ -98,8 +98,8 @@ function Hero3D() {
             const mouseX = (e.clientY - rect.top) / rect.height - 0.5;
 
             targetRotationX = mouseX * Math.PI * 0.05;
-            targetRotationY = mouseY * Math.PI * 0.1;
-            targetRotationZ = mouseY * Math.PI * 0.05;
+            targetRotationY = -mouseY * Math.PI * 0.1;
+            targetRotationZ = -mouseY * Math.PI * 0.05;
         };
         container.addEventListener('mousemove', onMouseMove);
 
@@ -111,9 +111,9 @@ function Hero3D() {
                 currentRotationX += (targetRotationX - currentRotationX) * 0.05;
                 currentRotationY += (targetRotationY - currentRotationY) * 0.05;
                 currentRotationZ += (targetRotationZ - currentRotationZ) * 0.05;
-                mesh.rotation.x = -Math.PI / 2.5 + currentRotationX;
-                mesh.rotation.y = Math.PI / 12 + currentRotationY;
-                mesh.rotation.z = -Math.PI / 5 + currentRotationZ;
+                mesh.rotation.x = Math.PI / 1.7 + currentRotationX;
+                mesh.rotation.y = Math.PI / 1.05 + currentRotationY;
+                mesh.rotation.z = Math.PI / 1.2 + currentRotationZ;
             }
             renderer.render(scene, camera);
         };
