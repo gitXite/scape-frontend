@@ -46,20 +46,22 @@ function CheckoutSummary() {
                     <p className='text-neutral-600'>199kr</p>
                 </div>
                 <div className='flex justify-between items-center py-2 font-normal tracking-wide'>
-                    {frameType && (
-                        <img 
-                            src={frame} 
-                            alt='Frame' 
-                            className='w-50 rounded-sm object-cover' 
-                        />
-                    )}
-                    {passePartoutType && (
-                        <img 
-                            src={passePartout} 
-                            alt='Passe Partout' 
-                            className='w-50 rounded-sm object-cover absolute' 
-                        />
-                    )}
+                    <div className='flex h-60 w-40 justify-center items-center'>
+                        {frameType && (
+                            <img 
+                                src={frame} 
+                                alt='Frame' 
+                                className='w-40 rounded-sm z-2 absolute' 
+                            />
+                        )}
+                        {passePartoutType && (
+                            <img 
+                                src={passePartout} 
+                                alt='Passe Partout' 
+                                className='w-39 rounded-sm absolute' 
+                            />
+                        )}
+                    </div>
                     <h2 className='text-neutral-900'>Frame & Passe Partout</h2>
                     <p className='text-neutral-600'>148kr</p>
                 </div>

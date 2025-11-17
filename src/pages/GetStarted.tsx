@@ -32,7 +32,7 @@ function GetStarted() {
         <div className='bg-neutral-100 h-full w-full'>
             <BackButton page='home' />
             <HoverCard>
-                <HoverCardTrigger className='absolute right-10 top-9'><CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' /></HoverCardTrigger>
+                <HoverCardTrigger className='absolute right-10 top-9 z-5'><CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' /></HoverCardTrigger>
                 <HoverCardContent className='bg-neutral-900 text-neutral-100 text-center justify-center'>
                     <p>1. </p>
                     <b>Select your coordinates -</b>
