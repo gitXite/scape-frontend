@@ -86,16 +86,30 @@ function ModelPreview({
                     const center = new THREE.Vector3();
                     geometry.boundingBox?.getCenter(center);
                     geometry.center();
+
+                    const box = geometry.boundingBox!;
+                    const currentWidth = box.max.x - box.min.x
+                    const currentHeight = box.max.y - box.min.y;
+
+                    const targetWidth = 140;
+                    const targetHeight = 190;
+
+                    const scaleX = targetWidth / currentWidth;
+                    const scaleY = targetHeight / currentHeight;
+                    const scaleZ = Math.max(scaleX, scaleY);
     
                     const material = new THREE.MeshStandardMaterial({
                         color: 0xffffff,
                     });
                     const mesh = new THREE.Mesh(geometry, material);
+                    mesh.scale.set(scaleX, scaleY, scaleZ);
                     scene.add(mesh);
+
+                    geometry.center();
     
                     const size = new THREE.Vector3();
-                    geometry.boundingBox?.getSize(size);
-                    const maxDim = Math.max(size.x, size.y, size.z);
+                    box.getSize(size);
+                    const maxDim = Math.max(targetWidth, targetHeight, size.z);
                     camera.position.z = maxDim * 1.5;
                     controls.update();
     
