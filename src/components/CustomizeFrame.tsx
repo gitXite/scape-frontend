@@ -38,7 +38,7 @@ function CustomizeFrame() {
                     animate={
                         !!frameType && {
                             width: '50%',
-                            left: 50
+                            left: 50,
                         }
                     }
                     className='flex relative h-full pt-5 pb-10 justify-center items-center space-y-5 space-x-10 text-sm'
