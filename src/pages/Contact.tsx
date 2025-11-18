@@ -14,13 +14,16 @@ function Contact() {
                             Contact Us
                         </h1>
                         <p className='px-15 pt-15 text-neutral-600 tracking-wide'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Nesciunt minima porro, laudantium enim sunt,
+                            Have questions, feedback, or ideas? 
+                            We are ready to assist you. Whether you’re looking for product information, support, or partnership opportunities, we’re just a message away.
                         </p>
                         <p className='px-15 py-15 text-neutral-600 tracking-wide'>
-                            inventore mollitia, similique sed quaerat
-                            necessitatibus possimus totam voluptatum ea
-                            perspiciatis autem. Quos aliquid ducimus dolorem!
+                            Fill out the form, or send us an email.
+                            We aim to respond promptly and ensure your experience with us is seamless.
+                            <br />Your inquiries matter. Let’s connect. 
+                        </p>
+                        <p className='px-15 text-neutral-600 tracking-wide font-medium'>
+                            scapebymd@gmail.com
                         </p>
                     </div>
                     <Separator
