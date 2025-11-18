@@ -15,7 +15,7 @@ function Contact() {
                         </h1>
                         <p className='px-15 pt-15 text-neutral-600 tracking-wide'>
                             Have questions, feedback, or ideas? 
-                            We are ready to assist you. Whether you’re looking for product information, support, or partnership opportunities, we’re just a message away.
+                            We’re here to help. Whether you’re looking for product information, support, or partnership opportunities, we’re just a message away.
                         </p>
                         <p className='px-15 py-15 text-neutral-600 tracking-wide'>
                             Fill out the form, or send us an email.
