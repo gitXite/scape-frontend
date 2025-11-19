@@ -283,7 +283,7 @@ function FAQ() {
                                 <p>
                                     Once you've selected your location, you can
                                     personalize the presentation by selecting
-                                    from our range of frames and passe-partouts
+                                    from our range of frames and passepartouts
                                     to match your style. More options to come.
                                 </p>
                                 <p>
