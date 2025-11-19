@@ -182,8 +182,8 @@ function MapSelector({ mode }: MapSelectorProps) {
     
 
     return (
-        <div id='map' className='flex flex-col h-full w-full bg-neutral-100 place-content-start items-center pt-20'>
-            <div ref={ref} className={`flex flex-col h-full w-full place-content-start items-center transition-opacity duration-600 ease-in ${
+        <div id='map' className='flex flex-col h-full w-full bg-neutral-100 items-center pt-20'>
+            <div ref={ref} className={`flex flex-col h-full w-full items-center transition-opacity duration-600 ease-in ${
                 inView ? 'opacity-100' : 'opacity-0'
             }`}>
                 <LoadScript
@@ -222,8 +222,8 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex place-items-center relative'>
-                    <div className='flex flex-col mr-10 w-40 relative top-4 items-center group'>
+                <div className='flex w-3/5 place-items-center self-center justify-evenly'>
+                    <div className='flex flex-col w-40 relative top-4 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
@@ -255,23 +255,23 @@ function MapSelector({ mode }: MapSelectorProps) {
                     <button 
                         onClick={() => setShowModal(true)}
                         disabled={mode === 'dummy' || !hasCoordinates}
-                        className='flex place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
+                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
                     </button>
                     <Button
-                        className='mt-8 ml-10 mr-10 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
+                        className='mt-8 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
                         onClick={handleCapture}
                     >
                         Capture Coordinates
                     </Button>
                     <button 
-                        className='flex place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
+                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
                         onClick={resetMap}
                     >
                         Reset
                     </button>
-                    <div className='flex flex-col ml-10 w-40 relative top-4 items-center group'>
+                    <div className='flex flex-col w-40 relative top-4 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
