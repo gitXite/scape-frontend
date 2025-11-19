@@ -222,7 +222,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </GoogleMap>
                 </LoadScript>
                 
-                <div className='flex w-3/5 place-items-center self-center justify-evenly'>
+                <div className='flex w-3/5 max-2xl:w-3/4 max-lg:w-full place-items-center self-center justify-evenly'>
                     <div className='flex flex-col w-40 relative top-4 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
