@@ -107,7 +107,7 @@ function MapSelector({ mode }: MapSelectorProps) {
             switch (mode) {
                 case 'dummy':
                     toast.success("Coordinates captured in test mode", {
-                        description: "Preview unavailable."
+                        description: "Get started to enable preview."
                     });
                     break;
                 case 'real':
