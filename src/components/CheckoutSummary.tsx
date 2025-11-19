@@ -42,7 +42,7 @@ function CheckoutSummary() {
                         alt='Model' 
                         className='w-50 rounded-sm object-cover' 
                     />
-                    <h2 className='text-neutral-900'>Model</h2>
+                    <h2 className='text-neutral-900'>Scape</h2>
                     <p className='text-neutral-600'>199kr</p>
                 </div>
                 <div className='flex justify-between items-center py-2 font-normal tracking-wide'>
