@@ -55,27 +55,25 @@ function Header() {
                 isHoveredRef.current = false;
                 startHideTimeout();
             }}
-            className={`flex h-auto w-full p-4 fixed mix-blend-difference text-white bg-neutral-500/10 z-2 drop-shadow-2xl place-content-center backdrop-blur-md border-b-1 border-neutral-300 transition-transform duration-300 ${
+            className={`flex h-auto w-full p-4 fixed place-content-center mix-blend-difference text-white bg-neutral-500/10 z-2 shadow-md backdrop-blur-md border-b-1 border-neutral-300/20 transition-transform duration-300 ${
                 showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
-            <nav className='flex place-items-center'>
-                <a href='#home' className='group fixed left-[25%] transition duration-300 tracking-widest'>
+            <nav className='flex w-3/4 place-items-center justify-evenly'>
+                <a href='#home' className='group transition duration-300 tracking-widest'>
                     Home
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#thescape' className='group fixed left-[32%] transition duration-300 tracking-widest'>
+                <a href='#thescape' className='group transition duration-300 tracking-widest'>
                     The Scape
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <div className='flex justify-center'>
-                    <img src={Logo} alt="Logo" className='w-[20%]'/>
-                </div>
-                <a href='/get-started' className='group fixed right-[32%] transition duration-300 tracking-widest'>
+                <img src={Logo} alt="Logo" className='w-[20%]'/>
+                <a href='/get-started' className='group transition duration-300 tracking-widest'>
                     Get Started
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#map' className='group fixed right-[25%] transition duration-300 tracking-widest'>
+                <a href='#map' className='group transition duration-300 tracking-widest'>
                     Map
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
