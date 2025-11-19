@@ -17,7 +17,7 @@ function CustomizePassePartout() {
 
     return (
         <div className='flex flex-col h-full w-full'>
-            <h1 className='text-neutral-900 self-center relative top-20 text-xl font-medium tracking-wide'>Choose a Passe Partout</h1>
+            <h1 className='text-neutral-900 self-center relative top-20 text-xl font-medium tracking-wide'>Choose a Passepartout</h1>
             <div className='flex h-full w-full justify-evenly'>
                 <div className='flex h-full pb-10'>
                     <CustomizationPreview />
