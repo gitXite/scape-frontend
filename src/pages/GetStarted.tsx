@@ -43,7 +43,7 @@ function GetStarted() {
                     <p className='pb-3'>Find the style that fits your space</p>
                     <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>3. </p>
-                    <b>Add a passe-partout -</b>
+                    <b>Add a passepartout -</b>
                     <p className='pb-3'>Give your model a refined finish</p>
                     <Separator orientation='horizontal' className='border-neutral-100/10' />
                     <p className='pt-2'>4. </p>
