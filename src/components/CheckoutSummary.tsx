@@ -62,7 +62,7 @@ function CheckoutSummary() {
                             />
                         )}
                     </div>
-                    <h2 className='text-neutral-900'>Frame & Passe Partout</h2>
+                    <h2 className='text-neutral-900'>Frame & Passepartout</h2>
                     <p className='text-neutral-600'>148kr</p>
                 </div>
             </div>
