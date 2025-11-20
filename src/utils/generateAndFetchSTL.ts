@@ -10,7 +10,7 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
     
     try {
         const resp = await fetch(
-            `${import.meta.env.VITE_APP_API_URL}/stl/download`,
+            `${import.meta.env.VITE_APP_API_URL}/stl/generate`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
