@@ -31,7 +31,7 @@ function Feedback() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/feedback/submit`, {
+            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
