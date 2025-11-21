@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import Logo from '@/assets/scape_logo2.png';
+import Logo from '@/assets/scape_logo3.png';
 
 function Header() {
     const [showHeader, setShowHeader] = useState(false);
