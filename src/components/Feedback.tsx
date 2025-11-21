@@ -43,7 +43,8 @@ function Feedback() {
                 }),
             });
             if (!response.ok) {
-                toast.error('Failed to submit review', {
+                const data = await response.json();
+                toast.error(data.message, {
                     description: 'Please try again later',
                 });
                 return;

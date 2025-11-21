@@ -66,7 +66,9 @@ function Contact() {
             });
 
             if (!response.ok) {
-                toast.error('Failed to submit form', {});
+                toast.error('Failed to submit form', {
+                    description: 'Please try again later',
+                });
                 return;
             }
 

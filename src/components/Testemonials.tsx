@@ -19,7 +19,11 @@ function Testemonials() {
                 const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews/stats`, {
                     method: 'GET',
                 });
-                if (!response.ok) return;
+                if (!response.ok) {
+                    const data = await response.json();
+                    setError(`${data.message} ${response.status}`);
+                    return;
+                }
 
                 const { data } = await response.json();
                 setTotalReviews(data.totalReviews);
@@ -28,8 +32,9 @@ function Testemonials() {
             } catch (err) {
                 if (err instanceof Error) {
                     setError(err.message);
+                } else {
+                    setError(`${err}`);
                 }
-                setIsLoading(false);
             }
         };
         const getReviews = async () => {
@@ -38,15 +43,20 @@ function Testemonials() {
                 const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`, {
                     method: 'GET'
                 });
-                if (!response.ok) return;
+                if (!response.ok) {
+                    const data = await response.json();
+                    setError(`${response.status} ${data.message}`);
+                    return;
+                }
 
                 const data = await response.json();
                 setReviews(data);
             } catch (err) {
                 if (err instanceof Error) {
                     setError(err.message);
+                } else {
+                    setError(`${err}`);
                 }
-                setIsLoading(false);
             }
         };
         getReviewStats();
@@ -55,11 +65,13 @@ function Testemonials() {
 
     return (
         <div className='min-h-full w-full p-5'>
-            {error && (
-                <h1 className='text-neutral-900 place-self-center font-normal'>{error}</h1>
-            )}
             {isLoading ? (
-                <Spinner variant={'circle'} size={42} className='text-neutral-900 relative justify-self-center top-2/4 -translate-y-2/4' />
+                <div className='relative place-items-center justify-self-center top-2/4 -translate-y-2/4 space-y-5'>
+                    {error && (
+                        <h1 className='text-neutral-900 font-medium'>{error}</h1>
+                    )}
+                    <Spinner variant={'circle'} size={42} className='text-neutral-900' />
+                </div>
             ) : (
                 <div className='flex flex-col h-full items-center justify-evenly'>
                     <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
