@@ -82,7 +82,7 @@ function ModelPreview({
                 }
             } catch (err: any) {
                 setIsLoading(false);
-                setError(`Failed to fetch: ${err.message}`);
+                setError(`Failed to generate STL: ${err.message}`);
                 return;
             }
 
