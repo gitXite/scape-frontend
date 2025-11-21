@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import Logo from '@/assets/scape_logo.png';
+import Logo from '@/assets/scape_logo2.png';
 
 function Header() {
     const [showHeader, setShowHeader] = useState(false);
@@ -68,7 +68,7 @@ function Header() {
                     The Scape
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <img src={Logo} alt="Logo" className='w-[10%]'/>
+                <img src={Logo} alt="Logo" className='h-[70px] w-[15%]'/>
                 <a href='/get-started' className='group transition duration-300 tracking-widest'>
                     Get Started
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
