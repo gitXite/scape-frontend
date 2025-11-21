@@ -72,15 +72,22 @@ function ModelPreview({
 
         const loader = new STLLoader();
         const loadModel = async () => {
-            const url = await generateAndFetchSTL();
-            if (!url) {
+            let url: string | null;
+            try {
+                url = await generateAndFetchSTL();
+                if (!url) {
+                    setIsLoading(false);
+                    setError('Internal server error, please try again');
+                    return;
+                }
+            } catch (err: any) {
                 setIsLoading(false);
-                setError('Failed to fetch STL');
+                setError(`Failed to fetch: ${err.message}`);
                 return;
             }
 
             loader.load(
-                url,
+                url!,
                 (geometry) => {
                     geometry.computeBoundingBox();
                     const center = new THREE.Vector3();
@@ -113,13 +120,13 @@ function ModelPreview({
                     camera.position.z = maxDim * 1.5;
                     controls.update();
     
-                    URL.revokeObjectURL(url);
+                    URL.revokeObjectURL(url!);
                     setIsLoading(false);
                 },
                 undefined,
                 (error) => {
                     console.error('Error loading STL:', error);
-                    URL.revokeObjectURL(url);
+                    URL.revokeObjectURL(url!);
                     setIsLoading(false);
                 }
             );

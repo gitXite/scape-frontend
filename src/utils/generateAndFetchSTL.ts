@@ -24,8 +24,8 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
         );
 
         if (!resp.ok) {
-            const text = await resp.text();
-            throw new Error(`Download failed: ${text}`);
+            const data = await resp.json();
+            throw new Error(data.message || 'Unknown error');
         }
 
         const arrayBuffer = await resp.arrayBuffer();
@@ -34,6 +34,6 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
         return url;
     } catch (err) {
         console.error('Error fetching STL: ', err);
-        return null;
+        throw err;
     }
 };
