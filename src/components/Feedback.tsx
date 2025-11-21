@@ -43,7 +43,9 @@ function Feedback() {
                 }),
             });
             if (!response.ok) {
-                toast.error('Failed to submit review', {});
+                toast.error('Failed to submit review', {
+                    description: 'Please try again later',
+                });
                 return;
             }
 
@@ -58,8 +60,8 @@ function Feedback() {
             });
             setIsLoading(false);
             setSubmittedRating(userRating);
-        } catch (err) {
-            toast.error('Failed to submit review', {
+        } catch (err: any) {
+            toast.error(err.message, {
                 description: 'Please try again later',
             });
             setIsLoading(false);
