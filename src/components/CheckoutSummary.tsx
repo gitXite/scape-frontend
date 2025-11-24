@@ -92,7 +92,7 @@ function CheckoutSummary() {
     };
 
     return (
-        <div className='flex-col h-full w-2/4 p-20 pt-0 content-center text-center'>
+        <div className='flex-col h-full w-2/4 px-20 text-center content-center'>
             <div className='flex-col pb-5'>
                 <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl font-medium'>
                     Order Summary
@@ -132,7 +132,7 @@ function CheckoutSummary() {
                 </div>
             </div>
             <Separator orientation='horizontal' />
-            <div className='flex-col pt-5 pb-5'>
+            <div className='flex flex-col pt-5 pb-5'>
                 <div className='flex justify-between pb-2 font-normal tracking-wide'>
                     <p className='text-neutral-900'>Subtotal</p>
                     <p className='text-neutral-600'>497kr</p>
