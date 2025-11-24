@@ -82,8 +82,11 @@ function CheckoutSummary() {
             });
 
             navigate('/');
-        } catch (err) {
+        } catch (err: any) {
             setIsLoading(false);
+            toast.error(`${err.message}`, {
+                description: 'Please try again later',
+            });
             console.error('Error:', err);
         }
     };
