@@ -1,7 +1,6 @@
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
 import About from '@/components/About';
-import { useInView } from 'react-intersection-observer';
 
 
 function AboutUs() {

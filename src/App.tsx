@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import GetStarted from './pages/GetStarted';
 import Checkout from './pages/Checkout';
 import Contact from './pages/Contact';
-import Gallery from './pages/Gallery';
 import FeedbackPage from './pages/FeedbackPage';
 import AboutUs from './pages/AboutUs';
 import TestimonialsPage from './pages/TestimonialsPage';

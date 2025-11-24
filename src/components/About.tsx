@@ -1,10 +1,10 @@
-import { useInView } from 'react-intersection-observer';
+// import { useInView } from 'react-intersection-observer';
 
 
-const options = {
-    triggerOnce: false,
-    threshold: 0.1,
-};
+// const options = {
+//     triggerOnce: false,
+//     threshold: 0.1,
+// };
 
 function About() {
     return (
