@@ -89,7 +89,7 @@ function CheckoutSummary() {
     };
 
     return (
-        <div className='flex-col h-full w-2/4 p-20 pt-10 content-center text-center'>
+        <div className='flex-col h-full w-2/4 p-20 pt-0 content-center text-center'>
             <div className='flex-col pb-5'>
                 <h1 className='relative bottom-5 pb-5 text-neutral-900 text-xl font-medium'>
                     Order Summary
@@ -105,7 +105,7 @@ function CheckoutSummary() {
                         className='w-50 rounded-sm object-cover'
                     />
                     <h2 className='text-neutral-900'>Scape</h2>
-                    <p className='text-neutral-600'>199kr</p>
+                    <p className='text-neutral-600'>349kr</p>
                 </div>
                 <div className='flex justify-between items-center py-2 font-normal tracking-wide'>
                     <div className='flex h-60 w-40 justify-center items-center'>
@@ -132,7 +132,7 @@ function CheckoutSummary() {
             <div className='flex-col pt-5 pb-5'>
                 <div className='flex justify-between pb-2 font-normal tracking-wide'>
                     <p className='text-neutral-900'>Subtotal</p>
-                    <p className='text-neutral-600'>347kr</p>
+                    <p className='text-neutral-600'>497kr</p>
                 </div>
                 <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900 pb-2'>Tax Included</p>
@@ -140,13 +140,13 @@ function CheckoutSummary() {
                 </div>
                 <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900'>Shipping</p>
-                    <p className='text-neutral-600'>49kr</p>
+                    <p className='text-neutral-600'>TBD</p>
                 </div>
             </div>
             <Separator orientation='horizontal' />
             <div className='flex justify-between py-5 font-medium tracking-wide'>
                 <h1 className='text-neutral-900'>Total</h1>
-                <p className='text-neutral-900'>396kr</p>
+                <p className='text-neutral-900'>497kr</p>
             </div>
             {isLoading ? (
                 <Button
