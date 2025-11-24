@@ -53,11 +53,12 @@ function TheScape() {
                         From Map To Frame
                     </h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Minima dolore, consequuntur alias quasi voluptate
-                        corporis ducimus asperiores! Commodi quasi repudiandae
-                        impedit facilis expedita cupiditate numquam ratione
-                        facere fuga. Eos, corporis.
+                        With just a few clicks, you can transform any map location into a stunning and fully detailed 3D model. 
+                        Simply choose your area of interest and our service automatically creates a precise topographic cutout, 
+                        capturing terrain contours, elevation data, and the unique geographic character of the landscape. 
+                        The result is a clear and visually compellign 3D repsesentation that is ready for planning, design, visualization, or display. 
+                        Whether you want to highlight a favourite place, prepare a project, or expolore terrain in a completely new way, our service makes complex spatial data effortless, 
+                        intuitive, and beautifully rendered. 
                     </p>
                 </div>
                 <div
@@ -67,14 +68,14 @@ function TheScape() {
                     }`}
                 >
                     <h1 className='text-6xl text-neutral-900 pb-10'>
-                        Realize Your World
+                        Made By MD
                     </h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Doloremque ad, exercitationem quisquam ducimus
-                        numquam iure quaerat, incidunt deserunt expedita tempore
-                        at delectus quasi molestias necessitatibus sit est
-                        reprehenderit odit ratione!
+                        We are Maren and Daniel, a nwly engaged couple turning our shared creativity into a meaningful side project as we save up for our wedding. 
+                        Maren brings her background in architecture, an eye for design, and a passiuon for spatial experiences. 
+                        Daniel contributes his skuills as a data engineering and computer science student, 
+                        combining techical insight with problem solving curiosity. 
+                        Together, we've created a smal but thoughtful venture that blends design, technology, and a love for crafting something special. 
                     </p>
                 </div>
             </div>
@@ -136,14 +137,14 @@ function TheScape() {
                     }`}
                 >
                     <h1 className='text-6xl text-neutral-900 pb-10'>
-                        The Perfect Gift
+                        How It Works
                     </h1>
                     <p className='w-8/12 text-center text-neutral-700 leading-8'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Doloremque ad, exercitationem quisquam ducimus
-                        numquam iure quaerat, incidunt deserunt expedita tempore
-                        at delectus quasi molestias necessitatibus sit est
-                        reprehenderit odit ratione!
+                        Creating and ordering your custom 3D landscape is simple and seamless. 
+                        Start by exploring the map and selecting and exact area you want to transform. 
+                        Once your cutout is chosen, our system instantly generates a preview of the 3D model so oyu can see exactly how it will look. 
+                        When you are happy with the result, you can choose your preferred appearance and framing before placing your order. 
+                        From there, we handle the rest, producing your model with care and delivering a high quality piece that captures your chosen landscape in beautiful detail. 
                     </p>
                 </div>
             </div>
