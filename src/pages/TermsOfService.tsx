@@ -21,7 +21,7 @@ function TermsOfService() {
                     a company registered in Norway at Schweigårds vei 30A, BERGEN 5063. Our org number is 929 981 626.
                 </p>
                 <p className=''>
-                    We operate the website <a href="http://www.scapebymd.no" target='_blank'><b>http://www.scapebymd.no</b></a> (the 'Site'), 
+                    We operate the website <a href="http://www.scapebymd.no" target='_blank'><b>https://www.scapebymd.no</b></a> (the 'Site'), 
                     as well as any other related products and services that refer or link to these legal terms (the 'Legal Terms') (collectively, the 'Services').
                 </p>
                 <p>
