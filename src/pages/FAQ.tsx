@@ -49,7 +49,7 @@ function FAQ() {
                                 <p className='text-[16px] text-neutral-600'>
                                     If your order arrives damaged, defective, or
                                     not as described, please reach out to us
-                                    within 7 days.
+                                    within reasonable time.
                                 </p>
                                 <p className='text-[16px] text-neutral-600'>
                                     We may ask for photos so we can assess the
@@ -154,7 +154,7 @@ function FAQ() {
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-neutral-600 text-[16px]'>
                                 <p>
-                                    Please contact us within 7 days with photos
+                                    Please contact us within reasonable time with photos
                                     of the damage, and we'll arrange a
                                     replacement or solution.
                                 </p>

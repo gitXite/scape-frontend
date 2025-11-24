@@ -18,7 +18,7 @@ function TermsOfService() {
                 </h2>
                 <p className=''>
                     We are Maren Stenersen, doing business as SCAPE by md ('Company', 'we', 'us', or 'our'), 
-                    a company registered in Norway at Schweigårds vei 30A, BERGEN 5063. Our VAT number is 929981626.
+                    a company registered in Norway at Schweigårds vei 30A, BERGEN 5063. Our org number is 929 981 626.
                 </p>
                 <p className=''>
                     We operate the website <a href="http://www.scapebymd.no" target='_blank'><b>http://www.scapebymd.no</b></a> (the 'Site'), 
