@@ -134,10 +134,10 @@ function CheckoutSummary() {
                     <p className='text-neutral-900'>Subtotal</p>
                     <p className='text-neutral-600'>497kr</p>
                 </div>
-                <div className='flex justify-between font-normal tracking-wide'>
+                {/* <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900 pb-2'>Tax Included</p>
-                    <p className='text-neutral-600'>86.75kr</p>
-                </div>
+                    <p className='text-neutral-600'>124.25kr</p>
+                </div> */}
                 <div className='flex justify-between font-normal tracking-wide'>
                     <p className='text-neutral-900'>Shipping</p>
                     <p className='text-neutral-600'>TBD</p>
