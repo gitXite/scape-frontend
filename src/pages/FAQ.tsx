@@ -11,8 +11,8 @@ function FAQ() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100'>
             <BackButton page='home' />
-            <div className='flex h-full w-full py-20 text-neutral-900 justify-evenly'>
-                <div className='flex flex-col min-h-full w-2/5'>
+            <div className='flex h-full max-md:flex-col w-full py-20 text-neutral-900 justify-evenly'>
+                <div className='flex flex-col min-h-full w-2/5 max-lg:w-2/4 max-md:w-full'>
                     <Accordion
                         type='single'
                         collapsible
@@ -202,7 +202,7 @@ function FAQ() {
                     </Accordion>
                 </div>
 
-                <div className='flex flex-col min-h-full w-2/5'>
+                <div className='flex flex-col min-h-full w-2/5 max-lg:w-2/4 max-md:w-full'>
                     <Accordion
                         type='single'
                         collapsible

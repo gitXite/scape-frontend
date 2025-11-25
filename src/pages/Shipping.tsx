@@ -5,11 +5,11 @@ import { Separator } from '@/components/ui/separator';
 
 function Shipping() {
     return (
-        <div className='flex flex-col h-full w-full bg-neutral-100 items-center tracking-wide'>
+        <div className='flex flex-col min-h-full min-md:h-full w-full bg-neutral-100 tracking-wide'>
             <BackButton page='home' />
-            <div className='flex flex-col min-h-full w-full items-center'>
-                <div className='flex h-full w-full place-content-evenly'>
-                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 gap-5'>
+            <div className='flex flex-col min-h-full w-full'>
+                <div className='flex h-full w-full place-content-evenly p-10 max-md:flex-col max-md:items-center max-md:text-center max-md:gap-10'>
+                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 max-lg:w-1/2 max-md:w-3/4 gap-5'>
                         <h1 className='text-2xl tracking-widest font-medium'>Shipping</h1>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. 
@@ -22,7 +22,7 @@ function Shipping() {
                             Ad litora torquent per conubia nostra inceptos himenaeos.
                         </p>
                     </div>
-                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 gap-5'>
+                    <div className='flex flex-col place-content-center text-neutral-900 w-1/4 max-lg:w-1/2 max-md:w-3/4 gap-5'>
                         <h1 className='text-2xl tracking-widest font-medium'>Orders</h1>
                         <p className=''>
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. 
