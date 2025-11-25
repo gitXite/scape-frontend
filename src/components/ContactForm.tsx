@@ -69,6 +69,7 @@ function Contact() {
                 toast.error('Failed to submit form', {
                     description: 'Please try again later',
                 });
+                setIsLoading(false);
                 return;
             }
 
