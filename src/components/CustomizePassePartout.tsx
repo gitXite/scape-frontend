@@ -2,8 +2,6 @@ import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
 import { Separator } from './ui/separator';
 import React from 'react';
-import Passepartout_White from '@/assets/Passepartout_White.webp';
-import Passepartout_Black from '@/assets/Passepartout_Black.webp';
 
 function CustomizePassePartout() {
     const { passePartoutType, setPassePartoutType } = useCustomization();
@@ -34,7 +32,7 @@ function CustomizePassePartout() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={Passepartout_White}
+                                src='/images/Passepartout_White.webp'
                                 alt='White'
                                 className='w-30 mb-2 rounded'
                             />
@@ -62,7 +60,7 @@ function CustomizePassePartout() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={Passepartout_Black}
+                                src='/images/Passepartout_Black.webp'
                                 alt='Black'
                                 className='w-30 mb-2 rounded'
                             />

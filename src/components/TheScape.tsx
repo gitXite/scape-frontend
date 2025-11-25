@@ -8,9 +8,6 @@ import {
     CarouselPrevious,
 } from './ui/carousel';
 import type { CarouselApi } from './ui/carousel';
-import productStraight from '@/assets/product-image-straight.png';
-import productAngle from '@/assets/product-image-angle.png';
-import productAlps from '@/assets/product-image-angle-alps.png';
 
 const options = {
     triggerOnce: false,
@@ -91,21 +88,21 @@ function TheScape() {
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
                                 <img
-                                    src={productStraight}
+                                    src='/images/product-image-straight.png'
                                     alt='Image 1'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
                             <CarouselItem className=''>
                                 <img
-                                    src={productAngle}
+                                    src='/images/product-image-angle.png'
                                     alt='Image 2'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
                             <CarouselItem className=''>
                                 <img
-                                    src={productAlps}
+                                    src='/images/product-image-angle-alps.png'
                                     alt='Image 3'
                                     className='rounded-sm'
                                 />

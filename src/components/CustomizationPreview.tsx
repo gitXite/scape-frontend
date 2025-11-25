@@ -1,26 +1,20 @@
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
-import Frame_Oak from '@/assets/frame_oak.webp';
-import Frame_Dark_Oak from '@/assets/frame_darkoak.webp';
-import Frame_White from '@/assets/frame_white.webp';
-import Frame_Black from '@/assets/frame_black.webp';
-import PassePartout_White from '@/assets/Passepartout_White.webp';
-import PassePartout_Black from '@/assets/Passepartout_Black.webp';
 import { useCustomization } from '@/context/CustomizationContext';
 import { useRef, useState, useEffect } from 'react';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 
 const frameImages: Record<string, string> = {
-    oak: Frame_Oak,
-    walnut: Frame_Dark_Oak,
-    white: Frame_White,
-    black: Frame_Black,
+    oak: '/images/frame_oak.webp',
+    walnut: '/images/frame_darkoak.webp',
+    white: '/images/frame_white.webp',
+    black: '/images/frame_black.webp',
 };
 
 const passePartoutImages: Record<string, string> = {
-    white: PassePartout_White,
-    black: PassePartout_Black,
+    white: '/images/Passepartout_White.webp',
+    black: '/images/Passepartout_Black.webp',
     without: '',
 };
 

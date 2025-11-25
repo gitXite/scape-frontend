@@ -1,6 +1,5 @@
 import { Separator } from './ui/separator';
 import Socials from './Socials';
-import Vipps from '@/assets/Vipps-Logo.wine.png';
 
 function Footer() {
     return (
@@ -135,7 +134,7 @@ function Footer() {
                 <small className='relative left-2 top-2'>Powered by</small>
                 <img
                     className='max-w-20 mr-20 p-0 relative bottom-[-9px]'
-                    src={Vipps}
+                    src='/images/Vipps-Logo.wine.png'
                     alt='Vipps Logo'
                 />
             </div>

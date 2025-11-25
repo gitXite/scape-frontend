@@ -1,4 +1,4 @@
-/* integrate Stripe API */
+
 
 
 function CheckoutPayment() {

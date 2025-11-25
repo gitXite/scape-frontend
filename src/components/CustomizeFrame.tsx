@@ -3,10 +3,6 @@ import CustomizationPreview from './CustomizationPreview';
 import { motion } from 'motion/react';
 import { Separator } from './ui/separator';
 import React from 'react';
-import frame_oak from '@/assets/frame_oak.webp';
-import frame_dark_oak from '@/assets/frame_darkoak.webp';
-import frame_white from '@/assets/frame_white.webp';
-import frame_black from '@/assets/frame_black.webp';
 
 function CustomizeFrame() {
     const { frameType, setFrameType } = useCustomization();
@@ -54,7 +50,7 @@ function CustomizeFrame() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center bg-neutral-200/20 hover:bg-neutral-100 items-center peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={frame_oak}
+                                src='/images/frame_oak.webp'
                                 alt='Oak Frame'
                                 className='w-30 rounded mb-2'
                             />
@@ -82,7 +78,7 @@ function CustomizeFrame() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={frame_dark_oak}
+                                src='/images/frame_darkoak.webp'
                                 alt='Walnut Frame'
                                 className='w-30 rounded mb-2'
                             />
@@ -110,7 +106,7 @@ function CustomizeFrame() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={frame_white}
+                                src='/images/frame_white.webp'
                                 alt='White Frame'
                                 className='w-30 rounded mb-2'
                             />
@@ -138,7 +134,7 @@ function CustomizeFrame() {
                         />
                         <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                             <img
-                                src={frame_black}
+                                src='/images/frame_black.webp'
                                 alt='Black Frame'
                                 className='w-30 rounded mb-2'
                             />

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import Logo from '@/assets/scape_logo2.png';
 
 function Header() {
     const [showHeader, setShowHeader] = useState(false);
@@ -33,7 +32,7 @@ function Header() {
                 setShowHeader(true);
                 startHideTimeout();
             }
-        }
+        };
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
@@ -60,20 +59,36 @@ function Header() {
             }`}
         >
             <nav className='flex w-3/4 place-items-center justify-evenly'>
-                <a href='#home' className='group transition duration-300 tracking-widest'>
+                <a
+                    href='#home'
+                    className='group transition duration-300 tracking-widest'
+                >
                     Home
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#thescape' className='group transition duration-300 tracking-widest'>
+                <a
+                    href='#thescape'
+                    className='group transition duration-300 tracking-widest'
+                >
                     The Scape
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <img src={Logo} alt="Logo" className='h-[70px] w-[15%]'/>
-                <a href='/get-started' className='group transition duration-300 tracking-widest'>
+                <img
+                    src='/images/scape_logo2.png'
+                    alt='Logo'
+                    className='h-[70px] w-[15%]'
+                />
+                <a
+                    href='/get-started'
+                    className='group transition duration-300 tracking-widest'
+                >
                     Get Started
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
-                <a href='#map' className='group transition duration-300 tracking-widest'>
+                <a
+                    href='#map'
+                    className='group transition duration-300 tracking-widest'
+                >
                     Map
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
