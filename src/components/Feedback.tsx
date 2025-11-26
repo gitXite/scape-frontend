@@ -45,8 +45,9 @@ function Feedback() {
             if (!response.ok) {
                 const data = await response.json();
                 toast.error(data.message, {
-                    description: 'Please try again later',
+                    // description: 'Please try again later',
                 });
+                setIsLoading(false);
                 return;
             }
 
