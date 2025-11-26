@@ -49,7 +49,7 @@ function CheckoutSummary() {
         setIsLoading(true);
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_APP_API_URL}/order/send`,
+                `${import.meta.env.VITE_APP_API_URL}/api/order/send`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

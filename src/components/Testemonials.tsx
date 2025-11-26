@@ -16,7 +16,7 @@ function Testemonials() {
         const getReviewStats = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews/stats`, {
+                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews/stats`, {
                     method: 'GET',
                 });
                 if (!response.ok) {
@@ -40,7 +40,7 @@ function Testemonials() {
         const getReviews = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/reviews`, {
+                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews`, {
                     method: 'GET'
                 });
                 if (!response.ok) {
