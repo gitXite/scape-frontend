@@ -40,7 +40,7 @@ function Hero() {
                     initial='hidden'
                     animate='visible'
                 >
-                    <h1 className='z-2 relative bottom-30 text-9xl max-md:text-8xl max-sm:text-7xl text-white drop-shadow-black drop-shadow-2xl tracking-widest [text-shadow:0_4px_10px_rgba(0,0,0,0.6)] pointer-events-none'>
+                    <h1 className='z-2 relative bottom-50 text-9xl max-md:text-8xl max-sm:text-7xl text-white drop-shadow-black drop-shadow-2xl tracking-widest [text-shadow:0_4px_10px_rgba(0,0,0,0.6)] pointer-events-none'>
                         S C /\ P E
                     </h1>
                 </motion.div>
@@ -50,49 +50,51 @@ function Hero() {
                     initial='hidden'
                     animate='visible'
                 >
-                    <div className='flex tracking-widest relative text-white bottom-30 text-5xl max-md:text-3xl max-sm:text-2xl z-2 drop-shadow-black drop-shadow-2xl mt-10 space-x-10 max-sm:space-x-5 [text-shadow:0_2px_8px_rgba(0,0,0,1)] pointer-events-none'>
+                    <div className='flex tracking-widest relative text-white bottom-50 text-5xl max-md:text-3xl max-sm:text-2xl z-2 drop-shadow-black drop-shadow-2xl mt-10 space-x-10 max-sm:space-x-5 [text-shadow:0_2px_8px_rgba(0,0,0,1)] pointer-events-none'>
                         <h2 className=''>F r o m</h2>
                         <h2 className=''>M a p</h2>
                         <h2 className=''>T o</h2>
                         <h2 className=''>F r a m e</h2>
                     </div>
                 </motion.div>
-                <motion.div
-                    custom={2}
-                    variants={fadeUpVariants}
-                    initial='hidden'
-                    animate='visible'
-                    className='backdrop-blur-sm rounded-full relative top-30'
-                >
-                    <button
-                        className='flex z-2 p-5 pl-12 pr-12 max-sm:px-8 text-xl font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
-                        onClick={() => {
-                            navigate('/get-started');
-                        }}
+                <div className='flex flex-col absolute bottom-20'>
+                    <motion.div
+                        custom={2}
+                        variants={fadeUpVariants}
+                        initial='hidden'
+                        animate='visible'
+                        className='backdrop-blur-sm rounded-full'
                     >
-                        <p>G e t</p>
-                        <span className='w-4'></span>
-                        <p>S t a r t e d</p>
-                        <ChevronRight className='self-center relative left-4 p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
-                    </button>
-                </motion.div>
-                <motion.div
-                    custom={3}
-                    variants={fadeUpVariants}
-                    initial='hidden'
-                    animate='visible'
-                    className='absolute bottom-20'
-                >
-                    <div className='flex flex-col text-center items-center'>
-                        <a
-                            href='#thescape'
-                            className='text-lg text-neutral-800 relative top-10 cursor-pointer font-normal active:text-neutral-500 transition-colors duration-100 pb-5 z-1 peer'
+                        <button
+                            className='flex z-2 p-5 pl-12 pr-12 max-sm:px-8 text-xl font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
+                            onClick={() => {
+                                navigate('/get-started');
+                            }}
                         >
-                            Read More
-                        </a>
-                        <ChevronDown className='text-neutral-900/85 relative top-5 cursor-pointer z-0 peer-hover:translate-y-2 transition-all duration-200 ease-out' />
-                    </div>
-                </motion.div>
+                            <p>G e t</p>
+                            <span className='w-4'></span>
+                            <p>S t a r t e d</p>
+                            <ChevronRight className='self-center relative left-4 p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
+                        </button>
+                    </motion.div>
+                    <motion.div
+                        custom={3}
+                        variants={fadeUpVariants}
+                        initial='hidden'
+                        animate='visible'
+                        className=''
+                    >
+                        <div className='flex flex-col text-center items-center mt-5'>
+                            <a
+                                href='#thescape'
+                                className='text-lg text-neutral-800 cursor-pointer font-normal active:text-neutral-500 transition-colors duration-100 z-1 peer'
+                            >
+                                Read More
+                            </a>
+                            <ChevronDown className='text-neutral-900/85 pointer-events-none z-0 peer-hover:translate-y-2 transition-all duration-200 ease-out' />
+                        </div>
+                    </motion.div>
+                </div>
             </div>
         </div>
     );
