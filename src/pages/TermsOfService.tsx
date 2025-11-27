@@ -6,7 +6,7 @@ function TermsOfService() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
             <BackButton page='home' />
-            <div className='flex flex-col min-h-full w-1/2 max-xl:w-3/4 items-center text-neutral-900 p-10 space-y-5 text-center'>
+            <div className='flex flex-col min-h-full w-1/2 max-xl:w-3/4 max-md:w-full items-center text-neutral-900 p-10 space-y-5 text-center'>
                 <h1 className='text-2xl tracking-widest font-medium mb-2'>
                     TERMS OF SERVICE
                 </h1>

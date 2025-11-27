@@ -57,7 +57,7 @@ function Hero() {
                         <h2 className=''>F r a m e</h2>
                     </div>
                 </motion.div>
-                <div className='flex flex-col absolute bottom-20'>
+                <div className='flex flex-col absolute bottom-20 max-sm:bottom-10'>
                     <motion.div
                         custom={2}
                         variants={fadeUpVariants}
@@ -66,7 +66,7 @@ function Hero() {
                         className='backdrop-blur-sm rounded-full'
                     >
                         <button
-                            className='flex z-2 p-5 pl-12 pr-12 max-sm:px-8 text-xl font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
+                            className='flex z-2 p-5 pl-12 pr-12 max-sm:px-9 max-sm:py-4 text-xl max-sm:text-lg font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
                             onClick={() => {
                                 navigate('/get-started');
                             }}
@@ -74,7 +74,7 @@ function Hero() {
                             <p>G e t</p>
                             <span className='w-4'></span>
                             <p>S t a r t e d</p>
-                            <ChevronRight className='self-center relative left-4 p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
+                            <ChevronRight className='self-center relative max-sm:hidden left-4 top-[1px] p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
                         </button>
                     </motion.div>
                     <motion.div
@@ -87,7 +87,7 @@ function Hero() {
                         <div className='flex flex-col text-center items-center mt-5'>
                             <a
                                 href='#thescape'
-                                className='text-lg text-neutral-800 cursor-pointer font-normal active:text-neutral-500 transition-colors duration-100 z-1 peer'
+                                className='text-lg text-neutral-900 cursor-pointer font-normal active:text-neutral-700 transition-colors duration-100 z-1 peer'
                             >
                                 Read More
                             </a>

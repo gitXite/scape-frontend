@@ -10,7 +10,7 @@ import {
 import type { CarouselApi } from './ui/carousel';
 
 const options = {
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.3,
 };
 
@@ -46,10 +46,10 @@ function TheScape() {
                         inView1 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <h1 className='text-6xl max-lg:text-5xl text-neutral-900 pb-10'>
+                    <h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-neutral-900 pb-10'>
                         From Map To Frame
                     </h1>
-                    <p className='w-8/12 max-sm:w-full text-center text-neutral-700 leading-8'>
+                    <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
                         With just a few clicks, you can transform any map location within Norway into a stunning and fully detailed 3D model. 
                         Simply choose your area of interest and our service automatically creates a precise topographic cutout, 
                         capturing terrain contours, elevation data, and the unique geographic character of the landscape. 
@@ -64,10 +64,10 @@ function TheScape() {
                         inView2 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <h1 className='text-6xl max-lg:text-5xl text-neutral-900 pb-10'>
+                    <h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-neutral-900 pb-10'>
                         Made By MD
                     </h1>
-                    <p className='w-8/12 max-sm:w-full text-center text-neutral-700 leading-8'>
+                    <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
                         We are Maren and Daniel, a newly engaged couple turning our shared creativity into a meaningful side project as we save up for our wedding. 
                         Maren brings her background in architecture, an eye for design, and a passion for spatial experiences. 
                         Daniel contributes his skills as a data engineering and computer science student, 
@@ -133,13 +133,13 @@ function TheScape() {
                         inView4 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <h1 className='text-6xl max-lg:text-5xl text-neutral-900 pb-10'>
+                    <h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-neutral-900 pb-10'>
                         How It Works
                     </h1>
-                    <p className='w-8/12 max-sm:w-full text-center text-neutral-700 leading-8'>
+                    <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
                         Creating and ordering your custom 3D landscape is simple and seamless. 
                         Start by exploring the map and selecting and exact area you want to transform. 
-                        Once your cutout is chosen, our system instantly generates a preview of the 3D model so oyu can see exactly how it will look. 
+                        Once your cutout is chosen, our system instantly generates a preview of the 3D model so you can see exactly how it will look. 
                         When you are happy with the result, you can choose your preferred appearance and framing before placing your order. 
                         From there, we handle the rest, producing your model with care and delivering a high quality piece that captures your chosen landscape in beautiful detail. 
                     </p>

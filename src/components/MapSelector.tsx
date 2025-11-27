@@ -61,7 +61,7 @@ function MapSelector({ mode }: MapSelectorProps) {
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
-        triggerOnce: false,
+        triggerOnce: true,
         threshold: 0.1,
     });
     const [hasCoordinates, setHasCoordinates] = useState(

@@ -4,7 +4,7 @@ import Socials from './Socials';
 function Footer() {
     return (
         <footer className='flex max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-100 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex flex-col space-y-2 text-center place-content-end'>
+            <div className='flex flex-col space-y-2 text-center place-content-center'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-5'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2 pb-1 tracking-widest'>by md</p>
