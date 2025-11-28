@@ -62,6 +62,7 @@ function ModelPreview({
         controls.staticMoving = false;
         controls.dynamicDampingFactor = 0.05;
         controls.panSpeed = 0.05;
+        controls.rotateSpeed = 0.9;
 
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
