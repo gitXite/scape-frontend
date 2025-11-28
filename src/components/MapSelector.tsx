@@ -182,8 +182,8 @@ function MapSelector({ mode }: MapSelectorProps) {
     
 
     return (
-        <div id='map' className='flex flex-col h-full w-full bg-neutral-100 items-center pt-20'>
-            <div ref={ref} className={`flex flex-col h-full w-full items-center transition-opacity duration-600 ease-in ${
+        <div id='map' className='flex flex-col h-full w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center pt-20'>
+            <div ref={ref} className={`flex flex-col h-full max-sm:h-4/5 max-lg:h-9/10 w-full items-center transition-opacity duration-600 ease-in max-sm:mb-20 ${
                 inView ? 'opacity-100' : 'opacity-0'
             }`}>
                 <LoadScript
@@ -193,7 +193,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     <GoogleMap
                         mapContainerStyle={containerStyle}
                         center={center}
-                        zoom={10}
+                        zoom={window.innerWidth > 640 ? 10 : 9}
                         mapTypeId='terrain'
                         onLoad={onLoad}
                         onClick={handleMapClick}
@@ -223,7 +223,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </LoadScript>
                 
                 <div className='flex w-3/5 max-2xl:w-3/4 max-lg:w-full place-items-center self-center justify-evenly'>
-                    <div className='flex flex-col w-40 relative top-4 items-center group'>
+                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:right-4/7 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
@@ -271,7 +271,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         Reset
                     </button>
-                    <div className='flex flex-col w-40 relative top-4 items-center group'>
+                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:left-4/7 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>

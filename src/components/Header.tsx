@@ -55,10 +55,10 @@ function Header() {
                 startHideTimeout();
             }}
             className={`flex h-auto w-full p-4 fixed place-content-center mix-blend-difference text-white bg-neutral-500/10 z-2 shadow-md backdrop-blur-md border-b-1 border-neutral-300/30 transition-transform duration-300 ${
-                showHeader && window.innerWidth > 640? 'translate-y-0' : '-translate-y-full'
+                showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
-            <nav className='flex w-3/4 place-items-center justify-evenly'>
+            <nav className='flex w-3/4 max-sm:w-full max-sm:text-sm place-items-center justify-evenly'>
                 <a
                     href='#home'
                     className='group transition duration-300 tracking-widest'
@@ -76,7 +76,7 @@ function Header() {
                 <img
                     src='/images/scape-logo-trans.webp'
                     alt='Logo'
-                    className='max-h-[70px] w-[15%]'
+                    className={`max-h-[70px] w-[15%]`}
                 />
                 <a
                     href='/get-started'

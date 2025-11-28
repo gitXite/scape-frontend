@@ -3,14 +3,14 @@ import Socials from './Socials';
 
 function Footer() {
     return (
-        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-100 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
+        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-110 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex max-xl:w-full flex-col space-y-2 text-center place-content-center'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-5'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2 pb-1 tracking-widest'>by md</p>
                 </div>
                 <div className='flex max-xl:w-full absolute max-xl:static left-0 ml-20 max-[1440px]:ml-5 max-xl:ml-0 h-40 text-center space-x-2 justify-evenly'>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Company
                         </h1>
@@ -49,7 +49,7 @@ function Footer() {
                             className='border-neutral-100/10 max-h-20'
                         />
                     </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Support
                         </h1>
@@ -88,7 +88,7 @@ function Footer() {
                             className='border-neutral-100/10 max-h-20'
                         />
                     </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Legal
                         </h1>
