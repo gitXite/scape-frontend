@@ -29,7 +29,7 @@ function GetStarted() {
     }, [activeStep]);
     
     return (
-        <div className='bg-neutral-100 h-full w-full'>
+        <div className='bg-neutral-100 h-svh w-full'>
             <BackButton page='home' />
             <HoverCard>
                 <HoverCardTrigger className='absolute right-10 top-9 max-md:hidden z-5'><CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' /></HoverCardTrigger>
