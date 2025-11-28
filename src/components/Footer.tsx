@@ -3,14 +3,14 @@ import Socials from './Socials';
 
 function Footer() {
     return (
-        <footer className='flex max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-100 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex flex-col space-y-2 text-center place-content-center'>
+        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-100 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
+            <div className='flex max-xl:w-full flex-col space-y-2 text-center place-content-center'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-5'>
                     <h1 className=''>S C /\ P E</h1>
                     <p className='text-sm pt-2 pb-1 tracking-widest'>by md</p>
                 </div>
-                <div className='flex absolute max-xl:static left-0 ml-20 max-[1440px]:ml-5 max-xl:ml-0 h-40 text-center space-x-2 justify-evenly'>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around'>
+                <div className='flex max-xl:w-full absolute max-xl:static left-0 ml-20 max-[1440px]:ml-5 max-xl:ml-0 h-40 text-center space-x-2 justify-evenly'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Company
                         </h1>
@@ -49,7 +49,7 @@ function Footer() {
                             className='border-neutral-100/10 max-h-20'
                         />
                     </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Support
                         </h1>
@@ -88,7 +88,7 @@ function Footer() {
                             className='border-neutral-100/10 max-h-20'
                         />
                     </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around'>
+                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-2 place-content-around max-xl:w-1/3'>
                         <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
                             Legal
                         </h1>
@@ -122,21 +122,25 @@ function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className='flex absolute max-xl:static right-0 items-center'>
-                    <small className='relative right-20 top-2'>scapebymd@gmail.com</small>
+                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-0 items-center'>
+                    <small className='relative right-20 max-xl:right-2 top-2 max-xl:w-1/3 max-[465px]:text-xs'>scapebymd@gmail.com</small>
                     <Socials />
-                    <small className='relative left-2 top-2'>Powered by</small>
-                    <img
-                        className='max-w-20 mr-20 max-[1440px]:mr-5 max-xl:mr-0 p-0 relative bottom-[-9px]'
-                        src='/images/Vipps-Logo.wine.png'
-                        alt='Vipps Logo'
-                    />
+                    <div className='flex items-center max-xl:w-1/3 place-content-center'>
+                        <small className='relative left-2 top-2 max-[465px]:hidden'>Powered by</small>
+                        <img
+                            className='max-w-20 mr-20 max-[1440px]:mr-5 max-xl:mr-0 p-0 relative bottom-[-9px]'
+                            src='/images/Vipps-Logo.wine.png'
+                            alt='Vipps Logo'
+                        />
+                    </div>
                 </div>
-                <p className='text-xs'>Org nr 929 981 626</p>
-                <p className='text-xs'>
-                    Copyright © {new Date().getFullYear()} by md design. All
-                    Rights Reserved.
-                </p>
+                <div className='flex flex-col gap-2 mt-5'>
+                    <p className='text-xs'>Org nr 929 981 626</p>
+                    <p className='text-xs'>
+                        Copyright © {new Date().getFullYear()} by md design. All
+                        Rights Reserved.
+                    </p>
+                </div>
             </div>
         </footer>
     );
