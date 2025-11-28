@@ -31,7 +31,7 @@ function Hero() {
     };
 
     return (
-        <div id='home' className='h-full w-full place-content-center'>
+        <div id='home' className='h-dvh w-full place-content-center'>
             <div className='flex flex-col place-items-center place-content-center h-full w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-neutral-900 drop-shadow-xl drop-shadow-neutral-500/60'>
                 <Hero3D />
                 <motion.div
