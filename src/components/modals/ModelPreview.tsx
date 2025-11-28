@@ -59,7 +59,7 @@ function ModelPreview({
         mountRef.current.appendChild(renderer.domElement);
         
         const controls = new TrackballControls(camera, renderer.domElement);
-        controls.staticMoving = true;
+        controls.staticMoving = false;
         controls.dynamicDampingFactor = 0.05;
 
         const light = new THREE.DirectionalLight(0xffffff, 3);
