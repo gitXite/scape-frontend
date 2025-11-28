@@ -74,7 +74,7 @@ function Header() {
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
                 </a>
                 <img
-                    src='/images/scape_logo2.png'
+                    src='/images/scape-logo-trans.webp'
                     alt='Logo'
                     className='max-h-[70px] w-[15%]'
                 />
