@@ -8,11 +8,11 @@
 function About() {
     return (
         <div className='flex flex-col min-h-[200vh] w-full bg-neutral-100'>
-            <div className='flex flex-col text-neutral-900 self-center items-center text-center p-20 gap-10 w-3/4'>
-                <h1 className='text-4xl font-medium tracking-wide'>
+            <div className='flex flex-col text-neutral-900 self-center items-center text-center p-20 gap-10 w-3/4 max-sm:w-full max-sm:p-10'>
+                <h1 className='text-4xl max-sm:text-3xl font-medium tracking-wide'>
                     What happens when an architect meets a data engineer?
                 </h1>
-                <p className='text-lg w-3/5'>
+                <p className='text-lg w-3/5 max-sm:w-full'>
                     We are Maren and Daniel, the couple behind this project,
                     combining our different strengths to create something
                     meaningful together. Maren works as an architect, and her
@@ -28,7 +28,7 @@ function About() {
                     us share our skills, learn from each other, and save money
                     for our wedding.
                 </p>
-                <p className='text-lg w-3/5'>
+                <p className='text-lg w-3/5 max-sm:w-full'>
                     The idea was inspired by our wish to bring our different
                     identities into our new home. This resulted in a scaled 3D
                     landscape of our hometowns, Stavanger and Stord, displayed
