@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import { useEffect, useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -58,10 +58,9 @@ function ModelPreview({
         mountRef.current!.innerHTML = '';
         mountRef.current.appendChild(renderer.domElement);
         
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.enableZoom = true;
+        const controls = new TrackballControls(camera, renderer.domElement);
+        controls.staticMoving = true;
+        controls.dynamicDampingFactor = 0.05;
 
         const light = new THREE.DirectionalLight(0xffffff, 3);
         light.position.set(1, 1, 1);
@@ -175,7 +174,7 @@ function ModelPreview({
 
             <div
                 className={cn(
-                    'absolute h-6/7 w-3/5 -translate-y-10 bg-neutral-900 rounded-sm z-50 ',
+                    'absolute h-6/7 w-3/5 max-lg:w-9/10 -translate-y-10 bg-neutral-900 rounded-sm z-50 ',
                     className
                 )}
             >
@@ -191,7 +190,7 @@ function ModelPreview({
                 )}
                 <button
                     onClick={() => setShowModal(false)}
-                    className='absolute group top-0 right-0 p-2 px-5 hover:bg-neutral-300 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-150'
+                    className='absolute group top-0 right-0 p-2 px-5 max-lg:px-3 max-lg:py-3 hover:bg-neutral-300 rounded-sm rounded-tl-none rounded-br-none items-center content-center justify-center transition-all duration-150'
                 >
                     <X
                         size={25}
