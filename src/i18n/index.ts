@@ -1,13 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
-// import browser-language detection
+import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
     .use(Backend)
+    .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        fallbackLng: "en",
+        fallbackLng: "nb",
+        supportedLngs: ["en", "nb"],
         ns: ["common", "home", "getStarted"],
         defaultNs: "common",
         interpolation: {
@@ -15,6 +17,10 @@ i18n
         },
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json"
+        },
+        detection: {
+            order: ["querystring", "localStorage", "navigator"],
+            caches: ["localStorage],
         },
         react: {
             useSuspense: true
