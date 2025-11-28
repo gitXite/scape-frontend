@@ -71,16 +71,16 @@ function Feedback() {
     };
 
     return (
-        <div className='flex flex-col min-h-full w-full items-center justify-center'>
-            <div className='flex flex-col max-h-3/5 bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 place-content-evenly'>
+        <div className='flex flex-col min-h-screen w-full items-center justify-center'>
+            <div className='flex flex-col h-fit max-sm:h-screen max-lg:w-full bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 max-sm:px-5 place-content-evenly'>
                 {!submittedRating ? (
                     <>
-                        <div className='flex flex-col items-center w-full gap-2'>
-                            <h1 className='text-neutral-900 text-6xl tracking-wide mb-5 font-medium text-shadow-md'>
+                        <div className='flex flex-col items-center w-full gap-2 max-sm:place-content-evenly max-sm:h-3/4'>
+                            <h1 className='text-neutral-900 text-6xl max-xl:text-5xl max-md:text-4xl max-sm:text-3xl tracking-wide mb-5 max-sm:mb-0 font-medium text-shadow-md'>
                                 We value your opinion
                             </h1>
                             <div className='flex flex-col text-center items-center relative'>
-                                <label className='text-neutral-900 text-xl font-normal mb-3 block'>
+                                <label className='text-neutral-900 text-xl max-sm:text-lg font-normal mb-3 block'>
                                     How would you rate your overall experience?
                                 </label>
                                 <StarRating
@@ -101,7 +101,7 @@ function Feedback() {
                                     handleChange(event, 'feedback')
                                 }
                                 placeholder='We would love your feedback'
-                                className='text-neutral-700 font-normal mb-2 border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-35 w-6/10 resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                                className='text-neutral-700 font-normal mb-2 border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-35 w-6/10 max-sm:w-full resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                             />
                             <textarea
                                 value={orderId}

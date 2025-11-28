@@ -11,12 +11,12 @@ function FAQ() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100'>
             <BackButton page='home' />
-            <div className='flex h-full max-md:flex-col w-full py-20 text-neutral-900 justify-evenly'>
+            <div className='flex h-full max-md:flex-col w-full py-20 max-sm:py-10 text-neutral-900 justify-evenly'>
                 <div className='flex flex-col min-h-full w-2/5 max-lg:w-2/4 max-md:w-full'>
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Returns & Refunds
@@ -97,7 +97,7 @@ function FAQ() {
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Payments & Security
@@ -140,7 +140,7 @@ function FAQ() {
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Problems & Support
@@ -206,7 +206,7 @@ function FAQ() {
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Shipping & Delivery
@@ -263,7 +263,7 @@ function FAQ() {
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Product & Customization
@@ -332,7 +332,7 @@ function FAQ() {
                     <Accordion
                         type='single'
                         collapsible
-                        className='w-full p-20 space-y-5 pt-5'
+                        className='w-full p-20 max-sm:p-10 space-y-5 pt-5'
                     >
                         <h1 className='text-2xl font-medium tracking-widest'>
                             Cookies & Privacy
