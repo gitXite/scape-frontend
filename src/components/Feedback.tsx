@@ -72,7 +72,7 @@ function Feedback() {
 
     return (
         <div className='flex flex-col min-h-screen w-full items-center justify-center'>
-            <div className='flex flex-col h-fit max-sm:h-screen max-lg:w-full bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 max-sm:px-5 place-content-evenly'>
+            <div className='flex flex-col h-fit max-sm:h-svh max-lg:w-full bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 max-sm:px-5 place-content-evenly'>
                 {!submittedRating ? (
                     <>
                         <div className='flex flex-col items-center w-full gap-2 max-sm:place-content-evenly max-sm:h-3/4'>
