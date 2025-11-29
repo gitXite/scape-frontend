@@ -13,8 +13,8 @@ const frameImages: Record<string, string> = {
 };
 
 const passePartoutImages: Record<string, string> = {
-    white: '/images/Passepartout_White.webp',
-    black: '/images/Passepartout_Black.webp',
+    white: '/images/passepartout_white.webp',
+    black: '/images/passepartout_black.webp',
     without: '',
 };
 

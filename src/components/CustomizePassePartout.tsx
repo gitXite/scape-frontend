@@ -1,7 +1,7 @@
 import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
-import { Separator } from './ui/separator';
 import React from 'react';
+import PassepartoutCard from './PassepartoutCard';
 
 function CustomizePassePartout() {
     const { passePartoutType, setPassePartoutType } = useCustomization();
@@ -20,91 +20,9 @@ function CustomizePassePartout() {
                 <div className='flex h-full pb-10'>
                     <CustomizationPreview />
                 </div>
-                <div className='flex h-full justify-center items-center pb-10 text-sm'>
-                    <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='white'
-                            checked={passePartoutType === 'white'}
-                            onChange={handleClick}
-                            className='peer hidden'
-                        />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src='/images/Passepartout_White.webp'
-                                alt='White'
-                                className='w-30 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 pt-2 px-2'>
-                                Enclosed by white -
-                            </p>
-                            <p className='text-neutral-500 w-60 pb-2 px-2'>
-                                Bright, airy, and classic
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
-                                White
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>49kr</p>
-                        </div>
-                    </label>
-                    <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='black'
-                            checked={passePartoutType === 'black'}
-                            onChange={handleClick}
-                            className='peer hidden'
-                        />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src='/images/Passepartout_Black.webp'
-                                alt='Black'
-                                className='w-30 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 pt-2 px-2'>
-                                Enclosed by black -
-                            </p>
-                            <p className='text-neutral-500 w-60 pb-2 px-2'>
-                                Sharp contrast for a bold look
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
-                                Black
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>49kr</p>
-                        </div>
-                    </label>
-                    {/* <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='without'
-                            checked={passePartoutType === 'without'}
-                            onChange={handleClick}
-                            className='peer hidden'
-                        />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src=''
-                                alt='Without'
-                                className='w-40 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 px-2'>
-                                Without a passe-partout -
-                            </p>
-                            <p className='text-neutral-500 w-60 pb-5 px-2'>
-                                Pure focus on the model
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal'>
-                                Without
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>19kr</p>
-                        </div>
-                    </label> */}
+                <div className='flex h-full justify-center items-center pb-10 text-sm space-x-10 max-2xl:space-x-2'>
+                    <PassepartoutCard passePartoutType={passePartoutType} type='white' handleClick={handleClick} text='Enclosed by white -' desc='Bright, airy, and classic' />
+                    <PassepartoutCard passePartoutType={passePartoutType} type='black' handleClick={handleClick} text='Enclosed by black -' desc='Sharp contrast for a bold look' />
                 </div>
             </div>
         </div>
