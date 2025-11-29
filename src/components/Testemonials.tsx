@@ -73,7 +73,7 @@ function Testemonials() {
                     <Spinner variant={'circle'} size={42} className='text-neutral-900' />
                 </div>
             ) : (
-                <div className='flex flex-col h-full items-center justify-evenly'>
+                <div className='flex flex-col min-h-svh items-center justify-evenly'>
                     <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
                     <div className='rounded-full bg-neutral-900 px-5 py-1.5 drop-shadow-lg'>
                         <StarRating readonly rating={averageRating!} showValue size='lg' />
