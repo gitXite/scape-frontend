@@ -7,7 +7,7 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 
 const frameImages: Record<string, string> = {
     oak: '/images/frame_oak.webp',
-    walnut: '/images/frame_darkoak.webp',
+    walnut: '/images/frame_walnut.webp',
     white: '/images/frame_white.webp',
     black: '/images/frame_black.webp',
 };
