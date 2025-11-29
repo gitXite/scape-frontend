@@ -60,7 +60,7 @@ function ModelPreview({
         
         const controls = new TrackballControls(camera, renderer.domElement);
         controls.staticMoving = false;
-        controls.rotateSpeed = window.innerWidth > 640 ? 10.0 : 1.0;
+        controls.rotateSpeed = window.innerWidth > 640 ? 5.0 : 1.0;
         controls.dynamicDampingFactor = window.innerWidth > 640 ? 0.2 : 0.1;
         controls.panSpeed = window.innerWidth > 640 ? 0.3 : 0.05;
 
