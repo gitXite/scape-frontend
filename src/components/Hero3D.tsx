@@ -119,7 +119,22 @@ function Hero3D() {
         };
         animate();
 
+        const handleResize = () => {
+            if (!mountRef.current) return;
+            const width = mountRef.current.clientWidth;
+            const height = mountRef.current.clientHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+        };
+
+        window.addEventListener("resize", handleResize);
+
         return () => {
+            window.removeEventListener("resize", handleResize);
             container.removeEventListener('mousemove', onMouseMove);
             cancelAnimationFrame(frameID);
             renderer.dispose();
