@@ -64,9 +64,9 @@ function Testemonials() {
     }, []);
 
     return (
-        <div className='min-h-full w-full p-5'>
+        <div className='min-h-svh w-full px-5 place-content-center'>
             {isLoading ? (
-                <div className='relative place-items-center justify-self-center top-2/4 -translate-y-2/4 space-y-5'>
+                <div className='h-full relative place-items-center justify-self-center top-2/4 -translate-y-2/4 space-y-5'>
                     {error && (
                         <h1 className='text-neutral-900 font-medium'>{error}</h1>
                     )}
