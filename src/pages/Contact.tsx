@@ -25,7 +25,7 @@ function Contact() {
                 <BackButton page='home' />
                 <div className='flex h-full w-3/5 max-xl:w-full max-md:flex-col max-md:items-center max-xl:border-none text-center justify-center max-md:justify-normal bg-neutral-200/40 border-1 border-neutral-300 rounded-sm'>
                     <div className='flex h-full w-2/4 max-md:w-full flex-col py-10 justify-center space-y-15 max-md:space-y-5'>
-                        <h1 className='text-neutral-900 text-6xl tracking-widest font-medium'>
+                        <h1 className='text-neutral-900 text-6xl max-sm:text-5xl tracking-widest font-medium'>
                             Contact Us
                         </h1>
                         <p className='px-15 text-neutral-600 tracking-wide'>
