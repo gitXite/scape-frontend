@@ -142,7 +142,22 @@ function ModelPreview({
         };
         animate();
 
+        const handleResize = () => {
+            if (!mountRef.current) return;
+            const width = mountRef.current.clientWidth;
+            const height = mountRef.current.clientHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+        };
+
+        window.addEventListener("resize", handleResize);
+
         return () => {
+            window.removeEventListener("resize", handleResize);
             cancelAnimationFrame(frameID);
             renderer.dispose();
             controls.dispose();
