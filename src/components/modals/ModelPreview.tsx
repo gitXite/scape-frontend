@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import { useEffect, useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -10,23 +9,23 @@ import { X } from 'lucide-react';
 import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
 
-import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
-
-
 type ModelPreviewProps = {
+    geometry: THREE.BufferGeometry | null;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     className: string;
+    errorMessage?: string;
 };
 
 function ModelPreview({
+    geometry,
     showModal,
     setShowModal,
     className,
+    errorMessage,
 }: ModelPreviewProps) {
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
-    const [error, setError] = useState('');
 
     useHotkeys('escape', (event) => {
         event.preventDefault();
@@ -34,7 +33,7 @@ function ModelPreview({
     });
 
     useEffect(() => {
-        if (!mountRef.current) return;
+        if (!mountRef.current || !geometry) return;
         setIsLoading(true);
 
         const width = mountRef.current.clientWidth;
@@ -57,7 +56,7 @@ function ModelPreview({
         renderer.setSize(width, height);
         mountRef.current!.innerHTML = '';
         mountRef.current.appendChild(renderer.domElement);
-        
+
         const controls = new TrackballControls(camera, renderer.domElement);
         controls.staticMoving = false;
         controls.rotateSpeed = window.innerWidth > 640 ? 5.0 : 1.0;
@@ -71,68 +70,38 @@ function ModelPreview({
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
 
-        const loader = new STLLoader();
-        const loadModel = async () => {
-            let url: string | null;
-            try {
-                url = await generateAndFetchSTL();
-                if (!url) {
-                    setIsLoading(false);
-                    setError('Internal server error, please try again');
-                    return;
-                }
-            } catch (err: any) {
-                setIsLoading(false);
-                setError(`Failed to generate STL: ${err.message}`);
-                return;
-            }
+        geometry.computeBoundingBox();
+        const center = new THREE.Vector3();
+        geometry.boundingBox?.getCenter(center);
+        geometry.center();
 
-            loader.load(
-                url!,
-                (geometry) => {
-                    geometry.computeBoundingBox();
-                    const center = new THREE.Vector3();
-                    geometry.boundingBox?.getCenter(center);
-                    geometry.center();
+        const box = geometry.boundingBox!;
+        const currentWidth = box.max.x - box.min.x;
+        const currentHeight = box.max.y - box.min.y;
 
-                    const box = geometry.boundingBox!;
-                    const currentWidth = box.max.x - box.min.x
-                    const currentHeight = box.max.y - box.min.y;
+        const targetWidth = 140;
+        const targetHeight = 190;
 
-                    const targetWidth = 140;
-                    const targetHeight = 190;
+        const scaleX = targetWidth / currentWidth;
+        const scaleY = targetHeight / currentHeight;
+        const scaleZ = Math.max(scaleX, scaleY);
 
-                    const scaleX = targetWidth / currentWidth;
-                    const scaleY = targetHeight / currentHeight;
-                    const scaleZ = Math.max(scaleX, scaleY);
-    
-                    const material = new THREE.MeshStandardMaterial({
-                        color: 0xffffff,
-                    });
-                    const mesh = new THREE.Mesh(geometry, material);
-                    mesh.scale.set(scaleX, scaleY, scaleZ);
-                    scene.add(mesh);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(scaleX, scaleY, scaleZ);
+        scene.add(mesh);
 
-                    geometry.center();
-    
-                    const size = new THREE.Vector3();
-                    box.getSize(size);
-                    const maxDim = Math.max(targetWidth, targetHeight, size.z);
-                    camera.position.z = maxDim * 1.5;
-                    controls.update();
-    
-                    URL.revokeObjectURL(url!);
-                    setIsLoading(false);
-                },
-                undefined,
-                (error) => {
-                    console.error('Error loading STL:', error);
-                    URL.revokeObjectURL(url!);
-                    setIsLoading(false);
-                }
-            );
-        }
-        loadModel();
+        geometry.center();
+
+        const size = new THREE.Vector3();
+        box.getSize(size);
+        const maxDim = Math.max(targetWidth, targetHeight, size.z);
+        camera.position.z = maxDim * 1.5;
+        controls.update();
+
+        setIsLoading(false);
 
         let frameID: number;
         const animate = () => {
@@ -154,10 +123,10 @@ function ModelPreview({
             renderer.setPixelRatio(window.devicePixelRatio);
         };
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
+            window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(frameID);
             renderer.dispose();
             controls.dispose();
@@ -178,7 +147,7 @@ function ModelPreview({
                 mountRef.current.removeChild(renderer.domElement);
             }
         };
-    }, []);
+    }, [geometry]);
 
     return (
         <>
@@ -195,8 +164,10 @@ function ModelPreview({
                     className
                 )}
             >
-                {error && (
-                    <p className='text-neutral-100 relative justify-self-center top-2/4 -translate-y-2/4 font-normal'>{error}</p>
+                {errorMessage && (
+                    <p className='text-neutral-100 relative justify-self-center top-2/4 -translate-y-2/4 font-normal'>
+                        {errorMessage}
+                    </p>
                 )}
                 {isLoading && (
                     <Spinner

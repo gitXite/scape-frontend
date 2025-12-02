@@ -8,6 +8,9 @@ import { Button } from './ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
 import { Separator } from './ui/separator';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
+import { STLCache } from '@/utils/cache';
+import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
+import { libraries } from '@/lib/googleMapLib';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -32,8 +35,6 @@ const containerStyle: React.CSSProperties = {
     boxShadow: '5px 5px 15px 2px rgba(0, 0, 0, 0.3)',
     borderRadius: '5px',
 };
-
-const libraries: 'geometry'[] = ['geometry'];
 
 function MapSelector({ mode }: MapSelectorProps) {
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
@@ -75,6 +76,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         !!localStorage.getItem('coordinates')
     );
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -126,7 +128,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         setCenter(clickedPoint);
     }, []);
 
-    const handleCapture = () => {
+    const handleCapture = async () => {
         setIsLoading(true);
 
         if (rectangleBounds) {
@@ -138,25 +140,55 @@ function MapSelector({ mode }: MapSelectorProps) {
                     setIsLoading(false);
                     break;
                 case 'real':
-                    localStorage.setItem(
-                        'coordinates',
-                        JSON.stringify(rectangleBounds)
-                    );
-                    localStorage.setItem(
-                        'verticalScale',
-                        sliderValues.verticalScale[0].toString()
-                    );
-                    localStorage.setItem(
-                        'boxSize',
-                        sliderValues.boxSize[0].toString()
-                    );
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('coordinates-updated'));
-                    });
-                    toast.success('Coordinates captured!', {
-                        description:
-                            'You can now proceed or preview your model.',
-                    });
+                    if (
+                        JSON.parse(localStorage.getItem('coordinates') || '{}')
+                            .north !== rectangleBounds.north &&
+                        JSON.parse(localStorage.getItem('coordinates') || '{}')
+                            .west !== rectangleBounds.west
+                    ) {
+                        localStorage.setItem(
+                            'coordinates',
+                            JSON.stringify(rectangleBounds)
+                        );
+                        localStorage.setItem(
+                            'verticalScale',
+                            sliderValues.verticalScale[0].toString()
+                        );
+                        localStorage.setItem(
+                            'boxSize',
+                            sliderValues.boxSize[0].toString()
+                        );
+                        setTimeout(() => {
+                            window.dispatchEvent(
+                                new Event('coordinates-updated')
+                            );
+                        });
+                    }
+                    try {
+                        const stlObject = await generateAndFetchSTL();
+                        if (!stlObject) {
+                            toast.error('Error generating STL', {
+                                description: 'Please try again later',
+                            });
+                            STLCache.invalidate();
+                            setIsLoading(false);
+                            return;
+                        }
+                        toast.success('Coordinates captured!', {
+                            description:
+                                'You can now proceed or preview your model.',
+                        });
+                    } catch (err: any) {
+                        console.error(err.message);
+                        toast.error(err.message, {
+                            description: 'Please try again later',
+                        });
+                        setErrorMessage(err.message);
+                        STLCache.invalidate();
+                        setIsLoading(false);
+                        return;
+                    }
+
                     setIsLoading(false);
                     break;
             }
@@ -192,6 +224,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                             new Event('passe-partout-removed')
                         );
                     });
+                    STLCache.invalidate();
                     toast.success('Your Scape has been reset', {
                         description:
                             'Please capture your coordinates to proceed.',
@@ -207,6 +240,7 @@ function MapSelector({ mode }: MapSelectorProps) {
 
     useEffect(() => {
         const handleStorageChange = () => {
+            STLCache.invalidate();
             setHasCoordinates(!!localStorage.getItem('coordinates'));
         };
 
@@ -308,7 +342,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                     </div>
                     <button
                         onClick={() => setShowModal(true)}
-                        disabled={mode === 'dummy' || !hasCoordinates}
+                        disabled={
+                            mode === 'dummy' ||
+                            !hasCoordinates ||
+                            isLoading ||
+                            !STLCache.geometry
+                        }
                         className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
@@ -318,7 +357,11 @@ function MapSelector({ mode }: MapSelectorProps) {
                         disabled={isLoading}
                         onClick={handleCapture}
                     >
-                        {isLoading ? <Spinner variant={'ellipsis'} /> : 'Capture Coordinates'}
+                        {isLoading ? (
+                            <Spinner variant={'ellipsis'} />
+                        ) : (
+                            'Capture Coordinates'
+                        )}
                     </Button>
                     <button
                         className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
@@ -364,9 +407,11 @@ function MapSelector({ mode }: MapSelectorProps) {
             </div>
             {showModal && (
                 <ModelPreview
+                    geometry={STLCache.geometry}
                     showModal={showModal}
                     setShowModal={setShowModal}
                     className='drop-shadow-2xl drop-shadow-black/50'
+                    errorMessage={errorMessage}
                 />
             )}
         </div>

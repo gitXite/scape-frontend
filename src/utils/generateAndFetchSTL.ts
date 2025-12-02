@@ -1,4 +1,8 @@
-export const generateAndFetchSTL = async (): Promise<string | null> => {
+import { STLCache } from './cache';
+import type { STLObject } from '@/types';
+import { parseSTL } from './parseSTL';
+
+export const generateAndFetchSTL = async (): Promise<STLObject | null> => {
     const coords = JSON.parse(localStorage.getItem('coordinates') || '{}');
     const verticalScale = localStorage.getItem('verticalScale');
     const scale = localStorage.getItem('boxSize');
@@ -7,6 +11,19 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
         console.error('Missing localstorage data');
         return null;
     }
+
+    const key = JSON.stringify({
+        lat: coords.north,
+        lng: coords.west,
+        verticalScale,
+        scale
+    });
+    if (STLCache.geometry && STLCache.cacheKey === key) {
+        return {
+            url: STLCache.objectUrl!,
+            geometry: STLCache.geometry
+        };
+    }
     
     try {
         const resp = await fetch(
@@ -14,12 +31,7 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    lat: coords.north,
-                    lng: coords.west,
-                    verticalScale: verticalScale,
-                    scale: scale,
-                }),
+                body: key
             }
         );
 
@@ -29,9 +41,19 @@ export const generateAndFetchSTL = async (): Promise<string | null> => {
         }
 
         const arrayBuffer = await resp.arrayBuffer();
+        STLCache.rawBuffer = arrayBuffer;
+        STLCache.cacheKey = key;
+
         const blob = new Blob([arrayBuffer], { type: 'application/sla' });
         const url = URL.createObjectURL(blob);
-        return url;
+        STLCache.objectUrl = url;
+
+        const geometry = parseSTL(arrayBuffer);
+
+        return {
+            url,
+            geometry
+        };
     } catch (err) {
         console.error('Error fetching STL: ', err);
         throw err;
