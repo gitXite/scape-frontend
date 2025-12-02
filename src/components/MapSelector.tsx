@@ -141,10 +141,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                     break;
                 case 'real':
                     if (
-                        JSON.parse(localStorage.getItem('coordinates') || '{}')
-                            .north !== rectangleBounds.north &&
-                        JSON.parse(localStorage.getItem('coordinates') || '{}')
-                            .west !== rectangleBounds.west
+                        JSON.parse(localStorage.getItem('coordinates') || '{}').north !== rectangleBounds.north &&
+                        JSON.parse(localStorage.getItem('coordinates') || '{}').west !== rectangleBounds.west ||
+                        parseInt(localStorage.getItem('verticalScale')!) !== sliderValues.verticalScale[0]
                     ) {
                         localStorage.setItem(
                             'coordinates',
