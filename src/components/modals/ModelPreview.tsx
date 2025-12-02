@@ -8,9 +8,9 @@ import type React from 'react';
 import { X } from 'lucide-react';
 import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
+import { STLCache } from '@/utils/cache';
 
 type ModelPreviewProps = {
-    geometry: THREE.BufferGeometry | null;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     className: string;
@@ -18,7 +18,6 @@ type ModelPreviewProps = {
 };
 
 function ModelPreview({
-    geometry,
     showModal,
     setShowModal,
     className,
@@ -33,6 +32,7 @@ function ModelPreview({
     });
 
     useEffect(() => {
+        const geometry = STLCache.geometry;
         if (!mountRef.current || !geometry) return;
         setIsLoading(true);
 
@@ -147,7 +147,7 @@ function ModelPreview({
                 mountRef.current.removeChild(renderer.domElement);
             }
         };
-    }, [geometry]);
+    }, []);
 
     return (
         <>

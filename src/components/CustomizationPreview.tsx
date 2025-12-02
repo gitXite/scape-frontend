@@ -1,9 +1,8 @@
 import * as THREE from 'three';
-import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { useCustomization } from '@/context/CustomizationContext';
 import { useRef, useState, useEffect } from 'react';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
-import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
+import { STLCache } from '@/utils/cache';
 
 const frameImages: Record<string, string> = {
     oak: '/images/frame_oak.webp',
@@ -27,7 +26,8 @@ function CustomizationPreview() {
     const passePartout = passePartoutImages[passePartoutType] ?? '';
 
     useEffect(() => {
-        if (!mountRef.current) return;
+        const geometry = STLCache.geometry;
+        if (!mountRef.current || !geometry) return;
         setIsLoading(true);
 
         const width = mountRef.current.clientWidth;
@@ -58,59 +58,37 @@ function CustomizationPreview() {
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
 
-        const loader = new STLLoader();
-        const loadModel = async () => {
-            const url = await generateAndFetchSTL();
-            if (!url) {
-                setIsLoading(false);
-                return;
-            }
+        geometry.computeBoundingBox();
+        const center = new THREE.Vector3();
+        geometry.boundingBox?.getCenter(center);
+        geometry.center();
 
-            loader.load(
-                url,
-                (geometry) => {
-                    geometry.computeBoundingBox();
-                    const center = new THREE.Vector3();
-                    geometry.boundingBox?.getCenter(center);
-                    geometry.center();
+        const box = geometry.boundingBox!;
+        const currentWidth = box.max.x - box.min.x;
+        const currentHeight = box.max.y - box.min.y;
 
-                    const box = geometry.boundingBox!;
-                    const currentWidth = box.max.x - box.min.x;
-                    const currentHeight = box.max.y - box.min.y;
+        const targetWidth = 140;
+        const targetHeight = 190;
 
-                    const targetWidth = 140;
-                    const targetHeight = 190;
+        const scaleX = targetWidth / currentWidth;
+        const scaleY = targetHeight / currentHeight;
+        const scaleZ = Math.max(scaleX, scaleY);
 
-                    const scaleX = targetWidth / currentWidth;
-                    const scaleY = targetHeight / currentHeight;
-                    const scaleZ = Math.max(scaleX, scaleY);
+        const material = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(scaleX, scaleY, scaleZ);
+        scene.add(mesh);
 
-                    const material = new THREE.MeshStandardMaterial({
-                        color: 0xffffff,
-                    });
-                    const mesh = new THREE.Mesh(geometry, material);
-                    mesh.scale.set(scaleX, scaleY, scaleZ);
-                    scene.add(mesh);
+        geometry.center();
 
-                    geometry.center();
+        const size = new THREE.Vector3();
+        box.getSize(size);
+        const maxDim = Math.max(targetWidth, targetHeight, size.z);
+        camera.position.z = maxDim * 1.5;
 
-                    const size = new THREE.Vector3();
-                    box.getSize(size);
-                    const maxDim = Math.max(targetWidth, targetHeight, size.z);
-                    camera.position.z = maxDim * 1.5;
-
-                    URL.revokeObjectURL(url);
-                    setIsLoading(false);
-                },
-                undefined,
-                (error) => {
-                    console.error('Error loading STL:', error);
-                    URL.revokeObjectURL(url);
-                    setIsLoading(false);
-                }
-            );
-        };
-        loadModel();
+        setIsLoading(false);
 
         let frameID: number;
         const animate = () => {
@@ -131,10 +109,10 @@ function CustomizationPreview() {
             renderer.setPixelRatio(window.devicePixelRatio);
         };
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
+            window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(frameID);
             renderer.dispose();
 
@@ -173,7 +151,8 @@ function CustomizationPreview() {
                         className='z-2 w-[19%] absolute'
                     />
                 )}
-                <div ref={mountRef} 
+                <div
+                    ref={mountRef}
                     className='z-4 h-140 w-70 absolute self-center scale-96'
                 />
                 {isLoading && (

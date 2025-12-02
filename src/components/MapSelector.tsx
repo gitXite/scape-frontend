@@ -407,7 +407,6 @@ function MapSelector({ mode }: MapSelectorProps) {
             </div>
             {showModal && (
                 <ModelPreview
-                    geometry={STLCache.geometry}
                     showModal={showModal}
                     setShowModal={setShowModal}
                     className='drop-shadow-2xl drop-shadow-black/50'
