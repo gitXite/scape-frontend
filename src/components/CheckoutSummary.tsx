@@ -57,6 +57,14 @@ function CheckoutSummary() {
                 }
             );
             const data = await response.json();
+            if (!data.ok) {
+                setIsLoading(false);
+                toast.error(data.message, {
+                    description: 'Something went wrong'
+                });
+                return;
+            }
+
             setIsLoading(false);
             toast.success(data.message, {
                 description: 'Check your email',
