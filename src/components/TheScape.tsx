@@ -84,26 +84,26 @@ function TheScape() {
                         inView3 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <Carousel setApi={setApi} className='w-3/4 max-sm:w-full rounded-sm drop-shadow-xl'>
+                    <Carousel setApi={setApi} className='w-1/2 max-sm:w-full rounded-sm drop-shadow-xl'>
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
                                 <img
-                                    src='/images/product-image-straight.png'
-                                    alt='Image 1'
+                                    src='/images/studio_product_oak.webp'
+                                    alt='Studio image oak frame'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
                             <CarouselItem className=''>
                                 <img
-                                    src='/images/product-image-angle.png'
-                                    alt='Image 2'
+                                    src='/images/studio_product_model.webp'
+                                    alt='Studio image model'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
                             <CarouselItem className=''>
                                 <img
-                                    src='/images/product-image-angle-alps.png'
-                                    alt='Image 3'
+                                    src='/images/studio_product_black.webp'
+                                    alt='Studio image black frame'
                                     className='rounded-sm'
                                 />
                             </CarouselItem>

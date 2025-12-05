@@ -104,7 +104,7 @@ function CheckoutSummary() {
                 />
                 <div className='flex justify-between items-center py-5 font-normal tracking-wide'>
                     <img
-                        src='/images/product-image-straight.png'
+                        src='/images/studio_product_model.webp'
                         alt='Model'
                         className='w-50 rounded-sm object-cover'
                     />
