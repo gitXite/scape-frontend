@@ -1,4 +1,4 @@
-import type { BufferGeometry } from 'three';
+
 
 export type StoredStates = {
     coordinates: boolean,
@@ -8,5 +8,5 @@ export type StoredStates = {
 
 export type STLObject = {
     url: string | null,
-    geometry: BufferGeometry | null
+    buffer: ArrayBuffer | null
 };

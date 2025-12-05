@@ -11,6 +11,8 @@ import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { STLCache } from '@/utils/cache';
 import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
+import { parseSTL } from '@/utils/parseSTL';
+import type { STLObject } from '@/types';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -76,7 +78,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         !!localStorage.getItem('coordinates')
     );
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    // const [errorMessage, setErrorMessage] = useState('');
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -128,7 +130,7 @@ function MapSelector({ mode }: MapSelectorProps) {
         setCenter(clickedPoint);
     }, []);
 
-    const handleCapture = async () => {
+    const handleCapture = async (): Promise<STLObject | undefined> => {
         setIsLoading(true);
 
         if (rectangleBounds) {
@@ -177,18 +179,17 @@ function MapSelector({ mode }: MapSelectorProps) {
                             description:
                                 'You can now proceed or preview your model.',
                         });
+                        return stlObject;
                     } catch (err: any) {
                         console.error(err.message);
                         toast.error(err.message, {
                             description: 'Please try again later',
                         });
-                        setErrorMessage(err.message);
+                        // setErrorMessage(err.message);
                         STLCache.invalidate();
+                    } finally {
                         setIsLoading(false);
-                        return;
                     }
-
-                    setIsLoading(false);
                     break;
             }
         }
@@ -345,7 +346,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                             mode === 'dummy' ||
                             !hasCoordinates ||
                             isLoading ||
-                            !STLCache.geometry
+                            !STLCache.objectUrl
                         }
                         className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
@@ -354,7 +355,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     <Button
                         className='mt-8 py-8 pl-10 pr-10 min-w-60 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
                         disabled={isLoading}
-                        onClick={handleCapture}
+                        onClick={() => handleCapture().then(stlObject => parseSTL(stlObject?.buffer!))}
                     >
                         {isLoading ? (
                             <Spinner variant={'ellipsis'} />
@@ -409,7 +410,6 @@ function MapSelector({ mode }: MapSelectorProps) {
                     showModal={showModal}
                     setShowModal={setShowModal}
                     className='drop-shadow-2xl drop-shadow-black/50'
-                    errorMessage={errorMessage}
                 />
             )}
         </div>

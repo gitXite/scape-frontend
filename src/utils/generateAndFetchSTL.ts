@@ -1,6 +1,5 @@
 import { STLCache } from './cache';
 import type { STLObject } from '@/types';
-import { parseSTL } from './parseSTL';
 
 export const generateAndFetchSTL = async (): Promise<STLObject | null> => {
     const coords = JSON.parse(localStorage.getItem('coordinates') || '{}');
@@ -21,7 +20,7 @@ export const generateAndFetchSTL = async (): Promise<STLObject | null> => {
     if (STLCache.geometry && STLCache.cacheKey === key) {
         return {
             url: STLCache.objectUrl!,
-            geometry: STLCache.geometry
+            buffer: STLCache.rawBuffer
         };
     }
     
@@ -48,11 +47,9 @@ export const generateAndFetchSTL = async (): Promise<STLObject | null> => {
         const url = URL.createObjectURL(blob);
         STLCache.objectUrl = url;
 
-        const geometry = parseSTL(arrayBuffer);
-
         return {
             url,
-            geometry
+            buffer: arrayBuffer
         };
     } catch (err) {
         console.error('Error fetching STL: ', err);

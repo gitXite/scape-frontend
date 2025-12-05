@@ -21,79 +21,89 @@ function CustomizationPreview() {
     const { frameType, passePartoutType } = useCustomization();
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
+    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+    const sceneRef = useRef<THREE.Scene | null>(null);
+    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
 
     const frame = frameImages[frameType] ?? '';
     const passePartout = passePartoutImages[passePartoutType] ?? '';
 
     useEffect(() => {
-        const geometry = STLCache.geometry;
-        if (!mountRef.current || !geometry) return;
         setIsLoading(true);
 
-        const width = mountRef.current.clientWidth;
-        const height = mountRef.current.clientHeight;
+        const geometry = STLCache.geometry;
+        const mesh = STLCache.mesh;
+        if (!mountRef.current || !geometry || !mesh) return;
 
-        const scene = new THREE.Scene();
-        scene.background = null;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (!mountRef.current) return;
 
-        const camera = new THREE.PerspectiveCamera(
-            50,
-            mountRef.current.clientWidth / mountRef.current.clientHeight,
-            0.1,
-            5000
-        );
+                const width = mountRef.current.clientWidth;
+                const height = mountRef.current.clientHeight;
 
-        const renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true,
+                const scene = new THREE.Scene();
+                scene.background = null;
+                sceneRef.current = scene;
+
+                const camera = new THREE.PerspectiveCamera(
+                    50,
+                    mountRef.current.clientWidth /
+                        mountRef.current.clientHeight,
+                    0.1,
+                    5000
+                );
+                cameraRef.current = camera;
+
+                const renderer = new THREE.WebGLRenderer({
+                    antialias: true,
+                    alpha: true,
+                });
+                renderer.setSize(width, height);
+                mountRef.current!.innerHTML = '';
+                mountRef.current.appendChild(renderer.domElement);
+                rendererRef.current = renderer;
+
+                const light = new THREE.DirectionalLight(0xffffff, 3);
+                light.position.set(1, 1, 1);
+                scene.add(light);
+
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+                scene.add(ambientLight);
+
+                geometry.computeBoundingBox();
+                const center = new THREE.Vector3();
+                geometry.boundingBox?.getCenter(center);
+                geometry.center();
+
+                const box = geometry.boundingBox!;
+                const currentWidth = box.max.x - box.min.x;
+                const currentHeight = box.max.y - box.min.y;
+
+                const targetWidth = 140;
+                const targetHeight = 190;
+
+                const scaleX = targetWidth / currentWidth;
+                const scaleY = targetHeight / currentHeight;
+                const scaleZ = Math.max(scaleX, scaleY);
+
+                mesh.scale.set(scaleX, scaleY, scaleZ);
+                scene.add(mesh);
+
+                geometry.center();
+
+                const size = new THREE.Vector3();
+                box.getSize(size);
+                const maxDim = Math.max(targetWidth, targetHeight, size.z);
+                camera.position.z = maxDim * 1.5;
+            });
+            setIsLoading(false);
         });
-        renderer.setSize(width, height);
-        mountRef.current!.innerHTML = '';
-        mountRef.current.appendChild(renderer.domElement);
-
-        const light = new THREE.DirectionalLight(0xffffff, 3);
-        light.position.set(1, 1, 1);
-        scene.add(light);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-
-        geometry.computeBoundingBox();
-        const center = new THREE.Vector3();
-        geometry.boundingBox?.getCenter(center);
-        geometry.center();
-
-        const box = geometry.boundingBox!;
-        const currentWidth = box.max.x - box.min.x;
-        const currentHeight = box.max.y - box.min.y;
-
-        const targetWidth = 140;
-        const targetHeight = 190;
-
-        const scaleX = targetWidth / currentWidth;
-        const scaleY = targetHeight / currentHeight;
-        const scaleZ = Math.max(scaleX, scaleY);
-
-        const material = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-        });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.scale.set(scaleX, scaleY, scaleZ);
-        scene.add(mesh);
-
-        geometry.center();
-
-        const size = new THREE.Vector3();
-        box.getSize(size);
-        const maxDim = Math.max(targetWidth, targetHeight, size.z);
-        camera.position.z = maxDim * 1.5;
-
-        setIsLoading(false);
 
         let frameID: number;
         const animate = () => {
             frameID = requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+            rendererRef.current?.render(sceneRef.current!, cameraRef.current!);
         };
         animate();
 
@@ -102,11 +112,11 @@ function CustomizationPreview() {
             const width = mountRef.current.clientWidth;
             const height = mountRef.current.clientHeight;
 
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
+            cameraRef.current!.aspect = width / height;
+            cameraRef.current?.updateProjectionMatrix();
 
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            rendererRef.current?.setSize(width, height);
+            rendererRef.current?.setPixelRatio(window.devicePixelRatio);
         };
 
         window.addEventListener('resize', handleResize);
@@ -114,9 +124,8 @@ function CustomizationPreview() {
         return () => {
             window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(frameID);
-            renderer.dispose();
 
-            scene.traverse((obj) => {
+            sceneRef.current?.traverse((obj) => {
                 if (obj instanceof THREE.Mesh) {
                     obj.geometry.dispose();
                     if (obj.material instanceof THREE.Material) {
@@ -125,12 +134,19 @@ function CustomizationPreview() {
                 }
             });
 
-            if (
-                mountRef.current &&
-                renderer.domElement.parentNode === mountRef.current
-            ) {
-                mountRef.current.removeChild(renderer.domElement);
+            if (rendererRef.current) {
+                rendererRef.current.dispose();
+                rendererRef.current.forceContextLoss();
+                if (
+                    mountRef.current &&
+                    rendererRef.current?.domElement.parentNode === mountRef.current
+                ) {
+                    mountRef.current.removeChild(rendererRef.current?.domElement);
+                }
+                rendererRef.current = null;
             }
+            cameraRef.current = null;
+            sceneRef.current = null;
         };
     }, []);
 

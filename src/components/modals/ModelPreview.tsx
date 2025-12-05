@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import { useEffect, useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -9,22 +8,26 @@ import { X } from 'lucide-react';
 import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
 import { STLCache } from '@/utils/cache';
+import { setupThreeJS } from '@/utils/setupThreeJS';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 
 type ModelPreviewProps = {
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     className: string;
-    errorMessage?: string;
 };
 
 function ModelPreview({
     showModal,
     setShowModal,
     className,
-    errorMessage,
 }: ModelPreviewProps) {
     const [isLoading, setIsLoading] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
+    const controlsRef = useRef<TrackballControls | null>(null);
+    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+    const sceneRef = useRef<THREE.Scene | null>(null);
+    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
 
     useHotkeys('escape', (event) => {
         event.preventDefault();
@@ -32,82 +35,30 @@ function ModelPreview({
     });
 
     useEffect(() => {
-        const geometry = STLCache.geometry;
-        if (!mountRef.current || !geometry) return;
         setIsLoading(true);
 
-        const width = mountRef.current.clientWidth;
-        const height = mountRef.current.clientHeight;
+        const geometry = STLCache.geometry;
+        const mesh = STLCache.mesh;
+        if (!mountRef.current || !geometry || !mesh) return;
 
-        const scene = new THREE.Scene();
-        scene.background = null;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const three = setupThreeJS(mountRef, geometry, mesh);
+                if (!three) return;
 
-        const camera = new THREE.PerspectiveCamera(
-            50,
-            mountRef.current.clientWidth / mountRef.current.clientHeight,
-            0.1,
-            5000
-        );
-
-        const renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true,
+                controlsRef.current = three.controls;
+                cameraRef.current = three.camera;
+                sceneRef.current = three.scene;
+                rendererRef.current = three.renderer;
+            });
+            setIsLoading(false);
         });
-        renderer.setSize(width, height);
-        mountRef.current!.innerHTML = '';
-        mountRef.current.appendChild(renderer.domElement);
-
-        const controls = new TrackballControls(camera, renderer.domElement);
-        controls.staticMoving = false;
-        controls.rotateSpeed = window.innerWidth > 640 ? 5.0 : 1.0;
-        controls.dynamicDampingFactor = window.innerWidth > 640 ? 0.2 : 0.1;
-        controls.panSpeed = window.innerWidth > 640 ? 0.3 : 0.05;
-
-        const light = new THREE.DirectionalLight(0xffffff, 3);
-        light.position.set(1, 1, 1);
-        scene.add(light);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-
-        geometry.computeBoundingBox();
-        const center = new THREE.Vector3();
-        geometry.boundingBox?.getCenter(center);
-        geometry.center();
-
-        const box = geometry.boundingBox!;
-        const currentWidth = box.max.x - box.min.x;
-        const currentHeight = box.max.y - box.min.y;
-
-        const targetWidth = 140;
-        const targetHeight = 190;
-
-        const scaleX = targetWidth / currentWidth;
-        const scaleY = targetHeight / currentHeight;
-        const scaleZ = Math.max(scaleX, scaleY);
-
-        const material = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-        });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.scale.set(scaleX, scaleY, scaleZ);
-        scene.add(mesh);
-
-        geometry.center();
-
-        const size = new THREE.Vector3();
-        box.getSize(size);
-        const maxDim = Math.max(targetWidth, targetHeight, size.z);
-        camera.position.z = maxDim * 1.5;
-        controls.update();
-
-        setIsLoading(false);
 
         let frameID: number;
         const animate = () => {
             frameID = requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
+            controlsRef.current?.update();
+            rendererRef.current?.render(sceneRef.current!, cameraRef.current!);
         };
         animate();
 
@@ -116,11 +67,11 @@ function ModelPreview({
             const width = mountRef.current.clientWidth;
             const height = mountRef.current.clientHeight;
 
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
+            cameraRef.current!.aspect = width / height;
+            cameraRef.current?.updateProjectionMatrix();
 
-            renderer.setSize(width, height);
-            renderer.setPixelRatio(window.devicePixelRatio);
+            rendererRef.current?.setSize(width, height);
+            rendererRef.current?.setPixelRatio(window.devicePixelRatio);
         };
 
         window.addEventListener('resize', handleResize);
@@ -128,10 +79,9 @@ function ModelPreview({
         return () => {
             window.removeEventListener('resize', handleResize);
             cancelAnimationFrame(frameID);
-            renderer.dispose();
-            controls.dispose();
+            controlsRef.current?.dispose();
 
-            scene.traverse((obj) => {
+            sceneRef.current?.traverse((obj) => {
                 if (obj instanceof THREE.Mesh) {
                     obj.geometry.dispose();
                     if (obj.material instanceof THREE.Material) {
@@ -140,14 +90,22 @@ function ModelPreview({
                 }
             });
 
-            if (
-                mountRef.current &&
-                renderer.domElement.parentNode === mountRef.current
-            ) {
-                mountRef.current.removeChild(renderer.domElement);
+            if (rendererRef.current) {
+                rendererRef.current.dispose();
+                rendererRef.current.forceContextLoss();
+                if (
+                    mountRef.current &&
+                    rendererRef.current?.domElement.parentNode === mountRef.current
+                ) {
+                    mountRef.current.removeChild(rendererRef.current?.domElement);
+                }
+                rendererRef.current = null;
             }
+            controlsRef.current = null;
+            cameraRef.current = null;
+            sceneRef.current = null;
         };
-    }, []);
+    }, [STLCache.objectUrl]);
 
     return (
         <>
@@ -164,11 +122,6 @@ function ModelPreview({
                     className
                 )}
             >
-                {errorMessage && (
-                    <p className='text-neutral-100 relative justify-self-center top-2/4 -translate-y-2/4 font-normal'>
-                        {errorMessage}
-                    </p>
-                )}
                 {isLoading && (
                     <Spinner
                         variant='circle'
