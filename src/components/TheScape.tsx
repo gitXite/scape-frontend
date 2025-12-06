@@ -37,12 +37,12 @@ function TheScape() {
     return (
         <div
             id='thescape'
-            className='grid grid-cols-2 max-lg:flex max-lg:flex-col gap-x-20 w-full bg-neutral-100 min-h-[200vh] px-10 max-sm:px-5 py-10'
+            className='flex flex-col w-full bg-neutral-100 min-md:h-[200vh] min-h-[200vh] px-10 max-sm:px-5 py-10'
         >
-            <div className='flex flex-col items-center gap-y-80 mt-20 max-lg:gap-y-40'>
+            <div className='flex h-1/2 w-full items-center mt-20 max-md:flex-col max-md:gap-30'>
                 <div
                     ref={ref1}
-                    className={`place-items-center transition-opacity duration-600 ease-in ${
+                    className={`relative bottom-10 max-md:bottom-0 w-1/2 max-md:w-full place-items-center transition-opacity duration-600 ease-in ${
                         inView1 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
@@ -59,32 +59,12 @@ function TheScape() {
                     </p>
                 </div>
                 <div
-                    ref={ref2}
-                    className={`place-items-center mt-80 max-lg:mt-0 transition-opacity duration-600 ease-in ${
-                        inView2 ? 'opacity-100' : 'opacity-0'
-                    }`}
-                >
-                    <h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-neutral-900 pb-10'>
-                        Made By MD
-                    </h1>
-                    <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
-                        We are Maren and Daniel, a newly engaged couple turning our shared creativity into a meaningful side project as we save up for our wedding. 
-                        Maren brings her background in architecture, an eye for design, and a passion for spatial experiences. 
-                        Daniel contributes his skills as a data engineering and computer science student, 
-                        combining techical insight with problem solving curiosity. 
-                        Together, we've created a small but thoughtful venture that blends design, technology, and a love for crafting something special. 
-                    </p>
-                </div>
-            </div>
-
-            <div className='flex flex-col items-center justify-center gap-y-80 max-lg:gap-y-40 mt-40'>
-                <div
                     ref={ref3}
-                    className={`place-items-center transition-opacity duration-600 ease-in ${
+                    className={`place-items-center transition-opacity duration-600 ease-in h-full w-1/2 max-md:w-full ${
                         inView3 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                    <Carousel setApi={setApi} className='w-1/2 max-sm:w-full rounded-sm drop-shadow-xl'>
+                    <Carousel setApi={setApi} className='w-1/2 max-md:w-3/4 max-sm:w-full rounded-sm drop-shadow-xl'>
                         <CarouselContent className='rounded-sm'>
                             <CarouselItem className=''>
                                 <img
@@ -127,9 +107,29 @@ function TheScape() {
                         <CarouselNext className='bg-neutral-900 border-neutral-300 hover:bg-neutral-200 active:bg-white max-sm:hidden' />
                     </Carousel>
                 </div>
+            </div>
+
+            <div className='flex h-1/2 w-full mt-20 max-md:mt-40 items-center max-md:flex-col max-md:gap-30'>
+                <div
+                    ref={ref2}
+                    className={`relative bottom-40 place-items-center transition-opacity duration-600 ease-in ${
+                        inView2 ? 'opacity-100' : 'opacity-0'
+                    }`}
+                >
+                    <h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-neutral-900 pb-10'>
+                        Made By MD
+                    </h1>
+                    <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
+                        We are Maren and Daniel, a newly engaged couple turning our shared creativity into a meaningful side project as we save up for our wedding. 
+                        Maren brings her background in architecture, an eye for design, and a passion for spatial experiences. 
+                        Daniel contributes his skills as a data engineering and computer science student, 
+                        combining techical insight with problem solving curiosity. 
+                        Together, we've created a small but thoughtful venture that blends design, technology, and a love for crafting something special. 
+                    </p>
+                </div>
                 <div
                     ref={ref4}
-                    className={`place-items-center mt-60 max-lg:mt-0 transition-opacity duration-600 ease-in ${
+                    className={`relative top-40 place-items-center transition-opacity duration-600 ease-in ${
                         inView4 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
