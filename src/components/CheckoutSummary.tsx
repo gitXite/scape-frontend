@@ -57,7 +57,7 @@ function CheckoutSummary() {
                 }
             );
             const data = await response.json();
-            if (!data.ok) {
+            if (!response.ok) {
                 setIsLoading(false);
                 toast.error(data.message, {
                     description: 'Something went wrong'
@@ -163,7 +163,7 @@ function CheckoutSummary() {
             ) : (
                 <Button
                     onClick={sendSTL}
-                    disabled
+                    // disabled
                     className='h-12 w-3/9 rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white cursor-pointer'
                 >
                     Order Now
