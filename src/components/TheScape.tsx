@@ -87,6 +87,13 @@ function TheScape() {
                                     className='rounded-sm'
                                 />
                             </CarouselItem>
+                            <CarouselItem className=''>
+                                <img
+                                    src='/images/studio_product_collection.webp'
+                                    alt='Studio collection'
+                                    className='rounded-sm'
+                                />
+                            </CarouselItem>
                         </CarouselContent>
 
                         <div className='absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2'>
