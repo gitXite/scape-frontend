@@ -32,6 +32,7 @@ interface Checkout {
     scale: number;
     frame: string;
     passepartout: string;
+    reference: string | null;
 }
 
 function CheckoutSummary() {
@@ -46,6 +47,7 @@ function CheckoutSummary() {
     const coords = localStorage.getItem('coordinates');
     const verticalScale = localStorage.getItem('verticalScale');
     const boxSize = localStorage.getItem('boxSize');
+    const reference = localStorage.getItem('reference');
     const checkout: Checkout = {
         coordinates: {
             north: JSON.parse(coords!).north,
@@ -57,6 +59,7 @@ function CheckoutSummary() {
         scale: [parseInt(boxSize!)][0],
         frame: frameType,
         passepartout: passePartoutType,
+        reference: reference,
     };
 
     // const sendSTL = async () => {
@@ -116,8 +119,9 @@ function CheckoutSummary() {
                 },
                 body: JSON.stringify(checkout),
             });
-            const data = await response.json();
+            const { data, orderId } = await response.json();
             setSession(data);
+            localStorage.setItem('reference', orderId);
         } catch (err) {
             toast.error('Vipps error');
         }
