@@ -5,6 +5,8 @@ import { CustomizationProvider } from '@/context/CustomizationContext';
 
 
 function Checkout() {
+    
+
     return (
         <div className='flex-col min-h-full w-full bg-neutral-100'>
             <div className='flex min-h-svh w-full items-center content-center py-10'>

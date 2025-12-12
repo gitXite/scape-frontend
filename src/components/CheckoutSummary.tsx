@@ -124,6 +124,8 @@ function CheckoutSummary() {
             localStorage.setItem('reference', orderId);
         } catch (err) {
             toast.error('Vipps error');
+        } finally {
+            setIsLoading(false);
         }
     }
 
