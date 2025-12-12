@@ -11,7 +11,7 @@ function Home() {
             <Header />
             <Hero />
             <TheScape />
-            <MapSelector mode='dummy' />
+            <MapSelector mode='real' />
             <Footer />
         </div>
     );
