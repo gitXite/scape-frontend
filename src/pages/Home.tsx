@@ -12,9 +12,13 @@ function Home() {
     useEffect(() => {
         async function checkCallback() {
             if (!reference) return;
-            
+
             try {
-                const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/checkout?reference=${reference}`);
+                const res = await fetch(
+                    `${
+                        import.meta.env.VITE_APP_API_URL
+                    }/api/checkout?reference=${reference}`
+                );
                 const status = await res.json();
 
                 switch (status) {

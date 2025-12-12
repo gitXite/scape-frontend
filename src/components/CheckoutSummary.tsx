@@ -4,9 +4,9 @@ import { useCustomization } from '@/context/CustomizationContext';
 import { toast } from 'sonner';
 
 import { useState } from 'react';
-// import { useNavigate } from 'react-router';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import CheckoutPayment from './CheckoutPayment';
+import type { Checkout } from '@/types';
 
 const frameImages: Record<string, string> = {
     oak: '/images/frame_oak.webp',
@@ -21,22 +21,8 @@ const passePartoutImages: Record<string, string> = {
     without: '',
 };
 
-interface Checkout {
-    coordinates: {
-        north: number;
-        south: number;
-        east: number;
-        west: number;
-    };
-    verticalScale: number;
-    scale: number;
-    frame: string;
-    passepartout: string;
-    reference: string | null;
-}
 
 function CheckoutSummary() {
-    // const navigate = useNavigate();
     const { frameType, passePartoutType } = useCustomization();
     const [isLoading, setIsLoading] = useState(false);
     const [session, setSession] = useState(null);
@@ -61,53 +47,6 @@ function CheckoutSummary() {
         passepartout: passePartoutType,
         reference: reference,
     };
-
-    // const sendSTL = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //         const response = await fetch(
-    //             `${import.meta.env.VITE_APP_API_URL}/api/order/send`,
-    //             {
-    //                 method: 'POST',
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 body: JSON.stringify(checkout),
-    //             }
-    //         );
-    //         const data = await response.json();
-    //         if (!response.ok) {
-    //             setIsLoading(false);
-    //             toast.error(data.message, {
-    //                 description: 'Something went wrong',
-    //             });
-    //             return;
-    //         }
-
-    //         setIsLoading(false);
-    //         toast.success(data.message, {
-    //             description: 'Check your email',
-    //         });
-
-    //         localStorage.removeItem('coordinates');
-    //         localStorage.removeItem('verticalScale');
-    //         localStorage.removeItem('boxSize');
-    //         localStorage.removeItem('selectedFrame');
-    //         localStorage.removeItem('selectedPassePartout');
-    //         localStorage.setItem('step', '0');
-    //         setTimeout(() => {
-    //             window.dispatchEvent(new Event('coordinates-updated'));
-    //             window.dispatchEvent(new Event('frame-removed'));
-    //             window.dispatchEvent(new Event('passe-partout-removed'));
-    //         });
-
-    //         navigate('/');
-    //     } catch (err: any) {
-    //         setIsLoading(false);
-    //         toast.error(`${err.message}`, {
-    //             description: 'Please try again later',
-    //         });
-    //         console.error('Error:', err);
-    //     }
-    // };
 
     async function startCheckout() {
         setIsLoading(true);

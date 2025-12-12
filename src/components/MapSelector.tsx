@@ -217,6 +217,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                     localStorage.removeItem('boxSize');
                     localStorage.removeItem('selectedFrame');
                     localStorage.removeItem('selectedPassePartout');
+                    localStorage.setItem('step', '0');
                     setTimeout(() => {
                         window.dispatchEvent(new Event('coordinates-updated'));
                         window.dispatchEvent(new Event('frame-removed'));
