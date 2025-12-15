@@ -31,12 +31,12 @@ function PassepartoutCard({
                     alt={`${type.charAt(0).toUpperCase + type.slice(1)} Passepartout`}
                     className='w-30 mb-2 rounded'
                 />
-                <p className='text-neutral-500 w-60 pt-2 px-2'>
+                {/* <p className='text-neutral-500 w-60 pt-2 px-2'>
                     {text}
-                </p>
-                <p className='text-neutral-500 w-60 pb-2 px-2'>
+                </p> */}
+                {/* <p className='text-neutral-500 w-60 pb-2 px-2'>
                     {desc}
-                </p>
+                </p> */}
                 <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                 </p>

@@ -26,14 +26,14 @@ function FrameCard({ frameType, type, handleClick, text, desc }: FrameCardParams
                     alt={`${type.charAt(0).toUpperCase + type.slice(1)} Frame`}
                     className='w-30 rounded mb-2'
                 />
-                <p className='text-neutral-500 w-60 pt-2 px-2'>
+                {/* <p className='text-neutral-500 w-60 pt-2 px-2'>
                     {text}
-                    {/* Fitted with an oak frame - */}
-                </p>
-                <p className='text-neutral-500 w-60 pb-2 px-2'>
+                    Fitted with an oak frame -
+                </p> */}
+                {/* <p className='text-neutral-500 w-60 pb-2 px-2'>
                     {desc}
-                    {/* Natural and timeless */}
-                </p>
+                    Natural and timeless
+                </p> */}
                 <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                 </p>
