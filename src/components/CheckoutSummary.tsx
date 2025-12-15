@@ -89,7 +89,7 @@ function CheckoutSummary() {
                                 className='w-40 rounded-sm object-cover'
                             />
                             <h2 className='text-neutral-900'>Scape</h2>
-                            <p className='text-neutral-600'>349kr</p>
+                            <p className='text-neutral-600'>399kr</p>
                         </div>
                         <div className='flex justify-between items-center py-2 font-normal tracking-wide'>
                             <div className='flex h-60 w-40 justify-center items-center'>
@@ -122,13 +122,13 @@ function CheckoutSummary() {
                         </div>
                         <div className='flex justify-between font-normal tracking-wide'>
                             <p className='text-neutral-900'>Shipping</p>
-                            <p className='text-neutral-600'>79kr</p>
+                            <p className='text-neutral-600'>49kr</p>
                         </div>
                     </div>
                     <Separator orientation='horizontal' />
                     <div className='flex justify-between py-5 font-medium tracking-wide'>
                         <h1 className='text-neutral-900'>Total</h1>
-                        <p className='text-neutral-900'>576kr</p>
+                        <p className='text-neutral-900'>596kr</p>
                     </div>
                     {isLoading ? (
                         <Button
