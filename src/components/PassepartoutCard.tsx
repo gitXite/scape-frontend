@@ -12,8 +12,8 @@ function PassepartoutCard({
     passePartoutType,
     type,
     handleClick,
-    text,
-    desc,
+    // text,
+    // desc,
 }: PassepartoutCardParams) {
     return (
         <label className='flex flex-col h-fit items-center cursor-pointer max-2xl:scale-90'>

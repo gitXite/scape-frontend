@@ -9,7 +9,13 @@ interface FrameCardParams {
     desc: string;
 }
 
-function FrameCard({ frameType, type, handleClick, text, desc }: FrameCardParams) {
+function FrameCard({
+    frameType,
+    type,
+    handleClick,
+    // text,
+    // desc,
+}: FrameCardParams) {
     return (
         <label className='flex flex-col h-fit cursor-pointer max-2xl:scale-90'>
             <input
