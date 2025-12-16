@@ -127,7 +127,7 @@ function TheScape() {
                         Made By MD
                     </h1>
                     <p className='w-10/12 max-sm:w-full text-center px-5 text-neutral-700 leading-8'>
-                        We are Maren and Daniel, a newly engaged couple turning our shared creativity into a meaningful side project as we save up for our wedding. 
+                        We are Maren and Daniel, a couple turning our shared creativity into a meaningful side project.  
                         Maren brings her background in architecture, an eye for design, and a passion for spatial experiences. 
                         Daniel contributes his skills as a data engineering and computer science student, 
                         combining techical insight with problem solving curiosity. 
