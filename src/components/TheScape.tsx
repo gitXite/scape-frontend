@@ -119,7 +119,7 @@ function TheScape() {
             <div className='flex h-1/2 w-full mt-20 max-md:mt-40 items-center max-md:flex-col max-md:gap-30'>
                 <div
                     ref={ref2}
-                    className={`relative bottom-40 place-items-center transition-opacity duration-600 ease-in ${
+                    className={`relative bottom-40 max-md:bottom-10 place-items-center transition-opacity duration-600 ease-in ${
                         inView2 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
@@ -136,7 +136,7 @@ function TheScape() {
                 </div>
                 <div
                     ref={ref4}
-                    className={`relative top-40 place-items-center transition-opacity duration-600 ease-in ${
+                    className={`relative top-40 max-md:top-0 place-items-center transition-opacity duration-600 ease-in ${
                         inView4 ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
