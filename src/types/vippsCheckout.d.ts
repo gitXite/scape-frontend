@@ -1,3 +1,7 @@
-declare const VippsCheckout: any;
+declare global {
+    interface Window {
+        VippsCheckout: any;
+    }
+}
 
 export {};
