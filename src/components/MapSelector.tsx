@@ -33,9 +33,9 @@ const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
 const containerStyle: React.CSSProperties = {
     height: '80%',
-    width: '80%',
-    boxShadow: '5px 5px 15px 2px rgba(0, 0, 0, 0.3)',
-    borderRadius: '5px',
+    width: window.innerWidth < 480 ? '100%' : '80%',
+    boxShadow: '2px 2px 7px 2px rgba(0, 0, 0, 0.2)',
+    borderRadius: window.innerWidth < 480 ? '0px' : '5px',
 };
 
 function MapSelector({ mode }: MapSelectorProps) {
@@ -266,7 +266,7 @@ function MapSelector({ mode }: MapSelectorProps) {
     return (
         <div
             id='map'
-            className='flex flex-col h-full w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center pt-20'
+            className='flex flex-col h-svh w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center pt-20'
         >
             <div
                 ref={ref}
@@ -309,7 +309,7 @@ function MapSelector({ mode }: MapSelectorProps) {
                 </LoadScript>
 
                 <div className='flex w-3/5 max-2xl:w-3/4 max-lg:w-full place-items-center self-center justify-evenly'>
-                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:right-4/7 items-center group'>
+                    <div className='flex flex-col w-40 max-md:w-30 max-sm:w-40 relative max-sm:absolute max-sm:bottom-8 min-sm:top-4 max-sm:right-4/7 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
@@ -349,12 +349,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                             isLoading ||
                             !STLCache.objectUrl
                         }
-                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
+                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 max-sm:mt-5 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
                     >
                         Preview
                     </button>
                     <Button
-                        className='mt-8 py-8 pl-10 pr-10 min-w-60 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
+                        className='mt-8 max-sm:mt-5 py-8 pl-10 pr-10 min-w-60 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
                         disabled={isLoading}
                         onClick={() => handleCapture().then(stlObject => parseSTL(stlObject?.buffer!))}
                     >
@@ -365,12 +365,12 @@ function MapSelector({ mode }: MapSelectorProps) {
                         )}
                     </Button>
                     <button
-                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
+                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 max-sm:mt-5 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600'
                         onClick={resetMap}
                     >
                         Reset
                     </button>
-                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:left-4/7 items-center group'>
+                    <div className='flex flex-col w-40 max-md:w-30 max-sm:w-40 relative max-sm:absolute max-sm:bottom-8 min-sm:top-4 max-sm:left-4/7 items-center group'>
                         <HoverCard>
                             <HoverCardTrigger>
                                 <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>

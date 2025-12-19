@@ -40,7 +40,7 @@ function GetStarted() {
     }, [activeStep]);
 
     return (
-        <div className='bg-neutral-100 h-svh w-full'>
+        <div className='bg-neutral-100 min-h-svh min-sm:h-svh w-full'>
             <BackButton page='home' />
             <HoverCard>
                 <HoverCardTrigger className='absolute right-10 top-9 max-md:hidden z-5'>

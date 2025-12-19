@@ -42,7 +42,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     }, []);
 
     const TimelineComponent = (
-        <div className='relative top-10 z-5 w-full max-lg:w-2/3 max-w-2xl mx-auto'>
+        <div className='relative top-10 z-5 w-full max-lg:w-2/3 max-sm:w-5/9 max-w-2xl mx-auto'>
             
             <div className='absolute top-1/2 left-0 w-full h-0.5 bg-neutral-200 transform -translate-y-1/2' />
 
@@ -71,12 +71,12 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
         <div className='h-full bg-neutral-100'>
             {steps[currentStep].component}
 
-            <div className='flex justify-between max-sm:absolute max-sm:top-43 max-sm:w-full'>
+            <div className='flex justify-between max-sm:absolute max-sm:top-32 max-sm:w-full'>
                 <RippleButton
                     variant='outline'
                     onClick={() => onStepChange(currentStep - 1)}
                     disabled={currentStep === 0}
-                    className='w-22 text-neutral-900 bg-neutral-100 border-neutral-300 border-1 hover:bg-neutral-200 hover:drop-shadow-md active:bg-white ml-50 bottom-25 max-2xl:ml-10'
+                    className='w-22 max-[480px]:w-20 max-sm:scale-90 text-neutral-900 bg-neutral-100 border-neutral-300 border-1 hover:bg-neutral-200 hover:drop-shadow-md active:bg-white max-sm:ml-2 ml-10 bottom-20 max-sm:bottom-25 max-2xl:ml-10'
                 >
                     Previous
                 </RippleButton>
@@ -87,7 +87,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                         (currentStep === 1 && (!storedStates.coordinates || !storedStates.selectedFrame)) ||
                         (currentStep === 2 && (!storedStates.coordinates || !storedStates.selectedFrame || !storedStates.selectedPassePartout))
                     }
-                    className='w-22 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white hover:drop-shadow-md mr-50 bottom-25 max-2xl:mr-10'
+                    className='w-22 max-[480px]:w-20 max-sm:scale-90 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white hover:drop-shadow-md mr-10 max-sm:mr-2 bottom-20 max-sm:bottom-25 max-2xl:mr-10'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
                 </RippleButton>

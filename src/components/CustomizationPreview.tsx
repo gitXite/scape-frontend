@@ -151,20 +151,20 @@ function CustomizationPreview() {
     }, []);
 
     return (
-        <div className='min-h-full w-full'>
+        <div className='w-full'>
             <div className='flex h-full justify-center place-items-center'>
                 {frameType && (
                     <img
                         src={frame}
                         alt='Preview Frame'
-                        className='z-3 w-[20%] absolute shadow-md'
+                        className='z-3 w-[20%] max-md:w-[30%] absolute shadow-md'
                     />
                 )}
                 {passePartoutType && (
                     <img
                         src={passePartout}
                         alt='Preview Passe-Partout'
-                        className='z-2 w-[19%] absolute'
+                        className='z-2 w-[19%] max-md:w-[29%] absolute'
                     />
                 )}
                 <div
@@ -175,7 +175,7 @@ function CustomizationPreview() {
                     <Spinner
                         variant='circle'
                         size={42}
-                        className='absolute top-1/2 -translate-y-1/2 justify-self-center text-neutral-900'
+                        className='justify-self-center text-neutral-900'
                     />
                 )}
             </div>
