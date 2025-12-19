@@ -151,33 +151,35 @@ function CustomizationPreview() {
     }, []);
 
     return (
-        <div className='w-full'>
-            <div className='flex h-full justify-center place-items-center'>
-                {frameType && (
-                    <img
-                        src={frame}
-                        alt='Preview Frame'
-                        className='z-3 w-[20%] max-md:w-[30%] absolute shadow-md'
+        <div className='h-full w-full'>
+            <div className='flex h-full w-full justify-center place-items-center'>
+                <div className='flex relative w-[56%] max-lg:w-[25%] max-sm:w-[35%] justify-center'>
+                    {frameType && (
+                        <img
+                            src={frame}
+                            alt='Preview Frame'
+                            className='z-3 shadow-md w-full'
+                        />
+                    )}
+                    {passePartoutType && (
+                        <img
+                            src={passePartout}
+                            alt='Preview Passe-Partout'
+                            className='z-2 absolute self-center w-[94%]'
+                        />
+                    )}
+                    <div
+                        ref={mountRef}
+                        className='z-4 h-[102%] w-[70%] absolute self-center'
                     />
-                )}
-                {passePartoutType && (
-                    <img
-                        src={passePartout}
-                        alt='Preview Passe-Partout'
-                        className='z-2 w-[19%] max-md:w-[29%] absolute'
-                    />
-                )}
-                <div
-                    ref={mountRef}
-                    className='z-4 h-140 w-70 absolute self-center scale-96'
-                />
-                {isLoading && (
-                    <Spinner
-                        variant='circle'
-                        size={42}
-                        className='justify-self-center text-neutral-900'
-                    />
-                )}
+                    {isLoading && (
+                        <Spinner
+                            variant='circle'
+                            size={42}
+                            className='self-center absolute text-neutral-900 z-5'
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
