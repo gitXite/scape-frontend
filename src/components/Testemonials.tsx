@@ -67,6 +67,11 @@ function Testemonials() {
         <div className='min-h-svh w-full px-5 place-content-center'>
             {isLoading ? (
                 <div className='h-full relative place-items-center justify-self-center top-2/4 -translate-y-2/4 space-y-5'>
+                    <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
+                    <div className='rounded-full bg-neutral-900 px-5 py-1.5 drop-shadow-lg'>
+                        <StarRating readonly rating={averageRating!} showValue size='lg' />
+                        <p className='text-neutral-200 tracking-wide text-center font-normal text-lg'>Total reviews: {totalReviews}</p>
+                    </div>
                     {error && (
                         <h1 className='text-neutral-900 font-medium'>{error}</h1>
                     )}
