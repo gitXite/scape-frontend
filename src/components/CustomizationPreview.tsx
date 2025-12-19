@@ -153,7 +153,7 @@ function CustomizationPreview() {
     return (
         <div className='h-full w-full'>
             <div className='flex h-full w-full justify-center place-items-center'>
-                <div className='flex relative w-[56%] max-lg:w-[25%] max-sm:w-[35%] justify-center'>
+                <div className='flex relative w-[56%] max-lg:w-[200px] max-sm:w-[180px] justify-center'>
                     {frameType && (
                         <img
                             src={frame}
