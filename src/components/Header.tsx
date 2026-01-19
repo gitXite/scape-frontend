@@ -54,44 +54,44 @@ function Header() {
                 isHoveredRef.current = false;
                 startHideTimeout();
             }}
-            className={`flex h-auto w-full p-4 fixed place-content-center mix-blend-difference text-white bg-neutral-500/10 z-2 shadow-md backdrop-blur-md border-b-1 border-neutral-300/30 transition-transform duration-300 ${
+            className={`flex h-auto w-full fixed place-content-center mix-blend-difference text-white bg-neutral-500/10 z-2 shadow-md backdrop-blur-md border-b-1 border-neutral-300/30 transition-transform duration-300 ${
                 showHeader ? 'translate-y-0' : '-translate-y-full'
             }`}
         >
-            <nav className='flex w-3/4 max-sm:w-full max-sm:text-sm place-items-center justify-evenly'>
-                <a
-                    href='#home'
-                    className='group transition duration-300 tracking-widest'
-                >
-                    Home
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                </a>
-                <a
-                    href='#thescape'
-                    className='group transition duration-300 tracking-widest'
-                >
-                    The Scape
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                </a>
-                <img
-                    src='/images/scape-logo-trans.webp'
-                    alt='Logo'
-                    className={`max-h-[70px] w-[15%]`}
-                />
-                <a
-                    href='/get-started'
-                    className='group transition duration-300 tracking-widest'
-                >
-                    Get Started
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                </a>
-                <a
-                    href='#map'
-                    className='group transition duration-300 tracking-widest'
-                >
-                    Map
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                </a>
+            <nav className='container mx-auto px-6 py-4'>
+                <div className='grid grid-cols-3 items-center'>
+                    <div className='flex gap-5 md:gap-20 justify-center md:justify-end items-center'>
+                        <a href='#home' className='group md:tracking-widest max-sm:text-sm'>
+                            Home
+                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                        </a>
+                        <a href='#thescape' className='group md:tracking-widest max-sm:text-sm'>
+                            The Scape
+                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                        </a>
+                    </div>
+
+                    <div className='flex justify-center'>
+                        <img
+                            src='/images/scape-logo-trans.webp'
+                            alt='Logo'
+                            className='max-h-[70px] max-sm:w-[80%]'
+                        />
+                    </div>
+
+                    <div className='flex gap-5 md:gap-20 justify-center md:justify-start items-center'>
+                        <a href='#map' className='group md:tracking-widest max-sm:text-sm'>
+                            Map
+                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                        </a>
+                        <a
+                            href='/get-started'
+                            className='inline-flex items-center px-4 py-1.5 md:px-8 md:py-3.5 md:tracking-widest max-sm:text-sm font-normal rounded-full shadow-sm bg-neutral-500/10 border-neutral-300/50 border hover:bg-neutral-100/90 active:bg-white text-white hover:text-neutral-900 transition-all'
+                        >
+                            {window.innerWidth < 768 ? 'Start' : 'Get Started'}
+                        </a>
+                    </div>
+                </div>
             </nav>
         </header>
     );

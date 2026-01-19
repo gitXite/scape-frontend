@@ -3,7 +3,7 @@ import Socials from './Socials';
 
 function Footer() {
     return (
-        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-50 max-xl:max-h-110 max-h-50 w-full p-5 border-t-1 bg-neutral-900 overflow-hidden'>
+        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-60 max-xl:max-h-110 max-h-60 w-full p-5 pb-10 border-t-1 bg-neutral-900 overflow-hidden'>
             <div className='flex max-xl:w-full flex-col space-y-2 text-center place-content-center'>
                 <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-5'>
                     <h1 className=''>S C /\ P E</h1>
@@ -122,7 +122,7 @@ function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-0 items-center'>
+                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-5 items-center'>
                     <small className='relative right-20 max-xl:right-2 top-2 max-xl:w-1/3 max-[465px]:text-xs'>scapebymd@gmail.com</small>
                     <Socials />
                     <div className='flex items-center max-xl:w-1/3 place-content-center'>

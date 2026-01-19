@@ -72,7 +72,7 @@ function MapSelector({ mode }: MapSelectorProps) {
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
         triggerOnce: true,
-        threshold: 0.1,
+        threshold: 0.3,
     });
     const [hasCoordinates, setHasCoordinates] = useState(
         !!localStorage.getItem('coordinates')
