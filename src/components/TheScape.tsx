@@ -13,7 +13,7 @@ import type { CarouselApi } from './ui/carousel';
 
 const options = {
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: window.innerWidth < 768 ? 0.3 : 0.5,
 };
 
 const fadeInUp = {
