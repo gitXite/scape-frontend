@@ -117,7 +117,7 @@ function TheScape() {
                     variants={staggerContainer}
                     className='max-w-6xl mx-auto'
                 >
-                    <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
+                    <div className='grid md:grid-cols-3 gap-2 md:gap-12'>
                         {features.map((feature, index) => (
                             <motion.div
                                 key={feature.title}
@@ -147,7 +147,7 @@ function TheScape() {
                     variants={staggerContainer}
                     className='w-full'
                 >
-                    <div className='w-full grid md:grid-cols-2 space-y-10 md:space-y-0 items-center justify-items-center'>
+                    <div className='w-full grid md:grid-cols-2 space-y-10 md:space-y-0 items-center justify-items-center max-sm:text-center'>
                         <motion.div
                             variants={fadeInUp}
                             className='w-full md:w-1/2'
