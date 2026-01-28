@@ -118,7 +118,7 @@ function CheckoutSummary() {
                     <div className='flex flex-col pt-5 pb-5'>
                         <div className='flex justify-between pb-2 font-normal tracking-wide'>
                             <p className='text-neutral-900'>Subtotal</p>
-                            <p className='text-neutral-600'>548kr</p>
+                            <p className='text-neutral-600'>547kr</p>
                         </div>
                         <div className='flex justify-between font-normal tracking-wide'>
                             <p className='text-neutral-900'>Shipping</p>
