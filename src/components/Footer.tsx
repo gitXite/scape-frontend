@@ -122,7 +122,7 @@ function Footer() {
                         </a>
                     </div>
                 </div>
-                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-5 items-center'>
+                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-0 xl:bottom-5 items-center'>
                     <small className='relative right-20 max-xl:right-2 top-2 max-xl:w-1/3 max-[465px]:text-xs'>scapebymd@gmail.com</small>
                     <Socials />
                     <div className='flex items-center max-xl:w-1/3 place-content-center'>

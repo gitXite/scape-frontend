@@ -76,7 +76,7 @@ function TheScape() {
             id='thescape'
             className='flex flex-col w-full bg-neutral-100 px-10 max-sm:px-5'
         >
-            <div className='py-10 md:py-20 px-6'>
+            <div className='py-10 pb-5 md:py-20 px-6'>
                 <motion.div
                     ref={ref1}
                     initial='hidden'
@@ -248,7 +248,7 @@ function TheScape() {
             >
                 <motion.div className='text-center' variants={fadeInUp}>
                     <h3 className='text-3xl sm:text-4xl font-light text-neutral-900 mb-6 tracking-tight'>
-                        Ready to create your piece?
+                        Ready to create your scape?
                     </h3>
                     <p className='text-neutral-900/60 mb-10 max-w-xl mx-auto'>
                         Start exploring the map and transform your favorite

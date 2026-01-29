@@ -59,8 +59,8 @@ function Header() {
             }`}
         >
             <nav className='container mx-auto px-6 py-4'>
-                <div className='grid grid-cols-3 items-center'>
-                    <div className='flex gap-5 md:gap-20 justify-center md:justify-end items-center'>
+                <div className='grid grid-cols-3 items-center max-sm:flex max-sm:justify-between'>
+                    <div className='flex gap-5 md:gap-20 justify-center md:justify-end items-center max-sm:hidden'>
                         <a href='#home' className='group md:tracking-widest max-sm:text-sm'>
                             Home
                             <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
@@ -71,24 +71,24 @@ function Header() {
                         </a>
                     </div>
 
-                    <div className='flex justify-center'>
+                    <div className='flex justify-start md:justify-center'>
                         <img
                             src='/images/scape-logo-trans.webp'
                             alt='Logo'
-                            className='max-h-[70px] max-sm:w-[80%]'
+                            className='max-h-[70px] max-sm:w-[60%]'
                         />
                     </div>
 
                     <div className='flex gap-5 md:gap-20 justify-center md:justify-start items-center'>
-                        <a href='#map' className='group md:tracking-widest max-sm:text-sm'>
+                        <a href='#map' className='group md:tracking-widest max-sm:text-sm max-sm:hidden'>
                             Map
                             <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
                         </a>
                         <a
                             href='/get-started'
-                            className='inline-flex items-center px-4 py-1.5 md:px-8 md:py-3.5 md:tracking-widest max-sm:text-sm font-normal rounded-full shadow-sm bg-neutral-500/10 border-neutral-300/50 border hover:bg-neutral-100/90 active:bg-white text-white hover:text-neutral-900 transition-all'
+                            className='inline-flex items-center px-4 py-2.5 md:px-8 md:py-3.5 md:tracking-widest max-sm:text-sm font-normal rounded-full shadow-sm bg-neutral-500/10 border-neutral-300/50 border hover:bg-neutral-100/90 active:bg-white text-white hover:text-neutral-900 transition-all'
                         >
-                            {window.innerWidth < 768 ? 'Start' : 'Get Started'}
+                            Get Started
                         </a>
                     </div>
                 </div>
