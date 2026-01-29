@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { ChevronLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 
 type BackButtonProps = {
@@ -11,13 +11,13 @@ function BackButton({ page }: BackButtonProps) {
 
     return (
         <button 
-            className='flex group items-center font-medium fixed m-10 top-0 left-0 mt-9 h-fit text-lg transition-colors duration-100 text-neutral-600 hover:text-neutral-900 hover:cursor-pointer active:text-neutral-600 max-md:hidden'
+            className='fixed group top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 bg-background/80 backdrop-blur-sm border border-border rounded-full hover:bg-secondary transition-colors duration-200 cursor-pointer'
             onClick={() => {
                 if (page === 'home') navigate('/');
                 if (page === 'back') navigate(-1);
             }}
         >
-            <ChevronLeft className='group-hover:-translate-x-2 mt-[1px] transition-transform duration-200 text-neutral-600 group-hover:text-neutral-800 ease-out' />
+            <ArrowLeft size={16} className='group-hover:-translate-x-1 transition-transform duration-200 text-neutral-600 group-hover:text-neutral-800 ease-out' />
             {page.charAt(0).toUpperCase() + page.slice(1)}
         </button>
     );
