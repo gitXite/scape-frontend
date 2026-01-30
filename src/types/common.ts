@@ -22,3 +22,8 @@ export type STLObject = {
     url: string | null,
     buffer: ArrayBuffer | null
 };
+
+export interface Review {
+    message: string;
+    rating: number;
+}

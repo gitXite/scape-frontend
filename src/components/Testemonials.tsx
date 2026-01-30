@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from './ui/shadcn-io/marquee/Marquee';
+import {
+    Marquee,
+    MarqueeContent,
+    MarqueeFade,
+    MarqueeItem,
+} from './ui/shadcn-io/marquee/Marquee';
 import StarRating from './ui/starRating';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
-
-
+import TestimonialCard from './TestimonialCard';
+import { Star, Sparkles } from 'lucide-react';
 
 function Testemonials() {
     const [totalReviews, setTotalReviews] = useState();
@@ -16,9 +21,12 @@ function Testemonials() {
         const getReviewStats = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews/stats`, {
-                    method: 'GET',
-                });
+                const response = await fetch(
+                    `${import.meta.env.VITE_APP_API_URL}/api/reviews/stats`,
+                    {
+                        method: 'GET',
+                    },
+                );
                 if (!response.ok) {
                     const data = await response.json();
                     setError(`${data.message} ${response.status}`);
@@ -37,12 +45,16 @@ function Testemonials() {
                 }
             }
         };
+
         const getReviews = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews`, {
-                    method: 'GET'
-                });
+                const response = await fetch(
+                    `${import.meta.env.VITE_APP_API_URL}/api/reviews`,
+                    {
+                        method: 'GET',
+                    },
+                );
                 if (!response.ok) {
                     const data = await response.json();
                     setError(`${response.status} ${data.message}`);
@@ -59,68 +71,137 @@ function Testemonials() {
                 }
             }
         };
+
         getReviewStats();
         getReviews();
     }, []);
 
     return (
-        <div className='min-h-svh w-full px-5 place-content-center'>
-            {isLoading ? (
-                <div className='h-full relative place-items-center justify-self-center top-2/4 -translate-y-2/4 space-y-5'>
-                    <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
-                    <div className='rounded-full bg-neutral-900 px-5 py-1.5 drop-shadow-lg'>
-                        <StarRating readonly rating={averageRating!} showValue size='lg' />
-                        <p className='text-neutral-200 tracking-wide text-center font-normal text-lg'>Total reviews: {totalReviews}</p>
+        <div className='flex flex-col min-h-svh w-full px-5 items-center overflow-hidden'>
+            <div className='flex flex-col relative z-10 w-full pt-24 pb-16'>
+                <div className='text-center px-6'>
+                    <div className='inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6'>
+                        <Sparkles className='w-4 h-4' />
+                        Customer Reviews
                     </div>
-                    {error && (
-                        <h1 className='text-neutral-900 font-medium'>{error}</h1>
-                    )}
-                    <Spinner variant={'circle'} size={42} className='text-neutral-900' />
+
+                    <h1 className='text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight'>
+                        Words of <span className='text-primary'>praise</span>
+                        <br />
+                        from our customers
+                    </h1>
+
+                    <p className='text-xl text-muted-foreground font-normal max-w-2xl mx-auto mb-10'>
+                        Don't just take our word for it. See what our customers
+                        have to say about their experience.
+                    </p>
                 </div>
-            ) : (
-                <div className='flex flex-col min-h-svh items-center justify-evenly'>
-                    <h1 className='text-neutral-900 text-center font-medium text-6xl tracking-wide text-shadow-md'>Words of praise from <br />our customers</h1>
-                    <div className='rounded-full bg-neutral-900 px-5 py-1.5 drop-shadow-lg'>
-                        <StarRating readonly rating={averageRating!} showValue size='lg' />
-                        <p className='text-neutral-200 tracking-wide text-center font-normal text-lg'>Total reviews: {totalReviews}</p>
+
+                {isLoading ? (
+                    <div className='flex flex-col items-center self-center'>
+                        <Spinner
+                            variant={'circle'}
+                            size={42}
+                            className='text-neutral-900'
+                        />
+                        {error && (
+                            <h1 className='text-neutral-900 font-medium'>
+                                {error}
+                            </h1>
+                        )}
                     </div>
-                    <div className='flex flex-col gap-10 w-3/5'>
-                        <Marquee>
-                            <MarqueeFade side='left' />
-                            <MarqueeFade side='right' />
-                            <MarqueeContent speed={100} className='py-2'>
-                                {reviews.map((review) => ({ sort: Math.random(), sorted: review }))
-                                    .sort((a, b) => a.sort - b.sort)
-                                    .map((review, index) => (
-                                        <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
-                                            <p>"{review.sorted.message}"</p>
-                                            <StarRating readonly rating={review.sorted.rating} size='lg' className='mt-5' />
-                                        </MarqueeItem>
-                                    ))
-                                }
-                            </MarqueeContent>
-                        </Marquee>
-                        <Marquee>
-                            <MarqueeFade side='left' />
-                            <MarqueeFade side='right' />
-                            <MarqueeContent speed={100} direction='right' className='py-2'>
-                                {reviews.map((review) => ({ sort: Math.random(), sorted: review }))
-                                    .sort((a, b) => a.sort - b.sort)
-                                    .map((review, index) => (
-                                        <MarqueeItem className='flex flex-col items-center text-neutral-900 font-medium justify-evenly w-60 bg-neutral-200/40 text-center p-5 rounded-lg border-1 border-neutral-300 drop-shadow-md mx-10' key={index}>
-                                            <p>"{review.sorted.message}"</p>
-                                            <StarRating readonly rating={review.sorted.rating} size='lg' className='mt-5' />
-                                        </MarqueeItem>
-                                    ))
-                                }
-                            </MarqueeContent>
-                        </Marquee>
+                ) : (
+                    <div className='flex flex-col w-full items-center'>
+                        <div className='inline-flex w-fit items-center gap-6 bg-card border border-border rounded-full px-8 py-4 shadow-md mb-16'>
+                            <div className='flex items-center gap-3'>
+                                <StarRating
+                                    readonly
+                                    rating={averageRating!}
+                                    showValue
+                                    size='lg'
+                                />
+                            </div>
+                            <div className='w-px h-8 bg-border' />
+                            <div className='text-left'>
+                                <p className='text-2xl font-bold text-foreground'>
+                                    {totalReviews}
+                                </p>
+                                <p className='text-sm font-normal text-muted-foreground'>
+                                    Total Reviews
+                                </p>
+                            </div>
+                        </div>
+                        <div className='flex flex-col gap-10 w-4/5 items-center self-center overflow-hidden'>
+                            <Marquee>
+                                <MarqueeFade side='left' />
+                                <MarqueeFade side='right' />
+                                <MarqueeContent speed={window.innerWidth < 640 ? 100 : 40} className='py-2'>
+                                    {reviews
+                                        .map((review) => ({
+                                            sort: Math.random(),
+                                            sorted: review,
+                                        }))
+                                        .sort((a, b) => a.sort - b.sort)
+                                        .map((review, index) => (
+                                            <MarqueeItem
+                                                className=''
+                                                key={index}
+                                            >
+                                                <TestimonialCard
+                                                    review={{
+                                                        rating: review.sorted.rating,
+                                                        message: review.sorted.message,
+                                                    }}
+                                                />
+                                            </MarqueeItem>
+                                        ))}
+                                </MarqueeContent>
+                            </Marquee>
+                            <Marquee>
+                                <MarqueeFade side='left' />
+                                <MarqueeFade side='right' />
+                                <MarqueeContent
+                                    speed={window.innerWidth < 640 ? 100 : 40}
+                                    direction='right'
+                                    className='py-2'
+                                >
+                                    {reviews
+                                        .map((review) => ({
+                                            sort: Math.random(),
+                                            sorted: review,
+                                        }))
+                                        .sort((a, b) => a.sort - b.sort)
+                                        .map((review, index) => (
+                                            <MarqueeItem
+                                                className=''
+                                                key={index}
+                                            >
+                                                <TestimonialCard
+                                                    review={{
+                                                        rating: review.sorted.rating,
+                                                        message: review.sorted.message,
+                                                    }}
+                                                />
+                                            </MarqueeItem>
+                                        ))}
+                                </MarqueeContent>
+                            </Marquee>
+                        </div>
+                    </div>
+                )}
+                <div className="text-center mt-20 px-6">
+                    <div className="inline-flex flex-col sm:flex-row gap-4 items-center">
+                        <a href='/feedback' className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-neutral-200 hover:text-foreground border border-neutral-300 active:bg-white transition-all shadow-sm shadow-primary/20 cursor-pointer">
+                            Leave a Review
+                        </a>
+                        <a href='/get-started' className="px-8 py-4 bg-card border border-border text-foreground rounded-xl font-semibold hover:bg-accent active:bg-white transition-all cursor-pointer">
+                            Create Your Scape
+                        </a>
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 }
-
 
 export default Testemonials;
