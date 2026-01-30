@@ -14,7 +14,7 @@ function TestimonialCard({ review }: { review: Review }) {
             </p>
 
             <div className='flex items-center justify-between'>
-                <div className='flex-shrink-0 w-[250px]'>
+                <div className='flex-shrink-0 w-[250px] max-sm:w-[150px]'>
                     <p className='text-sm font-normal text-muted-foreground'>
                         Verified Customer
                     </p>
