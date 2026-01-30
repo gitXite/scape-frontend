@@ -96,7 +96,7 @@ function Feedback() {
                         </div>
 
                         <div className='relative group w-full'>
-                            <div className='relative bg-card border border-border rounded-2xl p-8 shadow-xl'>
+                            <div className='relative bg-card border border-border rounded-2xl p-8 shadow-xl flex flex-col'>
                                 <div className='text-center mb-8'>
                                     <label className='text-foreground font-medium text-lg mb-4 block'>
                                         How would you rate your overall
@@ -152,7 +152,7 @@ function Feedback() {
                                     <Button
                                         onClick={handleSubmitReview}
                                         disabled
-                                        className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                        className='w-40 p-5 self-center bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                                     >
                                         <Spinner variant={'ellipsis'} />
                                     </Button>
@@ -162,7 +162,7 @@ function Feedback() {
                                         disabled={
                                             userRating === 0 || orderId === ''
                                         }
-                                        className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                        className='w-40 p-5 self-center bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
                                     >
                                         Submit Feedback
                                     </Button>
