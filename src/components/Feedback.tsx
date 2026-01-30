@@ -90,7 +90,7 @@ function Feedback() {
                                 <span className='text-primary'> opinion</span>
                             </h1>
 
-                            <p className='text-lg text-muted-foreground'>
+                            <p className='text-lg font-normal text-muted-foreground'>
                                 Help us improve by sharing your feedback
                             </p>
                         </div>
@@ -127,7 +127,7 @@ function Feedback() {
                                             handleChange(event, 'feedback')
                                         }
                                         placeholder='Tell us about your experience...'
-                                        className='min-h-[120px] w-full text-foreground resize-none border border-border shadow-xs focus:drop-shadow-sm bg-background rounded-sm p-5 h-35 max-sm:w-full focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                                        className='min-h-[120px] w-full text-foreground font-normal resize-none border border-border shadow-xs focus:drop-shadow-sm bg-background rounded-sm p-5 h-35 max-sm:w-full focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
                                     />
                                 </div>
 
@@ -144,7 +144,7 @@ function Feedback() {
                                             handleChange(event, 'orderId')
                                         }
                                         placeholder='Enter your order ID'
-                                        className='w-full h-13 overflow-hidden px-5 py-3 rounded-sm border border-border text-foreground placeholder:text-muted-foreground shadow-xs focus:drop-shadow-sm bg-background resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400 transition-all'
+                                        className='w-full h-13 overflow-hidden font-normal px-5 py-3 rounded-sm border border-border text-foreground placeholder:text-muted-foreground shadow-xs focus:drop-shadow-sm bg-background resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400 transition-all'
                                     />
                                 </div>
 
@@ -181,12 +181,12 @@ function Feedback() {
                                 Thank you for your review!
                             </h2>
 
-                            <p className='text-muted-foreground mb-8'>
+                            <p className='text-muted-foreground font-normal mb-8'>
                                 Your feedback helps us improve our service
                             </p>
 
                             <div className='inline-flex flex-col items-center gap-3 bg-secondary/50 rounded-xl px-8 py-6'>
-                                <p className='text-sm font-medium text-muted-foreground'>
+                                <p className='text-sm font-normal text-muted-foreground'>
                                     Your rating
                                 </p>
                                 <StarRating
