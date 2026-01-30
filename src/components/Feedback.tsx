@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import StarRating from '@/components/ui/starRating';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { toast } from 'sonner';
+import { CheckCircle2, Sparkles } from 'lucide-react';
 
 function Feedback() {
     const [userRating, setUserRating] = useState(0);
@@ -10,7 +11,7 @@ function Feedback() {
         (): number | null => {
             const storedRating = localStorage.getItem('feedbackRating');
             return storedRating ? Number(storedRating) : null;
-        }
+        },
     );
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [orderId, setOrderId] = useState('');
@@ -18,7 +19,7 @@ function Feedback() {
 
     const handleChange = (
         event: React.ChangeEvent<HTMLTextAreaElement>,
-        type: string
+        type: string,
     ) => {
         if (type === 'feedback') {
             setFeedbackMessage(event.target.value);
@@ -31,17 +32,20 @@ function Feedback() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+            const response = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/api/reviews`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        rating: userRating,
+                        message: feedbackMessage,
+                        orderID: orderId,
+                    }),
                 },
-                body: JSON.stringify({
-                    rating: userRating,
-                    message: feedbackMessage,
-                    orderID: orderId,
-                }),
-            });
+            );
             if (!response.ok) {
                 const data = await response.json();
                 toast.error(data.message, {
@@ -71,78 +75,146 @@ function Feedback() {
     };
 
     return (
-        <div className='flex flex-col min-h-svh w-full items-center justify-center'>
-            <div className='flex flex-col h-fit max-sm:h-svh max-lg:w-full bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 max-sm:px-5 place-content-evenly'>
+        <div className='relative z-10 min-h-screen w-full flex items-center justify-center px-6 py-24'>
+            <div className='w-full max-w-xl'>
                 {!submittedRating ? (
-                    <>
-                        <div className='flex flex-col items-center w-full gap-2 max-sm:place-content-evenly max-sm:h-3/4'>
-                            <h1 className='text-neutral-900 text-6xl max-xl:text-5xl max-md:text-4xl max-sm:text-3xl tracking-wide mb-5 max-sm:mb-0 font-medium text-shadow-md'>
-                                We value your opinion
+                    <div className='relative w-full'>
+                        <div className='text-center mb-10'>
+                            <div className='inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6'>
+                                <Sparkles className='w-4 h-4' />
+                                Share Your Experience
+                            </div>
+
+                            <h1 className='text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight'>
+                                We value your
+                                <span className='text-primary'> opinion</span>
                             </h1>
-                            <div className='flex flex-col text-center items-center relative'>
-                                <label className='text-neutral-900 text-xl max-sm:text-lg font-normal mb-3 block'>
-                                    How would you rate your overall experience?
-                                </label>
-                                <StarRating
-                                    rating={userRating || 4}
-                                    onRatingChange={setUserRating}
-                                    size='lg'
-                                    className='mb-2'
-                                />
-                                {userRating > 0 && (
-                                    <p className='text-sm text-muted-foreground mb-2'>
-                                        You rated: {userRating} out of 5 stars
-                                    </p>
+
+                            <p className='text-lg text-muted-foreground'>
+                                Help us improve by sharing your feedback
+                            </p>
+                        </div>
+
+                        <div className='relative group w-full'>
+                            <div className='relative bg-card border border-border rounded-2xl p-8 shadow-xl'>
+                                <div className='text-center mb-8'>
+                                    <label className='text-foreground font-medium text-lg mb-4 block'>
+                                        How would you rate your overall
+                                        experience?
+                                    </label>
+                                    <div className='flex flex-col items-center gap-3'>
+                                        <StarRating
+                                            rating={userRating || 4}
+                                            onRatingChange={setUserRating}
+                                            size='lg'
+                                        />
+                                        {userRating > 0 && (
+                                            <p className='text-sm text-primary font-medium animate-fade-in'>
+                                                You rated: {userRating} out of 5
+                                                stars
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className='mb-6'>
+                                    <label className='text-sm font-medium text-foreground mb-2 block'>
+                                        Your Feedback
+                                    </label>
+                                    <textarea
+                                        value={feedbackMessage}
+                                        onChange={(event) =>
+                                            handleChange(event, 'feedback')
+                                        }
+                                        placeholder='Tell us about your experience...'
+                                        className='min-h-[120px] w-full text-foreground resize-none border border-border shadow-xs focus:drop-shadow-sm bg-background rounded-sm p-5 h-35 max-sm:w-full focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
+                                    />
+                                </div>
+
+                                <div className='mb-8'>
+                                    <label className='text-sm font-medium text-foreground mb-2 block'>
+                                        Order ID{' '}
+                                        <span className='text-destructive'>
+                                            *
+                                        </span>
+                                    </label>
+                                    <textarea
+                                        value={orderId}
+                                        onChange={(event) =>
+                                            handleChange(event, 'orderId')
+                                        }
+                                        placeholder='Enter your order ID'
+                                        className='w-full h-13 overflow-hidden px-5 py-3 rounded-sm border border-border text-foreground placeholder:text-muted-foreground shadow-xs focus:drop-shadow-sm bg-background resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400 transition-all'
+                                    />
+                                </div>
+
+                                {isLoading ? (
+                                    <Button
+                                        onClick={handleSubmitReview}
+                                        disabled
+                                        className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                    >
+                                        <Spinner variant={'ellipsis'} />
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        onClick={handleSubmitReview}
+                                        disabled={
+                                            userRating === 0 || orderId === ''
+                                        }
+                                        className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                                    >
+                                        Submit Feedback
+                                    </Button>
                                 )}
                             </div>
-                            <textarea
-                                value={feedbackMessage}
-                                onChange={(event) =>
-                                    handleChange(event, 'feedback')
-                                }
-                                placeholder='We would love your feedback'
-                                className='text-neutral-700 font-normal mb-2 border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-35 w-6/10 max-sm:w-full resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
-                            />
-                            <textarea
-                                value={orderId}
-                                onChange={(event) =>
-                                    handleChange(event, 'orderId')
-                                }
-                                placeholder='Order ID (required)'
-                                className='text-neutral-900 h-10.5 text-center overflow-hidden p-2 mb-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
-                            />
-                            {isLoading ? (
-                                <Button
-                                    onClick={handleSubmitReview}
-                                    disabled
-                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                                >
-                                    <Spinner variant={'ellipsis'} />
-                                </Button>
-                            ) : (
-                                <Button
-                                    onClick={handleSubmitReview}
-                                    disabled={userRating === 0 || orderId === ''}
-                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                                >
-                                    Submit Feedback
-                                </Button>
-                            )}
                         </div>
-                    </>
+                    </div>
                 ) : (
-                    <div className='flex flex-col text-center py-4 items-center relative'>
-                        <p className='text-green-600 font-medium mb-10'>
-                            Thank you for your review!
-                        </p>
-                        <StarRating
-                            rating={submittedRating}
-                            readonly
-                            size='md'
-                        />
-                        <p className='text-sm text-muted-foreground mt-2'>
-                            You rated: {submittedRating} out of 5 stars
-                        </p>
+                    <div className='relative'>
+                        <div className='relative bg-card border border-border rounded-2xl p-12 shadow-xl text-center'>
+                            <div className='inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6'>
+                                <CheckCircle2 className='w-10 h-10 text-green-600' />
+                            </div>
+
+                            <h2 className='text-3xl font-bold text-foreground mb-4'>
+                                Thank you for your review!
+                            </h2>
+
+                            <p className='text-muted-foreground mb-8'>
+                                Your feedback helps us improve our service
+                            </p>
+
+                            <div className='inline-flex flex-col items-center gap-3 bg-secondary/50 rounded-xl px-8 py-6'>
+                                <p className='text-sm font-medium text-muted-foreground'>
+                                    Your rating
+                                </p>
+                                <StarRating
+                                    rating={submittedRating}
+                                    readonly
+                                    size='lg'
+                                />
+                                <p className='text-lg font-semibold text-foreground'>
+                                    You rated: {submittedRating} out of 5 stars
+                                </p>
+                            </div>
+
+                            {/* <Button
+                                onClick={() => {
+                                    localStorage.removeItem('feedbackRating');
+                                    localStorage.removeItem('feedbackMessage');
+                                    localStorage.removeItem('orderId');
+                                    setSubmittedRating(null);
+                                    setUserRating(0);
+                                    setFeedbackMessage('');
+                                    setOrderId('');
+                                }}
+                                variant='outline'
+                                className='mt-8'
+                            >
+                                Submit Another Review
+                            </Button> */}
+                        </div>
                     </div>
                 )}
             </div>
