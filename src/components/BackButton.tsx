@@ -11,7 +11,7 @@ function BackButton({ page }: BackButtonProps) {
 
     return (
         <button 
-            className='fixed group top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 bg-background/80 backdrop-blur-sm border border-border rounded-full hover:bg-secondary transition-colors duration-200 cursor-pointer'
+            className='fixed group max-sm:hidden top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 bg-background/80 backdrop-blur-sm border border-border rounded-full hover:bg-secondary transition-colors duration-200 cursor-pointer'
             onClick={() => {
                 if (page === 'home') navigate('/');
                 if (page === 'back') navigate(-1);

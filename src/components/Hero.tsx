@@ -65,7 +65,7 @@ function Hero() {
                         className='backdrop-blur-sm rounded-full'
                     >
                         <button
-                            className='flex z-2 px-10 py-5 max-sm:px-9 max-sm:py-4 text-xl max-sm:text-lg font-normal group transition-colors backdrop-blur-md hover:bg-neutral-200/30 text-neutral-900 border-1 border-neutral-200/50 rounded-full shadow-md hover:cursor-pointer'
+                            className='flex z-2 px-10 py-4 max-sm:px-8 max-sm:py-3.5 text-lg font-normal group transition-colors backdrop-blur-md hover:bg-neutral-200/30 text-neutral-900 border-1 border-neutral-200/50 rounded-full shadow-md hover:cursor-pointer'
                             onClick={() => {
                                 navigate('/get-started');
                             }}
