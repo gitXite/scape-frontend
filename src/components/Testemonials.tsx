@@ -8,7 +8,7 @@ import {
 import StarRating from './ui/starRating';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import TestimonialCard from './TestimonialCard';
-import { Star, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 function Testemonials() {
     const [totalReviews, setTotalReviews] = useState();
