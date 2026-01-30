@@ -80,7 +80,7 @@ function About() {
                 </a>
             </header>
             <div
-                className='flex flex-col w-full text-neutral-900 self-center items-center text-center py-24'
+                className='flex flex-col w-full text-neutral-900 self-center items-center text-center py-24 max-sm:pt-0'
                 id='about-us'
             >
                 <div className='py-24 px-6'>
