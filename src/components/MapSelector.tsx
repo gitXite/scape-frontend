@@ -320,8 +320,14 @@ function MapSelector({ mode }: MapSelectorProps) {
                                         west: sw.lng(),
                                     };
                                 }}
+                                onDragStart={() => {
+                                    document.body.style.overflow = 'hidden';
+                                    document.body.style.touchAction = 'none';
+                                }}
                                 onDragEnd={() => {
                                     if (!liveBoundsRef.current) return;
+                                    document.body.style.overflow = '';
+                                    document.body.style.touchAction = '';
 
                                     setRectangleBounds(liveBoundsRef.current);
                                     setCenter({
