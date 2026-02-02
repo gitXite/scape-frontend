@@ -78,7 +78,8 @@ function MapSelector({ mode }: MapSelectorProps) {
         !!localStorage.getItem('coordinates')
     );
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    // const [errorMessage, setErrorMessage] = useState('');
+    const rectangleRef = useRef<google.maps.Rectangle | null>(null);
+    const liveBoundsRef = useRef<RectangleBounds | null>(null);
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
@@ -185,7 +186,6 @@ function MapSelector({ mode }: MapSelectorProps) {
                         toast.error(err.message, {
                             description: 'Please try again later',
                         });
-                        // setErrorMessage(err.message);
                         STLCache.invalidate();
                     } finally {
                         setIsLoading(false);
@@ -292,6 +292,9 @@ function MapSelector({ mode }: MapSelectorProps) {
                     >
                         {rectangleBounds && (
                             <Rectangle
+                                onLoad={(rect) => {
+                                    rectangleRef.current = rect;
+                                }}
                                 bounds={rectangleBounds}
                                 options={{
                                     strokeColor: '#000000',
@@ -299,9 +302,32 @@ function MapSelector({ mode }: MapSelectorProps) {
                                     strokeWeight: 1,
                                     fillColor: '#000000',
                                     fillOpacity: 0.5,
-                                    draggable: false,
+                                    draggable: true,
                                     editable: false,
-                                    clickable: false,
+                                    clickable: true,
+                                }}
+                                onDrag={() => {
+                                    const bounds = rectangleRef.current?.getBounds();
+                                    if (!bounds) return;
+
+                                    const ne = bounds.getNorthEast();
+                                    const sw = bounds.getSouthWest();
+
+                                    liveBoundsRef.current = {
+                                        north: ne.lat(),
+                                        east: ne.lng(),
+                                        south: sw.lat(),
+                                        west: sw.lng(),
+                                    };
+                                }}
+                                onDragEnd={() => {
+                                    if (!liveBoundsRef.current) return;
+
+                                    setRectangleBounds(liveBoundsRef.current);
+                                    setCenter({
+                                        lat: (liveBoundsRef.current.north + liveBoundsRef.current.south) / 2,
+                                        lng: (liveBoundsRef.current.east + liveBoundsRef.current.west) / 2
+                                    });
                                 }}
                             />
                         )}
