@@ -222,7 +222,7 @@ function FAQ() {
                                 <p className='text-[16px] text-neutral-600'>
                                     Since each item is custom-made, production
                                     times vary. On average, production takes
-                                    [X–Y business days], plus shipping time
+                                    1-3 days depending on pending orders, plus shipping time
                                     depending on your location.
                                 </p>
                                 <p className='text-[16px] text-neutral-600'>
