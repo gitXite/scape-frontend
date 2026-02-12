@@ -16,8 +16,8 @@ function CustomizeFrame() {
     return (
         <div className='flex flex-col min-h-svh min-sm:h-svh w-full'>
             <div className='flex flex-col pt-15 pb-8 px-4'>
-                <h1 className='text-neutral-900 self-center text-2xl font-medium tracking-tight'>Choose a Frame</h1>
-                <p className='text-md text-neutral-500 text-center mt-2'>Select the perfect frame for your scape</p>
+                <h1 className='text-neutral-900 self-center text-2xl font-bold tracking-tight'>Choose a Frame</h1>
+                <p className='text-md text-neutral-500 font-normal text-center mt-2'>Select the perfect frame for your scape</p>
             </div>
             <div className='flex max-lg:flex-col h-full w-full max-lg:px-10 max-lg:place-content-between place-content-evenly max-lg:items-center'>
                 <div className='flex h-4/5 max-sm:h-[300px] w-1/3 max-lg:w-full rounded-2xl bg-white border border-neutral-200'>
