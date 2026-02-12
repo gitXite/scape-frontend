@@ -32,23 +32,23 @@ function Hero() {
 
     return (
         <div id='home' className='h-svh w-full place-content-center'>
-            <div className='flex flex-col place-items-center place-content-center h-full w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-neutral-900 drop-shadow-xl drop-shadow-neutral-500/60 overflow-hidden'>
+            <div className='flex flex-col place-items-center place-content-center h-full w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-gradient-to-br from-neutral-900 via-[hsl(225,50%,6%)] to-neutral-900 drop-shadow-xl drop-shadow-neutral-500/60 overflow-hidden'>
                 <div
-                    className='absolute top-[10%] left-[-5%] w-[70%] h-[70%] rounded-full opacity-40 blur-[100px]'
+                    className='absolute top-[10%] left-[-5%] w-[70%] h-[70%] rounded-full opacity-25 blur-[100px]'
                     style={{
                         background:
                             'radial-gradient(circle, hsl(var(--hero-glow-1) / 0.6), transparent 65%)',
                     }}
                 />
                 <div
-                    className='absolute bottom-[-15%] right-[-5%] w-[65%] h-[65%] rounded-full opacity-35 blur-[90px]'
+                    className='absolute bottom-[-15%] right-[-5%] w-[65%] h-[65%] rounded-full opacity-25 blur-[90px]'
                     style={{
                         background:
                             'radial-gradient(circle, hsl(var(--hero-glow-2) / 0.5), transparent 65%)',
                     }}
                 />
                 <div
-                    className='absolute top-[30%] w-[45%] h-[45%] rounded-full opacity-25 blur-[80px]'
+                    className='absolute top-[30%] w-[45%] h-[45%] rounded-full opacity-15 blur-[80px]'
                     style={{
                         background:
                             'radial-gradient(circle, hsl(var(--hero-glow-3) / 0.5), transparent 65%)',
