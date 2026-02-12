@@ -48,7 +48,7 @@ function CheckoutPayment({ session }: CheckoutPaymentProps) {
     
     return (
         <div className='flex flex-col h-full w-2/4 max-lg:w-full px-20 max-sm:px-0 text-neutral-900 text-center gap-10 text-xl font-medium'>
-            <h1 className='text-3xl'>Vipps Checkout</h1>
+            <h1 className='text-3xl sm:text-4xl font-bold text-foreground tracking-tight'>Vipps Checkout</h1>
             {!sdkReady ? (
                 <Spinner variant='circle' />
             ) : (
