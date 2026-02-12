@@ -100,6 +100,9 @@ body {
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --hero-glow-1: 35 60% 90%;
+    --hero-glow-2: 25 50% 85%;
+    --hero-glow-3: 40 40% 80%;
 }
 
 .dark {
@@ -147,13 +150,13 @@ body {
 
 .honeypot {
     position: absolute;
-    left: -9999px; 
+    left: -9999px;
     top: 0;
     width: 1px;
     height: 1px;
     padding: 0;
     margin: 0;
     border: 0;
-    clip: rect(0 0 0 0); 
-    overflow: hidden; 
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
