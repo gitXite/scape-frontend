@@ -254,7 +254,6 @@ function About() {
                     </motion.div>
                 </div>
             </div>
-            //{' '}
         </div>
     );
 }
