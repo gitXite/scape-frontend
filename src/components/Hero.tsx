@@ -87,12 +87,12 @@ function Hero() {
                         className='backdrop-blur-sm rounded-full'
                     >
                         <button
-                            className='flex z-2 px-10 py-4 max-sm:px-8 max-sm:py-3.5 text-lg font-normal group transition-colors backdrop-blur-md hover:bg-neutral-200/30 text-neutral-900 border-1 border-neutral-200/50 rounded-full shadow-md hover:cursor-pointer'
+                            className='flex z-2 px-10 py-4 max-sm:px-8 max-sm:py-3.5 text-md sm:text-lg md:tracking-widest font-normal group transition-colors backdrop-blur-md hover:bg-neutral-200/30 text-neutral-900 border-1 border-neutral-200/50 rounded-full shadow-md hover:cursor-pointer'
                             onClick={() => {
                                 navigate('/get-started');
                             }}
                         >
-                            <p className='tracking-wide'>Get Started</p>
+                            Get Started
                             <ArrowRight className='self-center w-[18px] text-neutral-900 relative max-sm:hidden left-4 top-[1px] p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
                         </button>
                     </motion.div>
@@ -106,7 +106,7 @@ function Hero() {
                         <div className='flex flex-col text-center items-center mt-5'>
                             <a
                                 href='#thescape'
-                                className='text-lg tracking-tight text-neutral-900 cursor-pointer font-normal active:text-neutral-700 transition-colors duration-100 z-1 peer'
+                                className='text-md sm:text-lg tracking-tight text-neutral-900 cursor-pointer font-normal active:text-neutral-700 transition-colors duration-100 z-1 peer'
                             >
                                 Explore
                             </a>
