@@ -24,7 +24,7 @@ function GetStarted() {
     });
 
     const steps = [
-        { component: <MapSelector mode='real' /> },
+        { component: <MapSelector mode='real' className='pt-20' /> },
         { component: <CustomizeFrame /> },
         { component: <CustomizePassePartout /> },
     ];

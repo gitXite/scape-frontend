@@ -23,6 +23,8 @@ type RectangleBounds = {
 };
 type MapSelectorProps = {
     mode: 'dummy' | 'real';
+    className?: string;
+    classNameChild?: string;
 };
 
 const BASE_SCALE = 1500;
@@ -38,7 +40,7 @@ const containerStyle: React.CSSProperties = {
     borderRadius: window.innerWidth < 480 ? '0px' : '5px',
 };
 
-function MapSelector({ mode }: MapSelectorProps) {
+function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
         const coords = localStorage.getItem('coordinates');
         return coords
@@ -72,7 +74,7 @@ function MapSelector({ mode }: MapSelectorProps) {
     const mapRef = useRef<google.maps.Map | null>(null);
     const { ref: ref, inView: inView } = useInView({
         triggerOnce: true,
-        threshold: 0.3,
+        threshold: 0.2,
     });
     const [hasCoordinates, setHasCoordinates] = useState(
         !!localStorage.getItem('coordinates')
@@ -266,11 +268,11 @@ function MapSelector({ mode }: MapSelectorProps) {
     return (
         <div
             id='map'
-            className='flex flex-col h-svh w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center pt-20'
+            className={`flex flex-col h-svh w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center ${className}`}
         >
             <div
                 ref={ref}
-                className={`flex flex-col h-full max-sm:h-4/5 max-lg:h-9/10 w-full items-center transition-opacity duration-600 ease-in max-sm:mb-20 ${
+                className={`flex flex-col h-full max-sm:h-4/5 max-lg:h-9/10 w-full items-center transition-opacity duration-600 ease-in max-sm:mb-20 ${classNameChild} ${
                     inView ? 'opacity-100' : 'opacity-0'
                 }`}
             >

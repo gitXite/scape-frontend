@@ -117,7 +117,7 @@ function TheScape() {
                     variants={staggerContainer}
                     className='max-w-6xl mx-auto'
                 >
-                    <div className='grid md:grid-cols-3 gap-2 md:gap-12'>
+                    <div className='grid md:grid-cols-3 gap-0 md:gap-12'>
                         {features.map((feature, index) => (
                             <motion.div
                                 key={feature.title}
@@ -244,7 +244,7 @@ function TheScape() {
                 initial='hidden'
                 animate={inView4 ? 'visible' : 'hidden'}
                 variants={staggerContainer}
-                className={'w-full mt-10 md:mt-20 px-6 transition-opacity duration-600 ease-in'}
+                className={'w-full mt-20 px-6 transition-opacity duration-600 ease-in pb-8 md:pb-20'}
             >
                 <motion.div className='text-center' variants={fadeInUp}>
                     <h3 className='text-3xl sm:text-4xl font-light text-neutral-900 mb-6 tracking-tight'>
