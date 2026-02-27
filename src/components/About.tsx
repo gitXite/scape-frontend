@@ -58,10 +58,10 @@ function About() {
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
                 </a>
                 <a
-                    href='#the-beginning'
+                    href='#the-team'
                     className='group md:tracking-tight max-sm:text-sm text-md'
                 >
-                    The Beginning
+                    The Team
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
                 </a>
                 <a
@@ -114,7 +114,7 @@ function About() {
                     </motion.div>
                 </div>
 
-                <div className='w-full py-20 px-6' id='the-beginning'>
+                <div className='w-full py-20 px-6' id='the-team'>
                     <motion.div
                         ref={ref2}
                         initial='hidden'
@@ -141,10 +141,10 @@ function About() {
                                 className='order-1 md:order-2'
                             >
                                 <p className='text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4'>
-                                    The Beginning
+                                    The Team
                                 </p>
                                 <h2 className='text-3xl sm:text-4xl font-light text-foreground mb-6 tracking-tight'>
-                                    Where Design Meets Data
+                                    Maren & Daniel
                                 </h2>
                                 <div className='space-y-4 text-muted-foreground leading-relaxed'>
                                     <p>
