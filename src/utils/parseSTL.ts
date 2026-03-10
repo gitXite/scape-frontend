@@ -8,7 +8,9 @@ export const parseSTL = (arrayBuffer: ArrayBuffer): {mesh: THREE.Mesh, geometry:
     STLCache.geometry = geometry;
     const material = new THREE.MeshStandardMaterial({
         color: 0xffffff,
+        side: THREE.DoubleSide,
     });
+    geometry.computeVertexNormals();
     const mesh = new THREE.Mesh(geometry, material);
     STLCache.mesh = mesh;
 

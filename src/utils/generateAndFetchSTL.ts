@@ -12,10 +12,11 @@ export const generateAndFetchSTL = async (): Promise<STLObject | null> => {
     }
 
     const key = JSON.stringify({
-        lat: coords.north,
-        lng: coords.west,
-        verticalScale,
-        scale
+        nwLat: coords.north,
+        nwLng: coords.west,
+        seLat: coords.south,
+        seLng: coords.east,
+        zScale: verticalScale,
     });
     if (STLCache.geometry && STLCache.cacheKey === key) {
         return {

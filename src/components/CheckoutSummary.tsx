@@ -41,7 +41,7 @@ function CheckoutSummary() {
             east: JSON.parse(coords!).east,
             west: JSON.parse(coords!).west,
         },
-        verticalScale: [parseFloat(verticalScale!)][0],
+        zScale: [parseFloat(verticalScale!)][0],
         scale: [parseInt(boxSize!)][0],
         frame: frameType,
         passepartout: passePartoutType,

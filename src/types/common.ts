@@ -5,7 +5,7 @@ export interface Checkout {
         east: number;
         west: number;
     };
-    verticalScale: number;
+    zScale: number;
     scale: number;
     frame: string;
     passepartout: string;
