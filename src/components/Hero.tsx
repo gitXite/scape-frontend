@@ -64,9 +64,9 @@ function Hero() {
             <Hero3D />
 
             {/* Content */}
-            <div className='relative z-10 flex flex-col items-center text-center px-4 bottom-50'>
+            <div className='relative z-10 flex flex-col items-center text-center px-4 bottom-50 pointer-events-none'>
                 <motion.div custom={0} variants={fadeDownVariants} initial='hidden' animate='visible'>
-                    <h1 className='text-7xl sm:text-8xl md:text-9xl text-primary-foreground font-extralight tracking-[0.2em] select-none [text-shadow:0_4px_20px_rgba(0,0,0,0.4)]'>
+                    <h1 className='text-7xl sm:text-8xl md:text-9xl relative left-2 text-primary-foreground font-extralight tracking-[0.2em] select-none [text-shadow:0_4px_20px_rgba(0,0,0,0.4)]'>
                         <span>SC</span>
                         <span className='tracking-normal'>/\</span>
                         <span className='pl-5'>PE</span>
