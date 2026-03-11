@@ -67,7 +67,7 @@ function Header() {
                     showHeader ? 'translate-y-0' : '-translate-y-full'
                 }`}
             >
-                <div className='relative sm:left-7'>
+                <div className='relative sm:left-8'>
                     <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
                         <div className='flex items-center justify-between h-16 sm:h-20'>
                             {/* Left nav - desktop */}
