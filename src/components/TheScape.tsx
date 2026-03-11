@@ -102,7 +102,7 @@ function TheScape() {
                     variants={staggerContainer}
                     className='max-w-5xl mx-auto'
                 >
-                    <div className='grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10'>
+                    <div className='grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-10'>
                         {features.map((feature, index) => (
                             <motion.div
                                 key={feature.title}

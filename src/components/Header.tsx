@@ -67,11 +67,11 @@ function Header() {
                     showHeader ? 'translate-y-0' : '-translate-y-full'
                 }`}
             >
-                <div className='relative sm:left-8'>
+                <div className='relative'>
                     <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-                        <div className='flex items-center justify-between h-16 sm:h-20'>
+                        <div className='relative flex items-center justify-between h-16 sm:h-20'>
                             {/* Left nav - desktop */}
-                            <div className='hidden md:flex items-center gap-8'>
+                            <div className='absolute left-0 hidden md:flex items-center gap-8'>
                                 {navLinks.slice(0, 2).map((link) => (
                                     <a
                                         key={link.href}
@@ -92,7 +92,7 @@ function Header() {
                                     <span className='pl-1.5'>PE</span>
                                 </a>
                             </div>
-                            <div className='flex-shrink-0 max-sm:hidden'>
+                            <div className='absolute left-1/2 -translate-x-1/2 max-sm:hidden'>
                                 <img 
                                     src='/images/scape-logo-trans.webp'
                                     alt='Scape logo'
@@ -101,7 +101,7 @@ function Header() {
                             </div>
 
                             {/* Right nav - desktop */}
-                            <div className='hidden md:flex items-center gap-8'>
+                            <div className='absolute right-0 hidden md:flex items-center gap-8'>
                                 <a
                                     href='#map'
                                     className='text-sm tracking-widest text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
