@@ -1,145 +1,87 @@
 import { Separator } from './ui/separator';
+import { Mail } from 'lucide-react';
 import Socials from './Socials';
 
 function Footer() {
+    const footerLinks = {
+        Company: [
+            { label: 'Home', href: '/' },
+            { label: 'About Us', href: '/about-us' },
+            { label: 'Get Started', href: '/get-started' },
+            { label: 'Testimonials', href: '/testimonials' },
+        ],
+        Support: [
+            { label: 'FAQ', href: '/faq' },
+            { label: 'Orders & Shipping', href: '/shipping' },
+            { label: 'Contact Support', href: '/contact-us' },
+            { label: 'Submit Feedback', href: '/feedback' },
+        ],
+        Legal: [
+            { label: 'Privacy Policy', href: '/privacy-policy' },
+            { label: 'Terms of Service', href: '/terms-of-service' },
+            { label: 'Returns & Refunds', href: '/returns' },
+            { label: 'Cookie Policy', href: '/cookies' },
+        ],
+    };
+
     return (
-        <footer className='flex relative max-xl:flex-col max-xl:place-items-center justify-center place-items-end min-h-60 max-xl:max-h-110 max-h-60 w-full p-5 pb-10 border-t-1 bg-neutral-900 overflow-hidden'>
-            <div className='flex max-xl:w-full flex-col space-y-2 text-center place-content-center'>
-                <div className='h-fit w-auto text-4xl text-center text-neutral-100 mb-5'>
-                    <h1 className=''>S C /\ P E</h1>
-                    <p className='text-sm pt-2 pb-1 tracking-widest'>by md</p>
-                </div>
-                <div className='flex max-xl:w-full absolute max-xl:static left-0 ml-20 max-[1440px]:ml-5 max-xl:ml-0 h-40 text-center space-x-2 justify-evenly'>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
-                        <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
-                            Company
-                        </h1>
-                        <a
-                            href='/'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Home
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/about-us'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            About Us
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/get-started'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Get Started
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/testimonials'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Testimonials
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
+        <footer className='w-full bg-footer-bg text-footer-foreground'>
+            <div className='max-w-7xl mx-auto px-6 sm:px-10 py-12 sm:pt-16 sm:pb-10'>
+                <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8'>
+                    {/* Brand */}
+                    <div className='md:col-span-3 flex flex-col items-center md:items-start max-md:relative max-md:left-0.5'>
+                        <h2 className='text-3xl tracking-[0.2em] mb-1 max-md:relative max-md:left-0.5'>
+                            <span>SC</span>
+                            <span className='tracking-normal'>/\</span>
+                            <span className='pl-1.5'>PE</span>
+                        </h2>
+                        <p className='text-xs tracking-widest text-footer-muted'>by md</p>
                     </div>
-                    <div className='flex items-center justify-center h-full'>
-                        <Separator
-                            orientation='vertical'
-                            className='border-neutral-100/10 max-h-20'
-                        />
+
+                    {/* Link columns */}
+                    <div className='md:col-span-6 grid grid-cols-3 gap-6 sm:gap-8'>
+                        {Object.entries(footerLinks).map(([category, links]) => (
+                            <div key={category} className='flex flex-col items-center md:items-start gap-3'>
+                                <h3 className='text-sm font-medium tracking-wide text-footer-foreground'>
+                                    {category}
+                                </h3>
+                                {links.map((link) => (
+                                    <a
+                                        key={link.href}
+                                        href={link.href}
+                                        className='text-xs sm:text-sm text-footer-muted hover:text-footer-foreground transition-colors duration-200'
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </div>
+                        ))}
                     </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
-                        <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
-                            Support
-                        </h1>
-                        <a
-                            href='/faq'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            FAQ
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/shipping'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Orders & Shipping
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/contact-us'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Contact Support
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/feedback'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Submit Feedback
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                    </div>
-                    <div className='flex items-center justify-center h-full'>
-                        <Separator
-                            orientation='vertical'
-                            className='border-neutral-100/10 max-h-20'
-                        />
-                    </div>
-                    <div className='flex flex-col items-start max-xl:items-center px-6 max-sm:px-0 place-content-around max-xl:w-1/3'>
-                        <h1 className='text-neutral-100 group transition duration-200 font-medium tracking-wide'>
-                            Legal
-                        </h1>
-                        <a
-                            href='/privacy-policy'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Privacy Policy
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/terms-of-service'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Terms of Service
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/returns'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Returns & Refunds
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
-                        <a
-                            href='/cookies'
-                            className='text-neutral-300 group hover:text-white transition duration-200 text-sm'
-                        >
-                            Cookie Policy
-                            <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300'></span>
-                        </a>
+
+                    {/* Socials + Payment */}
+                    <div className='md:col-span-3 flex flex-col items-center md:items-end gap-4'>
+                        <Socials />
+                        <div className='flex items-center gap-2 text-footer-muted md:left-4 relative'>
+                            <span className='text-xs max-sm:hidden'>Powered by</span>
+                            <img
+                                className='max-w-20 relative top-[1.5px] md:top-[1px]'
+                                src='/images/Vipps-Logo.wine.png'
+                                alt='Vipps Logo'
+                                loading='lazy'
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className='flex absolute max-xl:relative max-xl:w-full right-0 bottom-0 xl:bottom-5 items-center'>
-                    <small className='relative right-20 max-xl:right-2 top-2 max-xl:w-1/3 max-[465px]:text-xs'>scapebymd@gmail.com</small>
-                    <Socials />
-                    <div className='flex items-center max-xl:w-1/3 place-content-center'>
-                        <small className='relative left-2 top-2 max-[465px]:hidden'>Powered by</small>
-                        <img
-                            className='max-w-20 mr-20 max-[1440px]:mr-5 max-xl:mr-0 p-0 relative bottom-[-9px]'
-                            src='/images/Vipps-Logo.wine.png'
-                            alt='Vipps Logo'
-                        />
-                    </div>
-                </div>
-                <div className='flex flex-col gap-2 mt-5'>
-                    <p className='text-xs'>Org nr 929 981 626</p>
-                    <p className='text-xs'>
-                        Copyright © {new Date().getFullYear()} by md design. All
-                        Rights Reserved.
-                    </p>
+
+                {/* Bottom bar */}
+                <Separator className='my-8 border-footer-muted/20' orientation='horizontal' />
+                <div className='flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-footer-muted'>
+                    <span className='flex items-center gap-2'>
+                        <Mail size={16} className='relative top-[1px]' />
+                        scapebymd@gmail.com
+                    </span>
+                    <span>Org nr 929 981 626</span>
+                    <span>© {new Date().getFullYear()}. All Rights Reserved.</span>
                 </div>
             </div>
         </footer>
