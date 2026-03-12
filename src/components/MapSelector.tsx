@@ -110,7 +110,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             setIsLoading(false);
                             return;
                         }
-                        toast.success('Coordinates captured!', { description: 'You can now proceed or preview your model.' });
+                        toast.success('Your Scape has been generated!', { description: 'You can now preview your model, or proceed with customization.' });
                         return stlObject;
                     } catch (err: any) {
                         console.error(err.message);
