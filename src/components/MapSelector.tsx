@@ -103,30 +103,19 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                         setTimeout(() => { window.dispatchEvent(new Event('coordinates-updated')); });
                     }
                     try {
-                        const stlObject = await toast.promise(
-                            generateAndFetchSTL(),
-                            {
-                                loading: 'Generating...',
-                                success: () => ({
-                                    title: 'Your Scape has been generated!', 
-                                    description: 'You can now preview your model, or proceed with customization.',
-                                }),
-                                error: () => {
-                                    STLCache.invalidate();
-                                    return {
-                                        title: 'Error generating STL',
-                                        description: 'Please try again later',
-                                    };
-                                },
-                            }
-                        );
-                        
+                        const stlObject = await generateAndFetchSTL();
                         if (!stlObject) {
+                            toast.error('Error generating STL', { description: 'Please try again later' });
                             STLCache.invalidate();
+                            setIsLoading(false);
                             return;
                         }
-                        
+                        toast.success('Your Scape has been generated!', { description: 'You can now preview your model, or proceed with customization.' });
                         return stlObject;
+                    } catch (err: any) {
+                        console.error(err.message);
+                        toast.error(err.message, { description: 'Please try again later' });
+                        STLCache.invalidate();
                     } finally {
                         setIsLoading(false);
                     }
@@ -327,7 +316,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                         <button
                             onClick={() => setShowModal(true)}
                             disabled={mode === 'dummy' || !hasCoordinates || isLoading || !STLCache.objectUrl}
-                            className='text-sm text-muted-foreground font-normal hover:text-foreground disabled:opacity-40 disabled:cursor-default transition-all cursor-pointer border border-muted-foreground/30 w-19 px-3 py-1 rounded-full duration-150'
+                            className='text-sm text-muted-foreground font-normal hover:text-foreground disabled:opacity-40 disabled:cursor-default disabled:text-muted-foreground transition-all cursor-pointer border border-muted-foreground/30 w-19 px-3 py-1 rounded-full duration-150'
                         >
                             Preview
                         </button>
