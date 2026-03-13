@@ -321,7 +321,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             Preview
                         </button>
                         <Button
-                            className='px-8 py-6 sm:px-10 sm:py-7 min-w-[200px] sm:min-w-[240px] bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground rounded-full cursor-pointer text-sm tracking-wide transition-all duration-300'
+                            className='px-8 py-6 sm:px-10 sm:py-7 min-w-[180px] sm:min-w-[200px] bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground rounded-full cursor-pointer text-sm tracking-wide transition-all duration-300'
                             disabled={isLoading}
                             onClick={() => handleCapture().then((stlObject) => stlObject && parseSTL(stlObject.buffer!))}
                         >

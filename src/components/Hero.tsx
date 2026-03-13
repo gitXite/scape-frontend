@@ -69,7 +69,7 @@ function Hero() {
                     <h1 className='text-7xl sm:text-8xl md:text-9xl relative max-sm:left-2 text-primary-foreground font-extralight tracking-[0.2em] select-none [text-shadow:0_4px_20px_rgba(0,0,0,0.4)]'>
                         <span>SC</span>
                         <span className='tracking-normal'>/\</span>
-                        <span className='pl-4'>PE</span>
+                        <span className='pl-5'>PE</span>
                     </h1>
                 </motion.div>
 
