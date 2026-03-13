@@ -82,7 +82,7 @@ function Hero() {
 
             {/* Bottom CTA */}
             <div className='absolute bottom-8 sm:bottom-16 left-0 right-0 flex flex-col items-center z-10 px-4'>
-                <motion.div custom={2} variants={fadeUpVariants} initial='hidden' animate='visible'>
+                <motion.div custom={2} variants={fadeUpVariants} initial='hidden' animate='visible' className='backdrop-blur-md rounded-full'>
                     <button
                         className='group flex items-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base tracking-wide font-normal text-primary border border-primary-foreground/30 rounded-full backdrop-blur-md bg-primary-foreground/5 hover:bg-primary-foreground/15 transition-all duration-300 cursor-pointer'
                         onClick={() => navigate('/get-started')}
