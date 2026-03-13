@@ -31,8 +31,9 @@ const staggerContainer = {
 function TheScape() {
     const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: true, threshold: 0.3 });
     const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: true, threshold: 0.3 });
-    const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: true, threshold: 0.2 });
-    const { ref: ref4, inView: inView4 } = useInView({ triggerOnce: true, threshold: 0.3 });
+    const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: true, threshold: 0.3 });
+    const { ref: ref4, inView: inView4 } = useInView({ triggerOnce: true, threshold: 0.2 });
+    const { ref: ref5, inView: inView5 } = useInView({ triggerOnce: true, threshold: 0.3 });
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
@@ -124,12 +125,26 @@ function TheScape() {
                 </motion.div>
             </div>
 
-            {/* How it works + Carousel */}
-            <div className='px-6 sm:px-10 py-10 sm:py-20'>
+            <div className='px-6 sm:px-10 py-5 sm:py-10'>
                 <motion.div
                     ref={ref3}
                     initial='hidden'
                     animate={inView3 ? 'visible' : 'hidden'}
+                    variants={staggerContainer}
+                    className='flex max-w-6xl mx-auto items-center justify-center'
+                >
+                    <video autoPlay muted loop playsInline preload="none" poster='/images/thumbnail-1.jpg' className='w-full border rounded-lg shadow-md'>
+                        <source src='/scape-demo.mp4' type='video/mp4' />
+                    </video>
+                </motion.div>
+            </div>
+
+            {/* How it works + Carousel */}
+            <div className='px-6 sm:px-10 py-10 sm:py-20'>
+                <motion.div
+                    ref={ref4}
+                    initial='hidden'
+                    animate={inView4 ? 'visible' : 'hidden'}
                     variants={staggerContainer}
                     className='max-w-6xl mx-auto'
                 >
@@ -192,9 +207,9 @@ function TheScape() {
 
             {/* CTA */}
             <motion.div
-                ref={ref4}
+                ref={ref5}
                 initial='hidden'
-                animate={inView4 ? 'visible' : 'hidden'}
+                animate={inView5 ? 'visible' : 'hidden'}
                 variants={staggerContainer}
                 className='px-6 sm:px-10 py-16 sm:py-24'
             >
