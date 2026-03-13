@@ -4,7 +4,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import type React from 'react';
 
-import { X, Maximize2, RotateCcw } from 'lucide-react';
+import { X, RotateCcw, Rotate3D } from 'lucide-react';
 import { Spinner } from '../ui/shadcn-io/spinner/spinner';
 import { cn } from '@/lib/utils';
 import { STLCache } from '@/utils/cache';
@@ -15,6 +15,12 @@ type ModelPreviewProps = {
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
     className?: string;
+};
+
+type ViewState = {
+    initCameraPosition: THREE.Vector3;
+    initCameraUp: THREE.Vector3;
+    initTarget: THREE.Vector3;
 };
 
 function ModelPreview({
@@ -29,6 +35,7 @@ function ModelPreview({
     const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
     const sceneRef = useRef<THREE.Scene | null>(null);
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+    const viewRef = useRef<ViewState | null>(null);
     const frameIDRef = useRef<number | null>(null);
     const initTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -66,6 +73,7 @@ function ModelPreview({
         controlsRef.current = null;
         cameraRef.current = null;
         sceneRef.current = null;
+        viewRef.current = null;
     }, []);
 
     useHotkeys('escape', (event) => {
@@ -91,7 +99,7 @@ function ModelPreview({
         }
 
         // Use setTimeout to yield to the browser and let the modal animation play
-        // The 50ms delay allows CSS animations to start before heavy JS work
+        // The 100ms delay allows CSS animations to start before heavy JS work
         initTimeoutRef.current = setTimeout(() => {
             if (!mountRef.current) return;
 
@@ -105,6 +113,7 @@ function ModelPreview({
             cameraRef.current = three.camera;
             sceneRef.current = three.scene;
             rendererRef.current = three.renderer;
+            viewRef.current = three.viewState;
 
             setIsLoading(false);
             setIsReady(true);
@@ -151,6 +160,16 @@ function ModelPreview({
             }
         };
     }, [isReady]);
+    
+    const resetView = () => {
+        if (!cameraRef.current || !controlsRef.current || !viewRef.current) return;
+        cameraRef.current.position.copy(viewRef.current.initCameraPosition);
+        cameraRef.current.up.copy(viewRef.current.initCameraUp);
+        controlsRef.current.target.copy(viewRef.current.initTarget);
+
+        cameraRef.current.lookAt(viewRef.current.initTarget);
+        controlsRef.current.update();
+    };
 
     if (!showModal) return null;
 
@@ -179,7 +198,7 @@ function ModelPreview({
                 <div className='absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-5 py-4 bg-gradient-to-b from-black/60 to-transparent'>
                     <div className='flex items-center gap-3'>
                         <div className='flex items-center justify-center w-8 h-8 rounded-md bg-white/10 backdrop-blur-sm'>
-                            <Maximize2 className='w-4 h-4 text-white/70' />
+                            <Rotate3D className='w-4 h-4 text-white/70' />
                         </div>
                         <div>
                             <h3 className='text-sm font-medium text-white'>
@@ -195,6 +214,7 @@ function ModelPreview({
                         <button
                             className='flex items-center justify-center w-9 h-9 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200 group'
                             title='Reset view'
+                            onClick={resetView}
                         >
                             <RotateCcw className='w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors' />
                         </button>

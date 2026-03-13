@@ -2,11 +2,17 @@ import * as THREE from 'three';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
 import type React from 'react';
 
+type ViewState = {
+    initCameraPosition: THREE.Vector3;
+    initCameraUp: THREE.Vector3;
+    initTarget: THREE.Vector3;
+};
+
 export function setupThreeJS(
     mountRef: React.RefObject<HTMLDivElement | null>,
     geometry: THREE.BufferGeometry,
     mesh: THREE.Mesh
-): { controls: TrackballControls; camera: THREE.PerspectiveCamera; scene: THREE.Scene; renderer: THREE.WebGLRenderer } | null {
+): { controls: TrackballControls; camera: THREE.PerspectiveCamera; scene: THREE.Scene; renderer: THREE.WebGLRenderer; viewState: ViewState } | null {
     if (!mountRef.current) return null;
 
     const width = mountRef.current.clientWidth;
@@ -69,8 +75,14 @@ export function setupThreeJS(
     const maxDim = Math.max(targetWidth, targetHeight, size.z);
     camera.position.z = maxDim * 1.5;
     controls.update();
+    
+    const viewState: ViewState = {
+        initCameraPosition: camera.position.clone(),
+        initCameraUp: camera.up.clone(),
+        initTarget: controls.target.clone(),
+    };
 
     return {
-        controls, camera, scene, renderer
+        controls, camera, scene, renderer, viewState
     };
 }
