@@ -10,6 +10,7 @@ import {
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import type { CarouselApi } from './ui/carousel';
+import { Badge } from './ui/badge';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
@@ -131,8 +132,12 @@ function TheScape() {
                     initial='hidden'
                     animate={inView3 ? 'visible' : 'hidden'}
                     variants={fadeInUp}
-                    className='flex max-w-6xl mx-auto items-center justify-center'
+                    className='flex flex-col max-w-6xl mx-auto items-center justify-center'
                 >
+                    <Badge className='inline-flex text-xs text-foreground border border-border self-start px-3 mb-2 ml-4 gap-2 bg-background'>
+                        <span className='animate-pulse h-1.5 w-1.5 rounded-full bg-green-600' />
+                        The Process
+                    </Badge>
                     <video autoPlay muted loop playsInline preload="none" poster='/images/thumbnail-1.jpg' className='w-full border rounded-lg shadow-md'>
                         <source src='/demo.mp4' type='video/mp4' />
                     </video>
