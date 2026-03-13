@@ -130,11 +130,11 @@ function TheScape() {
                     ref={ref3}
                     initial='hidden'
                     animate={inView3 ? 'visible' : 'hidden'}
-                    variants={staggerContainer}
+                    variants={fadeInUp}
                     className='flex max-w-6xl mx-auto items-center justify-center'
                 >
                     <video autoPlay muted loop playsInline preload="none" poster='/images/thumbnail-1.jpg' className='w-full border rounded-lg shadow-md'>
-                        <source src='/scape-demo.mp4' type='video/mp4' />
+                        <source src='/demo.mp4' type='video/mp4' />
                     </video>
                 </motion.div>
             </div>
