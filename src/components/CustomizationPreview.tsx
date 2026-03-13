@@ -170,7 +170,7 @@ function CustomizationPreview() {
                     )}
                     <div
                         ref={mountRef}
-                        className='z-4 h-[102%] w-[70%] absolute self-center'
+                        className='z-4 h-[102%] w-[69%] scale-102 absolute self-center'
                     />
                     {isLoading && (
                         <Spinner
