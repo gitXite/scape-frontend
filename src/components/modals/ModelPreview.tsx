@@ -37,12 +37,12 @@ function ModelPreview({
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const viewRef = useRef<ViewState | null>(null);
     const frameIDRef = useRef<number | null>(null);
-    const initTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const initTimeoutRef = useRef<NodeJS.Timeout>(undefined);
 
     const cleanup = useCallback(() => {
         if (initTimeoutRef.current) {
             clearTimeout(initTimeoutRef.current);
-            initTimeoutRef.current = null;
+            initTimeoutRef.current = undefined;
         }
         if (frameIDRef.current) {
             cancelAnimationFrame(frameIDRef.current);
@@ -87,7 +87,7 @@ function ModelPreview({
             cleanup();
             setIsReady(false);
             setIsLoading(true);
-            return;
+            return () => clearTimeout(initTimeoutRef.current);
         }
 
         const geometry = STLCache.geometry;
@@ -95,7 +95,7 @@ function ModelPreview({
 
         if (!geometry || !mesh) {
             setIsLoading(false);
-            return;
+            return () => clearTimeout(initTimeoutRef.current);
         }
 
         // Use setTimeout to yield to the browser and let the modal animation play
@@ -119,7 +119,10 @@ function ModelPreview({
             setIsReady(true);
         }, 100);
 
-        return cleanup;
+        return () => {
+            clearTimeout(initTimeoutRef.current);
+            cleanup();
+        };
     }, [showModal, cleanup]);
 
     // Animation loop - separate from initialization
