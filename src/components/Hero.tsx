@@ -126,7 +126,7 @@ function Hero() {
                 >
                     <h2
                         className='mt-4
-                                   text-xl sm:text-2xl md:text-3xl
+                                   text-2xl sm:text-2xl md:text-3xl
                                    text-primary-foreground/80 font-normal
                                    tracking-wide
                                    [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]'
@@ -141,7 +141,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-5 mb-10 text-sm sm:text-base
+                    className='mt-5 mb-10 text-base sm:text-base
                                text-primary-foreground/70 font-light
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
