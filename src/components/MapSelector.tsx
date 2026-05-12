@@ -38,23 +38,33 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         const coords = localStorage.getItem('coordinates');
         return coords
             ? {
-                  lat: (JSON.parse(coords).north + JSON.parse(coords).south) / 2,
+                  lat:
+                      (JSON.parse(coords).north + JSON.parse(coords).south) / 2,
                   lng: (JSON.parse(coords).east + JSON.parse(coords).west) / 2,
               }
             : { lat: 60.39299, lng: 5.32415 };
     });
-    const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
+    const [rectangleBounds, setRectangleBounds] = useState<
+        RectangleBounds | undefined
+    >(undefined);
     const [sliderValues, setSliderValues] = useState(() => {
         const verticalScale = localStorage.getItem('verticalScale');
         const boxSize = localStorage.getItem('boxSize');
         return verticalScale && boxSize
-            ? { verticalScale: [parseFloat(verticalScale)], boxSize: [parseInt(boxSize)] }
+            ? {
+                  verticalScale: [parseFloat(verticalScale)],
+                  boxSize: [parseInt(boxSize)],
+              }
             : { verticalScale: [2.0], boxSize: [100] };
     });
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
+    const mapContainerRef = useRef<HTMLDivElement>(null);
+    const isDraggingRef = useRef(false);
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-    const [hasCoordinates, setHasCoordinates] = useState(!!localStorage.getItem('coordinates'));
+    const [hasCoordinates, setHasCoordinates] = useState(
+        !!localStorage.getItem('coordinates'),
+    );
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const rectangleRef = useRef<google.maps.Rectangle | null>(null);
     const liveBoundsRef = useRef<RectangleBounds | null>(null);
@@ -63,13 +73,21 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         (point: LatLngLiteral) => {
             const latLng = new google.maps.LatLng(point.lat, point.lng);
             const scale = sliderValues.boxSize[0] / 100;
-            const north = google.maps.geometry.spherical.computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 0).lat();
-            const south = google.maps.geometry.spherical.computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 180).lat();
-            const east = google.maps.geometry.spherical.computeOffset(latLng, (RECT_WIDTH / 2) * scale, 90).lng();
-            const west = google.maps.geometry.spherical.computeOffset(latLng, (RECT_WIDTH / 2) * scale, 270).lng();
+            const north = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 0)
+                .lat();
+            const south = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 180)
+                .lat();
+            const east = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_WIDTH / 2) * scale, 90)
+                .lng();
+            const west = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_WIDTH / 2) * scale, 270)
+                .lng();
             setRectangleBounds({ north, south, east, west });
         },
-        [sliderValues.boxSize]
+        [sliderValues.boxSize],
     );
 
     const onLoad = useCallback((map: google.maps.Map) => {
@@ -88,33 +106,59 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast.success('Coordinates captured in test mode', { description: 'Get started to enable preview.' });
+                    toast.success('Coordinates captured in test mode', {
+                        description: 'Get started to enable preview.',
+                    });
                     setIsLoading(false);
                     break;
                 case 'real':
                     if (
-                        JSON.parse(localStorage.getItem('coordinates') || '{}').north !== rectangleBounds.north &&
-                        JSON.parse(localStorage.getItem('coordinates') || '{}').west !== rectangleBounds.west ||
-                        parseInt(localStorage.getItem('verticalScale')!) !== sliderValues.verticalScale[0]
+                        (JSON.parse(localStorage.getItem('coordinates') || '{}')
+                            .north !== rectangleBounds.north &&
+                            JSON.parse(
+                                localStorage.getItem('coordinates') || '{}',
+                            ).west !== rectangleBounds.west) ||
+                        parseInt(localStorage.getItem('verticalScale')!) !==
+                            sliderValues.verticalScale[0]
                     ) {
-                        localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
-                        localStorage.setItem('verticalScale', sliderValues.verticalScale[0].toString());
-                        localStorage.setItem('boxSize', sliderValues.boxSize[0].toString());
-                        setTimeout(() => { window.dispatchEvent(new Event('coordinates-updated')); });
+                        localStorage.setItem(
+                            'coordinates',
+                            JSON.stringify(rectangleBounds),
+                        );
+                        localStorage.setItem(
+                            'verticalScale',
+                            sliderValues.verticalScale[0].toString(),
+                        );
+                        localStorage.setItem(
+                            'boxSize',
+                            sliderValues.boxSize[0].toString(),
+                        );
+                        setTimeout(() => {
+                            window.dispatchEvent(
+                                new Event('coordinates-updated'),
+                            );
+                        });
                     }
                     try {
                         const stlObject = await generateAndFetchSTL();
                         if (!stlObject) {
-                            toast.error('Error generating STL', { description: 'Please try again later' });
+                            toast.error('Error generating STL', {
+                                description: 'Please try again later',
+                            });
                             STLCache.invalidate();
                             setIsLoading(false);
                             return;
                         }
-                        toast.success('Your Scape has been generated!', { description: 'You can now preview your model, or proceed with customization.' });
+                        toast.success('Your Scape has been generated!', {
+                            description:
+                                'You can now preview your model, or proceed with customization.',
+                        });
                         return stlObject;
                     } catch (err: any) {
                         console.error(err.message);
-                        toast.error(err.message, { description: 'Please try again later' });
+                        toast.error(err.message, {
+                            description: 'Please try again later',
+                        });
                         STLCache.invalidate();
                     } finally {
                         setIsLoading(false);
@@ -141,11 +185,32 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                 window.dispatchEvent(new Event('passe-partout-removed'));
             });
             STLCache.invalidate();
-            toast.success('Your Scape has been reset', { description: 'Please capture your coordinates to proceed.' });
+            toast.success('Your Scape has been reset', {
+                description: 'Please capture your coordinates to proceed.',
+            });
         } else {
             toast.success('Map has been reset');
         }
     };
+
+    useEffect(() => {
+        const el = mapContainerRef.current;
+        if (!el) return;
+
+        const preventScroll = (e: TouchEvent) => {
+            if (isDraggingRef.current) {
+                e.preventDefault();
+            }
+        };
+
+        el.addEventListener('touchmove', preventScroll, {
+            passive: false,
+        });
+
+        return () => {
+            el.removeEventListener('touchmove', preventScroll);
+        };
+    }, []);
 
     useEffect(() => {
         if (mapRef.current) computeRectangleBounds(center);
@@ -160,7 +225,10 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         window.addEventListener('coordinates-updated', handleStorageChange);
         return () => {
             window.removeEventListener('storage', handleStorageChange);
-            window.removeEventListener('coordinates-updated', handleStorageChange);
+            window.removeEventListener(
+                'coordinates-updated',
+                handleStorageChange,
+            );
         };
     }, []);
 
@@ -190,9 +258,14 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                 }`}
             >
                 {/* Map container */}
-                <div className='h-6/10 md:h-8/10 w-full rounded-lg overflow-hidden shadow-xl'>
+                <div
+                    className='h-6/10 md:h-8/10 w-full rounded-lg overflow-hidden shadow-xl overscroll-none touch-none'
+                    ref={mapContainerRef}
+                >
                     <LoadScript
-                        googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''}
+                        googleMapsApiKey={
+                            import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
+                        }
                         libraries={libraries}
                     >
                         <GoogleMap
@@ -205,12 +278,15 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 streetViewControl: false,
                                 fullscreenControl: false,
                                 cameraControl: false,
-                                maxZoom: window.innerWidth > 640 ? 11 : 10
+                                maxZoom: window.innerWidth > 640 ? 11 : 10,
+                                gestureHandling: 'greedy'
                             }}
                         >
                             {rectangleBounds && (
                                 <Rectangle
-                                    onLoad={(rect) => { rectangleRef.current = rect; }}
+                                    onLoad={(rect) => {
+                                        rectangleRef.current = rect;
+                                    }}
                                     bounds={rectangleBounds}
                                     options={{
                                         strokeColor: '#000000',
@@ -223,7 +299,8 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         clickable: true,
                                     }}
                                     onDrag={() => {
-                                        const bounds = rectangleRef.current?.getBounds();
+                                        const bounds =
+                                            rectangleRef.current?.getBounds();
                                         if (!bounds) return;
                                         const ne = bounds.getNorthEast();
                                         const sw = bounds.getSouthWest();
@@ -235,17 +312,25 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         };
                                     }}
                                     onDragStart={() => {
-                                        document.body.style.overflow = 'hidden';
-                                        document.body.style.touchAction = 'none';
+                                        isDraggingRef.current = true;
                                     }}
                                     onDragEnd={() => {
                                         if (!liveBoundsRef.current) return;
-                                        document.body.style.overflow = '';
-                                        document.body.style.touchAction = '';
-                                        setRectangleBounds(liveBoundsRef.current);
+                                        isDraggingRef.current = false;
+                                        setRectangleBounds(
+                                            liveBoundsRef.current,
+                                        );
                                         setCenter({
-                                            lat: (liveBoundsRef.current.north + liveBoundsRef.current.south) / 2,
-                                            lng: (liveBoundsRef.current.east + liveBoundsRef.current.west) / 2,
+                                            lat:
+                                                (liveBoundsRef.current.north +
+                                                    liveBoundsRef.current
+                                                        .south) /
+                                                2,
+                                            lng:
+                                                (liveBoundsRef.current.east +
+                                                    liveBoundsRef.current
+                                                        .west) /
+                                                2,
                                         });
                                     }}
                                 />
@@ -266,7 +351,10 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     </p>
                                 </HoverCardTrigger>
                                 <HoverCardContent className='text-center text-sm'>
-                                    <p className='pb-2'>Adjust the slider to set the desired area</p>
+                                    <p className='pb-2'>
+                                        Adjust the slider to set the desired
+                                        area
+                                    </p>
                                     <Separator orientation='horizontal' />
                                     <p className='pt-2'>Default: 100%</p>
                                 </HoverCardContent>
@@ -276,7 +364,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 max={200}
                                 defaultValue={[100]}
                                 value={sliderValues.boxSize}
-                                onValueChange={(value) => setSliderValues({ ...sliderValues, boxSize: value })}
+                                onValueChange={(value) =>
+                                    setSliderValues({
+                                        ...sliderValues,
+                                        boxSize: value,
+                                    })
+                                }
                                 className='w-full md:w-1/2'
                             />
                             <p className='text-xs text-muted-foreground font-normal pt-2 group-hover:text-foreground/80 transition-colors cursor-default'>
@@ -292,7 +385,10 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     </p>
                                 </HoverCardTrigger>
                                 <HoverCardContent className='text-center text-sm'>
-                                    <p className='pb-2'>Adjust the slider to set the desired vertical exaggeration</p>
+                                    <p className='pb-2'>
+                                        Adjust the slider to set the desired
+                                        vertical exaggeration
+                                    </p>
                                     <Separator orientation='horizontal' />
                                     <p className='pt-2'>Default: 2.0</p>
                                 </HoverCardContent>
@@ -303,7 +399,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 step={0.1}
                                 defaultValue={[2.0]}
                                 value={sliderValues.verticalScale}
-                                onValueChange={(value) => setSliderValues({ ...sliderValues, verticalScale: value })}
+                                onValueChange={(value) =>
+                                    setSliderValues({
+                                        ...sliderValues,
+                                        verticalScale: value,
+                                    })
+                                }
                                 className='w-full md:w-1/2'
                             />
                             <p className='text-xs text-muted-foreground font-normal pt-2 group-hover:text-foreground/80 transition-colors cursor-default'>
@@ -316,7 +417,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                     <div className='flex flex-row items-center justify-center gap-3 sm:gap-6 mt-10 sm:mt-0'>
                         <button
                             onClick={() => setShowModal(true)}
-                            disabled={mode === 'dummy' || !hasCoordinates || isLoading || !STLCache.objectUrl}
+                            disabled={
+                                mode === 'dummy' ||
+                                !hasCoordinates ||
+                                isLoading ||
+                                !STLCache.objectUrl
+                            }
                             className='text-sm text-muted-foreground font-normal hover:text-foreground disabled:opacity-40 disabled:cursor-default disabled:text-muted-foreground transition-all cursor-pointer border border-muted-foreground/30 w-19 px-3 py-1 rounded-full duration-150'
                         >
                             Preview
@@ -324,9 +430,19 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                         <Button
                             className='px-8 py-6 sm:px-10 sm:py-7 min-w-[180px] sm:min-w-[200px] bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground rounded-full cursor-pointer text-sm tracking-wide transition-all duration-300'
                             disabled={isLoading}
-                            onClick={() => handleCapture().then((stlObject) => stlObject && parseSTL(stlObject.buffer!))}
+                            onClick={() =>
+                                handleCapture().then(
+                                    (stlObject) =>
+                                        stlObject &&
+                                        parseSTL(stlObject.buffer!),
+                                )
+                            }
                         >
-                            {isLoading ? <Spinner variant={'ellipsis'} /> : 'Generate Scape'}
+                            {isLoading ? (
+                                <Spinner variant={'ellipsis'} />
+                            ) : (
+                                'Generate Scape'
+                            )}
                         </Button>
                         <button
                             className='text-sm text-muted-foreground font-normal border border-transparent rounded-full hover:border-muted-foreground/30 hover:text-foreground transition-all cursor-pointer w-19 px-3 py-1 duration-150'
