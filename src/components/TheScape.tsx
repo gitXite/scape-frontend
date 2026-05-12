@@ -100,13 +100,13 @@ function TheScape() {
                     </motion.p>
                     <motion.h2
                         variants={fadeInUp}
-                        className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-surface-foreground mb-6 tracking-tight leading-tight'
+                        className='text-3xl sm:text-4xl md:text-5xl font-medium text-surface-foreground mb-6 tracking-tight leading-tight'
                     >
                         From Map To Frame
                     </motion.h2>
                     <motion.p
                         variants={fadeInUp}
-                        className='text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
+                        className='text-base sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed'
                     >
                         With just a few clicks you can transform any Norwegian
                         landscape into a stunning 3D topographic model. Our
