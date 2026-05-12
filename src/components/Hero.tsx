@@ -1,109 +1,231 @@
 import { useNavigate } from 'react-router';
 import { ArrowRight, ChevronDown } from 'lucide-react';
-import Hero3D from './Hero3D';
 import { motion } from 'framer-motion';
+import { lazy, Suspense } from 'react';
+
+const Hero3DNew = lazy(() => import('./Hero3DNew'));
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Suspense fallback — a minimal skeleton that matches the hero background so
+// there's no flash. We don't show a spinner because the canvas is behind the
+// text; a blank dark area is fine while Three.js boots.
+// ─────────────────────────────────────────────────────────────────────────────
+function CanvasFallback() {
+    return (
+        <div className='absolute top-0 right-0 h-full w-full lg:w-3/4 pointer-events-none' />
+    );
+}
 
 function Hero() {
     const navigate = useNavigate();
 
-    const fadeDownVariants = {
-        hidden: { opacity: 0, y: -30 },
+    // Text enters from above (staggered)
+    const fadeDown = {
+        hidden: { opacity: 0, y: -24 },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
             transition: {
                 duration: 1,
-                delay: 0.3 + i * 0.2,
+                delay: 0.3 + i * 0.15,
                 ease: [0.25, 0.4, 0.25, 1] as const,
             },
         }),
     };
 
-    const fadeUpVariants = {
-        hidden: { opacity: 0, y: 30 },
+    // CTAs enter from below (staggered, starts after text)
+    const fadeUp = {
+        hidden: { opacity: 0, y: 24 },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
             transition: {
                 duration: 1,
-                delay: 0.3 + i * 0.2,
+                delay: 0.6 + i * 0.15,
                 ease: [0.25, 0.4, 0.25, 1] as const,
             },
         }),
     };
 
     return (
-        <section id='home' className='relative h-svh w-[100vw] flex items-center justify-center overflow-hidden'>
-            {/* Background */}
+        <section
+            id='home'
+            className='relative h-svh w-screen flex overflow-hidden'
+        >
+            {/* ── Background ─────────────────────────────────────────────────── */}
             <div className='absolute inset-0 bg-gradient-to-br from-hero-dark via-hero-dark-deep to-hero-dark' />
 
-            {/* Ambient glow effects */}
-            <div
-                className='absolute top-[10%] left-[-5%] w-[70%] h-[70%] rounded-full opacity-20 blur-[120px] pointer-events-none'
-                style={{
-                    background: 'radial-gradient(circle, hsl(var(--hero-glow-1) / 0.5), transparent 65%)',
-                }}
-            />
-            <div
-                className='absolute bottom-[-15%] right-[-5%] w-[60%] h-[60%] rounded-full opacity-20 blur-[100px] pointer-events-none'
-                style={{
-                    background: 'radial-gradient(circle, hsl(var(--hero-glow-2) / 0.4), transparent 65%)',
-                }}
-            />
-            <div
-                className='absolute top-[30%] left-[25%] w-[40%] h-[40%] rounded-full opacity-10 blur-[90px] pointer-events-none'
-                style={{
-                    background: 'radial-gradient(circle, hsl(var(--hero-glow-3) / 0.4), transparent 65%)',
-                }}
-            />
-
-            {/* Inner shadow overlay */}
+            {/* ── Inner shadow vignette ───────────────────────────────────────── */}
             <div className='absolute inset-0 shadow-[inset_0px_0px_30px_rgba(0,0,0,0.5)]' />
 
-            {/* 3D background */}
-            <Hero3D />
+            <div
+                className='absolute bottom-0 left-0 right-0 h-48 pointer-events-none z-10
+                            bg-gradient-to-t from-white/[0.07] to-transparent'
+            />
+            <div
+                className='absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-10
+                            bg-gradient-to-t from-white/[0.12] to-transparent'
+            />
 
-            {/* Content */}
-            <div className='relative z-10 flex flex-col items-center text-center justify-center px-4 bottom-50 pointer-events-none'>
-                <motion.div custom={0} variants={fadeDownVariants} initial='hidden' animate='visible'>
-                    <h1 className='text-7xl sm:text-8xl md:text-9xl relative max-sm:left-2 text-primary-foreground font-extralight tracking-[0.2em] select-none [text-shadow:0_4px_20px_rgba(0,0,0,0.4)]'>
-                        <span>SC</span>
-                        <span className='tracking-normal'>/\</span>
-                        <span className='pl-5'>PE</span>
+            <div
+                className='absolute inset-0 pointer-events-none z-10
+                bg-gradient-to-t from-hero-dark/95 via-hero-dark/60 to-transparent
+                lg:bg-gradient-to-r lg:from-hero-dark lg:via-hero-dark/75 lg:to-transparent'
+            />
+
+            {/* ── 3D canvas — right 75%, absolute behind text ─────────────────── */}
+            <Suspense fallback={<CanvasFallback />}>
+                <Hero3DNew />
+            </Suspense>
+
+            {/* ── Left-aligned text content ────────────────────────────────────── */}
+            <div
+                className='relative z-20 flex flex-col justify-center w-full
+                    items-center text-center
+                    lg:items-start lg:text-left
+                    px-8 sm:px-12 lg:px-20
+                    max-w-full
+                    pointer-events-none select-none'
+            >
+                {/* Eyebrow */}
+                <motion.p
+                    custom={0}
+                    variants={fadeDown}
+                    initial='hidden'
+                    animate='visible'
+                    className='text-[0.65rem] tracking-[0.3em] uppercase
+                               text-primary-foreground/50 mb-5 sm:mb-4'
+                >
+                    Framed Terrain Models
+                </motion.p>
+
+                {/* Wordmark headline */}
+                <motion.div
+                    custom={1}
+                    variants={fadeDown}
+                    initial='hidden'
+                    animate='visible'
+                >
+                    <h1
+                        className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                                   text-primary-foreground font-bold
+                                   tracking-wide
+                                   [text-shadow:0_4px_20px_rgba(0,0,0,0.4)] mb-5 sm:mb-10'
+                    >
+                        From Map <br />
+                        To Frame
                     </h1>
                 </motion.div>
 
-                <motion.div custom={1} variants={fadeDownVariants} initial='hidden' animate='visible'>
-                    <h2 className='mt-4 sm:mt-6 text-xl sm:text-3xl md:text-4xl text-primary-foreground/80 font-extralight tracking-wide select-none [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]'>
-                        From Map To Frame
+                {/* Sub-headline */}
+                <motion.div
+                    custom={2}
+                    variants={fadeDown}
+                    initial='hidden'
+                    animate='visible'
+                >
+                    <h2
+                        className='mt-4
+                                   text-xl sm:text-2xl md:text-3xl
+                                   text-primary-foreground/80 font-normal
+                                   tracking-wide
+                                   [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]'
+                    >
+                        Crafted From Real Terrain
                     </h2>
                 </motion.div>
-            </div>
 
-            {/* Bottom CTA */}
-            <div className='absolute bottom-8 sm:bottom-16 left-0 right-0 flex flex-col items-center z-10 px-4'>
-                <motion.div custom={2} variants={fadeUpVariants} initial='hidden' animate='visible' className='backdrop-blur-md rounded-full'>
-                    <button
-                        className='group flex items-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base tracking-wide font-normal text-primary border border-primary-foreground/30 rounded-full backdrop-blur-md bg-primary-foreground/5 hover:bg-primary-foreground/15 transition-all duration-300 cursor-pointer'
-                        onClick={() => navigate('/get-started')}
-                    >
-                        Get Started
-                        <ArrowRight className='w-4 h-4 hidden sm:block group-hover:translate-x-1.5 relative top-[1px] transition-transform duration-200' />
-                    </button>
-                </motion.div>
+                {/* Description */}
+                <motion.p
+                    custom={3}
+                    variants={fadeDown}
+                    initial='hidden'
+                    animate='visible'
+                    className='mt-5 mb-40 sm:mb-10 text-sm sm:text-base
+                               text-primary-foreground/70 font-light
+                               leading-relaxed max-w-[50ch]
+                               [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
+                >
+                    Custom 3D terrain models created from real Norwegian
+                    landscapes, printed and framed by hand.
+                </motion.p>
 
-                <motion.div custom={3} variants={fadeUpVariants} initial='hidden' animate='visible'>
-                    <a
-                        href='#thescape'
-                        className='flex flex-col items-center mt-6 group cursor-pointer'
+                {/* CTAs */}
+                <div
+                    className='mt-8 sm:mt-10 flex flex-col sm:flex-row
+                        items-center lg:items-start
+                        justify-center lg:justify-start
+                        gap-4 pointer-events-auto'
+                >
+                    <motion.div
+                        custom={0}
+                        variants={fadeUp}
+                        initial='hidden'
+                        animate='visible'
                     >
-                        <span className='text-sm sm:text-base text-primary group-hover:text-primary font-normal transition-colors duration-200'>
+                        <button
+                            className='group flex items-center gap-3
+                                       px-10 py-4
+                                       text-sm sm:text-base tracking-wide font-normal
+                                       text-primary
+                                       border border-primary-foreground/30 rounded-full
+                                       backdrop-blur-md bg-primary-foreground
+                                       hover:bg-primary-foreground/90
+                                       transition-all duration-300 cursor-pointer'
+                            onClick={() => navigate('/get-started')}
+                        >
+                            Get Started
+                            <ArrowRight
+                                className='w-4 h-4 hidden sm:block
+                                                   group-hover:translate-x-1.5
+                                                   relative top-[1px]
+                                                   transition-transform duration-200'
+                            />
+                        </button>
+                    </motion.div>
+
+                    <motion.div
+                        custom={1}
+                        variants={fadeUp}
+                        initial='hidden'
+                        animate='visible'
+                    >
+                        <a
+                            href='#thescape'
+                            className='flex items-center gap-2 px-2 py-3.5
+                                       text-sm sm:text-base text-primary-foreground/50
+                                       hover:text-primary-foreground
+                                       font-light transition-colors duration-200
+                                       cursor-pointer'
+                        >
                             Explore
-                        </span>
-                        <ChevronDown className='w-5 h-5 text-primary mt-1 group-hover:translate-y-1 transition-all duration-200 animate-bounce group-hover:animate-none' />
-                    </a>
-                </motion.div>
+                            <ChevronDown
+                                className='w-4 h-4 mt-px
+                                                    group-hover:translate-y-1
+                                                    transition-transform duration-200
+                                                    animate-bounce'
+                            />
+                        </a>
+                    </motion.div>
+                </div>
             </div>
+
+            <motion.div
+                custom={4}
+                variants={fadeUp}
+                initial='hidden'
+                animate='visible'
+                className='absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2
+                           z-20 flex items-center gap-3 pointer-events-none'
+            >
+                <div className='w-8 h-px bg-primary-foreground/50 animate-pulse' />
+                <span
+                    className='text-[0.58rem] tracking-[0.28em] uppercase
+                                 text-primary-foreground/50 animate-pulse'
+                >
+                    Scroll
+                </span>
+            </motion.div>
         </section>
     );
 }

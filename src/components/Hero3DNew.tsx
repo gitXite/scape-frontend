@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Geometry constants (terrain_web.stl — decimated for web, drop in /public/models/)
@@ -11,7 +10,6 @@ import { motion } from 'motion/react';
 // ─────────────────────────────────────────────────────────────────────────────
 const INNER_W = 2.623;
 const INNER_D = 4.0;
-const TERRAIN_H = 0.386;
 
 const FRAME_W = 0.28; // visible moulding face width
 const FRAME_DEPTH = 0.4; // front-to-back depth — must exceed TERRAIN_H
@@ -22,11 +20,29 @@ const BACKING_Y = -FRAME_DEPTH / 2 + 0.01; // flush to rear face
 const BACKING_THICK = 0.06; // thick enough to always occlude underside
 const TERRAIN_FLOOR_Y = BACKING_Y + BACKING_THICK / 2 + 0.005; // terrain Y=0 maps here
 
-const CAM_POS    = new THREE.Vector3(-0.5, 3.5, 7.0);
-const CAM_LOOKAT = new THREE.Vector3(1.2, -0.5, 0);
+// ── Responsive layout helper ──────────────────────────────────────────────────
+// Desktop (≥1024px): canvas is right 75% of viewport; model sits low-right.
+// Mobile (<1024px):  canvas is full-width; model must be centred so the frame
+//                    doesn't clip at the canvas right edge.
+function getLayout(vpWidth: number) {
+    if (vpWidth < 1024) {
+        return {
+            finalX: 0.0,
+            finalY: -0.5,
+            camPos: new THREE.Vector3(-0.5, 3.5, 7.0),
+            camLookAt: new THREE.Vector3(1.2, -0.5, 0),
+        };
+    }
+    return {
+        finalX: 1.8,
+        finalY: -1.2,
+        camPos: new THREE.Vector3(-0.5, 3.5, 7.0),
+        camLookAt: new THREE.Vector3(1.2, -0.5, 0),
+    };
+}
 
 // ─── Frame builder ────────────────────────────────────────────────────────────
-// Walnut dark-brown moulding + wide cream mount board.
+// Cream mount board.
 // Four outer bars only — no inner wall boxes filling the opening.
 // One solid dark backing slab at the rear hides the terrain underside completely.
 function buildFrame(): THREE.Group {
@@ -93,7 +109,7 @@ function buildFrame(): THREE.Group {
 function buildLights(scene: THREE.Scene): void {
     scene.add(new THREE.AmbientLight(0xfff8f4, 0.3));
 
-    const key = new THREE.DirectionalLight(0xfffcf8, 1.05);
+    const key = new THREE.DirectionalLight(0xfffcf8, 2.5);
     key.position.set(-4, 9, 6);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
@@ -155,8 +171,9 @@ function Hero3D() {
             5000,
         );
 
-        camera.position.copy(CAM_POS);
-        camera.lookAt(CAM_LOOKAT);
+        let layout = getLayout(window.innerWidth);
+        camera.position.copy(layout.camPos);
+        camera.lookAt(layout.camLookAt);
 
         // ── Root group — model sits low-right in the viewport ─────────────────
         const FINAL_X = 1.8;
@@ -215,8 +232,10 @@ function Hero3D() {
         const clamp = (v: number, lo: number, hi: number) =>
             Math.max(lo, Math.min(hi, v));
 
-        let targetX = 0, targetY = 0;
-        let currentX = 0, currentY = 0;
+        let targetX = 0,
+            targetY = 0;
+        let currentX = 0,
+            currentY = 0;
 
         const onMouseMove = (e: MouseEvent) => {
             if (window.innerWidth < 1024) return;
@@ -225,10 +244,33 @@ function Hero3D() {
                 -MAX_TILT,
                 MAX_TILT,
             );
-            targetY = (e.clientX / window.innerWidth - 0.8) * 0.45;
+            targetY = -(e.clientX / window.innerWidth - 0.8) * 0.45;
         };
         // Listen on window so mouse anywhere on the hero triggers parallax
         window.addEventListener('mousemove', onMouseMove);
+
+        const onScroll = () => {
+            if (window.innerWidth >= 1024) return;
+            const heroEl = document.getElementById('home');
+            const heroH = heroEl?.clientHeight ?? window.innerHeight;
+            const pct = Math.min(window.scrollY / heroH, 1);
+            targetX = -pct * 0.6;
+            targetY = clamp(pct * 0.20, -MAX_TILT, MAX_TILT);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Mobile: gyroscope as a bonus layer where available
+        const onDeviceOrientation = (e: DeviceOrientationEvent) => {
+            if (window.innerWidth >= 1024 || e.beta == null || e.gamma == null)
+                return;
+            targetX = clamp((e.beta - 45) * 0.01, -MAX_TILT, MAX_TILT);
+            targetY = e.gamma * 0.012;
+        };
+        window.addEventListener(
+            'deviceorientation',
+            onDeviceOrientation as EventListener,
+            { passive: true },
+        );
 
         // ── Render loop ───────────────────────────────────────────────────────
         const easeOutExpo = (t: number) =>
@@ -250,7 +292,6 @@ function Hero3D() {
             root.position.y = FINAL_Y - 0.5 * (1 - tc);
 
             if (!entryDone) {
-                // Y rotation unwinds from +0.4 offset to base during entry
                 root.rotation.y = -0.08 + 0.4 * (1 - te);
             } else {
                 currentX += (targetX - currentX) * 0.042;
@@ -317,7 +358,7 @@ function Hero3D() {
     return (
         <div
             ref={mountRef}
-            className='absolute top-0 right-0 h-full w-3/4 object-cover'
+            className='absolute top-0 right-0 h-full w-full lg:w-3/4 object-cover'
         />
     );
 }
