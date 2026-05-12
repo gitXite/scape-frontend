@@ -107,7 +107,7 @@ function Hero() {
                     animate='visible'
                 >
                     <h1
-                        className='text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+                        className='text-6xl sm:text-6xl md:text-7xl lg:text-8xl
                                    text-primary-foreground font-bold
                                    tracking-wide
                                    [text-shadow:0_4px_20px_rgba(0,0,0,0.4)] mb-5 sm:mb-10'
