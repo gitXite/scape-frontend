@@ -152,7 +152,7 @@ function Hero() {
 
                 {/* CTAs */}
                 <div
-                    className='mt-40 sm:mt-10 flex flex-col sm:flex-row
+                    className='mt-30 sm:mt-10 flex flex-col sm:flex-row
                         items-center lg:items-start
                         justify-center lg:justify-start
                         gap-4 pointer-events-auto'
