@@ -63,7 +63,7 @@ function Header() {
                     isHoveredRef.current = false;
                     startHideTimeout();
                 }}
-                className={`fixed left-0 right-0 z-50 mix-blend-difference text-white backdrop-blur-xl bg-primary/10 border-b border-primary-foreground/10 transition-transform duration-300 ease-out ${
+                className={`fixed left-0 right-0 z-50 text-white backdrop-blur-xl bg-primary/60 border-b border-primary-foreground/10 transition-transform duration-300 ease-out ${
                     showHeader ? 'translate-y-0' : '-translate-y-full'
                 }`}
             >
@@ -76,7 +76,7 @@ function Header() {
                                     <a
                                         key={link.href}
                                         href={link.href}
-                                        className='text-sm tracking-widest text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
+                                        className='text-sm tracking-tight text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
                                     >
                                         {link.label}
                                         <span className='absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-primary-foreground transition-all duration-150' />

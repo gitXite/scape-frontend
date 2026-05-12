@@ -49,34 +49,34 @@ function About() {
 
     return (
         <div className='flex flex-col min-h-[100vh] w-full bg-neutral-100'>
-            <header className='flex h-auto z-2 w-1/3 fixed place-content-center justify-evenly self-center mix-blend-difference text-white bg-neutral-500/10 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-300/30 max-sm:hidden'>
+            <header className='flex h-auto z-2 w-1/3 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-300/30 max-sm:hidden'>
                 <a
                     href='#about-us'
                     className='group md:tracking-tight max-sm:text-sm text-md'
                 >
                     About Us
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#the-team'
                     className='group md:tracking-tight max-sm:text-sm text-md'
                 >
                     The Team
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#values'
                     className='group md:tracking-tight max-sm:text-sm text-md'
                 >
                     Our Values
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#mission'
                     className='group md:tracking-tight max-sm:text-sm text-md'
                 >
                     Our Mission
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-neutral-300' />
+                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
             </header>
             <div
