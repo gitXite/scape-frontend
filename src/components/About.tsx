@@ -12,7 +12,7 @@ const fadeInUp = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.8, ease: 'easeOut' as const },
+        transition: { duration: 0.6, ease: 'easeOut' as const },
     },
 };
 const staggerContainer = {
@@ -38,12 +38,12 @@ function About() {
         {
             title: 'Innovation',
             description:
-                'We blend cutting-edge data processing with traditional design principles to create something truly unique.',
+                'We blend innovative data processing with traditional design principles to create something truly unique.',
         },
         {
-            title: 'Sustainability',
+            title: 'Sentimental Value',
             description:
-                'Our materials and processes are chosen with environmental responsibility in mind.',
+                'Each piece capture places, memories, and moments that hold personal meaning.',
         },
     ];
 
@@ -99,7 +99,7 @@ function About() {
                         </motion.p>
                         <motion.h1
                             variants={fadeInUp}
-                            className='text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-8 tracking-tight'
+                            className='text-4xl sm:text-5xl md:text-6xl font-medium text-foreground mb-8 tracking-tight'
                         >
                             Made By MD
                         </motion.h1>
@@ -143,7 +143,7 @@ function About() {
                                 <p className='text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4'>
                                     The Team
                                 </p>
-                                <h2 className='text-3xl sm:text-4xl font-light text-foreground mb-6 tracking-tight'>
+                                <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
                                     Maren & Daniel
                                 </h2>
                                 <div className='space-y-4 text-muted-foreground leading-relaxed'>
@@ -188,24 +188,27 @@ function About() {
                             <p className='text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4'>
                                 Our Values
                             </p>
-                            <h2 className='text-3xl sm:text-4xl font-light text-foreground tracking-tight'>
+                            <h2 className='text-3xl sm:text-4xl font-medium text-foreground tracking-tight'>
                                 What We Believe
                             </h2>
                         </motion.div>
-                        <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
+                        <div className='grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border'>
                             {values.map((value, index) => (
                                 <motion.div
                                     key={value.title}
                                     variants={fadeInUp}
-                                    className='text-center p-8 bg-secondary/20 rounded-lg'
+                                    className='flex flex-col gap-3 px-0 sm:px-8 py-8 sm:py-0
+                                                       first:pt-0 last:pb-0 sm:first:pl-0 sm:last:pr-0'
                                 >
-                                    <div className='w-12 h-12 mx-auto mb-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-medium'>
-                                        {index + 1}
-                                    </div>
-                                    <h3 className='text-xl font-medium text-foreground mb-3'>
+                                    <span className='text-xs text-muted-foreground/70 tabular-nums'>
+                                        0{index + 1}
+                                    </span>
+
+                                    <h3 className='text-base sm:text-lg font-medium text-surface-foreground leading-snug'>
                                         {value.title}
                                     </h3>
-                                    <p className='text-muted-foreground leading-relaxed'>
+
+                                    <p className='text-sm text-muted-foreground leading-relaxed'>
                                         {value.description}
                                     </p>
                                 </motion.div>
@@ -214,7 +217,7 @@ function About() {
                     </motion.div>
                 </div>
 
-                <div className='py-24 px-6 bg-primary w-full' id='mission'>
+                <div className='py-24 px-6 bg-surface w-full' id='mission'>
                     <motion.div
                         ref={ref4}
                         initial='hidden'
@@ -224,19 +227,19 @@ function About() {
                     >
                         <motion.p
                             variants={fadeInUp}
-                            className='text-sm tracking-[0.2em] uppercase text-primary-foreground/60 mb-4'
+                            className='text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4'
                         >
                             Our Mission
                         </motion.p>
                         <motion.h2
                             variants={fadeInUp}
-                            className='text-3xl sm:text-4xl font-light text-primary-foreground mb-6 tracking-tight'
+                            className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'
                         >
                             Bringing Landscapes to Life
                         </motion.h2>
                         <motion.p
                             variants={fadeInUp}
-                            className='text-lg text-primary-foreground/70 max-w-2xl mx-auto leading-relaxed mb-10'
+                            className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10'
                         >
                             We believe that every landscape tells a story. Our
                             mission is to help you preserve and celebrate the
@@ -246,10 +249,10 @@ function About() {
                         <motion.a
                             variants={fadeInUp}
                             href='/get-started'
-                            className='inline-flex group items-center px-8 py-4 text-sm font-medium bg-primary-foreground text-primary rounded-full hover:opacity-90 transition-opacity'
+                            className='inline-flex group items-center px-8 py-4 text-sm font-medium bg-foreground border border-border text-primary-foreground rounded-full hover:bg-white hover:text-foreground transition-color'
                         >
                             Create Your Scape
-                            <ArrowRight className='self-center w-[18px] text-neutral-900 relative max-sm:hidden left-2 top-[1px] p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
+                            <ArrowRight className='self-center w-[18px] text-primary-foreground relative max-sm:hidden left-2 top-[1px] p-0 m-0 group-hover:text-foreground group-hover:translate-x-2 transition-all duration-200 ease-out' />
                         </motion.a>
                     </motion.div>
                 </div>
