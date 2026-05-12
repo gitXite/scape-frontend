@@ -1,0 +1,325 @@
+import * as THREE from 'three';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
+import { useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Geometry constants (terrain_web.stl — decimated for web, drop in /public/models/)
+// After -90° X rotation: X∈[-1.311,1.311]  Y∈[0,0.386]  Z∈[-2,2]
+// Frame Y axis goes front (+FRAME_DEPTH/2) to back (-FRAME_DEPTH/2).
+// FRAME_DEPTH > TERRAIN_H so terrain sits inside without clipping through rear.
+// ─────────────────────────────────────────────────────────────────────────────
+const INNER_W = 2.623;
+const INNER_D = 4.0;
+const TERRAIN_H = 0.386;
+
+const FRAME_W = 0.28; // visible moulding face width
+const FRAME_DEPTH = 0.4; // front-to-back depth — must exceed TERRAIN_H
+const MOUNT_MARGIN = 0.3; // cream mount board border
+const TERRAIN_PAD = 0.08; // gap between mount opening and terrain edge
+
+const BACKING_Y = -FRAME_DEPTH / 2 + 0.01; // flush to rear face
+const BACKING_THICK = 0.06; // thick enough to always occlude underside
+const TERRAIN_FLOOR_Y = BACKING_Y + BACKING_THICK / 2 + 0.005; // terrain Y=0 maps here
+
+const CAM_POS    = new THREE.Vector3(-0.5, 3.5, 7.0);
+const CAM_LOOKAT = new THREE.Vector3(1.2, -0.5, 0);
+
+// ─── Frame builder ────────────────────────────────────────────────────────────
+// Walnut dark-brown moulding + wide cream mount board.
+// Four outer bars only — no inner wall boxes filling the opening.
+// One solid dark backing slab at the rear hides the terrain underside completely.
+function buildFrame(): THREE.Group {
+    const grp = new THREE.Group();
+
+    const walnut = new THREE.MeshStandardMaterial({
+        color: 0x3d2810,
+        roughness: 0.75,
+        metalness: 0.02,
+    });
+    const mountMat = new THREE.MeshStandardMaterial({
+        color: 0xf7f4ee,
+        roughness: 0.96,
+        metalness: 0.0,
+    });
+    const backingMat = new THREE.MeshStandardMaterial({
+        color: 0x2a1c0c,
+        roughness: 0.95,
+        metalness: 0.0,
+    });
+
+    const box = (
+        mat: THREE.Material,
+        w: number,
+        h: number,
+        d: number,
+        x: number,
+        y: number,
+        z: number,
+    ) => {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+        m.position.set(x, y, z);
+        m.castShadow = m.receiveShadow = true;
+        grp.add(m);
+    };
+
+    const iw = INNER_W + TERRAIN_PAD * 2;
+    const id = INNER_D + TERRAIN_PAD * 2;
+    const mw = iw + MOUNT_MARGIN * 2;
+    const md = id + MOUNT_MARGIN * 2;
+    const ow = mw + FRAME_W * 2;
+    const od = md + FRAME_W * 2;
+
+    const mountY = BACKING_Y + BACKING_THICK / 2 + 0.012;
+
+    // 1. Solid backing slab — flush to rear, dark walnut, fully occludes terrain underside
+    box(backingMat, ow - 0.8, BACKING_THICK, od - 0.8, 0, BACKING_Y, 0);
+
+    // 2. Cream mount board — sits just in front of backing
+    box(mountMat, mw, 0.018, md, 0, mountY, 0);
+
+    // 3. Four walnut moulding bars — outer border only, no inner fill
+    box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, md / 2 + FRAME_W / 2); // top
+    box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, -(md / 2 + FRAME_W / 2)); // bottom
+    box(walnut, FRAME_W, FRAME_DEPTH, md, -(mw / 2 + FRAME_W / 2), 0, 0); // left
+    box(walnut, FRAME_W, FRAME_DEPTH, md, mw / 2 + FRAME_W / 2, 0, 0); // right
+
+    return grp;
+}
+
+// ─── Lights ───────────────────────────────────────────────────────────────────
+// Soft north-window key light — does not blow out the near-white terrain.
+// ACES filmic tone mapping in renderer keeps whites from clipping.
+function buildLights(scene: THREE.Scene): void {
+    scene.add(new THREE.AmbientLight(0xfff8f4, 0.3));
+
+    const key = new THREE.DirectionalLight(0xfffcf8, 1.05);
+    key.position.set(-4, 9, 6);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.near = 1;
+    key.shadow.camera.far = 28;
+    key.shadow.camera.left = -6;
+    key.shadow.camera.right = 6;
+    key.shadow.camera.top = 8;
+    key.shadow.camera.bottom = -8;
+    key.shadow.radius = 4;
+    key.shadow.bias = -0.001;
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0xf0f4ff, 0.2);
+    fill.position.set(6, 3, 4);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0xffe0c0, 0.12);
+    rim.position.set(0, -3, -6);
+    scene.add(rim);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+function Hero3D() {
+    const mountRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        if (!mountRef.current) return;
+        const container = mountRef.current;
+        container.innerHTML = '';
+
+        // ── Renderer ──────────────────────────────────────────────────────────
+        const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+        });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        // ACES filmic: prevents the near-white terrain from clipping to pure white
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 0.88;
+        container.appendChild(renderer.domElement);
+
+        // ── Scene + lights ────────────────────────────────────────────────────
+        const scene = new THREE.Scene();
+        scene.background = null;
+        buildLights(scene);
+
+        // ── Camera ────────────────────────────────────────────────────────────
+        // Resting position: above-left, looking down-right at the model.
+        // Intro: flies in from a distant position using your original easeOutCubic.
+        const camera = new THREE.PerspectiveCamera(
+            32,
+            container.clientWidth / container.clientHeight,
+            0.1,
+            5000,
+        );
+
+        camera.position.copy(CAM_POS);
+        camera.lookAt(CAM_LOOKAT);
+
+        // ── Root group — model sits low-right in the viewport ─────────────────
+        const FINAL_X = 1.8;
+        const FINAL_Y = -1.2;
+
+        // Entry: start offset to the right, animate to final position
+        const ENTRY_OFFSET_X = 4.0;
+        const ENTRY_DURATION = 1.6; // seconds
+        const entryStart = performance.now();
+
+        const root = new THREE.Group();
+        root.position.set(FINAL_X + ENTRY_OFFSET_X, FINAL_Y - 0.5, 0);
+        // Base orientation: tilt slightly forward so camera looks mildly down on face
+        root.rotation.x = 0.28;
+        root.rotation.y = -0.08 + 0.4; // will animate to -0.08
+        scene.add(root);
+
+        // Frame renders immediately — visible before STL loads
+        root.add(buildFrame());
+
+        // ── Load STL ──────────────────────────────────────────────────────────
+        // Uses terrain_web.stl (20k-face decimation in /public/models/)
+        // STL axes: X=width, Y=depth, Z=elevation
+        // Rotate -90° on X so elevation → Three.js Y (Y-up)
+        const loader = new STLLoader();
+        loader.load(
+            '/models/terrain_web.stl',
+            (geometry) => {
+                geometry.applyMatrix4(
+                    new THREE.Matrix4().makeRotationX(-Math.PI / 2),
+                );
+                geometry.computeVertexNormals();
+
+                const mesh = new THREE.Mesh(
+                    geometry,
+                    new THREE.MeshStandardMaterial({
+                        color: 0xf0ebe4,
+                        roughness: 0.9,
+                        metalness: 0.0,
+                    }),
+                );
+                mesh.castShadow = true;
+                mesh.receiveShadow = true;
+                // Seat terrain floor just above the backing panel — no clipping
+                // After rotation, terrain Y ∈ [0, TERRAIN_H].
+                // Set position.y so Y=0 aligns with TERRAIN_FLOOR_Y.
+                mesh.position.y = TERRAIN_FLOOR_Y;
+                root.add(mesh);
+            },
+            undefined,
+            (err) => console.error('[Hero3D] STL load error:', err),
+        );
+
+        // ── Mouse parallax ────────────────────────────────────────────────────
+        const MAX_TILT = 0.42;
+        const clamp = (v: number, lo: number, hi: number) =>
+            Math.max(lo, Math.min(hi, v));
+
+        let targetX = 0, targetY = 0;
+        let currentX = 0, currentY = 0;
+
+        const onMouseMove = (e: MouseEvent) => {
+            if (window.innerWidth < 1024) return;
+            targetX = clamp(
+                (e.clientY / window.innerHeight - 0.8) * 0.8,
+                -MAX_TILT,
+                MAX_TILT,
+            );
+            targetY = (e.clientX / window.innerWidth - 0.8) * 0.45;
+        };
+        // Listen on window so mouse anywhere on the hero triggers parallax
+        window.addEventListener('mousemove', onMouseMove);
+
+        // ── Render loop ───────────────────────────────────────────────────────
+        const easeOutExpo = (t: number) =>
+            t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+        const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        let frameID: number;
+        const animate = (now: number) => {
+            frameID = requestAnimationFrame(animate);
+
+            // ── Entry animation (slide in from right + settle) ────────────────
+            const elapsed = (now - entryStart) / 1000;
+            const tRaw = Math.min(elapsed / ENTRY_DURATION, 1.0);
+            const te = easeOutExpo(tRaw);
+            const tc = easeOutCubic(tRaw);
+            const entryDone = tRaw >= 1.0;
+
+            root.position.x = FINAL_X + ENTRY_OFFSET_X * (1 - te);
+            root.position.y = FINAL_Y - 0.5 * (1 - tc);
+
+            if (!entryDone) {
+                // Y rotation unwinds from +0.4 offset to base during entry
+                root.rotation.y = -0.08 + 0.4 * (1 - te);
+            } else {
+                currentX += (targetX - currentX) * 0.042;
+                currentY += (targetY - currentY) * 0.042;
+            }
+
+            // ── Idle float + interactive tilt ─────────────────────────────────
+            const BASE_TILT = 0.28;
+            root.rotation.x =
+                clamp(
+                    BASE_TILT + currentX,
+                    BASE_TILT - MAX_TILT,
+                    BASE_TILT + MAX_TILT,
+                ) +
+                Math.sin(now * 0.00028) * 0.004;
+
+            if (entryDone) {
+                root.rotation.y =
+                    -0.08 + currentY + Math.sin(now * 0.00019) * 0.003;
+            }
+            root.rotation.z = Math.sin(now * 0.00014) * 0.002;
+
+            renderer.render(scene, camera);
+        };
+        frameID = requestAnimationFrame(animate);
+
+        // ── Resize ────────────────────────────────────────────────────────────
+        const handleResize = () => {
+            if (!mountRef.current) return;
+            const w = mountRef.current.clientWidth;
+            const h = mountRef.current.clientHeight;
+            renderer.setSize(w, h);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        };
+        window.addEventListener('resize', handleResize);
+
+        // ── Cleanup ───────────────────────────────────────────────────────────
+        return () => {
+            cancelAnimationFrame(frameID);
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('resize', handleResize);
+            renderer.dispose();
+            scene.traverse((obj) => {
+                if (obj instanceof THREE.Mesh) {
+                    obj.geometry.dispose();
+                    if (Array.isArray(obj.material)) {
+                        obj.material.forEach((m) => m.dispose());
+                    } else if (obj.material instanceof THREE.Material) {
+                        obj.material.dispose();
+                    }
+                }
+            });
+            if (
+                mountRef.current &&
+                renderer.domElement.parentNode === mountRef.current
+            ) {
+                mountRef.current.removeChild(renderer.domElement);
+            }
+        };
+    }, []);
+
+    return (
+        <div
+            ref={mountRef}
+            className='absolute top-0 right-0 h-full w-3/4 object-cover'
+        />
+    );
+}
+
+export default Hero3D;
