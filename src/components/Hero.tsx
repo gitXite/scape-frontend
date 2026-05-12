@@ -141,7 +141,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-5 mb-40 sm:mb-10 text-sm sm:text-base
+                    className='mt-5 mb-10 text-sm sm:text-base
                                text-primary-foreground/70 font-light
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
@@ -152,7 +152,7 @@ function Hero() {
 
                 {/* CTAs */}
                 <div
-                    className='mt-8 sm:mt-10 flex flex-col sm:flex-row
+                    className='mt-40 sm:mt-10 flex flex-col sm:flex-row
                         items-center lg:items-start
                         justify-center lg:justify-start
                         gap-4 pointer-events-auto'
