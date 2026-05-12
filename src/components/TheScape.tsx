@@ -265,8 +265,8 @@ function TheScape() {
                                     )}
                                 </div>
 
-                                <CarouselPrevious className='hidden sm:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
-                                <CarouselNext className='hidden sm:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
+                                <CarouselPrevious className='hidden xl:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
+                                <CarouselNext className='hidden xl:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
                             </Carousel>
                         </motion.div>
                     </div>
