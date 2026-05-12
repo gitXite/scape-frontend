@@ -205,6 +205,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 streetViewControl: false,
                                 fullscreenControl: false,
                                 cameraControl: false,
+                                maxZoom: window.innerWidth > 640 ? 11 : 10
                             }}
                         >
                             {rectangleBounds && (
@@ -287,7 +288,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             <HoverCard>
                                 <HoverCardTrigger>
                                     <p className='text-sm text-muted-foreground font-normal pb-3 group-hover:-translate-y-0.5 cursor-default transition-all duration-200'>
-                                        Vertical Scale
+                                        Terrain Height
                                     </p>
                                 </HoverCardTrigger>
                                 <HoverCardContent className='text-center text-sm'>
