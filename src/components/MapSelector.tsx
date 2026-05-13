@@ -249,7 +249,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     return (
         <div
             id='map'
-            className={`min-h-svh min-sm:h-svh w-full bg-surface py-10 sm:py-16 ${className || ''}`}
+            className={`min-h-svh h-svh w-full bg-surface py-10 sm:py-16 ${className || ''}`}
         >
             <div
                 ref={ref}
