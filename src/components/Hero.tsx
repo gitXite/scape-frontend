@@ -147,8 +147,8 @@ function Hero() {
                     >
                         <button
                             className='group flex items-center justify-center gap-3
-                                       px-10 py-4 max-sm:w-80
-                                       text-base sm:text-base tracking-wide font-normal
+                                       px-10 py-4 max-sm:w-70
+                                       text-sm sm:text-base tracking-wide font-normal
                                        text-primary
                                        border border-primary-foreground/30 rounded-full
                                        backdrop-blur-md bg-primary-foreground
