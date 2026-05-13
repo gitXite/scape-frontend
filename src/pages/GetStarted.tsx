@@ -46,7 +46,7 @@ function GetStarted() {
                 <HoverCardTrigger className='absolute right-10 top-9 max-md:hidden z-5'>
                     <CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' />
                 </HoverCardTrigger>
-                <HoverCardContent className='bg-neutral-900 text-neutral-100 text-center justify-center'>
+                <HoverCardContent className='bg-neutral-900 text-neutral-100 text-left justify-center'>
                     <p>1. </p>
                     <b>Select your coordinates -</b>
                     <p className='pb-3'>Choose the exact location you want</p>
