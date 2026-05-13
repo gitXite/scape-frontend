@@ -279,7 +279,7 @@ function TheScape() {
                 initial='hidden'
                 animate={inView5 ? 'visible' : 'hidden'}
                 variants={staggerContainer}
-                className='px-6 sm:px-10 py-16 sm:py-24'
+                className='px-6 sm:px-10 py-10 sm:py-18'
             >
                 <motion.div
                     className='text-center max-w-xl mx-auto'
