@@ -259,7 +259,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
             >
                 {/* Map container */}
                 <div
-                    className='h-6/10 md:h-8/10 w-full rounded-lg overflow-hidden shadow-xl overscroll-none touch-none'
+                    className='h-[55vh] md:h-[70vh] w-full rounded-lg overflow-hidden shadow-xl overscroll-none touch-none'
                     ref={mapContainerRef}
                 >
                     <LoadScript
