@@ -255,7 +255,7 @@ function Hero3D() {
             const heroH = heroEl?.clientHeight ?? window.innerHeight;
             const pct = Math.min(window.scrollY / heroH, 1);
             targetX = -pct * 0.6;
-            targetY = clamp(pct * 0.20, -MAX_TILT, MAX_TILT);
+            targetY = clamp(pct * 0.2, -MAX_TILT, MAX_TILT);
         };
         window.addEventListener('scroll', onScroll, { passive: true });
 

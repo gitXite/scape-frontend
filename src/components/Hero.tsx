@@ -53,14 +53,14 @@ function Hero() {
             className='relative h-svh w-screen flex overflow-hidden'
         >
             {/* ── Background ─────────────────────────────────────────────────── */}
-            <div className='absolute inset-0 bg-gradient-to-br from-hero-dark via-hero-dark-deep to-hero-dark' />
+            <div className='absolute inset-0 bg-gradient-to-br sm:from-background from-hero-dark/80 via-hero-dark-deep to-hero-dark' />
 
             {/* ── Inner shadow vignette ───────────────────────────────────────── */}
             <div className='absolute inset-0 shadow-[inset_0px_0px_30px_rgba(0,0,0,0.5)]' />
 
             <div
-                className='absolute bottom-0 left-0 right-0 h-48 pointer-events-none z-10
-                            bg-gradient-to-t from-white/[0.07] to-transparent'
+                className='absolute bottom-0 left-0 right-0 h-full pointer-events-none z-10
+                            bg-gradient-to-tl from-white/[0.07] to-transparent'
             />
             <div
                 className='absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-10
@@ -69,8 +69,8 @@ function Hero() {
 
             <div
                 className='absolute inset-0 pointer-events-none z-10
-                bg-gradient-to-t from-hero-dark/95 via-hero-dark/60 to-transparent
-                lg:bg-gradient-to-r lg:from-hero-dark lg:via-hero-dark/75 lg:to-transparent'
+                bg-gradient-to-t from-hero-dark/95 via-hero-dark/50 to-transparent
+                sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/75 sm:to-transparent'
             />
 
             {/* ── 3D canvas — right 75%, absolute behind text ─────────────────── */}
@@ -82,7 +82,7 @@ function Hero() {
             <div
                 className='relative z-20 flex flex-col justify-center w-full
                     items-center text-center
-                    lg:items-start lg:text-left
+                    sm:items-start sm:text-left
                     px-8 sm:px-12 lg:px-20
                     max-w-full
                     pointer-events-none select-none'
@@ -110,29 +110,11 @@ function Hero() {
                         className='text-6xl sm:text-6xl md:text-7xl lg:text-8xl
                                    text-primary-foreground font-bold
                                    tracking-wide
-                                   [text-shadow:0_4px_20px_rgba(0,0,0,0.4)] mb-5 sm:mb-10'
+                                   [text-shadow:0_4px_20px_rgba(0,0,0,0.4)] mb-2'
                     >
                         From Map <br />
                         To Frame
                     </h1>
-                </motion.div>
-
-                {/* Sub-headline */}
-                <motion.div
-                    custom={2}
-                    variants={fadeDown}
-                    initial='hidden'
-                    animate='visible'
-                >
-                    <h2
-                        className='mt-4
-                                   text-2xl sm:text-2xl md:text-3xl
-                                   text-primary-foreground/80 font-normal
-                                   tracking-wide
-                                   [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]'
-                    >
-                        Crafted From Real Terrain
-                    </h2>
                 </motion.div>
 
                 {/* Description */}
@@ -141,8 +123,8 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-5 mb-10 text-base sm:text-base
-                               text-primary-foreground/70 font-light
+                    className='mt-4 mb-60 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
+                               text-primary-foreground/70 font-thin
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
                 >
@@ -152,9 +134,9 @@ function Hero() {
 
                 {/* CTAs */}
                 <div
-                    className='mt-20 sm:mt-10 flex flex-col sm:flex-row
-                        items-center lg:items-start
-                        justify-center lg:justify-start
+                    className='w-full max-sm:absolute max-sm:bottom-10 sm:mt-10 flex flex-col sm:flex-row
+                        items-center sm:items-start
+                        justify-center sm:justify-start
                         gap-4 pointer-events-auto'
                 >
                     <motion.div
@@ -164,9 +146,9 @@ function Hero() {
                         animate='visible'
                     >
                         <button
-                            className='group flex items-center gap-3
-                                       px-10 py-4
-                                       text-sm sm:text-base tracking-wide font-normal
+                            className='group flex items-center justify-center gap-3
+                                       px-10 py-4 max-sm:w-80
+                                       text-base sm:text-base tracking-wide font-normal
                                        text-primary
                                        border border-primary-foreground/30 rounded-full
                                        backdrop-blur-md bg-primary-foreground
@@ -209,23 +191,6 @@ function Hero() {
                     </motion.div>
                 </div>
             </div>
-
-            <motion.div
-                custom={4}
-                variants={fadeUp}
-                initial='hidden'
-                animate='visible'
-                className='absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2
-                           z-20 flex items-center gap-3 pointer-events-none'
-            >
-                <div className='w-8 h-px bg-primary-foreground/50 animate-pulse' />
-                <span
-                    className='text-[0.58rem] tracking-[0.28em] uppercase
-                                 text-primary-foreground/50 animate-pulse'
-                >
-                    Scroll
-                </span>
-            </motion.div>
         </section>
     );
 }
