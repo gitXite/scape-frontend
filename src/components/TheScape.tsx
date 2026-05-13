@@ -172,7 +172,7 @@ function TheScape() {
                         poster='/images/thumbnail-1.jpg'
                         className='w-full border rounded-lg shadow-md'
                     >
-                        <source src='/demo.mp4' type='video/mp4' />
+                        <source src={window.innerWidth < 640 ? '/demo-mobile.mp4' : '/demo.mp4'} type='video/mp4' />
                     </video>
                 </motion.div>
             </div>
