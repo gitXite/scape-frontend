@@ -249,11 +249,11 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     return (
         <div
             id='map'
-            className={`min-h-svh h-svh w-full bg-surface py-10 sm:py-16 ${className || ''}`}
+            className={`min-h-svh w-full bg-surface py-10 sm:py-16 ${className || ''}`}
         >
             <div
                 ref={ref}
-                className={`min-h-full h-svh max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-700 ease-out ${classNameChild || ''} ${
+                className={`min-h-svh max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-700 ease-out ${classNameChild || ''} ${
                     inView ? 'opacity-100' : 'opacity-0'
                 }`}
             >
