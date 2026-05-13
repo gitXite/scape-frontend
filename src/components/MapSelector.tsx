@@ -253,7 +253,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         >
             <div
                 ref={ref}
-                className={`h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-700 ease-out ${classNameChild || ''} ${
+                className={`min-h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-700 ease-out ${classNameChild || ''} ${
                     inView ? 'opacity-100' : 'opacity-0'
                 }`}
             >
