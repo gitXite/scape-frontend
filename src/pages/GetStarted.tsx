@@ -47,29 +47,25 @@ function GetStarted() {
                     <CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' />
                 </HoverCardTrigger>
                 <HoverCardContent className='bg-neutral-900 text-neutral-100 text-left justify-center'>
-                    <p>1. </p>
-                    <b>Select your coordinates -</b>
+                    <p>1. <b>Select your coordinates -</b></p>
                     <p className='pb-3'>Choose the exact location you want</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>2. </p>
-                    <b>Pick a frame -</b>
+                    <p className='pt-2'>2. <b>Pick a frame -</b></p>
                     <p className='pb-3'>Find the style that fits your space</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>3. </p>
-                    <b>Add a passepartout -</b>
+                    <p className='pt-2'>3. <b>Add a passepartout -</b></p>
                     <p className='pb-3'>Give your model a refined finish</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>4. </p>
-                    <b>Checkout -</b>
+                    <p className='pt-2'>4. <b>Checkout -</b></p>
                     <p>Get your customized piece delivered to you</p>
                 </HoverCardContent>
             </HoverCard>
