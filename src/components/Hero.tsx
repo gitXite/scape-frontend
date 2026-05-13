@@ -94,7 +94,7 @@ function Hero() {
                     initial='hidden'
                     animate='visible'
                     className='text-[0.65rem] tracking-[0.3em] uppercase
-                               text-primary-foreground/50 mb-5 sm:mb-4'
+                               text-primary-foreground/70 mb-5 sm:mb-4'
                 >
                     Framed Terrain Models
                 </motion.p>
@@ -124,7 +124,7 @@ function Hero() {
                     initial='hidden'
                     animate='visible'
                     className='mt-4 mb-60 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
-                               text-primary-foreground/70 font-thin
+                               text-primary-foreground/90 font-thin
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
                 >
