@@ -164,8 +164,7 @@ function TheScape() {
                         The Process
                     </Badge>
                     <video
-                        ref={ref3}
-                        autoPlay={inView3}
+                        autoPlay
                         muted
                         loop
                         playsInline
