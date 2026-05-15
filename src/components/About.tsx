@@ -48,8 +48,8 @@ function About() {
     ];
 
     return (
-        <div className='flex flex-col min-h-[100vh] w-full bg-neutral-100'>
-            <header className='flex h-auto z-2 w-1/3 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-300/30 max-sm:hidden'>
+        <div className='flex flex-col min-h-[100vh] w-full bg-surface'>
+            <header className='flex h-auto z-2 w-1/3 max-md:w-1/2 max-lg:w-1/2 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-100/40 max-sm:hidden'>
                 <a
                     href='#about-us'
                     className='group md:tracking-tight max-sm:text-sm text-md'
@@ -80,16 +80,22 @@ function About() {
                 </a>
             </header>
             <div
-                className='flex flex-col w-full text-neutral-900 self-center items-center text-center py-24 max-sm:pt-0'
+                className='flex w-full items-center justify-center pt-25 max-sm:pt-5'
                 id='about-us'
             >
-                <div className='py-24 px-6'>
+                <img
+                    src='/images/scape-logo-trans.webp'
+                    className='mix-blend-difference max-sm:w-1/3 w-1/6'
+                />
+            </div>
+            <div className='flex flex-col w-full text-neutral-900 self-center items-center text-center max-sm:text-left pb-24 max-sm:pt-0'>
+                <div className='pt-10 pb-24 px-6'>
                     <motion.div
                         ref={ref1}
                         initial='hidden'
                         animate={inView1 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-4xl mx-auto text-center'
+                        className='max-w-4xl mx-auto text-center max-sm:text-left space-y-4'
                     >
                         <motion.p
                             variants={fadeInUp}
@@ -99,17 +105,30 @@ function About() {
                         </motion.p>
                         <motion.h1
                             variants={fadeInUp}
-                            className='text-4xl sm:text-5xl md:text-6xl font-medium text-foreground mb-8 tracking-tight'
+                            className='text-3xl sm:text-4xl md:text-5xl font-medium text-foreground mb-8 tracking-tight'
                         >
-                            Made By MD
+                            Scape by md
                         </motion.h1>
                         <motion.p
                             variants={fadeInUp}
                             className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
                         >
-                            We are Maren and Daniel, the couple behind this
-                            project, combining our different strengths to create
-                            something meaningful together.
+                            The project is driven by Maren and Daniel, a
+                            Bergen-based couple who combine their different
+                            strengths to bring landscapes to life.
+                        </motion.p>
+                        <motion.p
+                            variants={fadeInUp}
+                            className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
+                        >
+                            Being based in Bergen, it’s difficult not to be
+                            inspired by the surrounding mountains, fjords, and
+                            dramatic landscapes that define the west coast of
+                            Norway. Scape by md was created from a desire to
+                            capture these environments in a tangible form -
+                            combining modern technology with scandinavian design
+                            to create detailed 3D terrain pieces with both
+                            visual and sentimental value.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -146,7 +165,7 @@ function About() {
                                 <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
                                     Maren & Daniel
                                 </h2>
-                                <div className='space-y-4 text-muted-foreground leading-relaxed'>
+                                <div className='space-y-4 text-muted-foreground leading-relaxed text-lg'>
                                     <p>
                                         Maren brings her background in
                                         architecture and design, with an eye for
@@ -183,7 +202,7 @@ function About() {
                     >
                         <motion.div
                             variants={fadeInUp}
-                            className='text-center mb-16'
+                            className='text-center max-sm:text-left mb-16'
                         >
                             <p className='text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4'>
                                 Our Values
@@ -217,13 +236,13 @@ function About() {
                     </motion.div>
                 </div>
 
-                <div className='py-24 px-6 bg-surface w-full' id='mission'>
+                <div className='pt-24 px-6 bg-surface w-full' id='mission'>
                     <motion.div
                         ref={ref4}
                         initial='hidden'
                         animate={inView4 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-4xl mx-auto text-center'
+                        className='max-w-4xl mx-auto text-center max-sm:text-left'
                     >
                         <motion.p
                             variants={fadeInUp}
