@@ -66,7 +66,7 @@ function Home() {
             <Header />
             <Hero />
             <TheScape />
-            <MapSelector mode='real' classNameChild='' />
+            <MapSelector mode='real' className='sm:pb-16' />
             <Footer />
         </div>
     );

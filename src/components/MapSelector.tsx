@@ -249,7 +249,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     return (
         <div
             id='map'
-            className={`w-full bg-surface py-10 sm:py-16 ${className || ''}`}
+            className={`w-full bg-surface py-10 sm:py-16 sm:pb-10 ${className || ''}`}
         >
             <div
                 ref={ref}
