@@ -48,8 +48,16 @@ function getLayout(vpWidth: number) {
 function buildFrame(): THREE.Group {
     const grp = new THREE.Group();
 
+    // const walnut = new THREE.MeshStandardMaterial({
+    //     color: 0x3d2810,
+    //     roughness: 0.75,
+    //     metalness: 0.02,
+    // });
+    const textureLoader = new THREE.TextureLoader();
+    const woodTexture = textureLoader.load('/textures/walnut.jpg');
+    woodTexture.colorSpace = THREE.SRGBColorSpace;
     const walnut = new THREE.MeshStandardMaterial({
-        color: 0x3d2810,
+        map: woodTexture,
         roughness: 0.75,
         metalness: 0.02,
     });

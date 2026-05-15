@@ -63,7 +63,7 @@ function Hero() {
                             bg-gradient-to-tl from-white/[0.07] to-transparent'
             />
             <div
-                className='absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-10
+                className='absolute bottom-0 left-0 right-0 h-1/2 pointer-events-none z-10
                             bg-gradient-to-t from-white/[0.12] to-transparent'
             />
 
