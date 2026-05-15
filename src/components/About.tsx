@@ -111,7 +111,7 @@ function About() {
                         </motion.h1>
                         <motion.p
                             variants={fadeInUp}
-                            className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
+                            className='text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
                         >
                             The project is driven by Maren and Daniel, a
                             Bergen-based couple who combine their different
@@ -119,7 +119,7 @@ function About() {
                         </motion.p>
                         <motion.p
                             variants={fadeInUp}
-                            className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
+                            className='text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed'
                         >
                             Being based in Bergen, it’s difficult not to be
                             inspired by the surrounding mountains, fjords, and
@@ -165,7 +165,7 @@ function About() {
                                 <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
                                     Maren & Daniel
                                 </h2>
-                                <div className='space-y-4 text-muted-foreground leading-relaxed text-lg'>
+                                <div className='space-y-4 text-muted-foreground leading-relaxed text-base sm:text-lg'>
                                     <p>
                                         Maren brings her background in
                                         architecture and design, with an eye for
@@ -258,7 +258,7 @@ function About() {
                         </motion.h2>
                         <motion.p
                             variants={fadeInUp}
-                            className='text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10'
+                            className='text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10'
                         >
                             We believe that every landscape tells a story. Our
                             mission is to help you preserve and celebrate the
