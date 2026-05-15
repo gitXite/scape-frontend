@@ -107,7 +107,7 @@ function About() {
                             variants={fadeInUp}
                             className='text-3xl sm:text-4xl md:text-5xl font-medium text-foreground mb-8 tracking-tight'
                         >
-                            Scape by md
+                            SCAPE by md
                         </motion.h1>
                         <motion.p
                             variants={fadeInUp}
@@ -124,7 +124,7 @@ function About() {
                             Being based in Bergen, it’s difficult not to be
                             inspired by the surrounding mountains, fjords, and
                             dramatic landscapes that define the west coast of
-                            Norway. Scape by md was created from a desire to
+                            Norway. SCAPE by md was created from a desire to
                             capture these environments in a tangible form -
                             combining modern technology with scandinavian design
                             to create detailed 3D terrain pieces with both
@@ -181,7 +181,7 @@ function About() {
                                         and accuracy.
                                     </p>
                                     <p>
-                                        Together, we've created Scape by md,
+                                        Together, we've created SCAPE by md,
                                         <br />a thoughtful venture that blends
                                         design, technology, and a deep love for
                                         crafting something special.
