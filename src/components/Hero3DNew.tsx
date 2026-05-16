@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 // After -90° X rotation: X∈[-1.311,1.311]  Y∈[0,0.386]  Z∈[-2,2]
 // Frame Y axis goes front (+FRAME_DEPTH/2) to back (-FRAME_DEPTH/2).
 // FRAME_DEPTH > TERRAIN_H so terrain sits inside without clipping through rear.
-// ─────────────────────────────────────────────────────────────────────────────
+// 
 const INNER_W = 2.623;
 const INNER_D = 4.0;
 
@@ -20,10 +20,7 @@ const BACKING_Y = -FRAME_DEPTH / 2 + 0.01; // flush to rear face
 const BACKING_THICK = 0.06; // thick enough to always occlude underside
 const TERRAIN_FLOOR_Y = BACKING_Y + BACKING_THICK / 2 + 0.005; // terrain Y=0 maps here
 
-// ── Responsive layout helper ──────────────────────────────────────────────────
-// Desktop (≥1024px): canvas is right 75% of viewport; model sits low-right.
-// Mobile (<1024px):  canvas is full-width; model must be centred so the frame
-//                    doesn't clip at the canvas right edge.
+// Responsive layout helper
 function getLayout(vpWidth: number) {
     if (vpWidth < 1024) {
         return {
@@ -41,18 +38,10 @@ function getLayout(vpWidth: number) {
     };
 }
 
-// ─── Frame builder ────────────────────────────────────────────────────────────
-// Cream mount board.
-// Four outer bars only — no inner wall boxes filling the opening.
-// One solid dark backing slab at the rear hides the terrain underside completely.
+// Frame builder 
 function buildFrame(): THREE.Group {
     const grp = new THREE.Group();
 
-    // const walnut = new THREE.MeshStandardMaterial({
-    //     color: 0x3d2810,
-    //     roughness: 0.75,
-    //     metalness: 0.02,
-    // });
     const textureLoader = new THREE.TextureLoader();
     const woodTexture = textureLoader.load('/textures/walnut.jpg');
     woodTexture.colorSpace = THREE.SRGBColorSpace;
@@ -96,13 +85,13 @@ function buildFrame(): THREE.Group {
 
     const mountY = BACKING_Y + BACKING_THICK / 2 + 0.012;
 
-    // 1. Solid backing slab — flush to rear, dark walnut, fully occludes terrain underside
+    // Solid backing slab — flush to rear, dark walnut, fully occludes terrain underside
     box(backingMat, ow - 0.8, BACKING_THICK, od - 0.8, 0, BACKING_Y, 0);
 
-    // 2. Cream mount board — sits just in front of backing
+    // Cream mount board — sits just in front of backing
     box(mountMat, mw, 0.018, md, 0, mountY, 0);
 
-    // 3. Four walnut moulding bars — outer border only, no inner fill
+    // Four walnut frame bars — outer border only, no inner fill
     box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, md / 2 + FRAME_W / 2); // top
     box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, -(md / 2 + FRAME_W / 2)); // bottom
     box(walnut, FRAME_W, FRAME_DEPTH, md, -(mw / 2 + FRAME_W / 2), 0, 0); // left
@@ -111,7 +100,7 @@ function buildFrame(): THREE.Group {
     return grp;
 }
 
-// ─── Lights ───────────────────────────────────────────────────────────────────
+// Lights
 // Soft north-window key light — does not blow out the near-white terrain.
 // ACES filmic tone mapping in renderer keeps whites from clipping.
 function buildLights(scene: THREE.Scene): void {
@@ -140,8 +129,6 @@ function buildLights(scene: THREE.Scene): void {
     scene.add(rim);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 function Hero3D() {
     const mountRef = useRef<HTMLDivElement | null>(null);
 
@@ -150,7 +137,6 @@ function Hero3D() {
         const container = mountRef.current;
         container.innerHTML = '';
 
-        // ── Renderer ──────────────────────────────────────────────────────────
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
             alpha: true,
@@ -164,14 +150,10 @@ function Hero3D() {
         renderer.toneMappingExposure = 0.88;
         container.appendChild(renderer.domElement);
 
-        // ── Scene + lights ────────────────────────────────────────────────────
         const scene = new THREE.Scene();
         scene.background = null;
         buildLights(scene);
 
-        // ── Camera ────────────────────────────────────────────────────────────
-        // Resting position: above-left, looking down-right at the model.
-        // Intro: flies in from a distant position using your original easeOutCubic.
         const camera = new THREE.PerspectiveCamera(
             32,
             container.clientWidth / container.clientHeight,
@@ -183,26 +165,23 @@ function Hero3D() {
         camera.position.copy(layout.camPos);
         camera.lookAt(layout.camLookAt);
 
-        // ── Root group — model sits low-right in the viewport ─────────────────
         const FINAL_X = 1.8;
         const FINAL_Y = -1.2;
 
-        // Entry: start offset to the right, animate to final position
         const ENTRY_OFFSET_X = 4.0;
         const ENTRY_DURATION = 1.6; // seconds
         const entryStart = performance.now();
 
         const root = new THREE.Group();
         root.position.set(FINAL_X + ENTRY_OFFSET_X, FINAL_Y - 0.5, 0);
-        // Base orientation: tilt slightly forward so camera looks mildly down on face
+
         root.rotation.x = 0.28;
         root.rotation.y = -0.08 + 0.4; // will animate to -0.08
         scene.add(root);
 
-        // Frame renders immediately — visible before STL loads
+        // Frame renders immediately - visible before STL loads
         root.add(buildFrame());
 
-        // ── Load STL ──────────────────────────────────────────────────────────
         // Uses terrain_web.stl (20k-face decimation in /public/models/)
         // STL axes: X=width, Y=depth, Z=elevation
         // Rotate -90° on X so elevation → Three.js Y (Y-up)
@@ -235,7 +214,7 @@ function Hero3D() {
             (err) => console.error('[Hero3D] STL load error:', err),
         );
 
-        // ── Mouse parallax ────────────────────────────────────────────────────
+        // Mouse parallax
         const MAX_TILT = 0.42;
         const clamp = (v: number, lo: number, hi: number) =>
             Math.max(lo, Math.min(hi, v));
@@ -254,7 +233,6 @@ function Hero3D() {
             );
             targetY = -(e.clientX / window.innerWidth - 0.8) * 0.45;
         };
-        // Listen on window so mouse anywhere on the hero triggers parallax
         window.addEventListener('mousemove', onMouseMove);
 
         const onScroll = () => {
@@ -280,7 +258,7 @@ function Hero3D() {
             { passive: true },
         );
 
-        // ── Render loop ───────────────────────────────────────────────────────
+        // Render loop
         const easeOutExpo = (t: number) =>
             t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
         const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -289,7 +267,7 @@ function Hero3D() {
         const animate = (now: number) => {
             frameID = requestAnimationFrame(animate);
 
-            // ── Entry animation (slide in from right + settle) ────────────────
+            // Entry animation (slide in from right + settle)
             const elapsed = (now - entryStart) / 1000;
             const tRaw = Math.min(elapsed / ENTRY_DURATION, 1.0);
             const te = easeOutExpo(tRaw);
@@ -306,7 +284,6 @@ function Hero3D() {
                 currentY += (targetY - currentY) * 0.042;
             }
 
-            // ── Idle float + interactive tilt ─────────────────────────────────
             const BASE_TILT = 0.28;
             root.rotation.x =
                 clamp(
@@ -326,7 +303,7 @@ function Hero3D() {
         };
         frameID = requestAnimationFrame(animate);
 
-        // ── Resize ────────────────────────────────────────────────────────────
+        // Resize
         const handleResize = () => {
             if (!mountRef.current) return;
             const w = mountRef.current.clientWidth;
@@ -338,7 +315,7 @@ function Hero3D() {
         };
         window.addEventListener('resize', handleResize);
 
-        // ── Cleanup ───────────────────────────────────────────────────────────
+        // Cleanup 
         return () => {
             cancelAnimationFrame(frameID);
             window.removeEventListener('mousemove', onMouseMove);
