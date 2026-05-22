@@ -191,10 +191,10 @@ function Testemonials() {
                 )}
                 <div className="text-center mt-20 px-6">
                     <div className="inline-flex flex-col sm:flex-row gap-4 items-center">
-                        <a href='/feedback' className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-neutral-200 hover:text-foreground border border-neutral-300 active:bg-white transition-all shadow-sm shadow-primary/20 cursor-pointer">
+                        <a href='/feedback' className="px-8 py-4 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-neutral-200 hover:text-foreground border border-neutral-300 active:bg-white transition-all shadow-sm shadow-primary/20 cursor-pointer">
                             Leave a Review
                         </a>
-                        <a href='/get-started' className="px-8 py-4 bg-card border border-border text-foreground rounded-xl font-semibold hover:bg-accent active:bg-white transition-all cursor-pointer">
+                        <a href='/get-started' className="px-8 py-4 bg-card border border-border text-foreground rounded-md font-semibold hover:bg-accent active:bg-white transition-all cursor-pointer">
                             Create Your Scape
                         </a>
                     </div>
