@@ -113,11 +113,11 @@ function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
     box(mountMat, mw, 0.018, md, 0, mountY, 0);
 
     const topMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
-    topMat.map!.repeat.set(ow / 2, 1);
+    topMat.map!.repeat.set(ow / 3, 2);
     topMat.map!.rotation = Math.PI / 5;
 
     const sideMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
-    sideMat.map!.repeat.set(md / 2, 1);
+    sideMat.map!.repeat.set(md / 3, 2);
     sideMat.map!.rotation = Math.PI / 5;
     sideMat.map!.center.set(0.5, 0.5);
 
