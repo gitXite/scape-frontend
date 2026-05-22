@@ -294,7 +294,7 @@ function TheScape() {
                     </p>
                     <a
                         href='/get-started'
-                        className='inline-flex group items-center gap-3 px-8 py-3.5 sm:px-10 sm:py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                        className='inline-flex group items-center gap-3 px-15 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
                     >
                         Get Started
                         <ArrowRight className='w-4 h-4 hidden sm:block group-hover:translate-x-1.5 transition-transform duration-200' />
