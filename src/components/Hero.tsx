@@ -47,7 +47,7 @@ function Hero() {
             className='relative h-svh w-screen flex overflow-hidden'
         >
             {/* ── Background ─────────────────────────────────────────────────── */}
-            <div className='absolute inset-0 bg-gradient-to-br sm:from-background from-hero-dark/80 via-hero-dark-deep to-hero-dark' />
+            <div className='absolute inset-0 bg-gradient-to-br sm:from-hero-dark/30 from-hero-dark/50 via-hero-dark-deep to-hero-dark' />
 
             {/* ── Inner shadow vignette ───────────────────────────────────────── */}
             <div className='absolute inset-0 shadow-[inset_0px_0px_30px_rgba(0,0,0,0.5)]' />
@@ -63,8 +63,8 @@ function Hero() {
 
             <div
                 className='absolute inset-0 pointer-events-none z-10
-                bg-gradient-to-t from-hero-dark/90 via-hero-dark/40 to-transparent
-                sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/50 sm:to-transparent'
+                bg-gradient-to-r from-hero-dark/90 via-hero-dark/40 to-transparent
+                sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/40 sm:to-transparent'
             />
 
             {/* ── 3D canvas — right 75%, absolute behind text ─────────────────── */}
@@ -74,8 +74,8 @@ function Hero() {
 
             {/* ── Left-aligned text content ────────────────────────────────────── */}
             <div
-                className='relative z-20 flex flex-col justify-center w-full
-                    items-center text-center
+                className='relative z-20 flex flex-col justify-start sm:justify-center max-sm:pt-40 w-full
+                    items-start text-left
                     sm:items-start sm:text-left
                     px-8 sm:px-12 lg:px-20
                     max-w-full
@@ -117,7 +117,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-4 mb-60 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
+                    className='mt-4 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
                                text-primary-foreground/90 font-thin
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
@@ -128,9 +128,9 @@ function Hero() {
 
                 {/* CTAs */}
                 <div
-                    className='w-full max-sm:absolute max-sm:bottom-10 sm:mt-10 flex flex-col sm:flex-row
-                        items-center sm:items-start
-                        justify-center sm:justify-start
+                    className='w-full mt-10 flex flex-col sm:flex-row
+                        items-start sm:items-start
+                        justify-start sm:justify-start
                         gap-4 pointer-events-auto'
                 >
                     <motion.div
@@ -141,7 +141,7 @@ function Hero() {
                     >
                         <button
                             className='group flex items-center justify-center gap-3
-                                       px-10 py-4 max-sm:w-70
+                                       px-8 sm:px-10 py-4 max-sm:w-50
                                        text-sm sm:text-base tracking-wide font-normal
                                        text-primary
                                        border border-primary-foreground/30 rounded-full
@@ -152,7 +152,7 @@ function Hero() {
                         >
                             Get Started
                             <ArrowRight
-                                className='w-4 h-4 hidden sm:block
+                                className='w-4 h-4 block sm:block
                                                    group-hover:translate-x-1.5
                                                    relative top-[1px]
                                                    transition-transform duration-200'
@@ -169,10 +169,10 @@ function Hero() {
                         <a
                             href='#thescape'
                             className='flex items-center gap-2 px-2 py-3.5
-                                       text-sm sm:text-base text-primary-foreground/50
+                                       text-sm sm:text-base text-primary-foreground/80
                                        hover:text-primary-foreground
                                        font-light transition-colors duration-200
-                                       cursor-pointer'
+                                       cursor-pointer animate-pulse hover:animate-none'
                         >
                             Explore
                             <ChevronDown
