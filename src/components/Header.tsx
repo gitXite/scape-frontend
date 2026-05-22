@@ -111,7 +111,7 @@ function Header() {
                                 </a>
                                 <a
                                     href='/get-started'
-                                    className='text-sm tracking-widest px-6 py-2.5 font-normal rounded-full shadow-sm bg-primary/20 border-primary-foreground/30 border hover:bg-neutral-100/90 active:bg-white text-primary-foreground/80 hover:text-foreground transition-all duration-300'
+                                    className='text-sm tracking-widest px-6 py-3 font-normal rounded-full shadow-sm bg-primary/20 border-primary-foreground/30 border hover:bg-neutral-100/90 active:bg-white text-primary-foreground/80 hover:text-foreground transition-all duration-300'
                                 >
                                     Get Started
                                 </a>
