@@ -5,11 +5,7 @@ import { lazy, Suspense } from 'react';
 
 const Hero3DNew = lazy(() => import('./Hero3DNew'));
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Suspense fallback — a minimal skeleton that matches the hero background so
-// there's no flash. We don't show a spinner because the canvas is behind the
-// text; a blank dark area is fine while Three.js boots.
-// ─────────────────────────────────────────────────────────────────────────────
+
 function CanvasFallback() {
     return (
         <div className='absolute top-0 right-0 h-full w-full lg:w-3/4 pointer-events-none' />
@@ -19,7 +15,6 @@ function CanvasFallback() {
 function Hero() {
     const navigate = useNavigate();
 
-    // Text enters from above (staggered)
     const fadeDown = {
         hidden: { opacity: 0, y: -24 },
         visible: (i: number) => ({
@@ -33,7 +28,6 @@ function Hero() {
         }),
     };
 
-    // CTAs enter from below (staggered, starts after text)
     const fadeUp = {
         hidden: { opacity: 0, y: 24 },
         visible: (i: number) => ({
@@ -69,8 +63,8 @@ function Hero() {
 
             <div
                 className='absolute inset-0 pointer-events-none z-10
-                bg-gradient-to-t from-hero-dark/95 via-hero-dark/50 to-transparent
-                sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/75 sm:to-transparent'
+                bg-gradient-to-t from-hero-dark/90 via-hero-dark/40 to-transparent
+                sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/50 sm:to-transparent'
             />
 
             {/* ── 3D canvas — right 75%, absolute behind text ─────────────────── */}
