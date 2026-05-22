@@ -107,7 +107,7 @@ function Hero() {
                                    [text-shadow:0_4px_20px_rgba(0,0,0,0.4)] mb-2'
                     >
                         From Map <br />
-                        To Frame
+                        to Frame
                     </h1>
                 </motion.div>
 

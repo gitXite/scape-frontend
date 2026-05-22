@@ -38,18 +38,39 @@ function getLayout(vpWidth: number) {
     };
 }
 
+// set walnut textures
+function makeWoodMaterial(baseTexture: THREE.Texture, baseRoughness: THREE.Texture, baseNormal: THREE.Texture, scale: THREE.Vector2) {
+    const tex = baseTexture.clone();
+    tex.needsUpdate = true;
+    tex.colorSpace = THREE.SRGBColorSpace;
+
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+
+    return new THREE.MeshStandardMaterial({
+        map: tex,
+
+        normalMap: baseNormal,
+        normalScale: scale,
+
+        roughnessMap: baseRoughness,
+
+        roughness: 0.96,
+        metalness: 0.0,
+    });
+}
+
 // Frame builder 
-function buildFrame(): THREE.Group {
+function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
     const grp = new THREE.Group();
 
+    // walnut textures
     const textureLoader = new THREE.TextureLoader();
     const woodTexture = textureLoader.load('/textures/walnut.jpg');
+    const woodNormal = textureLoader.load('/textures/wood_normal_2.jpg');
+    const woodRoughness = textureLoader.load('/textures/wood_roughness.jpg');
     woodTexture.colorSpace = THREE.SRGBColorSpace;
-    const walnut = new THREE.MeshStandardMaterial({
-        map: woodTexture,
-        roughness: 0.75,
-        metalness: 0.02,
-    });
+    woodTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
     const mountMat = new THREE.MeshStandardMaterial({
         color: 0xf7f4ee,
         roughness: 0.96,
@@ -91,11 +112,20 @@ function buildFrame(): THREE.Group {
     // Cream mount board — sits just in front of backing
     box(mountMat, mw, 0.018, md, 0, mountY, 0);
 
+    const topMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
+    topMat.map!.repeat.set(ow / 2, 1);
+    topMat.map!.rotation = Math.PI / 5;
+
+    const sideMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
+    sideMat.map!.repeat.set(md / 2, 1);
+    sideMat.map!.rotation = Math.PI / 5;
+    sideMat.map!.center.set(0.5, 0.5);
+
     // Four walnut frame bars — outer border only, no inner fill
-    box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, md / 2 + FRAME_W / 2); // top
-    box(walnut, ow, FRAME_DEPTH, FRAME_W, 0, 0, -(md / 2 + FRAME_W / 2)); // bottom
-    box(walnut, FRAME_W, FRAME_DEPTH, md, -(mw / 2 + FRAME_W / 2), 0, 0); // left
-    box(walnut, FRAME_W, FRAME_DEPTH, md, mw / 2 + FRAME_W / 2, 0, 0); // right
+    box(topMat, ow, FRAME_DEPTH, FRAME_W, 0, 0, md / 2 + FRAME_W / 2); // top
+    box(topMat, ow, FRAME_DEPTH, FRAME_W, 0, 0, -(md / 2 + FRAME_W / 2)); // bottom
+    box(sideMat, FRAME_W, FRAME_DEPTH, md, -(mw / 2 + FRAME_W / 2), 0, 0); // left
+    box(sideMat, FRAME_W, FRAME_DEPTH, md, mw / 2 + FRAME_W / 2, 0, 0); // right
 
     return grp;
 }
@@ -104,9 +134,9 @@ function buildFrame(): THREE.Group {
 // Soft north-window key light — does not blow out the near-white terrain.
 // ACES filmic tone mapping in renderer keeps whites from clipping.
 function buildLights(scene: THREE.Scene): void {
-    scene.add(new THREE.AmbientLight(0xfff8f4, 0.3));
+    scene.add(new THREE.AmbientLight(0xfff8f4, 0.4));
 
-    const key = new THREE.DirectionalLight(0xfffcf8, 2.5);
+    const key = new THREE.DirectionalLight(0xfffcf8, 3.0);
     key.position.set(-4, 9, 6);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
@@ -180,7 +210,7 @@ function Hero3D() {
         scene.add(root);
 
         // Frame renders immediately - visible before STL loads
-        root.add(buildFrame());
+        root.add(buildFrame(renderer));
 
         // Uses terrain_web.stl (20k-face decimation in /public/models/)
         // STL axes: X=width, Y=depth, Z=elevation
