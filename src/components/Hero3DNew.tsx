@@ -136,7 +136,7 @@ function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
 function buildLights(scene: THREE.Scene): void {
     scene.add(new THREE.AmbientLight(0xfff8f4, 0.4));
 
-    const key = new THREE.DirectionalLight(0xfffcf8, 3.0);
+    const key = new THREE.DirectionalLight(0xfff8f4, 3.0);
     key.position.set(-4, 9, 6);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
@@ -270,8 +270,8 @@ function Hero3D() {
             const heroEl = document.getElementById('home');
             const heroH = heroEl?.clientHeight ?? window.innerHeight;
             const pct = Math.min(window.scrollY / heroH, 1);
-            targetX = -pct * 0.6;
-            targetY = clamp(pct * 0.2, -MAX_TILT, MAX_TILT);
+            targetX = -pct * 0.4;
+            targetY = clamp(pct * -0.4, -MAX_TILT, MAX_TILT);
         };
         window.addEventListener('scroll', onScroll, { passive: true });
 
