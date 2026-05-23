@@ -12,7 +12,7 @@ const fadeInUp = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: 'easeOut' as const },
+        transition: { duration: 0.4, ease: 'easeOut' as const },
     },
 };
 const staggerContainer = {
@@ -49,31 +49,31 @@ function About() {
 
     return (
         <div className='flex flex-col min-h-[100vh] w-full bg-surface'>
-            <header className='flex h-auto z-2 w-1/3 max-md:w-1/2 max-lg:w-1/2 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-100/40 max-sm:hidden'>
+            <header className='flex h-auto font-normal z-2 w-1/3 max-md:w-1/2 max-lg:w-1/2 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-100/40 max-sm:hidden'>
                 <a
                     href='#about-us'
-                    className='group md:tracking-tight max-sm:text-sm text-md'
+                    className='group md:tracking-tight max-sm:text-sm text-sm'
                 >
                     About Us
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#the-team'
-                    className='group md:tracking-tight max-sm:text-sm text-md'
+                    className='group md:tracking-tight max-sm:text-sm text-sm'
                 >
                     The Team
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#values'
-                    className='group md:tracking-tight max-sm:text-sm text-md'
+                    className='group md:tracking-tight max-sm:text-sm text-sm'
                 >
                     Our Values
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />
                 </a>
                 <a
                     href='#mission'
-                    className='group md:tracking-tight max-sm:text-sm text-md'
+                    className='group md:tracking-tight max-sm:text-sm text-sm'
                 >
                     Our Mission
                     <span className='block max-w-0 group-hover:max-w-full transition-all duration-100 h-0.5 bg-foreground' />

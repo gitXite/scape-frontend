@@ -63,12 +63,12 @@ function Header() {
                     isHoveredRef.current = false;
                     startHideTimeout();
                 }}
-                className={`fixed left-0 right-0 z-50 text-white backdrop-blur-xl bg-primary/60 border-b border-primary-foreground/10 transition-transform duration-300 ease-out ${
+                className={`fixed left-0 right-0 z-50 text-white backdrop-blur-md bg-primary/60 border-b border-primary-foreground/10 transition-transform duration-300 ease-out ${
                     showHeader ? 'translate-y-0' : '-translate-y-full'
                 }`}
             >
                 <div className='relative'>
-                    <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                    <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-normal'>
                         <div className='relative flex items-center justify-between h-16 sm:h-20'>
                             {/* Left nav - desktop */}
                             <div className='absolute left-0 hidden md:flex items-center gap-8'>
@@ -104,14 +104,14 @@ function Header() {
                             <div className='absolute right-0 hidden md:flex items-center gap-8'>
                                 <a
                                     href='#map'
-                                    className='text-sm tracking-widest text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
+                                    className='text-sm tracking-tight text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
                                 >
                                     Map
                                     <span className='absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-primary-foreground transition-all duration-150' />
                                 </a>
                                 <a
                                     href='/get-started'
-                                    className='text-sm tracking-widest px-6 py-3 font-normal rounded-full shadow-sm bg-primary/20 border-primary-foreground/30 border hover:bg-neutral-100/90 active:bg-white text-primary-foreground/80 hover:text-foreground transition-all duration-300'
+                                    className='text-sm tracking-wide px-8 py-3 font-normal rounded-full shadow-sm bg-primary/20 border-primary-foreground/30 border hover:bg-neutral-100/90 active:bg-white text-primary-foreground/80 hover:text-foreground transition-all duration-300'
                                 >
                                     Get Started
                                 </a>
