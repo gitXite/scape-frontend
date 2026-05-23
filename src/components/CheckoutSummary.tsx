@@ -172,14 +172,14 @@ function CheckoutSummary() {
                         <Button
                             onClick={startCheckout}
                             disabled
-                            className='h-12 w-3/9 self-center rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white cursor-pointer'
+                            className='h-12 w-3/9 self-center rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground active:bg-white cursor-pointer'
                         >
                             <Spinner variant={'ellipsis'} />
                         </Button>
                     ) : (
                         <Button
                             onClick={startCheckout}
-                            className='h-12 w-3/9 self-center rounded-full bg-neutral-900 border-1 border-neutral-300 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white cursor-pointer'
+                            className='h-12 w-3/9 self-center rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground active:bg-white cursor-pointer'
                         >
                             Order Now
                         </Button>

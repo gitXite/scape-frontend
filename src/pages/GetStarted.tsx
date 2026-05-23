@@ -24,7 +24,7 @@ function GetStarted() {
     });
 
     const steps = [
-        { component: <MapSelector mode='real' className='pt-20' /> },
+        { component: <MapSelector mode='real' className='pt-8' /> },
         { component: <CustomizeFrame /> },
         { component: <CustomizePassePartout /> },
     ];
@@ -40,7 +40,7 @@ function GetStarted() {
     }, [activeStep]);
 
     return (
-        <div className='bg-neutral-100 w-full'>
+        <div className='min-h-svh bg-surface w-full'>
             <BackButton page='home' />
             <HoverCard>
                 <HoverCardTrigger className='absolute right-10 top-9 max-md:hidden z-5'>
@@ -69,7 +69,7 @@ function GetStarted() {
                     <p>Get your customized piece delivered to you</p>
                 </HoverCardContent>
             </HoverCard>
-            <div className='flex h-full w-full place-items-center'>
+            <div className='flex flex-col h-full w-full place-items-center'>
                 <CustomizationProvider>
                     <Stepper
                         steps={steps}

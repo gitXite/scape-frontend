@@ -1,4 +1,4 @@
-import { type JSX,  useState, useEffect } from 'react';
+import { type JSX, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './ripple';
 import { useNavigate } from 'react-router';
@@ -8,10 +8,11 @@ interface StepperProps {
     steps: Array<{ component: JSX.Element }>;
     currentStep: number;
     onStepChange: (step: number) => void;
-};
+}
 
 export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
-    const progressPercentage = (currentStep / (steps.length - 1)) * 100;
+    const progressPercentage =
+        steps.length <= 1 ? 0 : (currentStep / (steps.length - 1)) * 100;
     const [storedStates, setStoredStates] = useState<StoredStates>(() => ({
         coordinates: !!localStorage.getItem('coordinates'),
         selectedFrame: !!localStorage.getItem('selectedFrame'),
@@ -24,7 +25,9 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
             setStoredStates({
                 coordinates: !!localStorage.getItem('coordinates'),
                 selectedFrame: !!localStorage.getItem('selectedFrame'),
-                selectedPassePartout: !!localStorage.getItem('selectedPassePartout'),
+                selectedPassePartout: !!localStorage.getItem(
+                    'selectedPassePartout',
+                ),
             });
         };
 
@@ -35,59 +38,111 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
 
         return () => {
             window.removeEventListener('storage', handleStorageChange);
-            window.removeEventListener('coordinates-updated', handleStorageChange);
+            window.removeEventListener(
+                'coordinates-updated',
+                handleStorageChange,
+            );
             window.removeEventListener('frame-updated', handleStorageChange);
-            window.removeEventListener('passe-partout-updated', handleStorageChange);
+            window.removeEventListener(
+                'passe-partout-updated',
+                handleStorageChange,
+            );
         };
     }, []);
 
+    const labels = ['Select Area', 'Frame', 'Passepartout'];
+
     const TimelineComponent = (
-        <div className='relative top-10 z-5 w-full max-lg:w-2/3 max-sm:w-5/9 max-w-2xl mx-auto'>
-            
-            <div className='absolute top-1/2 left-0 w-full h-0.5 bg-neutral-200 transform -translate-y-1/2' />
+        <div className='w-full flex justify-center pt-10 px-10'>
+            <div className='relative w-full max-w-2xl'>
+                {/* Background line */}
+                <div className='absolute top-4 left-1/2 -translate-x-1/2 w-[calc(100%-56px)] h-px bg-border' />
 
-            <div
-                className='absolute top-1/2 left-0 h-0.5 bg-neutral-900 transform -translate-y-1/2 transition-all duration-500 ease-out'
-                style={{ width: `${progressPercentage}%` }}
-            />
+                {/* Active progress line */}
+                <div
+                    className='absolute top-4 left-5 h-px bg-foreground transition-all duration-500 ease-out'
+                    style={{
+                        width: `calc((100% - 56px) * ${progressPercentage / 100})`,
+                    }}
+                />
 
-            <div className='relative flex justify-between'>
-                {steps.map((_, index) => (
-                    <div
-                        key={index}
-                        className={cn(
-                            'w-4 h-4 rounded-full border-2 transition-all duration-300',
-                            index <= currentStep
-                                ? 'border-neutral-900 bg-neutral-900 text-neutral-100'
-                                : 'border-neutral-200 bg-neutral-100 text-neutral-900'
-                        )}
-                    /> 
-                ))}
+                {/* Steps */}
+                <div className='relative flex justify-between'>
+                    {steps.map((_, index) => {
+                        const isCompleted = index < currentStep;
+                        const isCurrent = index === currentStep;
+                        const isActive = index <= currentStep;
+
+                        return (
+                            <div
+                                key={index}
+                                className='flex flex-col items-center'
+                            >
+                                {/* Circle */}
+                                <div
+                                    className={cn(
+                                        'relative z-10 flex items-center justify-center w-8 h-8 rounded-full border text-xs font-medium transition-all duration-300',
+                                        isActive
+                                            ? 'bg-foreground border-foreground text-background'
+                                            : 'bg-background border-border text-muted-foreground',
+                                        isCurrent && 'scale-105',
+                                    )}
+                                >
+                                    {isCompleted ? '✓' : index + 1}
+                                </div>
+
+                                {/* Label */}
+                                <div className='mt-3 flex items-center'>
+                                    <span
+                                        className={cn(
+                                            'text-sm transition-colors duration-300',
+                                            isActive
+                                                ? 'text-foreground font-medium'
+                                                : 'text-muted-foreground',
+                                        )}
+                                    >
+                                        {labels[index]}
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
 
     const ContentComponent = (
-        <div className='h-full bg-neutral-100'>
+        <div className='h-full bg-surface'>
             {steps[currentStep].component}
 
-            <div className='flex justify-between max-sm:absolute max-sm:top-32 max-sm:w-full'>
+            <div className='flex items-center justify-between px-4 sm:px-8 pb-8 pt-2'>
                 <RippleButton
                     variant='outline'
                     onClick={() => onStepChange(currentStep - 1)}
                     disabled={currentStep === 0}
-                    className='w-22 max-[480px]:w-20 max-sm:scale-90 text-neutral-900 bg-neutral-100 border-neutral-300 border-1 hover:bg-neutral-200 hover:drop-shadow-md active:bg-white max-sm:ml-2 ml-10 bottom-20 max-sm:bottom-25 max-2xl:ml-10'
+                    className='h-11 px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm'
                 >
                     Previous
                 </RippleButton>
+
                 <RippleButton
-                    onClick={() => currentStep === steps.length - 1 ? navigate('/checkout') : onStepChange(currentStep + 1)}
+                    onClick={() =>
+                        currentStep === steps.length - 1
+                            ? navigate('/checkout')
+                            : onStepChange(currentStep + 1)
+                    }
                     disabled={
                         (currentStep === 0 && !storedStates.coordinates) ||
-                        (currentStep === 1 && (!storedStates.coordinates || !storedStates.selectedFrame)) ||
-                        (currentStep === 2 && (!storedStates.coordinates || !storedStates.selectedFrame || !storedStates.selectedPassePartout))
+                        (currentStep === 1 &&
+                            (!storedStates.coordinates ||
+                                !storedStates.selectedFrame)) ||
+                        (currentStep === 2 &&
+                            (!storedStates.coordinates ||
+                                !storedStates.selectedFrame ||
+                                !storedStates.selectedPassePartout))
                     }
-                    className='w-22 max-[480px]:w-20 max-sm:scale-90 text-neutral-100 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 hover:text-neutral-900 active:bg-white hover:drop-shadow-md mr-10 max-sm:mr-2 bottom-20 max-sm:bottom-25 max-2xl:mr-10'
+                    className='h-11 px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
                 </RippleButton>
@@ -96,9 +151,10 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     );
 
     return (
-        <div className='h-full w-full overflow-hidden'>
+        <div className='w-full flex flex-col'>
             {TimelineComponent}
-            {ContentComponent}
+
+            <div className='flex-1 flex flex-col'>{ContentComponent}</div>
         </div>
     );
 }

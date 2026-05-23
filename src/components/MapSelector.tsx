@@ -6,13 +6,13 @@ import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
-import { Separator } from './ui/separator';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { STLCache } from '@/utils/cache';
 import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
+import { ChevronsUp } from 'lucide-react';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -68,6 +68,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const rectangleRef = useRef<google.maps.Rectangle | null>(null);
     const liveBoundsRef = useRef<RectangleBounds | null>(null);
+    const [controlsOpen, setControlsOpen] = useState(false);
 
     const computeRectangleBounds = useCallback(
         (point: LatLngLiteral) => {
@@ -172,6 +173,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         if (!rectangleBounds) return;
         setCenter({ lat: 60.39299, lng: 5.32415 });
         setSliderValues({ verticalScale: [2.0], boxSize: [100] });
+        setControlsOpen(false);
         if (mode === 'real') {
             localStorage.removeItem('coordinates');
             localStorage.removeItem('verticalScale');
@@ -243,213 +245,391 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const containerStyle: React.CSSProperties = {
         height: '100%',
         width: '100%',
-        borderRadius: '8px',
     };
 
     return (
-        <div
-            id='map'
-            className={`w-full bg-surface py-10 sm:py-16 sm:pb-10 ${className || ''}`}
-        >
+        <div id='map' className={`w-full bg-surface py-5 ${className || ''}`}>
             <div
                 ref={ref}
-                className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-700 ease-out ${classNameChild || ''} ${
-                    inView ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 transition-all duration-700 ease-out ${
+                    classNameChild || ''
+                } ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
-                {/* Map container */}
-                <div
-                    className='h-[55vh] md:h-[70vh] w-full rounded-lg overflow-hidden shadow-xl overscroll-none touch-none'
-                    ref={mapContainerRef}
-                >
-                    <LoadScript
-                        googleMapsApiKey={
-                            import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
-                        }
-                        libraries={libraries}
+                {/* Main map card */}
+                <div className='relative'>
+                    <div
+                        className='h-[74vh] sm:h-[76vh] w-full rounded-2xl overflow-hidden border border-border/50 shadow-md overscroll-none touch-none bg-card'
+                        ref={mapContainerRef}
                     >
-                        <GoogleMap
-                            mapContainerStyle={containerStyle}
-                            center={center}
-                            zoom={window.innerWidth > 640 ? 10 : 9}
-                            onLoad={onLoad}
-                            onClick={handleMapClick}
-                            options={{
-                                streetViewControl: false,
-                                fullscreenControl: false,
-                                cameraControl: false,
-                                maxZoom: window.innerWidth > 640 ? 11 : 10,
-                                gestureHandling: 'greedy'
-                            }}
+                        <LoadScript
+                            googleMapsApiKey={
+                                import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
+                            }
+                            libraries={libraries}
                         >
-                            {rectangleBounds && (
-                                <Rectangle
-                                    onLoad={(rect) => {
-                                        rectangleRef.current = rect;
-                                    }}
-                                    bounds={rectangleBounds}
-                                    options={{
-                                        strokeColor: '#000000',
-                                        strokeOpacity: 1,
-                                        strokeWeight: 1,
-                                        fillColor: '#000000',
-                                        fillOpacity: 0.5,
-                                        draggable: true,
-                                        editable: false,
-                                        clickable: true,
-                                    }}
-                                    onDrag={() => {
-                                        const bounds =
-                                            rectangleRef.current?.getBounds();
-                                        if (!bounds) return;
-                                        const ne = bounds.getNorthEast();
-                                        const sw = bounds.getSouthWest();
-                                        liveBoundsRef.current = {
-                                            north: ne.lat(),
-                                            east: ne.lng(),
-                                            south: sw.lat(),
-                                            west: sw.lng(),
-                                        };
-                                    }}
-                                    onDragStart={() => {
-                                        isDraggingRef.current = true;
-                                    }}
-                                    onDragEnd={() => {
-                                        if (!liveBoundsRef.current) return;
-                                        isDraggingRef.current = false;
-                                        setRectangleBounds(
-                                            liveBoundsRef.current,
-                                        );
-                                        setCenter({
-                                            lat:
-                                                (liveBoundsRef.current.north +
-                                                    liveBoundsRef.current
-                                                        .south) /
-                                                2,
-                                            lng:
-                                                (liveBoundsRef.current.east +
-                                                    liveBoundsRef.current
-                                                        .west) /
-                                                2,
-                                        });
-                                    }}
-                                />
-                            )}
-                        </GoogleMap>
-                    </LoadScript>
-                </div>
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={center}
+                                zoom={window.innerWidth > 640 ? 10 : 9}
+                                onLoad={onLoad}
+                                onClick={handleMapClick}
+                                options={{
+                                    streetViewControl: false,
+                                    fullscreenControl: false,
+                                    cameraControl: false,
+                                    maxZoom: window.innerWidth > 640 ? 11 : 10,
+                                    gestureHandling: 'greedy',
+                                }}
+                            >
+                                {rectangleBounds && (
+                                    <Rectangle
+                                        onLoad={(rect) => {
+                                            rectangleRef.current = rect;
+                                        }}
+                                        bounds={rectangleBounds}
+                                        options={{
+                                            strokeColor: '#000000',
+                                            strokeOpacity: 1,
+                                            strokeWeight: 1,
+                                            fillColor: '#000000',
+                                            fillOpacity: 0.5,
+                                            draggable: true,
+                                            editable: false,
+                                            clickable: true,
+                                        }}
+                                        onDrag={() => {
+                                            const bounds =
+                                                rectangleRef.current?.getBounds();
+                                            if (!bounds) return;
 
-                {/* Controls */}
-                <div className='mt-6 sm:mt-8'>
-                    {/* Sliders row - stack on mobile */}
-                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 max-w-4xl mx-auto mb-6'>
-                        <div className='flex flex-col items-center group'>
-                            <HoverCard>
-                                <HoverCardTrigger>
-                                    <p className='text-sm text-muted-foreground font-normal pb-3 group-hover:-translate-y-0.5 cursor-default transition-all duration-200'>
-                                        Box Size
-                                    </p>
-                                </HoverCardTrigger>
-                                <HoverCardContent className='text-center text-sm'>
-                                    <p className='pb-2'>
-                                        Adjust the slider to set the desired
-                                        area
-                                    </p>
-                                    <Separator orientation='horizontal' />
-                                    <p className='pt-2'>Default: 100%</p>
-                                </HoverCardContent>
-                            </HoverCard>
-                            <Slider
-                                min={40}
-                                max={200}
-                                defaultValue={[100]}
-                                value={sliderValues.boxSize}
-                                onValueChange={(value) =>
-                                    setSliderValues({
-                                        ...sliderValues,
-                                        boxSize: value,
-                                    })
-                                }
-                                className='w-full md:w-1/2'
-                            />
-                            <p className='text-xs text-muted-foreground font-normal pt-2 group-hover:text-foreground/80 transition-colors cursor-default'>
-                                {sliderValues.boxSize[0]}%
-                            </p>
-                        </div>
+                                            const ne = bounds.getNorthEast();
+                                            const sw = bounds.getSouthWest();
 
-                        <div className='flex flex-col items-center group'>
-                            <HoverCard>
-                                <HoverCardTrigger>
-                                    <p className='text-sm text-muted-foreground font-normal pb-3 group-hover:-translate-y-0.5 cursor-default transition-all duration-200'>
-                                        Terrain Height
-                                    </p>
-                                </HoverCardTrigger>
-                                <HoverCardContent className='text-center text-sm'>
-                                    <p className='pb-2'>
-                                        Adjust the slider to set the desired
-                                        vertical exaggeration
-                                    </p>
-                                    <Separator orientation='horizontal' />
-                                    <p className='pt-2'>Default: 2.0</p>
-                                </HoverCardContent>
-                            </HoverCard>
-                            <Slider
-                                min={1}
-                                max={4}
-                                step={0.1}
-                                defaultValue={[2.0]}
-                                value={sliderValues.verticalScale}
-                                onValueChange={(value) =>
-                                    setSliderValues({
-                                        ...sliderValues,
-                                        verticalScale: value,
-                                    })
-                                }
-                                className='w-full md:w-1/2'
-                            />
-                            <p className='text-xs text-muted-foreground font-normal pt-2 group-hover:text-foreground/80 transition-colors cursor-default'>
-                                {sliderValues.verticalScale[0].toFixed(1)}
-                            </p>
-                        </div>
+                                            liveBoundsRef.current = {
+                                                north: ne.lat(),
+                                                east: ne.lng(),
+                                                south: sw.lat(),
+                                                west: sw.lng(),
+                                            };
+                                        }}
+                                        onDragStart={() => {
+                                            isDraggingRef.current = true;
+                                        }}
+                                        onDragEnd={() => {
+                                            if (!liveBoundsRef.current) return;
+
+                                            isDraggingRef.current = false;
+
+                                            setRectangleBounds(
+                                                liveBoundsRef.current,
+                                            );
+
+                                            setCenter({
+                                                lat:
+                                                    (liveBoundsRef.current
+                                                        .north +
+                                                        liveBoundsRef.current
+                                                            .south) /
+                                                    2,
+                                                lng:
+                                                    (liveBoundsRef.current
+                                                        .east +
+                                                        liveBoundsRef.current
+                                                            .west) /
+                                                    2,
+                                            });
+                                        }}
+                                    />
+                                )}
+                            </GoogleMap>
+                        </LoadScript>
                     </div>
 
-                    {/* Action buttons */}
-                    <div className='flex flex-row items-center justify-center gap-3 sm:gap-6 mt-10 sm:mt-0'>
-                        <button
-                            onClick={() => setShowModal(true)}
-                            disabled={
-                                mode === 'dummy' ||
-                                !hasCoordinates ||
-                                isLoading ||
-                                !STLCache.objectUrl
-                            }
-                            className='text-sm text-muted-foreground font-normal hover:text-foreground disabled:opacity-40 disabled:cursor-default disabled:text-muted-foreground transition-all cursor-pointer border border-muted-foreground/30 w-19 px-3 py-1 rounded-full duration-150'
+                    {/* Floating controls panel */}
+                    <div
+                        onMouseEnter={() => setControlsOpen(true)}
+                        onMouseLeave={() => setControlsOpen(false)}
+                        className='
+                            absolute
+                            bottom-0
+                            sm:bottom-8
+                            left-0
+                            right-0
+                            sm:left-8
+                            z-10
+                            max-w-md
+                            sm:max-w-lg
+                        '
+                    >
+                        <div
+                            className='
+                                rounded-xl
+                                border
+                                border-border
+                                bg-background/30
+                                sm:bg-background/20
+                                backdrop-blur-sm
+                                sm:backdrop-blur-md
+                                shadow-xl
+                                overflow-hidden
+                            '
                         >
-                            Preview
-                        </button>
-                        <Button
-                            className='px-8 py-6 sm:px-10 sm:py-7 min-w-[180px] sm:min-w-[200px] bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground rounded-full cursor-pointer text-sm tracking-wide transition-all duration-300'
-                            disabled={isLoading}
-                            onClick={() =>
-                                handleCapture().then(
-                                    (stlObject) =>
-                                        stlObject &&
-                                        parseSTL(stlObject.buffer!),
-                                )
-                            }
-                        >
-                            {isLoading ? (
-                                <Spinner variant={'ellipsis'} />
-                            ) : (
-                                'Generate Scape'
-                            )}
-                        </Button>
-                        <button
-                            className='text-sm text-muted-foreground font-normal border border-transparent rounded-full hover:border-muted-foreground/30 hover:text-foreground transition-all cursor-pointer w-19 px-3 py-1 duration-150'
-                            onClick={resetMap}
-                        >
-                            Reset
-                        </button>
+                            {/* Mobile expand toggle */}
+                            <button
+                                onClick={() => setControlsOpen(!controlsOpen)}
+                                className='
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    px-5
+                                    py-4
+                                    max-sm:pb-0
+                                    text-left
+                                '
+                            >
+                                <div>
+                                    <p className='text-sm font-medium text-foreground'>
+                                        Adjust Controls
+                                    </p>
+
+                                    <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                        Terrain settings
+                                    </p>
+                                </div>
+
+                                <ChevronsUp
+                                    size={18}
+                                    className={`
+                                        text-foreground
+                                        transition-all
+                                        duration-300
+                                        ease-in-out
+                                        ${controlsOpen ? 'rotate-180' : ''}
+                                    `}
+                                />
+                            </button>
+
+                            {/* Expandable controls */}
+                            <div
+                                className={`
+                                    overflow-hidden
+                                    opacity-0
+                                    transition-all
+                                    duration-300
+                                    ease-in-out
+
+                                    ${controlsOpen ? 'max-h-[600px] opacity-100' : 'max-h-0'}
+                                `}
+                            >
+                                <div className='px-5 pb-0 sm:pb-6 pt-4 sm:pt-4'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12'>
+                                        {/* Box size */}
+                                        <div className='space-y-3 sm:space-y-5'>
+                                            <div className='flex items-center justify-between gap-4'>
+                                                <HoverCard>
+                                                    <HoverCardTrigger>
+                                                        <div className='cursor-default text-left'>
+                                                            <p className='text-sm font-medium text-foreground'>
+                                                                Box Size
+                                                            </p>
+
+                                                            <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                                                Controls terrain
+                                                                coverage
+                                                            </p>
+                                                        </div>
+                                                    </HoverCardTrigger>
+
+                                                    <HoverCardContent className='text-sm text-left'>
+                                                        Adjust the selected
+                                                        terrain coverage. Default:
+                                                        100%.
+                                                    </HoverCardContent>
+                                                </HoverCard>
+
+                                                <div className='text-sm font-medium text-foreground/80 tabular-nums'>
+                                                    {sliderValues.boxSize[0]}%
+                                                </div>
+                                            </div>
+
+                                            <Slider
+                                                min={40}
+                                                max={200}
+                                                defaultValue={[100]}
+                                                value={sliderValues.boxSize}
+                                                onValueChange={(value) =>
+                                                    setSliderValues({
+                                                        ...sliderValues,
+                                                        boxSize: value,
+                                                    })
+                                                }
+                                                className='w-full'
+                                            />
+
+                                            <div className='flex justify-between text-xs text-foreground/60'>
+                                                <span>Smaller</span>
+                                                <span>Larger</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Terrain height */}
+                                        <div className='space-y-3 sm:space-y-5'>
+                                            <div className='flex items-center justify-between gap-4'>
+                                                <HoverCard>
+                                                    <HoverCardTrigger>
+                                                        <div className='cursor-default text-left'>
+                                                            <p className='text-sm font-medium text-foreground'>
+                                                                Terrain Height
+                                                            </p>
+
+                                                            <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                                                Vertical
+                                                                exaggeration
+                                                            </p>
+                                                        </div>
+                                                    </HoverCardTrigger>
+
+                                                    <HoverCardContent className='text-sm text-left'>
+                                                        Increase or decrease
+                                                        terrain height. Default:
+                                                        2.0x
+                                                    </HoverCardContent>
+                                                </HoverCard>
+
+                                                <div className='text-sm font-medium text-foreground/80 tabular-nums'>
+                                                    {sliderValues.verticalScale[0].toFixed(
+                                                        1,
+                                                    )}
+                                                    x
+                                                </div>
+                                            </div>
+
+                                            <Slider
+                                                min={1}
+                                                max={4}
+                                                step={0.1}
+                                                defaultValue={[2.0]}
+                                                value={
+                                                    sliderValues.verticalScale
+                                                }
+                                                onValueChange={(value) =>
+                                                    setSliderValues({
+                                                        ...sliderValues,
+                                                        verticalScale: value,
+                                                    })
+                                                }
+                                                className='w-full'
+                                            />
+
+                                            <div className='flex justify-between text-xs text-foreground/60'>
+                                                <span>Subtle</span>
+                                                <span>Dramatic</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div
+                                className='
+                                    p-4
+                                    flex
+                                    flex-col
+                                    sm:flex-row
+                                    gap-3
+                                    sm:items-center
+                                    sm:justify-between
+                                '
+                            >
+                                {/* Secondary buttons */}
+                                <div className='flex gap-3 order-2 sm:order-1'>
+                                    <Button
+                                        onClick={() => setShowModal(true)}
+                                        disabled={
+                                            mode === 'dummy' ||
+                                            !hasCoordinates ||
+                                            isLoading ||
+                                            !STLCache.objectUrl
+                                        }
+                                        className='
+                                            flex-1
+                                            sm:flex-none
+                                            h-9
+                                            px-5
+                                            rounded-full
+                                            text-sm
+                                            shadow-sm
+                                            font-medium
+                                            transition-all
+                                            cursor-pointer
+                                            hover:bg-background
+                                            hover:text-foreground
+                                            disabled:opacity-40
+                                            disabled:pointer-events-none
+                                        '
+                                    >
+                                        Preview
+                                    </Button>
+
+                                    <Button
+                                        onClick={resetMap}
+                                        className='
+                                            flex-1
+                                            sm:flex-none
+                                            h-9
+                                            px-5
+                                            rounded-full
+                                            text-sm
+                                            shadow-sm
+                                            transition-all
+                                            cursor-pointer
+                                            hover:bg-background
+                                            hover:text-foreground
+                                        '
+                                    >
+                                        Reset
+                                    </Button>
+                                </div>
+
+                                {/* Main CTA */}
+                                <Button
+                                    className='
+                                        order-1
+                                        sm:order-2
+                                        h-12
+                                        px-8
+                                        sm:px-10
+                                        rounded-full
+                                        text-sm
+                                        font-medium
+                                        tracking-wide
+                                        shadow-sm
+                                        transition-all
+                                        duration-150
+                                        min-w-[220px]
+                                        cursor-pointer
+                                        hover:bg-background
+                                        hover:text-foreground
+                                    '
+                                    disabled={isLoading}
+                                    onClick={() =>
+                                        handleCapture().then(
+                                            (stlObject) =>
+                                                stlObject &&
+                                                parseSTL(stlObject.buffer!),
+                                        )
+                                    }
+                                >
+                                    {isLoading ? (
+                                        <Spinner variant={'ellipsis'} />
+                                    ) : (
+                                        'Generate Scape'
+                                    )}
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
