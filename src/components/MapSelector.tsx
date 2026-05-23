@@ -443,8 +443,8 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
 
                                                     <HoverCardContent className='text-sm text-left'>
                                                         Adjust the selected
-                                                        terrain coverage. Default:
-                                                        100%.
+                                                        terrain coverage.
+                                                        Default: 100%.
                                                     </HoverCardContent>
                                                 </HoverCard>
 
