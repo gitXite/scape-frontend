@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 // After -90° X rotation: X∈[-1.311,1.311]  Y∈[0,0.386]  Z∈[-2,2]
 // Frame Y axis goes front (+FRAME_DEPTH/2) to back (-FRAME_DEPTH/2).
 // FRAME_DEPTH > TERRAIN_H so terrain sits inside without clipping through rear.
-// 
+//
 const INNER_W = 2.623;
 const INNER_D = 4.0;
 
@@ -39,7 +39,12 @@ function getLayout(vpWidth: number) {
 }
 
 // set walnut textures
-function makeWoodMaterial(baseTexture: THREE.Texture, baseRoughness: THREE.Texture, baseNormal: THREE.Texture, scale: THREE.Vector2) {
+function makeWoodMaterial(
+    baseTexture: THREE.Texture,
+    baseRoughness: THREE.Texture,
+    baseNormal: THREE.Texture,
+    scale: THREE.Vector2,
+) {
     const tex = baseTexture.clone();
     tex.needsUpdate = true;
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -59,7 +64,7 @@ function makeWoodMaterial(baseTexture: THREE.Texture, baseRoughness: THREE.Textu
     });
 }
 
-// Frame builder 
+// Frame builder
 function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
     const grp = new THREE.Group();
 
@@ -112,11 +117,21 @@ function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
     // Cream mount board — sits just in front of backing
     box(mountMat, mw, 0.018, md, 0, mountY, 0);
 
-    const topMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
+    const topMat = makeWoodMaterial(
+        woodTexture,
+        woodRoughness,
+        woodNormal,
+        new THREE.Vector2(0.6, 0.6),
+    );
     topMat.map!.repeat.set(ow / 3, 2);
     topMat.map!.rotation = Math.PI / 5;
 
-    const sideMat = makeWoodMaterial(woodTexture, woodRoughness, woodNormal, new THREE.Vector2(0.6, 0.6));
+    const sideMat = makeWoodMaterial(
+        woodTexture,
+        woodRoughness,
+        woodNormal,
+        new THREE.Vector2(0.6, 0.6),
+    );
     sideMat.map!.repeat.set(md / 3, 2);
     sideMat.map!.rotation = Math.PI / 5;
     sideMat.map!.center.set(0.5, 0.5);
@@ -134,10 +149,12 @@ function buildFrame(renderer: THREE.WebGLRenderer): THREE.Group {
 // Soft north-window key light — does not blow out the near-white terrain.
 // ACES filmic tone mapping in renderer keeps whites from clipping.
 function buildLights(scene: THREE.Scene): void {
-    scene.add(new THREE.AmbientLight(0xfff8f4, 0.4));
+    // Ambient light - just enough to lift pure-black shadows
+    scene.add(new THREE.AmbientLight(0xfff8f4, 0.3));
 
-    const key = new THREE.DirectionalLight(0xfff8f4, 3.0);
-    key.position.set(-4, 9, 6);
+    // Key light - interior ceiling/overhead light, roughly above and slightly left
+    const key = new THREE.DirectionalLight(0xfffaf0, 1.5);
+    key.position.set(-2, 9, 3);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
     key.shadow.camera.near = 1;
@@ -146,14 +163,35 @@ function buildLights(scene: THREE.Scene): void {
     key.shadow.camera.right = 6;
     key.shadow.camera.top = 8;
     key.shadow.camera.bottom = -8;
-    key.shadow.radius = 4;
+    key.shadow.radius = 4; // soft - diffused interior light
     key.shadow.bias = -0.001;
     scene.add(key);
 
-    const fill = new THREE.DirectionalLight(0xf0f4ff, 0.2);
-    fill.position.set(6, 3, 4);
+    // Sunlight - hard, warm, from the right
+    // off the right; slightly elevated and angled forward into the room
+    const sun = new THREE.DirectionalLight(0xfff5cc, 3.0);
+    sun.position.set(10, 5, 2);
+    sun.target.position.set(0, 0, 0);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.near = 1;
+    sun.shadow.camera.far = 30;
+    sun.shadow.camera.left = -5;
+    sun.shadow.camera.right = 5;
+    sun.shadow.camera.top = 5;
+    sun.shadow.camera.bottom = -5;
+    sun.shadow.radius = 1; // crisp — sunlight casts hard shadows
+    sun.shadow.bias = -0.001;
+    scene.add(sun);
+    scene.add(sun.target);
+
+    // Fill light - cool bounce off the left wall, opposing the sun
+    // Low intensity; just softens the hard shadow falloff
+    const fill = new THREE.DirectionalLight(0xd0e8ff, 0.3);
+    fill.position.set(-6, 2, 0);
     scene.add(fill);
 
+    // Rim light - subtle back-light for depth
     const rim = new THREE.DirectionalLight(0xffe0c0, 0.12);
     rim.position.set(0, -3, -6);
     scene.add(rim);
@@ -173,11 +211,12 @@ function Hero3D() {
         });
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         // ACES filmic: prevents the near-white terrain from clipping to pure white
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 0.88;
+        renderer.toneMappingExposure = 0.73;
         container.appendChild(renderer.domElement);
 
         const scene = new THREE.Scene();
@@ -345,7 +384,7 @@ function Hero3D() {
         };
         window.addEventListener('resize', handleResize);
 
-        // Cleanup 
+        // Cleanup
         return () => {
             cancelAnimationFrame(frameID);
             window.removeEventListener('mousemove', onMouseMove);

@@ -46,11 +46,12 @@ function Hero() {
             id='home'
             className='relative h-svh w-screen flex overflow-hidden'
         >
-            {/* ── Background ─────────────────────────────────────────────────── */}
+            {/* ── Background */}
             <div className='absolute inset-0 bg-gradient-to-br sm:from-hero-dark/30 from-hero-dark/50 via-hero-dark-deep to-hero-dark' />
 
-            {/* ── Inner shadow vignette ───────────────────────────────────────── */}
+            {/* ── Inner shadow vignette and radial glow*/}
             <div className='absolute inset-0 shadow-[inset_0px_0px_30px_rgba(0,0,0,0.5)]' />
+            <div className='absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_50%_35%,_rgba(255,220,150,0.10)_0%,_transparent_65%)]' />
 
             <div
                 className='absolute bottom-0 left-0 right-0 h-full pointer-events-none z-10
@@ -67,12 +68,12 @@ function Hero() {
                 sm:bg-gradient-to-r sm:from-hero-dark sm:via-hero-dark/40 sm:to-transparent'
             />
 
-            {/* ── 3D canvas — right 75%, absolute behind text ─────────────────── */}
+            {/* ── 3D canvas — right 75%, absolute behind text */}
             <Suspense fallback={<CanvasFallback />}>
                 <Hero3DNew />
             </Suspense>
 
-            {/* ── Left-aligned text content ────────────────────────────────────── */}
+            {/* ── Left-aligned text content */}
             <div
                 className='relative z-20 flex flex-col justify-start sm:justify-center max-sm:pt-40 w-full
                     items-start text-left
@@ -117,7 +118,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-4 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
+                    className='mt-2 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
                                text-primary-foreground/90 font-thin
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
@@ -128,10 +129,10 @@ function Hero() {
 
                 {/* CTAs */}
                 <div
-                    className='w-full mt-10 flex flex-col sm:flex-row
+                    className='w-full max-sm:mt-5 flex flex-col sm:flex-row
                         items-start sm:items-start
                         justify-start sm:justify-start
-                        gap-4 pointer-events-auto'
+                        gap-2 pointer-events-auto'
                 >
                     <motion.div
                         custom={0}
