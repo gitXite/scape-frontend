@@ -53,7 +53,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
     const labels = ['Select Area', 'Frame', 'Passepartout'];
 
     const TimelineComponent = (
-        <div className='w-full flex justify-center pt-10 px-10'>
+        <div className='w-full flex justify-center pt-5 sm:pt-10 px-10'>
             <div className='relative w-full max-w-2xl'>
                 {/* Background line */}
                 <div className='absolute top-4 left-1/2 -translate-x-1/2 w-[calc(100%-56px)] h-px bg-border' />

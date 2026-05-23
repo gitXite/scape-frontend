@@ -566,9 +566,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         }
                                         className='
                                             flex-1
-                                            sm:flex-none
-                                            h-9
-                                            px-5
+                                            sm:h-10
+                                            h-10
+                                            px-8
                                             rounded-full
                                             text-sm
                                             shadow-sm
@@ -588,9 +588,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         onClick={resetMap}
                                         className='
                                             flex-1
-                                            sm:flex-none
-                                            h-9
-                                            px-5
+                                            sm:h-10
+                                            h-10
+                                            px-8
                                             rounded-full
                                             text-sm
                                             shadow-sm
