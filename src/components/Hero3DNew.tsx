@@ -169,7 +169,12 @@ function buildLights(scene: THREE.Scene): void {
 
     // Sunlight - hard, warm, from the right
     // off the right; slightly elevated and angled forward into the room
-    const sun = new THREE.DirectionalLight(0xfff5cc, 3.0);
+    // 0xfff2aa yellow light
+    // 0xfff5cc warm soft
+    // 0xfff8e0 subtle warmth
+    // 0xFEFCF2 ivory
+    // 0xFFFFFF pure white
+    const sun = new THREE.DirectionalLight(0xfff8e0, 3.0);
     sun.position.set(10, 5, 2);
     sun.target.position.set(0, 0, 0);
     sun.castShadow = true;
