@@ -69,6 +69,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const rectangleRef = useRef<google.maps.Rectangle | null>(null);
     const liveBoundsRef = useRef<RectangleBounds | null>(null);
     const [controlsOpen, setControlsOpen] = useState(false);
+    const [isSliderDrag, setIsSliderDrag] = useState(false);
 
     const computeRectangleBounds = useCallback(
         (point: LatLngLiteral) => {
@@ -362,7 +363,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                         '
                     >
                         <div
-                            className='
+                            className={`
                                 rounded-xl
                                 border
                                 border-border
@@ -372,7 +373,11 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 sm:backdrop-blur-md
                                 shadow-xl
                                 overflow-hidden
-                            '
+                                transition-opacity
+                                duration-200
+
+                                ${isSliderDrag ? 'opacity-0' : 'opacity-100'}
+                            `}
                         >
                             {/* Mobile expand toggle */}
                             <button
@@ -464,6 +469,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                                         boxSize: value,
                                                     })
                                                 }
+                                                onPointerDown={() => {
+                                                    if (window.innerWidth < 640) setIsSliderDrag(true);
+                                                }}
+                                                onPointerUp={() => {
+                                                    if (window.innerWidth < 640) setIsSliderDrag(false);
+                                                }}
                                                 className='w-full'
                                             />
 
@@ -562,7 +573,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                             text-sm
                                             shadow-sm
                                             font-medium
-                                            transition-all
+                                            transition-color
                                             cursor-pointer
                                             hover:bg-background
                                             hover:text-foreground
@@ -583,7 +594,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                             rounded-full
                                             text-sm
                                             shadow-sm
-                                            transition-all
+                                            transition-color
                                             cursor-pointer
                                             hover:bg-background
                                             hover:text-foreground
@@ -606,7 +617,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         font-medium
                                         tracking-wide
                                         shadow-sm
-                                        transition-all
+                                        transition-color
                                         duration-150
                                         min-w-[220px]
                                         cursor-pointer
