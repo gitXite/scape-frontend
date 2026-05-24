@@ -367,7 +367,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             className={`
                                 rounded-xl
                                 border
-                                border-background/80
+                                border-background/60
                                 sm:border-border/50
                                 bg-background/50
                                 sm:bg-background/20
