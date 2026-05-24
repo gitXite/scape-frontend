@@ -70,6 +70,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const liveBoundsRef = useRef<RectangleBounds | null>(null);
     const [controlsOpen, setControlsOpen] = useState(false);
     const [isSliderDrag, setIsSliderDrag] = useState(false);
+    const isMobile = window.innerWidth < 640;
 
     const computeRectangleBounds = useCallback(
         (point: LatLngLiteral) => {
@@ -259,7 +260,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                 {/* Main map card */}
                 <div className='relative'>
                     <div
-                        className='h-[74vh] sm:h-[76vh] w-full rounded-2xl overflow-hidden border border-border/50 shadow-md overscroll-none touch-none bg-card'
+                        className='h-[76vh] sm:h-[76vh] w-full rounded-2xl overflow-hidden border border-border/50 shadow-md overscroll-none touch-none bg-card'
                         ref={mapContainerRef}
                     >
                         <LoadScript
@@ -358,7 +359,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             right-0
                             sm:left-8
                             z-10
-                            max-w-md
+                            max-sm:w-full
                             sm:max-w-lg
                         '
                     >
@@ -366,8 +367,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                             className={`
                                 rounded-xl
                                 border
-                                border-border
-                                bg-background/30
+                                border-background/80
+                                sm:border-border/50
+                                bg-background/50
                                 sm:bg-background/20
                                 backdrop-blur-sm
                                 sm:backdrop-blur-md
@@ -470,10 +472,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                                     })
                                                 }
                                                 onPointerDown={() => {
-                                                    if (window.innerWidth < 640) setIsSliderDrag(true);
+                                                    if (window.innerWidth < 640)
+                                                        setIsSliderDrag(true);
                                                 }}
                                                 onPointerUp={() => {
-                                                    if (window.innerWidth < 640) setIsSliderDrag(false);
+                                                    if (window.innerWidth < 640)
+                                                        setIsSliderDrag(false);
                                                 }}
                                                 className='w-full'
                                             />
@@ -547,15 +551,17 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 className='
                                     p-4
                                     flex
-                                    flex-col
+                                    flex-row-reverse
                                     sm:flex-row
                                     gap-3
+                                    items-end
+                                    justify-center
                                     sm:items-center
                                     sm:justify-between
                                 '
                             >
                                 {/* Secondary buttons */}
-                                <div className='flex gap-3 order-2 sm:order-1'>
+                                <div className={`flex ${isMobile ? 'flex-col-reverse gap-2' : 'flex-row gap-3'} order-2 sm:order-1`}>
                                     <Button
                                         onClick={() => setShowModal(true)}
                                         disabled={
@@ -565,7 +571,6 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                             !STLCache.objectUrl
                                         }
                                         className='
-                                            flex-1
                                             sm:h-10
                                             h-10
                                             px-8
@@ -584,24 +589,46 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         Preview
                                     </Button>
 
-                                    <Button
-                                        onClick={resetMap}
-                                        className='
-                                            flex-1
-                                            sm:h-10
-                                            h-10
-                                            px-8
-                                            rounded-full
-                                            text-sm
-                                            shadow-sm
-                                            transition-color
-                                            cursor-pointer
-                                            hover:bg-background
-                                            hover:text-foreground
-                                        '
-                                    >
-                                        Reset
-                                    </Button>
+                                    {isMobile ? (
+                                        controlsOpen && (
+                                            <Button
+                                                onClick={resetMap}
+                                                className='
+                                                sm:h-10
+                                                h-9
+                                                w-3/4
+                                                rounded-full
+                                                text-sm
+                                                shadow-sm
+                                                transition-color
+                                                cursor-pointer
+                                                hover:bg-background
+                                                hover:text-foreground
+                                                self-center
+                                            '
+                                            >
+                                                Reset
+                                            </Button>
+                                        )
+                                    ) : (
+                                        <Button
+                                            onClick={resetMap}
+                                            className='
+                                                sm:h-10
+                                                h-10
+                                                px-8
+                                                rounded-full
+                                                text-sm
+                                                shadow-sm
+                                                transition-color
+                                                cursor-pointer
+                                                hover:bg-background
+                                                hover:text-foreground
+                                            '
+                                        >
+                                            Reset
+                                        </Button>
+                                    )}
                                 </div>
 
                                 {/* Main CTA */}
