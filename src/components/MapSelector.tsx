@@ -5,6 +5,7 @@ import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
+import { Switch } from './ui/switch';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { STLCache } from '@/utils/cache';
@@ -71,6 +72,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const [controlsOpen, setControlsOpen] = useState(false);
     const [isSliderDrag, setIsSliderDrag] = useState(false);
     const isMobile = window.innerWidth < 640;
+    const [isToggled, setIsToggled] = useState(false);
 
     const computeRectangleBounds = useCallback(
         (point: LatLngLiteral) => {
@@ -390,7 +392,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     items-center
                                     justify-between
                                     px-5
-                                    py-4
+                                    pt-4
                                     max-sm:pb-0
                                     text-left
                                 '
@@ -429,10 +431,10 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     ${controlsOpen ? 'max-h-[600px] opacity-100' : 'max-h-0'}
                                 `}
                             >
-                                <div className='px-5 pb-0 sm:pb-6 pt-4 sm:pt-4'>
+                                <div className='px-5 pb-0 sm:pb-0 pt-4 sm:pt-4'>
                                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12'>
                                         {/* Box size */}
-                                        <div className='space-y-3 sm:space-y-5'>
+                                        <div className='space-y-2 sm:space-y-3'>
                                             <div className='flex items-center justify-between gap-4'>
                                                 <HoverCard>
                                                     <HoverCardTrigger>
@@ -489,7 +491,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         </div>
 
                                         {/* Terrain height */}
-                                        <div className='space-y-3 sm:space-y-5'>
+                                        <div className='space-y-2 sm:space-y-3'>
                                             <div className='flex items-center justify-between gap-4'>
                                                 <HoverCard>
                                                     <HoverCardTrigger>
@@ -543,6 +545,23 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                             </div>
                                         </div>
                                     </div>
+                                    <div
+                                        className={`flex items-center space-x-2 pt-5 max-sm:absolute max-sm:right-1/2 max-sm:translate-x-1/2 transition-all duration-initial delay-50 ease-in-out ${controlsOpen ? 'opacity-100' : 'opacity-0'}`}
+                                    >
+                                        <Switch
+                                            id='model-type'
+                                            className='transform-gpu'
+                                            checked={isToggled}
+                                            onCheckedChange={setIsToggled}
+                                            disabled
+                                        />
+                                        <label
+                                            htmlFor='model-type'
+                                            className='text-sm text-foreground font-medium'
+                                        >
+                                            {isToggled ? 'Table' : 'Wall'}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -561,7 +580,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                 '
                             >
                                 {/* Secondary buttons */}
-                                <div className={`flex ${isMobile ? 'flex-col-reverse gap-2' : 'flex-row gap-3'} order-2 sm:order-1`}>
+                                <div
+                                    className={`relative flex ease-in-out duration-300 ${isMobile ? `${controlsOpen ? 'pt-11' : 'pt-0'} flex-col-reverse gap-2` : 'flex-row gap-3'} order-2 sm:order-1`}
+                                >
                                     <Button
                                         onClick={() => setShowModal(true)}
                                         disabled={
@@ -590,11 +611,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     </Button>
 
                                     {isMobile ? (
-                                        controlsOpen && (
-                                            <Button
-                                                onClick={resetMap}
-                                                className='
-                                                sm:h-10
+                                        <Button
+                                            onClick={resetMap}
+                                            className={`
                                                 h-9
                                                 w-3/4
                                                 rounded-full
@@ -602,14 +621,19 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                                 shadow-sm
                                                 transition-color
                                                 cursor-pointer
-                                                hover:bg-background
-                                                hover:text-foreground
                                                 self-center
-                                            '
-                                            >
-                                                Reset
-                                            </Button>
-                                        )
+                                                absolute
+                                                top-0
+                                                transition-all
+                                                duration-initial
+                                                delay-50
+                                                ease-in-out
+
+                                                ${controlsOpen ? 'opacity-100' : 'opacity-0'}
+                                            `}
+                                        >
+                                            Reset
+                                        </Button>
                                     ) : (
                                         <Button
                                             onClick={resetMap}
