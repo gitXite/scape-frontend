@@ -5,7 +5,7 @@ import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
-import { Switch } from './ui/switch';
+// import { Switch } from './ui/switch';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { STLCache } from '@/utils/cache';
@@ -13,7 +13,7 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
-import { Box, ChevronsUp, Frame } from 'lucide-react';
+import { /*Box,*/ ChevronsUp, /*Frame*/ } from 'lucide-react';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -72,7 +72,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
     const [controlsOpen, setControlsOpen] = useState(false);
     const [isSliderDrag, setIsSliderDrag] = useState(false);
     const isMobile = window.innerWidth < 640;
-    const [isToggled, setIsToggled] = useState(false);
+    // const [isToggled, setIsToggled] = useState(false);
 
     const computeRectangleBounds = useCallback(
         (point: LatLngLiteral) => {
