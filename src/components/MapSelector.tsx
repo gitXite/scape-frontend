@@ -13,7 +13,7 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
-import { ChevronsUp } from 'lucide-react';
+import { Box, ChevronsUp, Frame } from 'lucide-react';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -440,7 +440,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                                     <HoverCardTrigger>
                                                         <div className='cursor-default text-left'>
                                                             <p className='text-sm font-medium text-foreground'>
-                                                                Box Size
+                                                                Capture Size
                                                             </p>
 
                                                             <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
@@ -451,7 +451,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                                     </HoverCardTrigger>
 
                                                     <HoverCardContent className='text-sm text-left'>
-                                                        Adjust the selected
+                                                        Adjust the captured
                                                         terrain coverage.
                                                         Default: 100%.
                                                     </HoverCardContent>
@@ -546,29 +546,66 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         </div>
                                     </div>
                                     <div
-                                        className={`flex items-center space-x-2 pt-5 max-sm:absolute max-sm:right-1/2 max-sm:translate-x-1/2 transition-all duration-initial delay-50 ease-in-out ${controlsOpen ? 'opacity-100' : 'opacity-0'}`}
+                                        className={`flex items-center justify-between pt-5 transition-all duration-initial ease-in-out ${controlsOpen ? 'opacity-100' : 'opacity-0'}`}
                                     >
-                                        <Switch
-                                            id='model-type'
-                                            className='transform-gpu'
-                                            checked={isToggled}
-                                            onCheckedChange={setIsToggled}
-                                            disabled
-                                        />
-                                        <label
-                                            htmlFor='model-type'
-                                            className='text-sm text-foreground font-medium'
-                                        >
-                                            {isToggled ? 'Table' : 'Wall'}
-                                        </label>
+                                        {isMobile && (
+                                            <Button
+                                                onClick={resetMap}
+                                                className={`
+                                                    h-9
+                                                    px-7
+                                                    rounded-full
+                                                    text-sm
+                                                    shadow-sm
+                                                    transition-color
+                                                    cursor-pointer
+                                                `}
+                                            >
+                                                Reset
+                                            </Button>
+                                        )}
+                                        {/* <div className='flex items-center gap-2 sm:gap-3'>
+                                            <div
+                                                className={`flex items-center gap-1 transition-colors ${
+                                                    !isToggled
+                                                        ? 'text-foreground'
+                                                        : 'text-muted-foreground'
+                                                }`}
+                                            >
+                                                <Frame size={16} />
+                                                <span className='text-xs font-medium'>
+                                                    Wall Mount
+                                                </span>
+                                            </div>
+
+                                            <Switch
+                                                id='model-type'
+                                                className='transform-gpu'
+                                                checked={isToggled}
+                                                onCheckedChange={setIsToggled}
+                                            />
+
+                                            <div
+                                                className={`flex items-center gap-1 transition-colors ${
+                                                    isToggled
+                                                        ? 'text-foreground'
+                                                        : 'text-muted-foreground'
+                                                }`}
+                                            >
+                                                <Box size={16} />
+                                                <span className='text-xs font-medium'>
+                                                    Table Display
+                                                </span>
+                                            </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Actions */}
                             <div
-                                className='
-                                    p-4
+                                className={`
+                                    p-4 ${controlsOpen ? 'pt-1 sm:pt-4' : 'pt-4'}
                                     flex
                                     flex-row-reverse
                                     sm:flex-row
@@ -577,11 +614,12 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     justify-center
                                     sm:items-center
                                     sm:justify-between
-                                '
+                                    transition-all
+                                `}
                             >
                                 {/* Secondary buttons */}
                                 <div
-                                    className={`relative flex ease-in-out duration-300 ${isMobile ? `${controlsOpen ? 'pt-11' : 'pt-0'} flex-col-reverse gap-2` : 'flex-row gap-3'} order-2 sm:order-1`}
+                                    className={`relative flex ease-in-out duration-300 ${isMobile ? `flex-col-reverse gap-2` : 'flex-row gap-3'} order-2 sm:order-1`}
                                 >
                                     <Button
                                         onClick={() => setShowModal(true)}
@@ -610,31 +648,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         Preview
                                     </Button>
 
-                                    {isMobile ? (
-                                        <Button
-                                            onClick={resetMap}
-                                            className={`
-                                                h-9
-                                                w-3/4
-                                                rounded-full
-                                                text-sm
-                                                shadow-sm
-                                                transition-color
-                                                cursor-pointer
-                                                self-center
-                                                absolute
-                                                top-0
-                                                transition-all
-                                                duration-initial
-                                                delay-50
-                                                ease-in-out
-
-                                                ${controlsOpen ? 'opacity-100' : 'opacity-0'}
-                                            `}
-                                        >
-                                            Reset
-                                        </Button>
-                                    ) : (
+                                    {!isMobile && (
                                         <Button
                                             onClick={resetMap}
                                             className='
