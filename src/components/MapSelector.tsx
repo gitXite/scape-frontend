@@ -177,7 +177,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
         if (!rectangleBounds) return;
         setCenter({ lat: 60.39299, lng: 5.32415 });
         setSliderValues({ verticalScale: [2.0], boxSize: [100] });
-        setControlsOpen(false);
+        setControlsOpen(isMobile ? false : true);
         if (mode === 'real') {
             localStorage.removeItem('coordinates');
             localStorage.removeItem('verticalScale');
