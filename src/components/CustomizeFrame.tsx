@@ -24,10 +24,10 @@ function CustomizeFrame() {
                     <CustomizationPreview />
                 </div>
                 <div className='flex max-xl:w-100 max-sm:w-full max-sm:flex-1 max-sm:mt-10 min-lg:flex-wrap max-sm:flex-wrap max-lg:pb-20 max-sm:pb-10 justify-center items-center gap-10 max-lg:gap-5 text-sm'>
-                    <FrameCard frameType={frameType} type='oak' handleClick={handleClick} text='Fitted with an oak frame -' desc='Natural and timeless' />
-                    <FrameCard frameType={frameType} type='walnut' handleClick={handleClick} text='Fitted with a walnut frame -' desc='Rich and elegant' />
-                    <FrameCard frameType={frameType} type='white' handleClick={handleClick} text='Fitted with a white frame -' desc='Clean and minimal' />
-                    <FrameCard frameType={frameType} type='black' handleClick={handleClick} text='Fitted with a black frame -' desc='Bold and classic' />
+                    <FrameCard art='50566393' frameType={frameType} type='oak' handleClick={handleClick} text='Fitted with an oak frame -' desc='Natural and timeless' />
+                    <FrameCard art='30548885' frameType={frameType} type='walnut' handleClick={handleClick} text='Fitted with a walnut frame -' desc='Rich and elegant' />
+                    <FrameCard art='10548886' frameType={frameType} type='white' handleClick={handleClick} text='Fitted with a white frame -' desc='Clean and minimal' />
+                    <FrameCard art='00548882' frameType={frameType} type='black' handleClick={handleClick} text='Fitted with a black frame -' desc='Bold and classic' />
                 </div>
             </div>
         </div>
