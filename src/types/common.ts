@@ -26,4 +26,5 @@ export type STLObject = {
 export interface Review {
     message: string;
     rating: number;
+    location?: string;
 }

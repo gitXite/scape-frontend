@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
-import {
-    Marquee,
-    MarqueeContent,
-    MarqueeFade,
-    MarqueeItem,
-} from './ui/shadcn-io/marquee/Marquee';
 import StarRating from './ui/starRating';
-import { Spinner } from './ui/shadcn-io/spinner/spinner';
+// import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import TestimonialCard from './TestimonialCard';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Star } from 'lucide-react';
+import { Button } from './ui/button';
+
+const INITIAL_COUNT = 6;
+const BATCH_SIZE = 6;
 
 function Testemonials() {
     const [totalReviews, setTotalReviews] = useState();
-    const [averageRating, setAverageRating] = useState();
+    const [averageRating, setAverageRating] = useState<number>();
     const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState<any[]>([]);
     const [error, setError] = useState('');
+    const [visible, setVisible] = useState(INITIAL_COUNT);
+    const shown = reviews.slice(0, visible);
+    const remaining = reviews.length - shown.length;
 
     useEffect(() => {
         const getReviewStats = async () => {
@@ -77,128 +78,110 @@ function Testemonials() {
     }, []);
 
     return (
-        <div className='flex flex-col min-h-svh w-full px-5 items-center overflow-hidden'>
-            <div className='flex flex-col relative z-10 w-full pt-24 pb-16'>
-                <div className='text-center px-6'>
-                    <div className='inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6'>
-                        <Sparkles className='w-4 h-4' />
-                        Customer Reviews
-                    </div>
-
-                    <h1 className='text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight'>
-                        Words of <span className='text-primary'>praise</span>
-                        <br />
-                        from our customers
-                    </h1>
-
-                    <p className='text-xl text-muted-foreground font-normal max-w-2xl mx-auto mb-10'>
-                        Don't just take our word for it. See what our customers
-                        have to say about their experience.
-                    </p>
-                </div>
-
-                {isLoading ? (
-                    <div className='flex flex-col items-center self-center'>
-                        <Spinner
-                            variant={'circle'}
-                            size={42}
-                            className='text-neutral-900'
+        <div className='flex flex-col min-h-svh w-full px-5 items-center overflow-hidden font-normal'>
+            <div className='flex flex-col relative mx-auto max-w-6xl px-6 py-8'>
+                <section className='mx-auto mt-10 max-w-2xl text-center'>
+                    <span className='inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground'>
+                        <Star
+                            className='size-4 fill-amber-400 text-amber-400'
+                            aria-hidden='true'
                         />
-                        {error && (
-                            <h1 className='text-neutral-900 font-medium'>
-                                {error}
-                            </h1>
-                        )}
-                    </div>
-                ) : (
-                    <div className='flex flex-col w-full items-center'>
-                        <div className='inline-flex w-fit items-center gap-6 bg-card border border-border rounded-full px-8 py-4 shadow-md mb-16'>
-                            <div className='flex items-center gap-3'>
-                                <StarRating
-                                    readonly
-                                    rating={averageRating!}
-                                    showValue
-                                    size='lg'
-                                />
-                            </div>
-                            <div className='w-px h-8 bg-border' />
-                            <div className='text-left'>
-                                <p className='text-2xl font-bold text-foreground'>
-                                    {totalReviews}
-                                </p>
-                                <p className='text-sm font-normal text-muted-foreground'>
-                                    Total Reviews
-                                </p>
-                            </div>
+                        Customer Reviews
+                    </span>
+                    <h1 className='mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl'>
+                        Words of praise from our customers
+                    </h1>
+                    <p className='mx-auto mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground'>
+                        Don&apos;t just take our word for it. See what our
+                        customers say about turning their favorite places into
+                        tangible art.
+                    </p>
+                </section>
+
+                {/* Aggregate summary uses whole-collection stats from the backend */}
+                <section className='mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8'>
+                    <div className='grid gap-8 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-12'>
+                        <div className='text-center sm:border-r sm:border-border sm:pr-12'>
+                            <p className='font-serif text-6xl font-semibold leading-none text-foreground'>
+                                {averageRating?.toFixed(1)}
+                            </p>
+                            <StarRating
+                                readonly
+                                rating={averageRating!}
+                                size='lg'
+                                className='mt-3 justify-center'
+                            />
+                            <p className='mt-3 text-sm text-muted-foreground'>
+                                Based on{' '}
+                                <span className='font-medium text-card-foreground'>
+                                    {totalReviews} reviews
+                                </span>
+                            </p>
                         </div>
-                        <div className='flex flex-col gap-10 w-4/5 items-center self-center overflow-hidden'>
-                            <Marquee>
-                                <MarqueeFade side='left' />
-                                <MarqueeFade side='right' />
-                                <MarqueeContent speed={window.innerWidth < 640 ? 100 : 40} className='py-2'>
-                                    {reviews
-                                        .map((review) => ({
-                                            sort: Math.random(),
-                                            sorted: review,
-                                        }))
-                                        .sort((a, b) => a.sort - b.sort)
-                                        .map((review, index) => (
-                                            <MarqueeItem
-                                                className=''
-                                                key={index}
-                                            >
-                                                <TestimonialCard
-                                                    review={{
-                                                        rating: review.sorted.rating,
-                                                        message: review.sorted.message,
-                                                    }}
-                                                />
-                                            </MarqueeItem>
-                                        ))}
-                                </MarqueeContent>
-                            </Marquee>
-                            <Marquee>
-                                <MarqueeFade side='left' />
-                                <MarqueeFade side='right' />
-                                <MarqueeContent
-                                    speed={window.innerWidth < 640 ? 100 : 40}
-                                    direction='right'
-                                    className='py-2'
-                                >
-                                    {reviews
-                                        .map((review) => ({
-                                            sort: Math.random(),
-                                            sorted: review,
-                                        }))
-                                        .sort((a, b) => a.sort - b.sort)
-                                        .map((review, index) => (
-                                            <MarqueeItem
-                                                className=''
-                                                key={index}
-                                            >
-                                                <TestimonialCard
-                                                    review={{
-                                                        rating: review.sorted.rating,
-                                                        message: review.sorted.message,
-                                                    }}
-                                                />
-                                            </MarqueeItem>
-                                        ))}
-                                </MarqueeContent>
-                            </Marquee>
+                        <div className='flex flex-col gap-4'>
+                            <p className='text-pretty text-lg leading-relaxed text-card-foreground'>
+                                Customers across Norway consistently rate their
+                                SCAPE pieces among the most meaningful gifts
+                                they&apos;ve given or received.
+                            </p>
+                            <p className='inline-flex items-center gap-2 text-sm font-medium text-primary'>
+                                <Sparkles className="size-4" aria-hidden="true" />
+                                Handcrafted and shipped from Bergen, Norway.
+                            </p>
                         </div>
                     </div>
-                )}
-                <div className="text-center mt-20 px-6">
-                    <div className="inline-flex flex-col sm:flex-row gap-4 items-center">
-                        <a href='/feedback' className="px-8 py-4 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-neutral-200 hover:text-foreground border border-neutral-300 active:bg-white transition-all shadow-sm shadow-primary/20 cursor-pointer">
+                </section>
+
+                {/* Randomized assortment from the backend - 6 shown, reveal more on demand */}
+                <section className='mt-10' aria-label='Customer reviews'>
+                    <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+                        {shown.map((review) => (
+                            <TestimonialCard key={review.id} review={review} />
+                        ))}
+                    </div>
+
+                    {remaining > 0 && (
+                        <div className='mt-10 flex flex-col items-center gap-3'>
+                            <Button
+                                size='lg'
+                                variant='outline'
+                                className='h-11 rounded-full px-8 text-base text-foreground bg-secondary hover:bg-muted shadow-none hover:shadow-xs'
+                                onClick={() =>
+                                    setVisible((v) => v + BATCH_SIZE)
+                                }
+                            >
+                                Show more reviews
+                            </Button>
+                            <p className='text-sm text-muted-foreground'>
+                                Showing {shown.length} of {reviews.length}
+                            </p>
+                        </div>
+                    )}
+                </section>
+
+                <section className='mt-16 flex flex-col items-center gap-4 rounded-2xl border border-border bg-card px-6 py-12 text-center shadow-sm'>
+                    <h2 className='text-balance text-3xl font-semibold tracking-tight text-foreground'>
+                        Ready to create your own?
+                    </h2>
+                    <p className='max-w-md text-pretty text-muted-foreground'>
+                        Join our happy customers and turn a place you love into
+                        a piece you&apos;ll treasure.
+                    </p>
+                    <div className='mt-2 flex flex-col gap-3 sm:flex-row'>
+                        <a
+                            href='/feedback'
+                            className='inline-flex items-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                        >
                             Leave a Review
                         </a>
-                        <a href='/get-started' className="px-8 py-4 bg-card border border-border text-foreground rounded-md font-semibold hover:bg-accent active:bg-white transition-all cursor-pointer">
+                        <a
+                            href='/get-started'
+                            className='inline-flex items-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                        >
                             Create Your Scape
                         </a>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     );
