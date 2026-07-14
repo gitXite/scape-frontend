@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 
+const navLinks = [
+    { href: '#home', label: 'Home' },
+    { href: '#thescape', label: 'The Scape' },
+    { href: '/about-us', label: 'About' },
+    { href: '#map', label: 'Map' },
+];
+
 function Header() {
     const [showHeader, setShowHeader] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -45,116 +52,124 @@ function Header() {
         };
     }, []);
 
-    const navLinks = [
-        { href: '#home', label: 'Home' },
-        { href: '#thescape', label: 'The Scape' },
-        { href: '#map', label: 'Map' },
-    ];
+    // Split links so the centered wordmark stays balanced.
+    const leftLinks = navLinks.slice(0, 2);
+    const rightLinks = navLinks.slice(2);
 
     return (
-        <>
-            <header
-                onMouseEnter={() => {
-                    isHoveredRef.current = true;
-                    clearHideTimeout();
-                    setShowHeader(true);
-                }}
-                onMouseLeave={() => {
-                    isHoveredRef.current = false;
-                    startHideTimeout();
-                }}
-                className={`fixed left-0 right-0 z-50 text-white backdrop-blur-md bg-primary/60 border-b border-primary-foreground/10 transition-transform duration-300 ease-out ${
-                    showHeader ? 'translate-y-0' : '-translate-y-full'
-                }`}
-            >
-                <div className='relative'>
-                    <nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 font-normal'>
-                        <div className='relative flex items-center justify-between h-16 sm:h-20'>
-                            {/* Left nav - desktop */}
-                            <div className='absolute left-0 hidden md:flex items-center gap-8'>
-                                {navLinks.slice(0, 2).map((link) => (
-                                    <a
-                                        key={link.href}
-                                        href={link.href}
-                                        className='text-sm tracking-tight text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
-                                    >
-                                        {link.label}
-                                        <span className='absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-primary-foreground transition-all duration-150' />
-                                    </a>
-                                ))}
-                            </div>
-
-                            {/* Logo */}
-                            <div className='flex-shrink-0 md:hidden'>
-                                <a href='#home' className='text-xl sm:text-2xl tracking-[0.3em] text-primary-foreground/80'>
-                                    <span>SC</span>
-                                    <span className='tracking-normal'>/\</span>
-                                    <span className='pl-1.5'>PE</span>
-                                </a>
-                            </div>
-                            <div className='absolute left-1/2 -translate-x-1/2 max-sm:hidden'>
-                                <img 
-                                    src='/images/scape-logo-trans.webp'
-                                    alt='Scape logo'
-                                    className='max-h-[70px] max-sm:w-[60%] py-2'
-                                />
-                            </div>
-
-                            {/* Right nav - desktop */}
-                            <div className='absolute right-0 hidden md:flex items-center gap-8'>
-                                <a
-                                    href='#map'
-                                    className='text-sm tracking-tight text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 relative group'
-                                >
-                                    Map
-                                    <span className='absolute -bottom-1 left-0 w-0 group-hover:w-full h-0.5 bg-primary-foreground transition-all duration-150' />
-                                </a>
-                                <a
-                                    href='/get-started'
-                                    className='text-sm tracking-wide px-8 py-3 font-normal rounded-full shadow-sm bg-primary/20 border-primary-foreground/30 border hover:bg-neutral-100/90 active:bg-white text-primary-foreground/80 hover:text-foreground transition-all duration-300'
-                                >
-                                    Get Started
-                                </a>
-                            </div>
-
-                            {/* Mobile menu button */}
-                            <button
-                                className='md:hidden text-primary-foreground/80 p-2'
-                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            >
-                                {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-                            </button>
-                        </div>
-                    </nav>
-                </div>
-
-                {/* Mobile menu */}
-                <div
-                    className={`md:hidden transition-all duration-300 overflow-hidden ${
-                        mobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                >
-                    <div className='px-6 py-6 flex flex-col gap-5'>
-                        {navLinks.map((link) => (
-                            <a
+        <header
+            onMouseEnter={() => {
+                isHoveredRef.current = true;
+                clearHideTimeout();
+                setShowHeader(true);
+            }}
+            onMouseLeave={() => {
+                isHoveredRef.current = false;
+                startHideTimeout();
+            }}
+            className={`fixed left-0 right-0 top-0 z-50 text-primary-foreground border-b transition-all duration-300 ease-out ${
+                showHeader ? 'translate-y-0' : '-translate-y-full'
+            } ${
+                mobileMenuOpen
+                    ? 'bg-primary/95 border-primary-foreground/10 shadow-lg shadow-black/20 backdrop-blur-md'
+                    : 'bg-primary/70 backdrop-blur-md border-primary-foreground/10 shadow-sm shadow-black/10'
+            }`}
+        >
+            <nav className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+                <div className='relative flex h-16 items-center justify-between sm:h-20'>
+                    {/* Left nav - desktop */}
+                    <div className='hidden items-center gap-8 md:flex'>
+                        {leftLinks.map((link) => (
+                            <NavLink
                                 key={link.href}
                                 href={link.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className='text-sm tracking-widest text-primary-foreground/80 hover:text-primary-foreground transition-colors'
-                            >
-                                {link.label}
-                            </a>
+                                label={link.label}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Centered wordmark */}
+                    <a
+                        href='#home'
+                        aria-label='SCAPE home'
+                        className='absolute left-1/2 -translate-x-1/2 text-xl tracking-[0.35em] text-primary-foreground transition-opacity hover:opacity-80 sm:text-2xl'
+                    >
+                        <span>SC</span>
+                        <span className='tracking-normal'>/\</span>
+                        <span className='pl-1.5'>PE</span>
+                    </a>
+
+                    {/* Right nav - desktop */}
+                    <div className='hidden items-center gap-8 md:flex'>
+                        {rightLinks.map((link) => (
+                            <NavLink
+                                key={link.href}
+                                href={link.href}
+                                label={link.label}
+                            />
                         ))}
                         <a
                             href='/get-started'
-                            className='text-sm tracking-widest px-6 py-3 rounded-full border border-primary-foreground/30 text-primary-foreground/80 text-center hover:bg-primary-foreground hover:text-primary transition-all duration-300 mt-2'
+                            className='rounded-full border border-primary-foreground/30 px-6 py-2.5 text-[13px] font-medium tracking-wide text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground hover:text-primary'
                         >
                             Get Started
                         </a>
                     </div>
+
+                    {/* Mobile menu button */}
+                    <button
+                        type='button'
+                        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={mobileMenuOpen}
+                        className='ml-auto p-2 text-primary-foreground/90 transition-colors hover:text-primary-foreground md:hidden'
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                    </button>
                 </div>
-            </header>
-        </>
+            </nav>
+
+            {/* Mobile menu */}
+            <div
+                className={`overflow-hidden transition-all duration-300 md:hidden ${
+                    mobileMenuOpen
+                        ? 'max-h-96 opacity-100'
+                        : 'max-h-0 opacity-0'
+                }`}
+            >
+                <div className='flex flex-col gap-1 px-6 pb-6 pt-2'>
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className='border-b border-primary-foreground/10 py-3 text-sm tracking-widest text-primary-foreground/80 transition-colors hover:text-primary-foreground'
+                        >
+                            {link.label}
+                        </a>
+                    ))}
+                    <a
+                        href='/get-started'
+                        onClick={() => setMobileMenuOpen(false)}
+                        className='mt-4 rounded-full border border-primary-foreground/30 px-6 py-3 text-center text-sm tracking-widest text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground hover:text-primary'
+                    >
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </header>
+    );
+}
+
+function NavLink({ href, label }: { href: string; label: string }) {
+    return (
+        <a
+            href={href}
+            className='group relative text-[13px] font-medium tracking-wide text-primary-foreground/80 transition-colors duration-150 hover:text-primary-foreground'
+        >
+            {label}
+            <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-foreground transition-all duration-150 group-hover:w-full' />
+        </a>
     );
 }
 
