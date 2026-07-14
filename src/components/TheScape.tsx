@@ -170,7 +170,7 @@ function TheScape() {
                         playsInline
                         preload='none'
                         poster={window.innerWidth < 640 ? '/images/demo-mobile-thumbnail.jpg' : '/images/thumbnail-1.jpg'}
-                        className='w-full border rounded-lg shadow-md'
+                        className='w-full border rounded-xl shadow-md'
                     >
                         <source src={window.innerWidth < 640 ? '/demo-mobile.mp4' : '/demo.mp4'} type='video/mp4' />
                     </video>
