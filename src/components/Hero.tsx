@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 
 const Hero3DNew = lazy(() => import('./Hero3DNew'));
-
 
 function CanvasFallback() {
     return (
@@ -13,8 +11,6 @@ function CanvasFallback() {
 }
 
 function Hero() {
-    const navigate = useNavigate();
-
     const fadeDown = {
         hidden: { opacity: 0, y: -24 },
         visible: (i: number) => ({
@@ -88,7 +84,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='text-[0.65rem] tracking-[0.3em] uppercase
+                    className='text-xs tracking-[0.35em] uppercase
                                text-primary-foreground/70 mb-5 sm:mb-4'
                 >
                     Framed Terrain Models
@@ -118,7 +114,7 @@ function Hero() {
                     variants={fadeDown}
                     initial='hidden'
                     animate='visible'
-                    className='mt-2 sm:mb-10 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
+                    className='mt-2 mb-6 text-base sm:text-lg max-md:w-3/5 max-sm:w-4/5
                                text-primary-foreground/90 font-thin
                                leading-relaxed max-w-[50ch]
                                [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]'
@@ -127,42 +123,50 @@ function Hero() {
                     landscapes, printed and framed by hand.
                 </motion.p>
 
+                <motion.div
+                    custom={0}
+                    variants={fadeUp}
+                    initial='hidden'
+                    animate='visible'
+                    className='max-sm:mb-4 mb-6 flex items-baseline gap-2'
+                >
+                    <span className='text-3xl tracking-tight text-primary-foreground'>
+                        596 NOK
+                    </span>
+                    <span className='text-sm text-primary-foreground/70'>
+                        shipping included
+                    </span>
+                </motion.div>
+
                 {/* CTAs */}
                 <div
-                    className='w-full max-sm:mt-5 flex flex-col sm:flex-row
+                    className='w-full max-sm:mt-0 flex flex-col sm:flex-row
                         items-start sm:items-start
                         justify-start sm:justify-start
                         gap-2 pointer-events-auto'
                 >
                     <motion.div
-                        custom={0}
+                        custom={1}
                         variants={fadeUp}
                         initial='hidden'
                         animate='visible'
                     >
-                        <button
-                            className='group flex items-center justify-center gap-3
-                                       px-8 sm:px-10 py-4 max-sm:w-50
-                                       text-sm sm:text-base tracking-wide font-normal
-                                       text-primary
-                                       border border-primary-foreground/30 rounded-full
-                                       backdrop-blur-md bg-primary-foreground
-                                       hover:bg-primary-foreground/90
-                                       transition-all duration-300 cursor-pointer'
-                            onClick={() => navigate('/get-started')}
+                        <a
+                            href='/get-started'
+                            className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-8 py-3.5 text-sm font-medium text-primary transition-opacity hover:opacity-90'
                         >
-                            Get Started
+                            Customize Yours
                             <ArrowRight
                                 className='w-4 h-4 block sm:block
                                                    group-hover:translate-x-1.5
                                                    relative top-[1px]
                                                    transition-transform duration-200'
                             />
-                        </button>
+                        </a>
                     </motion.div>
 
                     <motion.div
-                        custom={1}
+                        custom={2}
                         variants={fadeUp}
                         initial='hidden'
                         animate='visible'
