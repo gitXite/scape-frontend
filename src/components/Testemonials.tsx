@@ -11,16 +11,16 @@ const BATCH_SIZE = 6;
 function Testemonials() {
     const [totalReviews, setTotalReviews] = useState();
     const [averageRating, setAverageRating] = useState<number>();
-    const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
     const [reviews, setReviews] = useState<any[]>([]);
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
     const [visible, setVisible] = useState(INITIAL_COUNT);
     const shown = reviews.slice(0, visible);
     const remaining = reviews.length - shown.length;
 
     useEffect(() => {
         const getReviewStats = async () => {
-            setIsLoading(true);
+            // setIsLoading(true);
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_APP_API_URL}/api/reviews/stats`,
@@ -29,26 +29,26 @@ function Testemonials() {
                     },
                 );
                 if (!response.ok) {
-                    const data = await response.json();
-                    setError(`${data.message} ${response.status}`);
+                    // const data = await response.json();
+                    // setError(`${data.message} ${response.status}`);
                     return;
                 }
 
                 const { data } = await response.json();
                 setTotalReviews(data.totalReviews);
                 setAverageRating(data.averageRating);
-                setIsLoading(false);
+                // setIsLoading(false);
             } catch (err) {
                 if (err instanceof Error) {
-                    setError(err.message);
+                    // setError(err.message);
                 } else {
-                    setError(`${err}`);
+                    // setError(`${err}`);
                 }
             }
         };
 
         const getReviews = async () => {
-            setIsLoading(true);
+            // setIsLoading(true);
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_APP_API_URL}/api/reviews`,
@@ -57,8 +57,8 @@ function Testemonials() {
                     },
                 );
                 if (!response.ok) {
-                    const data = await response.json();
-                    setError(`${response.status} ${data.message}`);
+                    // const data = await response.json();
+                    // setError(`${response.status} ${data.message}`);
                     return;
                 }
 
@@ -66,9 +66,9 @@ function Testemonials() {
                 setReviews(data);
             } catch (err) {
                 if (err instanceof Error) {
-                    setError(err.message);
+                    // setError(err.message);
                 } else {
-                    setError(`${err}`);
+                    // setError(`${err}`);
                 }
             }
         };
