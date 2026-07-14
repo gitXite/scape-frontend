@@ -201,7 +201,7 @@ function About() {
                                 The Craft in Motion
                             </p>
                             <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
-                                Bringing the SCAPE to Life
+                                Bring Your SCAPE to Life
                             </h2>
                         </motion.div>
                         <motion.div className='md:w-6xl' variants={fadeInUp}>
