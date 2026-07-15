@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import { useRef, useState } from 'react';
 
-const videoSrc = '/scape_final_aspect.mp4';
+const videoSrc = '/videos/scape_final_aspect.mp4';
 const posterSrc = '/images/scape_final_aspect_thumb.jpg';
 
 const options = {
@@ -141,7 +141,7 @@ function About() {
                 />
             </div>
             <div className='flex flex-col w-full text-neutral-900 self-center items-center text-center max-sm:text-left pb-20 max-sm:pt-0'>
-                <div className='pt-5 pb-20 px-6'>
+                <div className='pt-10 pb-20 px-6'>
                     <motion.div
                         ref={ref1}
                         initial='hidden'

@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 
@@ -177,15 +177,15 @@ function Hero() {
                                        text-sm sm:text-base text-primary-foreground/80
                                        hover:text-primary-foreground
                                        font-light transition-colors duration-200
-                                       cursor-pointer hover:animate-none'
+                                       cursor-pointer animate-pulse hover:animate-none'
                         >
                             Explore
-                            {/* <ChevronDown
+                            <ChevronDown
                                 className='w-4 h-4 mt-px
                                                     group-hover:translate-y-1
                                                     transition-transform duration-200
                                                     animate-bounce'
-                            /> */}
+                            />
                         </a>
                     </motion.div>
                 </div>

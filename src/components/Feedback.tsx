@@ -79,8 +79,8 @@ function Feedback() {
             <div className='w-full max-w-xl'>
                 {!submittedRating ? (
                     <div className='relative w-full'>
-                        <div className='text-center mb-10'>
-                            <div className='inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6'>
+                        <div className='text-left sm:text-center mb-10'>
+                            <div className='inline-flex items-center gap-2 bg-card border border-border text-primary px-4 py-2 rounded-full text-sm font-medium mb-6'>
                                 <Sparkles className='w-4 h-4' />
                                 Share Your Experience
                             </div>

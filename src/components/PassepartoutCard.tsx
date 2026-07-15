@@ -28,7 +28,7 @@ function PassepartoutCard({
                 onChange={handleClick}
                 className='peer hidden'
             />
-            <div className='flex flex-col h-58 w-40 max-md:w-35 max-md:h-48 text-center justify-between items-center bg-neutral-200/20 hover:bg-white peer-checked:bg-white border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
+            <div className='flex flex-col h-58 w-40 max-md:w-35 max-md:h-48 text-center justify-between items-center bg-neutral-200/20 hover:bg-card peer-checked:bg-card border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
                 {isSelected && (
                     <div className='absolute bottom-[52%] rounded-full bg-neutral-900 p-1'>
                         <Check className='w-4 h-4 text-white' />

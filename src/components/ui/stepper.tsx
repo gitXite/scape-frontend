@@ -121,7 +121,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                     variant='outline'
                     onClick={() => onStepChange(currentStep - 1)}
                     disabled={currentStep === 0}
-                    className='h-11 px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm'
+                    className='h-10 px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm'
                 >
                     Previous
                 </RippleButton>
@@ -142,7 +142,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                                 !storedStates.selectedFrame ||
                                 !storedStates.selectedPassePartout))
                     }
-                    className='h-11 px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none'
+                    className='h-10 px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none'
                 >
                     {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
                 </RippleButton>

@@ -80,7 +80,7 @@ function Testemonials() {
     return (
         <div className='flex flex-col min-h-svh w-full px-5 items-center overflow-hidden font-normal'>
             <div className='flex flex-col relative mx-auto max-w-6xl px-6 py-8'>
-                <section className='mx-auto mt-10 max-w-2xl text-center'>
+                <section className='mx-auto mt-10 max-w-2xl text-left sm:text-center'>
                     <span className='inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground'>
                         <Star
                             className='size-4 fill-amber-400 text-amber-400'
@@ -159,7 +159,7 @@ function Testemonials() {
                     )}
                 </section>
 
-                <section className='mt-16 flex flex-col items-center gap-4 rounded-2xl border border-border bg-card px-6 py-12 text-center shadow-sm'>
+                <section className='mt-16 flex flex-col items-center gap-4 rounded-2xl border border-border bg-card px-6 py-8 text-center shadow-sm'>
                     <h2 className='text-balance text-3xl font-semibold tracking-tight text-foreground'>
                         Ready to create your own?
                     </h2>
@@ -167,16 +167,16 @@ function Testemonials() {
                         Join our happy customers and turn a place you love into
                         a piece you&apos;ll treasure.
                     </p>
-                    <div className='mt-2 flex flex-col gap-3 sm:flex-row'>
+                    <div className='mt-2 flex w-full justify-center flex-col gap-3 sm:flex-row'>
                         <a
                             href='/feedback'
-                            className='inline-flex items-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                            className='inline-flex items-center justify-center max-sm:w-full gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
                         >
                             Leave a Review
                         </a>
                         <a
                             href='/get-started'
-                            className='inline-flex items-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                            className='inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
                         >
                             Create Your Scape
                         </a>
