@@ -102,7 +102,7 @@ function Testemonials() {
                 <section className='mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8'>
                     <div className='grid gap-8 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-12'>
                         <div className='text-center sm:border-r sm:border-border sm:pr-12'>
-                            <p className='font-serif text-6xl font-semibold leading-none text-foreground'>
+                            <p className='font-display text-6xl font-semibold leading-none text-foreground'>
                                 {averageRating?.toFixed(1)}
                             </p>
                             <StarRating
