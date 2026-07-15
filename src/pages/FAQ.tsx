@@ -154,9 +154,9 @@ function FAQ() {
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-neutral-600 text-[16px]'>
                                 <p>
-                                    Please contact us within reasonable time with photos
-                                    of the damage, and we'll arrange a
-                                    replacement or solution.
+                                    Please contact us within reasonable time
+                                    with photos of the damage, and we'll arrange
+                                    a replacement or solution.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
@@ -221,9 +221,9 @@ function FAQ() {
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
                                 <p className='text-[16px] text-neutral-600'>
                                     Since each item is custom-made, production
-                                    times vary. On average, production takes
-                                    1-3 days depending on pending orders, plus shipping time
-                                    depending on your location.
+                                    times vary. On average, production takes 1-3
+                                    days depending on pending orders, plus
+                                    shipping time depending on your location.
                                 </p>
                                 <p className='text-[16px] text-neutral-600'>
                                     That being said, we always try to deliver
@@ -241,7 +241,7 @@ function FAQ() {
                             <AccordionContent className='flex flex-col gap-4 text-balance'>
                                 <p className='text-[16px] text-neutral-600'>
                                     No, as of right now we only ship within
-                                    Norway. 
+                                    Norway.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
@@ -278,7 +278,7 @@ function FAQ() {
                             <AccordionContent className='flex flex-col gap-4 text-balance text-[16px] text-neutral-600'>
                                 <p>
                                     You can choose any part of Norway as your
-                                    Scape. 
+                                    Scape.
                                 </p>
                                 <p>
                                     Once you've selected your location, you can
@@ -396,12 +396,15 @@ function FAQ() {
                             </AccordionTrigger>
                             <AccordionContent className='flex flex-col gap-4 text-balance text-[16px] text-neutral-600'>
                                 <p>
-                                    We only collect the personal information that you provide us. 
-                                    Like your name, email address, and shipping or billing address. 
+                                    We only collect the personal information
+                                    that you provide us. Like your name, email
+                                    address, and shipping or billing address.
                                 </p>
                                 <p>
-                                    These are only used to produce and ship your product, and to contact you regarding any issues. 
-                                    We do not sell any information to third-parties. 
+                                    These are only used to produce and ship your
+                                    product, and to contact you regarding any
+                                    issues. We do not sell any information to
+                                    third-parties.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>

@@ -95,7 +95,7 @@ function About() {
         {
             title: 'Sentimental Value',
             description:
-                'Each piece capture places, memories, and moments that hold personal meaning.',
+                'Each piece captures places, memories, and moments that hold personal meaning.',
         },
     ];
 
@@ -132,7 +132,7 @@ function About() {
                 </a>
             </header>
             <div
-                className='flex w-full items-center justify-center pt-20 max-sm:pt-5'
+                className='flex w-full items-center justify-center pt-25 max-sm:pt-10'
                 id='about-us'
             >
                 <img
@@ -140,7 +140,7 @@ function About() {
                     className='mix-blend-difference max-sm:w-1/3 w-1/6'
                 />
             </div>
-            <div className='flex flex-col w-full text-neutral-900 self-center items-center text-center max-sm:text-left pb-20 max-sm:pt-0'>
+            <div className='flex flex-col w-full text-neutral-900 self-center items-center text-center max-sm:text-left pb-20'>
                 <div className='pt-10 pb-20 px-6'>
                     <motion.div
                         ref={ref1}
@@ -218,7 +218,7 @@ function About() {
                         variants={staggerContainer}
                         className='max-w-5xl mx-auto'
                     >
-                        <div className='grid md:grid-cols-2 gap-24 items-center'>
+                        <div className='grid md:grid-cols-2 gap-24 max-sm:gap-16 items-center'>
                             <motion.div
                                 variants={fadeInUp}
                                 className='order-2 md:order-1'
@@ -269,7 +269,7 @@ function About() {
                     </motion.div>
                 </div>
 
-                <div className='py-24 px-6' id='values'>
+                <div className='py-24 px-6 bg-background rounded-2xl max-sm:rounded-none border border-border' id='values'>
                     <motion.div
                         ref={ref4}
                         initial='hidden'

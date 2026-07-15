@@ -128,7 +128,7 @@ function Hero() {
                     variants={fadeUp}
                     initial='hidden'
                     animate='visible'
-                    className='max-sm:mb-4 mb-6 flex items-baseline gap-2'
+                    className='mb-6 flex items-baseline gap-2'
                 >
                     <span className='text-3xl tracking-tight text-primary-foreground'>
                         596 NOK
