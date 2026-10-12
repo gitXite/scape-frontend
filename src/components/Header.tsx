@@ -139,7 +139,7 @@ function Header() {
                         ))}
                         <a
                             href='/get-started'
-                            className='rounded-full border border-primary-foreground/25 bg-primary-foreground/[0.06] px-5 py-2 text-xs font-semibold tracking-wider uppercase text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-primary hover:border-primary-foreground hover:shadow-md hover:shadow-black/20 active:scale-[0.98]'
+                            className='rounded-full border border-primary-foreground/25 bg-primary-foreground/[0.06] px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-primary hover:border-primary-foreground hover:shadow-md hover:shadow-black/20 active:scale-[0.98]'
                         >
                             Get Started
                         </a>

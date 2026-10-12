@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Truck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 
@@ -109,7 +109,7 @@ function Hero() {
                             animate='visible'
                             className='font-sans text-xs sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
                         >
-                            Custom 3D terrain models created from real Norwegian landscapes, printed and framed by hand.
+                            Bespoke terrain models created from real Norwegian landscapes, printed and framed by hand.
                         </motion.p>
 
                         {/* Refined Price Tag */}
@@ -125,6 +125,7 @@ function Hero() {
                                     596 NOK
                                 </span>
                                 <span className='h-3.5 w-px bg-primary-foreground/20' />
+                                <Truck />
                                 <span className='text-xs sm:text-sm text-primary-foreground/70 font-medium'>
                                     shipping included
                                 </span>
@@ -141,7 +142,7 @@ function Hero() {
                             >
                                 <a
                                     href='/get-started'
-                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-black/30'
+                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                                 >
                                     Customize Yours
                                     <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
