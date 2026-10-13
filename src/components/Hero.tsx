@@ -109,7 +109,7 @@ function Hero() {
                             animate='visible'
                             className='font-sans text-xs sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
                         >
-                            Bespoke terrain models created from real Norwegian landscapes, printed and framed by hand.
+                            Choose your favourite place in Norway. We’ll turn it into a custom 3D landscape, framed and ready for display.
                         </motion.p>
 
                         {/* Refined Price Tag */}
