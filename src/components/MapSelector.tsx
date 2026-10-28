@@ -611,9 +611,9 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                     sm:flex-row
                                     gap-3
                                     items-end
-                                    justify-center
+                                    
                                     sm:items-center
-                                    sm:justify-between
+                                    justify-between
                                     transition-all
                                 `}
                             >
@@ -684,7 +684,7 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                                         shadow-sm
                                         transition-color
                                         duration-150
-                                        min-w-[220px]
+                                        min-w-[200px]
                                         cursor-pointer
                                         hover:bg-background
                                         hover:text-foreground
