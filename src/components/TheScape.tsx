@@ -8,16 +8,16 @@ import {
     CarouselPrevious,
 } from './ui/carousel';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import type { CarouselApi } from './ui/carousel';
 import { Badge } from './ui/badge';
 
 const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: 'easeOut' as const },
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
     },
 };
 
@@ -25,52 +25,85 @@ const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { staggerChildren: 0.2 },
+        transition: { staggerChildren: 0.15 },
     },
 };
+
+const pillars = [
+    {
+        number: '01',
+        tag: 'Cartography',
+        title: 'Millimeter-Accurate Relief',
+        description:
+            'Derived from official geospatial elevation data. Every fjord, mountain ridge, and summit is rendered with architectural topological precision.',
+        spec: 'Official GeoData',
+    },
+    {
+        number: '02',
+        tag: 'Materiality',
+        title: 'Sculpted for Natural Light',
+        description:
+            'Crafted in a matte, light-absorbing finish that interacts dynamically with ambient room lighting, casting shifting micro-shadows as daylight changes.',
+        spec: 'Light-responsive matte surface',
+    },
+    {
+        number: '03',
+        tag: 'Joinery',
+        title: 'Hand-Framed in Bergen',
+        description:
+            'Fitted with modern solid frames - available in oak, walnut, satin black, or matte white - inset with a passe-partout of your choice',
+        spec: 'Scandinavian Design',
+    },
+];
+
+const studioImages = [
+    {
+        src: '/images/studio_product_oak.webp',
+        alt: 'Oak frame with topographic relief',
+        caption: 'Natural Oak',
+    },
+    {
+        src: '/images/studio_product_model.webp',
+        alt: 'Detailed close-up of 3D terrain elevation',
+        caption: 'Terrain Relief Detail',
+    },
+    {
+        src: '/images/studio_product_black.webp',
+        alt: 'Satin black frame with custom landscape',
+        caption: 'Satin Black',
+    },
+    {
+        src: '/images/studio_product_collection.webp',
+        alt: 'Collection of framed terrain models',
+        caption: 'Studio Collection',
+    },
+];
 
 function TheScape() {
     const { ref: ref1, inView: inView1 } = useInView({
         triggerOnce: true,
-        threshold: 0.3,
+        threshold: 0.2,
     });
     const { ref: ref2, inView: inView2 } = useInView({
         triggerOnce: true,
-        threshold: 0.3,
+        threshold: 0.15,
     });
     const { ref: ref3, inView: inView3 } = useInView({
         triggerOnce: true,
-        threshold: 0.3,
+        threshold: 0.15,
     });
     const { ref: ref4, inView: inView4 } = useInView({
         triggerOnce: true,
-        threshold: 0.2,
+        threshold: 0.15,
     });
     const { ref: ref5, inView: inView5 } = useInView({
         triggerOnce: true,
-        threshold: 0.3,
+        threshold: 0.2,
     });
+
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
     const [count, setCount] = useState(0);
-
-    const features = [
-        {
-            title: 'Select',
-            description:
-                'Choose any location in Norway using our interactive map interface.',
-        },
-        {
-            title: 'Generate',
-            description:
-                'Our system creates a precise 3D model from real terrain data.',
-        },
-        {
-            title: 'Frame',
-            description:
-                'Select your preferred frame style and receive a stunning art piece.',
-        },
-    ];
 
     useEffect(() => {
         if (!api) return;
@@ -82,31 +115,34 @@ function TheScape() {
     }, [api]);
 
     return (
-        <section id='thescape' className='w-full bg-surface'>
-            {/* Hero text */}
-            <div className='px-6 sm:px-10 pt-20 sm:pt-32 pb-10 sm:pb-16'>
+        <section
+            id='thescape'
+            className='w-full bg-surface text-surface-foreground transition-colors'
+        >
+            {/* Header */}
+            <div className='max-w-6xl mx-auto px-6 sm:px-10 pt-20 sm:pt-28 pb-12 sm:pb-16'>
                 <motion.div
                     ref={ref1}
                     initial='hidden'
                     animate={inView1 ? 'visible' : 'hidden'}
                     variants={staggerContainer}
-                    className='max-w-3xl mx-auto text-center'
+                    className='max-w-3xl text-left'
                 >
                     <motion.p
                         variants={fadeInUp}
-                        className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'
+                        className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-4'
                     >
-                        The Scape
+                        THE SCAPE
                     </motion.p>
                     <motion.h2
                         variants={fadeInUp}
-                        className='text-3xl sm:text-4xl md:text-5xl font-medium text-surface-foreground mb-6 tracking-tight leading-tight'
+                        className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-6 leading-[1.1]'
                     >
-                        From Map To Frame
+                        From Map To Frame.
                     </motion.h2>
                     <motion.p
                         variants={fadeInUp}
-                        className='text-base sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed'
+                        className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl'
                     >
                         With just a few clicks you can transform any Norwegian
                         landscape into a stunning 3D topographic model. Our
@@ -117,145 +153,209 @@ function TheScape() {
                 </motion.div>
             </div>
 
-            {/* Feature steps */}
-            <div className='px-6 sm:px-10 py-10 sm:py-16'>
+            {/* Selling points */}
+            <div className='max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24'>
                 <motion.div
                     ref={ref2}
                     initial='hidden'
                     animate={inView2 ? 'visible' : 'hidden'}
                     variants={staggerContainer}
-                    className='max-w-5xl mx-auto'
+                    className='pt-10 sm:pt-14'
                 >
-                    <div className='grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border'>
-                        {features.map((feature, index) => (
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 md:divide-y-0'>
+                        {pillars.map((pillar) => (
                             <motion.div
-                                key={feature.title}
+                                key={pillar.number}
                                 variants={fadeInUp}
-                                className='flex flex-col gap-3 px-0 sm:px-8 py-8 sm:py-0
-                               first:pt-0 last:pb-0 sm:first:pl-0 sm:last:pr-0'
+                                className='flex flex-col justify-between text-left pt-6 first:pt-0 md:pt-0'
                             >
-                                <span className='text-xs text-muted-foreground/70 tabular-nums'>
-                                    0{index + 1}
-                                </span>
-
-                                <h3 className='text-base sm:text-lg font-medium text-surface-foreground leading-snug'>
-                                    {feature.title}
-                                </h3>
-
-                                <p className='text-sm text-muted-foreground leading-relaxed'>
-                                    {feature.description}
-                                </p>
+                                <div>
+                                    <div className='flex items-center gap-2 mb-4'>
+                                        <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
+                                            {pillar.tag}
+                                        </span>
+                                    </div>
+                                    <h3 className='font-display text-lg sm:text-xl font-bold text-surface-foreground tracking-tight mb-3'>
+                                        {pillar.title}
+                                    </h3>
+                                    <p className='font-sans text-sm text-muted-foreground leading-relaxed mb-6'>
+                                        {pillar.description}
+                                    </p>
+                                </div>
+                                <div className='pt-2'>
+                                    <span className='inline-flex items-center text-[11px] font-medium tracking-wide uppercase text-muted-foreground/80 bg-background/60 border border-border/80 px-2.5 py-1 rounded-md'>
+                                        {pillar.spec}
+                                    </span>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
                 </motion.div>
             </div>
 
-            <div className='px-6 sm:px-10 py-5 sm:py-10'>
+            {/* Video Showcase */}
+            <div className='max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24'>
                 <motion.div
                     ref={ref3}
                     initial='hidden'
                     animate={inView3 ? 'visible' : 'hidden'}
-                    variants={fadeInUp}
-                    className='flex flex-col max-w-6xl mx-auto items-center justify-center'
+                    variants={staggerContainer}
+                    className='flex flex-col text-left'
                 >
-                    <Badge className='inline-flex text-xs text-foreground border border-border self-start px-3 mb-2 ml-4 gap-2 bg-background'>
-                        <span className='animate-pulse h-1.5 w-1.5 rounded-full bg-green-600' />
-                        The Process
-                    </Badge>
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload='none'
-                        poster={window.innerWidth < 640 ? '/images/demo-mobile-thumbnail.jpg' : '/images/thumbnail-1.jpg'}
-                        className='w-full border rounded-xl shadow-md'
+                    <motion.div variants={fadeInUp} className='mb-6'>
+                        <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
+                            <span className='h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse' />
+                            Showcase
+                        </Badge>
+                        <h3 className='font-display text-2xl sm:text-3xl font-bold tracking-tight text-surface-foreground mb-2'>
+                            How it works.
+                        </h3>
+                        <p className='font-sans text-sm sm:text-base text-muted-foreground max-w-xl'>
+                            Explore our interactive map interface to select your
+                            coordinates, adjust vertical relief scaling, and
+                            preview the 3D model in real time.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        variants={fadeInUp}
+                        className='w-full rounded-2xl border border-border/80 overflow-hidden shadow-sm bg-muted/20'
                     >
-                        <source src={window.innerWidth < 640 ? '/videos/demo-mobile.mp4' : '/videos/demo.mp4'} type='video/mp4' />
-                    </video>
+                        <video
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload='none'
+                            poster={
+                                window.innerWidth < 640
+                                    ? '/images/demo-mobile-thumbnail.jpg'
+                                    : '/images/thumbnail-1.jpg'
+                            }
+                            className='w-full border rounded-xl shadow-md'
+                        >
+                            <source
+                                src={
+                                    window.innerWidth < 640
+                                        ? '/videos/demo-mobile.mp4'
+                                        : '/videos/demo.mp4'
+                                }
+                                type='video/mp4'
+                            />
+                        </video>
+                    </motion.div>
                 </motion.div>
             </div>
 
-            {/* How it works + Carousel */}
-            <div className='px-6 sm:px-10 py-10 sm:py-20'>
+            {/* Specifications & Product Photography Carousel */}
+            <div className='max-w-6xl mx-auto px-6 sm:px-10 pb-16 sm:pb-24'>
                 <motion.div
                     ref={ref4}
                     initial='hidden'
                     animate={inView4 ? 'visible' : 'hidden'}
                     variants={staggerContainer}
-                    className='max-w-6xl mx-auto'
                 >
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center'>
-                        <motion.div
-                            variants={fadeInUp}
-                            className='text-center md:text-left'
-                        >
-                            <h3 className='text-3xl sm:text-4xl md:text-5xl font-medium text-surface-foreground mb-6 tracking-tight'>
-                                How It Works
+                        {/* Left Column: Craft Story & Specifications */}
+                        <motion.div variants={fadeInUp} className='text-left'>
+                            <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
+                                CRAFT & SPECIFICATIONS
+                            </p>
+                            <h3 className='font-display text-2xl sm:text-3xl md:text-4xl font-bold text-surface-foreground mb-6 tracking-tight'>
+                                Designed for scandinavian interiors.
                             </h3>
-                            <p className='text-muted-foreground leading-relaxed mb-5 text-sm sm:text-base'>
-                                Creating and ordering your custom 3D landscape
-                                is simple and seamless. Start by exploring the
-                                map and selecting the exact area you want to
-                                transform. Once your cutout is chosen, our
-                                system instantly generates a preview of the 3D
-                                model so you can see exactly how it will look.
+                            <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
+                                Every SCAPE is made to order using
+                                high-resolution data and our proprietary
+                                modeling algorithm, ensuring clean edges and a
+                                tactile texture that brings every landscape to
+                                life.
                             </p>
-                            <p className='text-muted-foreground leading-relaxed text-sm sm:text-base'>
-                                From there, we handle the rest - producing your
-                                model with care and delivering a high quality
-                                piece that captures your chosen landscape in
-                                beautiful detail.
-                            </p>
+
+                            <div className='space-y-4 pt-2'>
+                                <div className='flex items-start gap-3'>
+                                    <div className='size-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-surface-foreground'>
+                                        <Check className='size-3 stroke-[2.5]' />
+                                    </div>
+                                    <div>
+                                        <h4 className='text-sm font-semibold text-surface-foreground'>
+                                            Solid Frames
+                                        </h4>
+                                        <p className='text-xs text-muted-foreground mt-0.5'>
+                                            Four gallery finishes: Natural Oak,
+                                            Deep Walnut, Matte White, or Satin
+                                            Black.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className='flex items-start gap-3'>
+                                    <div className='size-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-surface-foreground'>
+                                        <Check className='size-3 stroke-[2.5]' />
+                                    </div>
+                                    <div>
+                                        <h4 className='text-sm font-semibold text-surface-foreground'>
+                                            Pay With Vipps
+                                        </h4>
+                                        <p className='text-xs text-muted-foreground mt-0.5'>
+                                            Safe payment provided by Vipps
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className='flex items-start gap-3'>
+                                    <div className='size-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 text-surface-foreground'>
+                                        <Check className='size-3 stroke-[2.5]' />
+                                    </div>
+                                    <div>
+                                        <h4 className='text-sm font-semibold text-surface-foreground'>
+                                            Made in Norway
+                                        </h4>
+                                        <p className='text-xs text-muted-foreground mt-0.5'>
+                                            Locally crafted in Bergen with
+                                            nationwide delivery via
+                                            Posten.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </motion.div>
 
+                        {/* Right Column: High-End Photography Carousel */}
                         <motion.div variants={fadeInUp} className='relative'>
                             <Carousel
                                 setApi={setApi}
-                                className='w-full rounded-lg shadow-xl'
+                                className='w-full rounded-lg shadow-lg'
                             >
                                 <CarouselContent>
-                                    {[
-                                        {
-                                            src: '/images/studio_product_oak.webp',
-                                            alt: 'Oak frame',
-                                        },
-                                        {
-                                            src: '/images/studio_product_model.webp',
-                                            alt: 'Model',
-                                        },
-                                        {
-                                            src: '/images/studio_product_black.webp',
-                                            alt: 'Black frame',
-                                        },
-                                        {
-                                            src: '/images/studio_product_collection.webp',
-                                            alt: 'Collection',
-                                        },
-                                    ].map((img) => (
+                                    {studioImages.map((img) => (
                                         <CarouselItem key={img.alt}>
-                                            <div className='aspect-[4/5] bg-muted rounded-lg overflow-hidden'>
+                                            <div className='aspect-[4/5] bg-muted rounded-lg overflow-hidden relative'>
                                                 <img
                                                     src={img.src}
                                                     alt={img.alt}
                                                     className='w-full h-full object-cover'
                                                     loading='lazy'
                                                 />
+                                                <div className='absolute bottom-3 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
+                                                    {img.caption}
+                                                </div>
                                             </div>
                                         </CarouselItem>
                                     ))}
                                 </CarouselContent>
 
-                                <div className='absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2'>
+                                {/* Dot Indicators */}
+                                <div className='absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-1.5'>
                                     {Array.from({ length: count }).map(
                                         (_, index) => (
                                             <button
                                                 key={index}
-                                                className={`block h-1 cursor-pointer rounded-full transition-all duration-300 ${
+                                                aria-label={`Go to slide ${index + 1}`}
+                                                className={`block h-1.5 cursor-pointer rounded-full transition-all duration-300 ${
                                                     current === index + 1
-                                                        ? 'w-8 bg-primary-foreground'
-                                                        : 'w-4 bg-primary-foreground/40'
+                                                        ? 'w-7 bg-white'
+                                                        : 'w-2 bg-white/40'
                                                 }`}
                                                 onClick={() =>
                                                     api?.scrollTo(index)
@@ -265,8 +365,8 @@ function TheScape() {
                                     )}
                                 </div>
 
-                                <CarouselPrevious className='hidden xl:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
-                                <CarouselNext className='hidden xl:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
+                                <CarouselPrevious className='hidden sm:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
+                                <CarouselNext className='hidden sm:flex bg-primary border-border text-primary-foreground hover:bg-primary-foreground' />
                             </Carousel>
                         </motion.div>
                     </div>
@@ -274,33 +374,38 @@ function TheScape() {
             </div>
 
             {/* CTA */}
-            <motion.div
-                ref={ref5}
-                initial='hidden'
-                animate={inView5 ? 'visible' : 'hidden'}
-                variants={staggerContainer}
-                className='px-6 sm:px-10 py-10 sm:py-18'
-            >
-                <motion.div
-                    className='text-center max-w-xl mx-auto'
-                    variants={fadeInUp}
-                >
-                    <h3 className='text-2xl sm:text-3xl md:text-4xl font-medium text-surface-foreground mb-5 tracking-tight'>
-                        Ready to create your scape?
-                    </h3>
-                    <p className='text-muted-foreground mb-8 text-sm sm:text-base'>
-                        Start exploring the map and transform your favorite
-                        Norwegian landscape into a stunning 3D artwork.
-                    </p>
-                    <a
-                        href='/get-started'
-                        className='inline-flex group items-center gap-3 px-15 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+            <div className=''>
+                <div className='max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-20'>
+                    <motion.div
+                        ref={ref5}
+                        initial='hidden'
+                        animate={inView5 ? 'visible' : 'hidden'}
+                        variants={staggerContainer}
+                        className='flex flex-col md:flex-row md:items-center md:justify-between gap-8 text-left'
                     >
-                        Get Started
-                        <ArrowRight className='w-4 h-4 hidden sm:block group-hover:translate-x-1.5 transition-transform duration-200' />
-                    </a>
-                </motion.div>
-            </motion.div>
+                        <motion.div variants={fadeInUp} className='max-w-xl'>
+                            <h3 className='font-display text-2xl sm:text-3xl md:text-4xl font-bold text-surface-foreground mb-3 tracking-tight'>
+                                Try it out.
+                            </h3>
+                            <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
+                                Choose any coordinate across Norway. Preview the
+                                3D model in real time, choose your framing, and
+                                receive a bespoke art piece.
+                            </p>
+                        </motion.div>
+
+                        <motion.div variants={fadeInUp} className='shrink-0'>
+                            <a
+                                href='/get-started'
+                                className='inline-flex group items-center gap-3 px-8 py-3.5 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground'
+                            >
+                                Customize Yours
+                                <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
+                            </a>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </div>
         </section>
     );
 }
