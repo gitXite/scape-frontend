@@ -337,7 +337,7 @@ function TheScape() {
                                                     className='w-full h-full object-cover'
                                                     loading='lazy'
                                                 />
-                                                <div className='absolute bottom-3 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
+                                                <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
                                                     {img.caption}
                                                 </div>
                                             </div>
