@@ -60,7 +60,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
 
                 {/* Active progress line */}
                 <div
-                    className='absolute top-4 left-5 h-px bg-foreground transition-all duration-500 ease-out'
+                    className='absolute top-4 left-6 h-px bg-foreground transition-all duration-500 ease-out'
                     style={{
                         width: `calc((100% - 56px) * ${progressPercentage / 100})`,
                     }}
