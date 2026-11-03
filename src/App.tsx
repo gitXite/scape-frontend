@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import Home from './pages/Home';
 import GetStarted from './pages/GetStarted';
 import Checkout from './pages/Checkout';
+// import OrderConfirmation from './pages/OrderConfirmation';
 import Contact from './pages/Contact';
 import FeedbackPage from './pages/FeedbackPage';
 import AboutUs from './pages/AboutUs';
@@ -12,6 +13,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Returns from './pages/Returns';
 import Cookies from './pages/Cookies';
+import NotFound from './pages/NotFound';
 import { Toaster } from 'sonner';
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/get-started' element={<GetStarted />} />
                     <Route path='/checkout' element={<Checkout />} />
+                    {/* <Route path='/order-confirmation' element={<OrderConfirmation />} /> */}
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/testimonials' element={<TestimonialsPage />} />
                     <Route path='/faq' element={<FAQ />} />
@@ -32,6 +35,8 @@ function App() {
                     <Route path='/terms-of-service' element={<TermsOfService />} />
                     <Route path='/returns' element={<Returns />} />
                     <Route path='/cookies' element={<Cookies />} />
+                    <Route path='/404' element={<NotFound />} />
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
             </Router>
             <Toaster position='top-center' />
