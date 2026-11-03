@@ -14,12 +14,12 @@ function Shipping() {
                         </h1>
                         <p>
                             We offer shipping through Posten directly integrated
-                            in Vipps, making delivery fast and
-                            convenient. Once your package is on its way, you’ll
-                            receive tracking information so you can follow the
-                            shipment in real time. Delivery times vary depending
-                            on your location, but Posten typically provides
-                            quick and reliable service across Norway.
+                            in Vipps, making delivery fast and convenient. Once
+                            your package is on its way, you’ll receive tracking
+                            information so you can follow the shipment in real
+                            time. Delivery times vary depending on your
+                            location, but Posten typically provides quick and
+                            reliable service across Norway.
                         </p>
                     </div>
                     <div className='flex flex-col place-content-center text-neutral-900 w-1/4 max-lg:w-1/2 max-md:w-3/4 max-sm:w-full gap-5'>
@@ -49,10 +49,16 @@ function Shipping() {
                     orientation='horizontal'
                     className='border-neutral-400 w-1/4 max-lg:w-1/2 self-center'
                 />
-                <h2 className='flex flex-col text-2xl font-normal gap-2 text-neutral-900 text-center my-10 mb-20'>
-                    S C /\ P E
-                    <p className='text-sm content-end tracking-widest'>by md</p>
-                </h2>
+                <div className='flex flex-col items-center my-8 text-center'>
+                    <h2 className='text-2xl sm:text-3xl font-display tracking-[0.2em] mb-1 text-foreground whitespace-nowrap'>
+                        <span>SC</span>
+                        <span className='tracking-normal'>/\</span>
+                        <span className='pl-1.5'>PE</span>
+                    </h2>
+                    <p className='text-xs tracking-widest text-muted-foreground'>
+                        by md
+                    </p>
+                </div>
             </div>
             <Footer />
         </div>

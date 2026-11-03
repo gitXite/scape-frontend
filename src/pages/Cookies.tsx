@@ -2,8 +2,6 @@ import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
 import { Separator } from '@/components/ui/separator';
 
-
-
 function Cookies() {
     return (
         <div className='flex flex-col min-h-full w-full bg-neutral-100 items-center'>
@@ -16,50 +14,70 @@ function Cookies() {
                     Last updated September 02, 2025
                 </h2>
                 <p className='mb-8'>
-                    Our website uses only <b>neccessary cookies</b> to ensure the proper functioning of the site. 
-                    These cookies are essential for things like payment and transactions. 
+                    Our website uses only <b>neccessary cookies</b> to ensure
+                    the proper functioning of the site. These cookies are
+                    essential for things like payment and transactions.
                 </p>
                 <h2 className='text-xl font-normal tracking-widest m-2'>
                     1. What are cookies?
                 </h2>
                 <p className='mb-8'>
-                    Cookies are small text files stored on your device when you visit a website. 
-                    They help the site function correctly but do not collect personal information unless you provide it. 
+                    Cookies are small text files stored on your device when you
+                    visit a website. They help the site function correctly but
+                    do not collect personal information unless you provide it.
                 </p>
                 <h2 className='text-xl font-normal tracking-widest m-2'>
                     2. Neccessary cookies we use:
                 </h2>
                 <p>
-                    When you make a payment, third-party services such as Stripe/Vipps may set cookies on your device for security and fraud prevention. 
-                    These cookies are necessary to process payments and cannot be disabled without preventing transactions.
+                    When you make a payment, third-party services such as
+                    Stripe/Vipps may set cookies on your device for security and
+                    fraud prevention. These cookies are necessary to process
+                    payments and cannot be disabled without preventing
+                    transactions.
                 </p>
                 <p className='mb-8'>
-                    Since these cookies are essential for the website to operate, they are always active. 
-                    No personal data is shared with third parties through these cookies. 
+                    Since these cookies are essential for the website to
+                    operate, they are always active. No personal data is shared
+                    with third parties through these cookies.
                 </p>
                 <h2 className='text-xl font-normal tracking-widest m-2'>
                     3. Managing cookies
                 </h2>
                 <p className='mb-8'>
-                    You can control cookies through your browser settings. 
-                    Please note that disabling neccessary cookies may prevent some features of the website from working correctly. 
+                    You can control cookies through your browser settings.
+                    Please note that disabling neccessary cookies may prevent
+                    some features of the website from working correctly.
                 </p>
                 <h2 className='text-xl font-normal tracking-widest m-2'>
                     4. More information
                 </h2>
                 <p>
-                    For more information on how we handle your personal data, please see our <a href="/privacy-policy" target='_blank'><b>Privacy Policy</b></a>. 
+                    For more information on how we handle your personal data,
+                    please see our{' '}
+                    <a href='/privacy-policy' target='_blank'>
+                        <b>Privacy Policy</b>
+                    </a>
+                    .
                 </p>
-                <Separator orientation='horizontal' className='border-neutral-400 max-w-100 mt-5' />
-                <h2 className='flex flex-col text-2xl font-normal gap-2 mt-5'>
-                    S C /\ P E
-                    <p className='text-sm content-end tracking-widest'>by md</p>
-                </h2>
+                <Separator
+                    orientation='horizontal'
+                    className='border-neutral-400 max-w-100 mt-5'
+                />
+                <div className='flex flex-col items-center mt-4 text-center'>
+                    <h2 className='text-2xl sm:text-3xl font-display tracking-[0.2em] mb-1 text-foreground whitespace-nowrap'>
+                        <span>SC</span>
+                        <span className='tracking-normal'>/\</span>
+                        <span className='pl-1.5'>PE</span>
+                    </h2>
+                    <p className='text-xs tracking-widest text-muted-foreground'>
+                        by md
+                    </p>
+                </div>
             </div>
             <Footer />
         </div>
     );
 }
-
 
 export default Cookies;
