@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import Home from './pages/Home';
 import GetStarted from './pages/GetStarted';
 import Checkout from './pages/Checkout';
-// import OrderConfirmation from './pages/OrderConfirmation';
+import OrderConfirmation from './pages/OrderConfirmation';
 import Contact from './pages/Contact';
 import FeedbackPage from './pages/FeedbackPage';
 import AboutUs from './pages/AboutUs';
@@ -24,7 +24,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/get-started' element={<GetStarted />} />
                     <Route path='/checkout' element={<Checkout />} />
-                    {/* <Route path='/order-confirmation' element={<OrderConfirmation />} /> */}
+                    <Route path='/order-confirmation' element={<OrderConfirmation />} />
                     <Route path='/about-us' element={<AboutUs />} />
                     <Route path='/testimonials' element={<TestimonialsPage />} />
                     <Route path='/faq' element={<FAQ />} />
