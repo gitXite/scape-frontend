@@ -22,17 +22,28 @@ const TERRAIN_FLOOR_Y = BACKING_Y + BACKING_THICK / 2 + 0.005; // terrain Y=0 ma
 
 // Responsive layout helper
 function getLayout(vpWidth: number) {
-    if (vpWidth < 1024) {
+    if (vpWidth < 640) {
         return {
             finalX: 0.0,
-            finalY: -0.5,
-            camPos: new THREE.Vector3(-0.5, 3.5, 7.0),
-            camLookAt: new THREE.Vector3(1.2, -0.5, 0),
+            finalY: 0.22,
+            scale: 0.62,
+            camPos: new THREE.Vector3(0, 3.6, 9.6),
+            camLookAt: new THREE.Vector3(0, 0.22, 0),
+        };
+    }
+    if (vpWidth < 1024) {
+        return {
+            finalX: 0.35,
+            finalY: -0.4,
+            scale: 0.8,
+            camPos: new THREE.Vector3(-0.2, 3.5, 8.0),
+            camLookAt: new THREE.Vector3(0.4, -0.3, 0),
         };
     }
     return {
         finalX: 1.8,
         finalY: -1.2,
+        scale: 1.0,
         camPos: new THREE.Vector3(-0.5, 3.5, 7.0),
         camLookAt: new THREE.Vector3(1.2, -0.5, 0),
     };
@@ -239,15 +250,16 @@ function Hero3D() {
         camera.position.copy(layout.camPos);
         camera.lookAt(layout.camLookAt);
 
-        const FINAL_X = 1.8;
-        const FINAL_Y = -1.2;
+        let finalX = layout.finalX;
+        let finalY = layout.finalY;
 
         const ENTRY_OFFSET_X = 4.0;
         const ENTRY_DURATION = 1.6; // seconds
         const entryStart = performance.now();
 
         const root = new THREE.Group();
-        root.position.set(FINAL_X + ENTRY_OFFSET_X, FINAL_Y - 0.5, 0);
+        root.position.set(finalX + ENTRY_OFFSET_X, finalY - 0.5, 0);
+        root.scale.set(layout.scale, layout.scale, layout.scale);
 
         root.rotation.x = 0.28;
         root.rotation.y = -0.08 + 0.4; // will animate to -0.08
@@ -348,12 +360,14 @@ function Hero3D() {
             const tc = easeOutCubic(tRaw);
             const entryDone = tRaw >= 1.0;
 
-            root.position.x = FINAL_X + ENTRY_OFFSET_X * (1 - te);
-            root.position.y = FINAL_Y - 0.5 * (1 - tc);
+            root.position.x = finalX + ENTRY_OFFSET_X * (1 - te);
+            root.position.y = finalY - 0.5 * (1 - tc);
 
             if (!entryDone) {
                 root.rotation.y = -0.08 + 0.4 * (1 - te);
             } else {
+                root.position.x = finalX;
+                root.position.y = finalY;
                 currentX += (targetX - currentX) * 0.042;
                 currentY += (targetY - currentY) * 0.042;
             }
@@ -386,6 +400,13 @@ function Hero3D() {
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
+
+            layout = getLayout(window.innerWidth);
+            camera.position.copy(layout.camPos);
+            camera.lookAt(layout.camLookAt);
+            finalX = layout.finalX;
+            finalY = layout.finalY;
+            root.scale.set(layout.scale, layout.scale, layout.scale);
         };
         window.addEventListener('resize', handleResize);
 
@@ -417,7 +438,7 @@ function Hero3D() {
     return (
         <div
             ref={mountRef}
-            className='absolute top-0 right-0 h-full w-full lg:w-3/4 object-cover'
+            className='absolute inset-0 h-full w-full pointer-events-none'
         />
     );
 }

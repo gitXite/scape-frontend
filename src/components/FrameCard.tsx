@@ -63,16 +63,20 @@ function FrameCard({
 
                 setOutOfStock(true);
 
-                const date = availability.buyingOption.cashCarry.availability.restocks?.[0]?.earliestDate;
+                const date =
+                    availability.buyingOption.cashCarry.availability
+                        .restocks?.[0]?.earliestDate;
 
                 if (date) {
                     setExpectedDate(
                         new Date(date).toLocaleDateString('en-GB', {
                             day: 'numeric',
                             month: 'short',
-                            year: 'numeric'
+                            year: 'numeric',
                         }),
                     );
+                } else {
+                    setExpectedDate('TBA');
                 }
             } catch (e) {
                 console.error('Failed to fetch stock', e);

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -13,7 +12,7 @@ html {
     max-width: 100%;
     font-family: var(--font-sans);
     line-height: 1.5;
-    font-weight: 200;
+    font-weight: 400;
 
     color: rgba(255, 255, 255, 0.87);
 
@@ -33,9 +32,10 @@ body {
 
 @theme inline {
     --font-sans:
-        'Segoe UI', 'Nunito Sans', system-ui, -apple-system, Helvetica, Arial,
-        sans-serif;
-    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+        'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, sans-serif;
+    --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Fraunces', ui-serif, Georgia, serif;
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -170,6 +170,10 @@ body {
 
 .font-display {
     font-family: var(--font-display);
+}
+
+.font-serif {
+    font-family: var(--font-serif);
 }
 
 .honeypot {

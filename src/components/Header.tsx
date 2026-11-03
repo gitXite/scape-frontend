@@ -9,48 +9,77 @@ const navLinks = [
 ];
 
 function Header() {
-    const [showHeader, setShowHeader] = useState(false);
+    const [showHeader, setShowHeader] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const lastScrollY = useRef(0);
     const isHoveredRef = useRef(false);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-    const clearHideTimeout = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-            timeoutRef.current = null;
-        }
-    };
-
-    const startHideTimeout = () => {
-        clearHideTimeout();
-        timeoutRef.current = setTimeout(() => {
-            if (!isHoveredRef.current) {
-                setShowHeader(false);
-            }
-        }, 1500);
-    };
 
     useEffect(() => {
         const handleScroll = () => {
-            setShowHeader(true);
-            startHideTimeout();
+            const currentScrollY = window.scrollY;
+
+            // At the top of the page, header is always visible with subtle top styling
+            if (currentScrollY <= 20) {
+                setShowHeader(true);
+                setIsScrolled(false);
+                lastScrollY.current = currentScrollY;
+                return;
+            }
+
+            setIsScrolled(true);
+
+            // On desktop (>= 1024px), header stays permanently pinned
+            if (window.innerWidth >= 1024) {
+                setShowHeader(true);
+                lastScrollY.current = currentScrollY;
+                return;
+            }
+
+            // Keep visible if mobile menu is open or mouse is hovering
+            if (mobileMenuOpen || isHoveredRef.current) {
+                setShowHeader(true);
+                lastScrollY.current = currentScrollY;
+                return;
+            }
+
+            const delta = currentScrollY - lastScrollY.current;
+
+            // Scroll down past threshold on mobile/tablet -> hide
+            if (delta > 8 && currentScrollY > 80) {
+                setShowHeader(false);
+            }
+            // Scroll up past threshold -> reveal
+            else if (delta < -8) {
+                setShowHeader(true);
+            }
+
+            lastScrollY.current = currentScrollY;
         };
 
         const handleMouseMove = (e: MouseEvent) => {
-            if (e.clientY <= 60) {
+            // Reveal header if mouse nudges close to top edge
+            if (e.clientY <= 30) {
                 setShowHeader(true);
-                startHideTimeout();
             }
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('scroll', handleScroll);
-            clearHideTimeout();
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && mobileMenuOpen) {
+                setMobileMenuOpen(false);
+            }
         };
-    }, []);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [mobileMenuOpen]);
 
     // Split links so the centered wordmark stays balanced.
     const leftLinks = navLinks.slice(0, 2);
@@ -60,23 +89,23 @@ function Header() {
         <header
             onMouseEnter={() => {
                 isHoveredRef.current = true;
-                clearHideTimeout();
                 setShowHeader(true);
             }}
             onMouseLeave={() => {
                 isHoveredRef.current = false;
-                startHideTimeout();
             }}
-            className={`fixed left-0 right-0 top-0 z-50 text-primary-foreground border-b transition-all duration-300 ease-out ${
-                showHeader ? 'translate-y-0' : '-translate-y-full'
+            className={`fixed left-0 right-0 top-0 z-50 text-primary-foreground transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                showHeader ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'
             } ${
                 mobileMenuOpen
-                    ? 'bg-primary/95 border-primary-foreground/10 shadow-lg shadow-black/20 backdrop-blur-md'
-                    : 'bg-primary/70 backdrop-blur-md border-primary-foreground/10 shadow-sm shadow-black/10'
+                    ? 'bg-primary/95 border-b border-primary-foreground/10 shadow-xl shadow-black/30 backdrop-blur-md'
+                    : isScrolled
+                      ? 'bg-primary/80 border-b border-primary-foreground/10 shadow-sm shadow-black/20 backdrop-blur-md'
+                      : 'bg-transparent border-b border-transparent'
             }`}
         >
             <nav className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-                <div className='relative flex h-16 items-center justify-between sm:h-20'>
+                <div className='relative flex h-16 items-center justify-between sm:h-18'>
                     {/* Left nav - desktop */}
                     <div className='hidden items-center gap-8 md:flex'>
                         {leftLinks.map((link) => (
@@ -92,7 +121,7 @@ function Header() {
                     <a
                         href='#home'
                         aria-label='SCAPE home'
-                        className='absolute left-1/2 -translate-x-1/2 text-xl tracking-[0.35em] text-primary-foreground transition-opacity hover:opacity-80 sm:text-2xl'
+                        className='absolute left-1/2 -translate-x-1/2 font-display text-lg tracking-[0.35em] text-primary-foreground transition-opacity hover:opacity-80 sm:text-xl'
                     >
                         <span>SC</span>
                         <span className='tracking-normal'>/\</span>
@@ -100,7 +129,7 @@ function Header() {
                     </a>
 
                     {/* Right nav - desktop */}
-                    <div className='hidden items-center gap-8 md:flex'>
+                    <div className='hidden items-center gap-7 md:flex'>
                         {rightLinks.map((link) => (
                             <NavLink
                                 key={link.href}
@@ -110,7 +139,7 @@ function Header() {
                         ))}
                         <a
                             href='/get-started'
-                            className='rounded-full border border-primary-foreground/30 px-6 py-2.5 text-[13px] font-medium tracking-wide text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground hover:text-primary'
+                            className='rounded-full border border-primary-foreground/25 bg-primary-foreground/[0.06] px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-primary hover:border-primary-foreground hover:shadow-md hover:shadow-black/20 active:scale-[0.98]'
                         >
                             Get Started
                         </a>
@@ -121,7 +150,7 @@ function Header() {
                         type='button'
                         aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                         aria-expanded={mobileMenuOpen}
-                        className='ml-auto p-2 text-primary-foreground/90 transition-colors hover:text-primary-foreground md:hidden'
+                        className='ml-auto rounded-lg p-2 text-primary-foreground/80 transition-colors hover:bg-primary-foreground/10 hover:text-primary-foreground md:hidden'
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
                         {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -129,7 +158,7 @@ function Header() {
                 </div>
             </nav>
 
-            {/* Mobile menu */}
+            {/* Mobile menu drawer */}
             <div
                 className={`overflow-hidden transition-all duration-300 md:hidden ${
                     mobileMenuOpen
@@ -151,7 +180,7 @@ function Header() {
                     <a
                         href='/get-started'
                         onClick={() => setMobileMenuOpen(false)}
-                        className='mt-4 rounded-full border border-primary-foreground/30 px-6 py-3 text-center text-sm tracking-widest text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground hover:text-primary'
+                        className='mt-4 rounded-full border border-primary-foreground/30 bg-primary-foreground/[0.08] px-6 py-3 text-center text-xs font-semibold tracking-widest uppercase text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-primary'
                     >
                         Get Started
                     </a>
@@ -165,10 +194,10 @@ function NavLink({ href, label }: { href: string; label: string }) {
     return (
         <a
             href={href}
-            className='group relative text-[13px] font-medium tracking-wide text-primary-foreground/80 transition-colors duration-150 hover:text-primary-foreground'
+            className='group relative py-1 text-[13px] font-medium tracking-wide text-primary-foreground/75 transition-colors duration-200 hover:text-primary-foreground'
         >
             {label}
-            <span className='absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-foreground transition-all duration-150 group-hover:w-full' />
+            <span className='absolute -bottom-0.5 left-0 h-[1.5px] w-0 bg-primary-foreground transition-all duration-300 ease-out group-hover:w-full' />
         </a>
     );
 }
