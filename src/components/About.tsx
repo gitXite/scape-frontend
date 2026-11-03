@@ -219,8 +219,8 @@ function About() {
                     </motion.div>
 
                     {/* Editorial Story Split: Narrative + Studio Photography */}
-                    <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-center text-left'>
-                        <div className='md:col-span-7 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed'>
+                    <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-start text-left'>
+                        <div className='md:sticky md:top-25 md:col-span-7 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed'>
                             <p>
                                 Being based in Bergen, it’s difficult not to be
                                 inspired by the surrounding mountains, fjords,
