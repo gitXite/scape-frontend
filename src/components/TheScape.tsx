@@ -43,7 +43,7 @@ const pillars = [
         tag: 'Materiality',
         title: 'Sculpted for Natural Light',
         description:
-            'Crafted in a matte, light-absorbing finish that interacts dynamically with ambient room lighting, casting shifting micro-shadows as daylight changes.',
+            'Made with a matte, light-absorbing finish that creates subtle shadows as the natural light in the room changes.',
         spec: 'Light-responsive matte surface',
     },
     {
