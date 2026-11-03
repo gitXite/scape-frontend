@@ -1,31 +1,70 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import {
+    ArrowRight,
+    Play,
+    Compass,
+    Layers,
+    Sparkles,
+    MapPin,
+} from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Badge } from './ui/badge';
 
 const videoSrc = '/videos/scape_final_aspect.mp4';
 const posterSrc = '/images/scape_final_aspect_thumb.jpg';
 
 const options = {
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.15,
 };
 
 const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.4, ease: 'easeOut' as const },
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
     },
 };
+
 const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { staggerChildren: 0.2 },
+        transition: { staggerChildren: 0.15 },
     },
 };
+
+const craftValues = [
+    {
+        number: '01',
+        tag: 'Cartography',
+        title: 'Millimeter-Faithful Topography',
+        description:
+            'We do not approximate nature. Using official digital elevation models from around the world, each piece captures official geographic contours with millimeter fidelity.',
+        spec: 'Official GeoData',
+        icon: Compass,
+    },
+    {
+        number: '02',
+        tag: 'Materiality',
+        title: 'Sculpted for Ambient Room Light',
+        description:
+            'Finished in a non-reflective high quality matte PLA that subtly absorbs and diffuses light, allowing shifting daylight across the day to cast gentle micro-shadows along the ridge lines.',
+        spec: 'Light-reactive surface',
+        icon: Layers,
+    },
+    {
+        number: '03',
+        tag: 'Personal Meaning',
+        title: 'An Anchor to Places That Matter',
+        description:
+            'Whether it’s a family cabin in Hemsedal, a summit in Jotunheimen, or the archipelago where you grew up - each SCAPE is a tactile anchor to a memory in the landscape.',
+        spec: 'Bespoke commissions',
+        icon: Sparkles,
+    },
+];
 
 function ProductVideo() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -39,7 +78,7 @@ function ProductVideo() {
     }
 
     return (
-        <figure className='group relative aspect-video max-sm:aspect-square w-full overflow-hidden rounded-2xl border border-border bg-secondary shadow-sm'>
+        <figure className='group relative aspect-video max-sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border/80 bg-muted/30 shadow-sm'>
             <video
                 ref={videoRef}
                 className='h-full w-full object-cover'
@@ -56,17 +95,17 @@ function ProductVideo() {
                 <button
                     type='button'
                     onClick={handlePlay}
-                    className='absolute inset-0 flex flex-col items-center justify-center gap-4 bg-foreground/20 transition-colors duration-300 hover:bg-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+                    className='absolute inset-0 flex flex-col items-center justify-center gap-4 bg-primary/25 backdrop-blur-[2px] transition-all duration-300 hover:bg-primary/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer'
                     aria-label='Play the SCAPE by md product film'
                 >
-                    <span className='flex size-20 items-center justify-center rounded-full bg-background/95 text-primary shadow-lg transition-transform duration-300 group-hover:scale-105'>
+                    <span className='flex size-18 sm:size-20 items-center justify-center rounded-full bg-background/95 text-primary shadow-xl transition-transform duration-300 group-hover:scale-105'>
                         <Play
-                            className='ml-1 size-8 fill-current'
+                            className='ml-1 size-7 sm:size-8 fill-current'
                             aria-hidden='true'
                         />
                     </span>
-                    <span className='rounded-full bg-background/90 px-4 py-1.5 text-sm font-medium text-foreground'>
-                        Watch the film
+                    <span className='rounded-full bg-background/90 px-4 py-1.5 text-xs sm:text-sm font-medium text-foreground tracking-wide border border-border/60 shadow-sm'>
+                        Watch the film (0:31)
                     </span>
                 </button>
             )}
@@ -81,278 +120,363 @@ function About() {
     const [ref4, inView4] = useInView(options);
     const [ref5, inView5] = useInView(options);
 
-    const values = [
-        {
-            title: 'Craftsmanship',
-            description:
-                'Every piece is precision-crafted with attention to detail, ensuring the highest quality representation of Norwegian terrain.',
-        },
-        {
-            title: 'Innovation',
-            description:
-                'We blend innovative data processing with traditional design principles to create something truly unique.',
-        },
-        {
-            title: 'Sentimental Value',
-            description:
-                'Each piece captures places, memories, and moments that hold personal meaning.',
-        },
-    ];
-
     return (
-        <div className='flex flex-col min-h-[100vh] w-full bg-surface'>
-            <header className='flex h-auto font-normal z-2 gap-8 px-10 fixed place-content-center justify-evenly self-center text-foreground bg-primary/5 shadow-md backdrop-blur-md mt-6 p-3 rounded-full border border-neutral-100/40 max-sm:hidden'>
+        <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
+            {/* Desktop in-page sticky sub-nav */}
+            <nav
+                aria-label='About Page Navigation'
+                className='fixed top-6 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-8 px-8 py-2.5 rounded-full bg-background/80 backdrop-blur-md border border-border/80 shadow-sm text-xs font-medium text-muted-foreground'
+            >
                 <a
-                    href='#about-us'
-                    className='group text-[13px] font-medium tracking-wide'
+                    href='#story'
+                    className='hover:text-foreground transition-colors duration-150'
                 >
-                    About Us
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-150 h-0.5 bg-foreground' />
+                    Story
                 </a>
                 <a
-                    href='#the-team'
-                    className='group text-[13px] font-medium tracking-wide'
+                    href='#film'
+                    className='hover:text-foreground transition-colors duration-150'
                 >
-                    The Team
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-150 h-0.5 bg-foreground' />
+                    Film
+                </a>
+                <a
+                    href='#founders'
+                    className='hover:text-foreground transition-colors duration-150'
+                >
+                    Founders
                 </a>
                 <a
                     href='#values'
-                    className='group text-[13px] font-medium tracking-wide'
+                    className='hover:text-foreground transition-colors duration-150'
                 >
-                    Our Values
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-150 h-0.5 bg-foreground' />
+                    Values
                 </a>
                 <a
                     href='#mission'
-                    className='group text-[13px] font-medium tracking-wide'
+                    className='hover:text-foreground transition-colors duration-150'
                 >
-                    Our Mission
-                    <span className='block max-w-0 group-hover:max-w-full transition-all duration-150 h-0.5 bg-foreground' />
+                    Mission
                 </a>
-            </header>
-            <div
-                className='flex w-full items-center justify-center pt-25 max-sm:pt-10'
-                id='about-us'
-            >
-                <img
-                    src='/images/scape-logo-trans.webp'
-                    className='mix-blend-difference max-sm:w-1/3 w-1/6'
-                />
+            </nav>
+
+            {/* Mobile Header / Brand Anchor */}
+            <div className='pt-12 pb-6 px-6 sm:px-10 max-w-6xl mx-auto w-full flex items-center justify-between sm:hidden'>
+                <a
+                    href='/'
+                    className='inline-block'
+                    aria-label='SCAPE by md Home'
+                >
+                    <h2 className='text-2xl font-display tracking-[0.2em] text-surface-foreground whitespace-nowrap'>
+                        <span>SC</span>
+                        <span className='tracking-normal'>/\</span>
+                        <span className='pl-1.5'>PE</span>
+                    </h2>
+                </a>
+                <a
+                    href='/'
+                    className='text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
+                >
+                    Back to Home
+                </a>
             </div>
-            <div className='flex flex-col w-full text-neutral-900 self-center items-center text-center max-sm:text-left pb-20'>
-                <div className='pt-10 pb-20 px-6'>
+
+            {/* Editorial Hero Section */}
+            <section id='story' className='w-full pt-6 sm:pt-28 pb-16 sm:pb-24'>
+                <div className='max-w-6xl mx-auto px-6 sm:px-10'>
                     <motion.div
                         ref={ref1}
                         initial='hidden'
                         animate={inView1 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-4xl mx-auto text-center max-sm:text-left space-y-4'
+                        className='text-left max-w-4xl'
                     >
-                        <motion.p
+                        <motion.div
                             variants={fadeInUp}
-                            className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'
+                            className='flex items-center gap-2 mb-4'
                         >
-                            About Us
-                        </motion.p>
+                            <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 gap-2 bg-background/80 backdrop-blur-sm'>
+                                <MapPin className='w-3 h-3 text-muted-foreground' />
+                                Bergen, Norway
+                            </Badge>
+                        </motion.div>
+
                         <motion.h1
                             variants={fadeInUp}
-                            className='text-3xl sm:text-4xl md:text-5xl font-medium text-foreground mb-8 tracking-tight'
+                            className='font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-surface-foreground mb-8 leading-[1.08]'
                         >
-                            SCAPE by md
+                            Topography as art.
                         </motion.h1>
+
                         <motion.p
                             variants={fadeInUp}
-                            className='text-base sm:text-lg text-muted-foreground text-pretty max-w-2xl mx-auto leading-relaxed'
+                            className='font-sans text-lg sm:text-xl text-surface-foreground/90 leading-relaxed font-normal mb-8 max-w-3xl'
                         >
-                            The project is driven by Maren and Daniel, a
-                            Bergen-based couple who combine their different
-                            strengths to bring landscapes to life.
-                        </motion.p>
-                        <motion.p
-                            variants={fadeInUp}
-                            className='text-base text-muted-foreground text-pretty max-w-2xl mx-auto leading-relaxed'
-                        >
-                            Being based in Bergen, it’s difficult not to be
-                            inspired by the surrounding mountains, fjords, and
-                            dramatic landscapes that define the west coast of
-                            Norway. SCAPE by md was created from a desire to
-                            capture these environments in a tangible form -
-                            combining modern technology with scandinavian design
-                            to create detailed 3D terrain pieces with both
-                            visual and sentimental value.
+                            Born on the west coast of Norway, SCAPE by md
+                            translates the dramatic topography of mountains,
+                            fjords, and coastlines into architectural 3D reliefs
+                            for contemporary Scandinavian spaces.
                         </motion.p>
                     </motion.div>
-                </div>
 
-                <div className='flex flex-col items-center py-12 px-6 w-full'>
+                    {/* Editorial Story Split: Narrative + Studio Photography */}
+                    <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-center text-left'>
+                        <div className='md:col-span-7 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed'>
+                            <p>
+                                Being based in Bergen, it’s difficult not to be
+                                inspired by the surrounding mountains, fjords,
+                                and dramatic landscapes that define the west
+                                coast of Norway. SCAPE by md was created from a
+                                desire to capture these environments in a
+                                tangible form - combining modern technology with
+                                scandinavian design to create detailed 3D
+                                terrain pieces with both visual and sentimental
+                                value.
+                            </p>
+                            <p>
+                                Every piece is designed and produced to order in
+                                our Bergen workshop.
+                            </p>
+                        </div>
+
+                        <div className='md:col-span-5'>
+                            <div className='relative rounded-lg overflow-hidden border border-border/80 shadow-sm bg-muted'>
+                                <img
+                                    src='/images/studio_product_collection.webp'
+                                    alt='Collection of framed topographic models crafted in Bergen'
+                                    className='w-full h-full object-cover transition-transform duration-500'
+                                    loading='lazy'
+                                />
+                                <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
+                                    <span>Studio Collection</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 2. Process Film / The Craft in Motion */}
+            <section id='film' className='w-full py-16 sm:py-24'>
+                <div className='max-w-6xl mx-auto px-6 sm:px-10 text-left'>
                     <motion.div
                         ref={ref2}
                         initial='hidden'
                         animate={inView2 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-6xl mx-auto'
                     >
                         <motion.div
                             variants={fadeInUp}
-                            className='order-1 md:order-2 text-left'
+                            className='max-w-2xl mb-8 sm:mb-10'
                         >
-                            <p className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'>
-                                The Craft in Motion
+                            <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
+                                THE CRAFT IN MOTION
                             </p>
-                            <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
-                                Bring Your SCAPE to Life
+                            <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
+                                Frame your memories.
                             </h2>
                         </motion.div>
-                        <motion.div className='md:w-6xl' variants={fadeInUp}>
+
+                        <motion.div variants={fadeInUp} className='w-full'>
                             <ProductVideo />
                         </motion.div>
                     </motion.div>
                 </div>
+            </section>
 
-                <div className='w-full py-20 px-6' id='the-team'>
+            {/* 3. The Atelier / Founders Section */}
+            <section
+                id='founders'
+                className='w-full py-16 sm:py-24 border-b border-border/60'
+            >
+                <div className='max-w-6xl mx-auto px-6 sm:px-10 text-left'>
                     <motion.div
                         ref={ref3}
                         initial='hidden'
                         animate={inView3 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-5xl mx-auto'
                     >
-                        <div className='grid md:grid-cols-2 gap-24 max-sm:gap-16 items-center'>
+                        <motion.div
+                            variants={fadeInUp}
+                            className='max-w-2xl mb-12 sm:mb-16'
+                        >
+                            <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
+                                THE FOUNDERS
+                            </p>
+                            <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
+                                Architecture meets data engineering.
+                            </h2>
+                            <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
+                                SCAPE is created by Maren and Daniel. Our
+                                practice unites spatial architectural design
+                                with geospatial computing to create quality art.
+                            </p>
+                        </motion.div>
+
+                        {/* Founder discipline cards */}
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                             <motion.div
                                 variants={fadeInUp}
-                                className='order-2 md:order-1'
+                                className='p-8 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between'
                             >
-                                <div className='aspect-[4/5] bg-muted rounded-lg overflow-hidden'>
-                                    <div className='w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center'>
-                                        {/* <img src="" alt="Maren & Daniel" className='z-1' loading='lazy' /> */}
-                                        <span className='text-6xl text-muted-foreground/20 font-light'>
-                                            MD
+                                <div>
+                                    <div className='flex items-center justify-between mb-6'>
+                                        <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
+                                            Architecture & Design
+                                        </span>
+                                        <span className='text-xs font-semibold text-surface-foreground/80 bg-muted px-2.5 py-1 rounded-full'>
+                                            Co-Founder
                                         </span>
                                     </div>
+                                    <h3 className='font-display text-2xl font-bold text-surface-foreground tracking-tight mb-4'>
+                                        Maren
+                                    </h3>
+                                    <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
+                                        With an educational foundation in
+                                        architecture, Maren defines the physical
+                                        aesthetics, proportion, and quality. She
+                                        had the idea initially, which we then
+                                        perfected over multiple iterations.
+                                    </p>
                                 </div>
                             </motion.div>
+
                             <motion.div
                                 variants={fadeInUp}
-                                className='order-1 md:order-2 text-left'
+                                className='p-8 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between'
                             >
-                                <p className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'>
-                                    The Team
-                                </p>
-                                <h2 className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'>
-                                    Maren & Daniel
-                                </h2>
-                                <div className='space-y-4 text-muted-foreground leading-relaxed text-base sm:text-lg'>
-                                    <p>
-                                        Maren brings her background in
-                                        architecture and design, with an eye for
-                                        aesthetics and spatial understanding
-                                        that transforms raw data into visually
-                                        stunning pieces.
-                                    </p>
-                                    <p>
-                                        Daniel contributes his expertise in data
-                                        engineering and computer science,
-                                        building the technical foundation that
-                                        processes elevation data with precision
-                                        and accuracy.
-                                    </p>
-                                    <p>
-                                        Together, we've created SCAPE by md,
-                                        <br />a thoughtful venture that blends
-                                        design, technology, and a deep love for
-                                        crafting something special.
+                                <div>
+                                    <div className='flex items-center justify-between mb-6'>
+                                        <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
+                                            Data Engineering & Software
+                                        </span>
+                                        <span className='text-xs font-semibold text-surface-foreground/80 bg-muted px-2.5 py-1 rounded-full'>
+                                            Co-Founder
+                                        </span>
+                                    </div>
+                                    <h3 className='font-display text-2xl font-bold text-surface-foreground tracking-tight mb-4'>
+                                        Daniel
+                                    </h3>
+                                    <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
+                                        With a background in computer science
+                                        and data systems, Daniel built the
+                                        algorithmic engine that interfaces
+                                        directly with Norway’s elevation
+                                        databases. He translates gigabytes of
+                                        raw terrain coordinate data into
+                                        high-resolution physical topography.
                                     </p>
                                 </div>
                             </motion.div>
                         </div>
                     </motion.div>
                 </div>
+            </section>
 
-                <div className='py-24 px-6 bg-background rounded-2xl max-sm:rounded-none border border-border' id='values'>
+            {/* 4. Craft Values / Architectural Pillars */}
+            <section
+                id='values'
+                className='w-full py-16 sm:py-24 border-b border-border/60 bg-background/50'
+            >
+                <div className='max-w-6xl mx-auto px-6 sm:px-10 text-left'>
                     <motion.div
                         ref={ref4}
                         initial='hidden'
                         animate={inView4 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-6xl mx-auto text-left'
                     >
                         <motion.div
                             variants={fadeInUp}
-                            className='text-left max-sm:text-left mb-16'
+                            className='max-w-2xl mb-12 sm:mb-16'
                         >
-                            <p className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'>
-                                Our Values
+                            <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
+                                OUR PRINCIPLES
                             </p>
-                            <h2 className='text-3xl sm:text-4xl font-medium text-foreground tracking-tight'>
-                                What We Believe
+                            <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
+                                What defines a SCAPE.
                             </h2>
+                            <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
+                                Every piece we craft adheres to three
+                                foundational standards of cartographic fidelity
+                                and Scandinavian design.
+                            </p>
                         </motion.div>
-                        <div className='grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border'>
-                            {values.map((value, index) => (
-                                <motion.div
-                                    key={value.title}
-                                    variants={fadeInUp}
-                                    className='flex flex-col gap-3 px-0 sm:px-8 py-8 sm:py-0
-                                                       first:pt-0 last:pb-0 sm:first:pl-0 sm:last:pr-0'
-                                >
-                                    <span className='text-base text-muted-foreground/70 tabular-nums'>
-                                        0{index + 1}
-                                    </span>
 
-                                    <h3 className='text-base sm:text-lg font-medium text-surface-foreground leading-snug'>
-                                        {value.title}
-                                    </h3>
-
-                                    <p className='text-sm text-muted-foreground leading-relaxed'>
-                                        {value.description}
-                                    </p>
-                                </motion.div>
-                            ))}
+                        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12'>
+                            {craftValues.map((value) => {
+                                const Icon = value.icon;
+                                return (
+                                    <motion.div
+                                        key={value.number}
+                                        variants={fadeInUp}
+                                        className='flex flex-col justify-between text-left p-6 sm:p-8 rounded-2xl bg-surface border border-border/80 shadow-xs'
+                                    >
+                                        <div>
+                                            <div className='flex items-center justify-between mb-5'>
+                                                <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
+                                                    {value.tag}
+                                                </span>
+                                                <div className='size-8 rounded-full bg-primary/10 flex items-center justify-center text-surface-foreground'>
+                                                    <Icon className='w-4 h-4' />
+                                                </div>
+                                            </div>
+                                            <h3 className='font-display text-lg sm:text-xl font-bold text-surface-foreground tracking-tight mb-3'>
+                                                {value.title}
+                                            </h3>
+                                            <p className='font-sans text-sm text-muted-foreground leading-relaxed mb-6'>
+                                                {value.description}
+                                            </p>
+                                        </div>
+                                        <div className='pt-2'>
+                                            <span className='inline-flex items-center text-[11px] font-medium tracking-wide uppercase text-muted-foreground/80 bg-background/60 border border-border/80 px-2.5 py-1 rounded-md'>
+                                                {value.spec}
+                                            </span>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     </motion.div>
                 </div>
+            </section>
 
-                <div className='pt-24 px-6 bg-surface w-full' id='mission'>
+            {/* 5. Mission & Final Editorial Call to Action */}
+            <section id='mission' className='w-full py-20 sm:py-28'>
+                <div className='max-w-6xl mx-auto px-6 sm:px-10 text-left'>
                     <motion.div
                         ref={ref5}
                         initial='hidden'
                         animate={inView5 ? 'visible' : 'hidden'}
                         variants={staggerContainer}
-                        className='max-w-4xl mx-auto text-center max-sm:text-left'
+                        className='flex flex-col md:flex-row md:items-center md:justify-between gap-10'
                     >
-                        <motion.p
-                            variants={fadeInUp}
-                            className='text-xs sm:text-sm tracking-[0.25em] font-medium uppercase text-muted-foreground mb-4'
-                        >
-                            Our Mission
-                        </motion.p>
-                        <motion.h2
-                            variants={fadeInUp}
-                            className='text-3xl sm:text-4xl font-medium text-foreground mb-6 tracking-tight'
-                        >
-                            Bringing Landscapes to Life
-                        </motion.h2>
-                        <motion.p
-                            variants={fadeInUp}
-                            className='text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10'
-                        >
-                            We believe that every landscape tells a story. Our
-                            mission is to help you preserve and celebrate the
-                            places that matter most - transforming memories into
-                            timeless art pieces that you can hold and display.
-                        </motion.p>
-                        <motion.a
-                            variants={fadeInUp}
-                            href='/get-started'
-                            className='inline-flex group items-center px-8 py-4 text-sm font-medium bg-foreground border border-border text-primary-foreground rounded-full hover:bg-white hover:text-foreground transition-color'
-                        >
-                            Create Your Scape
-                            <ArrowRight className='self-center w-[18px] text-primary-foreground relative max-sm:hidden left-2 top-[1px] p-0 m-0 group-hover:text-foreground group-hover:translate-x-2 transition-all duration-200 ease-out' />
-                        </motion.a>
+                        <motion.div variants={fadeInUp} className='max-w-2xl'>
+                            <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
+                                COMMENCE YOUR PIECE
+                            </p>
+                            <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
+                                Bring your landscape to life.
+                            </h2>
+                            <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
+                                We believe that every landscape tells a story.
+                                Our mission is to help you preserve and
+                                celebrate the places that matter most -
+                                transforming memories into timeless art pieces
+                                that you can hold and display.
+                            </p>
+                        </motion.div>
+
+                        <motion.div variants={fadeInUp} className='shrink-0'>
+                            <a
+                                href='/get-started'
+                                className='inline-flex group items-center gap-3 px-8 py-4 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground cursor-pointer'
+                            >
+                                Customize Your Scape
+                                <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
+                            </a>
+                        </motion.div>
                     </motion.div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 }
