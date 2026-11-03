@@ -170,13 +170,13 @@ function Testemonials() {
                     <div className='mt-2 flex w-full justify-center flex-col gap-3 sm:flex-row'>
                         <a
                             href='/feedback'
-                            className='inline-flex items-center justify-center max-sm:w-full gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                            className='inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                         >
                             Leave a Review
                         </a>
                         <a
                             href='/get-started'
-                            className='inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 text-sm font-medium rounded-full bg-primary text-primary-foreground border border-border hover:bg-primary-foreground hover:text-secondary-foreground transition-all duration-300'
+                            className='inline-flex group items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                         >
                             Create Your Scape
                         </a>
