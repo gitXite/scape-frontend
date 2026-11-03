@@ -78,7 +78,7 @@ function ProductVideo() {
     }
 
     return (
-        <figure className='group relative aspect-video max-sm:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border/80 bg-muted/30 shadow-sm'>
+        <figure className='group relative aspect-video max-sm:aspect-[3/4] w-full overflow-hidden rounded-2xl border border-border/80 bg-muted/30 shadow-sm'>
             <video
                 ref={videoRef}
                 className='h-full w-full object-cover'
@@ -272,7 +272,7 @@ function About() {
                                 THE CRAFT IN MOTION
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Frame your memories.
+                                Bring your landscape to life.
                             </h2>
                         </motion.div>
 
@@ -454,7 +454,7 @@ function About() {
                                 COMMENCE YOUR PIECE
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Bring your landscape to life.
+                                Frame your memories.
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
                                 We believe that every landscape tells a story.
