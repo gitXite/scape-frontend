@@ -42,14 +42,14 @@ function Hero() {
             id='home'
             className='relative h-svh w-screen flex flex-col justify-between lg:justify-center overflow-hidden bg-[#0c0d11]'
         >
-            {/* ── Studio Backdrop Lighting */}
-            <div className='absolute inset-0 bg-gradient-to-b from-[#0e1015] via-[#0c0d11] to-[#0a0b0e]' />
+            {/* ── Studio Backdrop Lighting (Identical to Hero) */}
+            <div className='fixed inset-0 pointer-events-none bg-gradient-to-b from-[#0e1015] via-[#0c0d11] to-[#0a0b0e]' />
 
-            {/* Studio spotlight behind the 3D frame */}
-            <div className='absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_75%_55%_at_50%_35%,_rgba(255,248,235,0.08)_0%,_transparent_70%)] lg:bg-[radial-gradient(ellipse_65%_60%_at_72%_45%,_rgba(255,248,235,0.09)_0%,_transparent_70%)]' />
+            {/* Studio spotlight behind central block */}
+            <div className='fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_75%_55%_at_50%_35%,_rgba(255,248,235,0.08)_0%,_transparent_70%)]' />
 
             {/* Subtle perimeter vignette */}
-            <div className='absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_transparent_60%,_rgba(5,6,8,0.45)_100%)]' />
+            <div className='fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_transparent_60%,_rgba(5,6,8,0.5)_100%)]' />
 
             {/* ── Mobile readability gradient scrims (guarantees 100% contrast on mobile without dulling 3D center stage) */}
             <div className='lg:hidden absolute top-0 left-0 right-0 h-52 pointer-events-none z-10 bg-gradient-to-b from-[#0c0d11] via-[#0c0d11]/85 to-transparent' />
