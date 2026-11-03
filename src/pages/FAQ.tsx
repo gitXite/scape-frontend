@@ -369,6 +369,7 @@ const faqSections: FAQSection[] = [
 function FAQ() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
+    const [selectedSection, setSelectedSection] = useState<string>('all');
 
     // Filter FAQ sections based on search query and category selection
     const filteredSections = useMemo(() => {
@@ -494,7 +495,10 @@ function FAQ() {
                     {/* Quick Category Filter Pills */}
                     <div className='mt-6 flex flex-wrap items-center gap-2 pt-2'>
                         <button
-                            onClick={() => setSelectedCategory('all')}
+                            onClick={() => {
+                                setSelectedCategory('all');
+                                setSelectedSection('all');
+                            }}
                             className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                                 selectedCategory === 'all'
                                     ? 'bg-foreground text-background shadow-xs'
@@ -527,51 +531,53 @@ function FAQ() {
                     {/* Left Sticky Sidebar: Navigation & Atelier Contact Card */}
                     <aside className='lg:col-span-4 lg:sticky lg:top-8 space-y-6'>
                         {/* Categories Quick Jump Menu */}
-                        <div className='hidden lg:flex flex-col p-6 rounded-2xl bg-background border border-border/80 shadow-xs'>
-                            <p className='text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4'>
-                                Sections
-                            </p>
-                            <nav
-                                className='flex flex-col space-y-1'
-                                aria-label='FAQ categories'
-                            >
-                                {faqSections.map((sec) => {
-                                    const Icon = sec.icon;
-                                    const isActive =
-                                        selectedCategory === sec.id;
-                                    return (
-                                        <button
-                                            key={sec.id}
-                                            onClick={() => {
-                                                setSelectedCategory(sec.id);
-                                                const el =
-                                                    document.getElementById(
-                                                        sec.id,
-                                                    );
-                                                if (el) {
-                                                    el.scrollIntoView({
-                                                        behavior: 'smooth',
-                                                    });
-                                                }
-                                            }}
-                                            className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
-                                                isActive
-                                                    ? 'bg-primary/10 text-surface-foreground font-semibold'
-                                                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                                            }`}
-                                        >
-                                            <span className='flex items-center gap-2.5'>
-                                                <Icon className='w-4 h-4 shrink-0' />
-                                                <span>{sec.title}</span>
-                                            </span>
-                                            <span className='text-[11px] font-mono opacity-70'>
-                                                {sec.items.length}
-                                            </span>
-                                        </button>
-                                    );
-                                })}
-                            </nav>
-                        </div>
+                        {selectedCategory === 'all' && (
+                            <div className='hidden lg:flex flex-col p-6 rounded-2xl bg-background border border-border/80 shadow-xs'>
+                                <p className='text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4'>
+                                    Sections
+                                </p>
+                                <nav
+                                    className='flex flex-col space-y-1'
+                                    aria-label='FAQ categories'
+                                >
+                                    {faqSections.map((sec) => {
+                                        const Icon = sec.icon;
+                                        const isActive =
+                                            selectedSection === sec.id;
+                                        return (
+                                            <button
+                                                key={sec.id}
+                                                onClick={() => {
+                                                    setSelectedSection(sec.id);
+                                                    const el =
+                                                        document.getElementById(
+                                                            sec.id,
+                                                        );
+                                                    if (el) {
+                                                        el.scrollIntoView({
+                                                            behavior: 'smooth',
+                                                        });
+                                                    }
+                                                }}
+                                                className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all text-left cursor-pointer ${
+                                                    isActive
+                                                        ? 'bg-primary/10 text-surface-foreground font-semibold'
+                                                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                                                }`}
+                                            >
+                                                <span className='flex items-center gap-2.5'>
+                                                    <Icon className='w-4 h-4 shrink-0' />
+                                                    <span>{sec.title}</span>
+                                                </span>
+                                                <span className='text-[11px] font-mono opacity-70'>
+                                                    {sec.items.length}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </nav>
+                            </div>
+                        )}
 
                         {/* Direct Atelier Support Card */}
                         <div className='p-6 rounded-2xl bg-background border border-border/80 shadow-xs space-y-4'>
@@ -710,8 +716,8 @@ function FAQ() {
                         </h2>
                         <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
                             Choose your coordinates in Norway, inspect the 3D
-                            model in real time, and customize your solid
-                            wood frame.
+                            model in real time, and customize your solid wood
+                            frame.
                         </p>
                     </div>
 
