@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronDown, Truck } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 
@@ -94,7 +94,9 @@ function Hero() {
                         >
                             <h1 className='font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tight text-primary-foreground leading-[1.05] sm:leading-[0.96] mb-0 sm:mb-2'>
                                 From Map <br />
-                                <span className='text-primary-foreground/70 font-bold'>to Frame.</span>
+                                <span className='text-primary-foreground/70 font-bold'>
+                                    to Frame.
+                                </span>
                             </h1>
                         </motion.div>
                     </div>
@@ -107,9 +109,10 @@ function Hero() {
                             variants={fadeDown}
                             initial='hidden'
                             animate='visible'
-                            className='font-sans text-xs sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
+                            className='font-display text-sm sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
                         >
-                            Choose your favourite place in Norway. We’ll turn it into a custom 3D landscape, framed and ready for display.
+                            Turn your favourite place in Norway into a 3D
+                            landscape, framed and ready for display.
                         </motion.p>
 
                         {/* Refined Price Tag */}
@@ -120,14 +123,13 @@ function Hero() {
                             animate='visible'
                             className='mb-4 sm:mb-6'
                         >
-                            <div className='inline-flex items-center gap-2.5 sm:gap-3 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-md bg-primary-foreground/[0.08] border border-primary-foreground/15 backdrop-blur-md'>
-                                <span className='font-display text-lg sm:text-2xl font-bold tracking-tight text-primary-foreground'>
-                                    596 NOK
+                            <div className='inline-flex items-end gap-3'>
+                                <span className='font-display text-2xl sm:text-3xl font-semibold tracking-tight text-primary-foreground tabular-nums'>
+                                    596 kr
                                 </span>
-                                <span className='h-3.5 w-px bg-primary-foreground/20' />
-                                <Truck />
-                                <span className='text-xs sm:text-sm text-primary-foreground/70 font-medium'>
-                                    shipping included
+
+                                <span className='font-display text-sm text-primary-foreground/70 mb-0.5'>
+                                    Shipping included
                                 </span>
                             </div>
                         </motion.div>
@@ -142,7 +144,7 @@ function Hero() {
                             >
                                 <a
                                     href='/get-started'
-                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
+                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                                 >
                                     Customize Yours
                                     <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
@@ -157,7 +159,7 @@ function Hero() {
                             >
                                 <a
                                     href='#thescape'
-                                    className='inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/[0.08] transition-all duration-200'
+                                    className='inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-4 py-3.5 sm:px-4 sm:py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/[0.08] transition-all duration-200'
                                 >
                                     Explore
                                     <ChevronDown className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-y-0.5' />
