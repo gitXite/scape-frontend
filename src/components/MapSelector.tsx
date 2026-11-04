@@ -14,6 +14,7 @@ import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
 import { /*Box,*/ ChevronsUp, /*Frame*/ } from 'lucide-react';
+import { Badge } from './ui/badge';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -26,6 +27,7 @@ type MapSelectorProps = {
     mode: 'dummy' | 'real';
     className?: string;
     classNameChild?: string;
+    showStepHeader?: boolean;
 };
 
 const BASE_SCALE = 1500;
@@ -34,7 +36,7 @@ const RATIO_WIDTH = 14;
 const RECT_HEIGHT = BASE_SCALE * RATIO_HEIGHT;
 const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
-function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
+function MapSelector({ mode, className, classNameChild, showStepHeader = false }: MapSelectorProps) {
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
         const coords = localStorage.getItem('coordinates');
         return coords
@@ -259,6 +261,20 @@ function MapSelector({ mode, className, classNameChild }: MapSelectorProps) {
                     classNameChild || ''
                 } ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             >
+                {showStepHeader && (
+                    <div className='flex flex-col items-center text-center mb-6 sm:mb-8'>
+                        <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
+                            Step 01 · Landscape
+                        </Badge>
+                        <h1 className='font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground'>
+                            Select Your Coordinates.
+                        </h1>
+                        <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1.5 max-w-lg'>
+                            Drag the frame across Norway to position your custom 3D terrain selection.
+                        </p>
+                    </div>
+                )}
+
                 {/* Main map card */}
                 <div className='relative'>
                     <div

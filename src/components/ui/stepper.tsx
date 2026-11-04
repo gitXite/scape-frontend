@@ -50,11 +50,12 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
         };
     }, []);
 
-    const labels = ['Select Area', 'Frame', 'Passepartout'];
+    const labels = ['Landscape', 'Frame', 'Passe-partout'];
 
+    {/* Desktop/Tablet Timeline - completely hidden on mobile */}
     const TimelineComponent = (
-        <div className='w-full flex justify-center pt-5 sm:pt-10 px-10'>
-            <div className='relative w-full max-w-2xl'>
+        <div className='hidden sm:flex w-full justify-center pt-2 px-6 sm:px-10'>
+            <div className='relative w-full max-w-xl'>
                 {/* Background line */}
                 <div className='absolute top-4 left-1/2 -translate-x-1/2 w-[calc(100%-56px)] h-px bg-border' />
 
@@ -85,19 +86,19 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                                         isActive
                                             ? 'bg-foreground border-foreground text-background'
                                             : 'bg-background border-border text-muted-foreground',
-                                        isCurrent && 'scale-105',
+                                        isCurrent && 'scale-105 shadow-sm',
                                     )}
                                 >
                                     {isCompleted ? '✓' : index + 1}
                                 </div>
 
                                 {/* Label */}
-                                <div className='mt-3 flex items-center'>
+                                <div className='mt-2.5 flex items-center'>
                                     <span
                                         className={cn(
-                                            'text-sm transition-colors duration-300',
+                                            'text-xs transition-colors duration-300 tracking-wide',
                                             isActive
-                                                ? 'text-foreground font-medium'
+                                                ? 'text-foreground font-semibold'
                                                 : 'text-muted-foreground',
                                         )}
                                     >
@@ -112,49 +113,49 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
         </div>
     );
 
-    const ContentComponent = (
-        <div className='h-full bg-surface'>
-            {steps[currentStep].component}
-
-            <div className='flex items-center justify-between px-4 sm:px-8 pb-8 pt-2'>
-                <RippleButton
-                    variant='outline'
-                    onClick={() => onStepChange(currentStep - 1)}
-                    disabled={currentStep === 0}
-                    className='h-10 px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm'
-                >
-                    Previous
-                </RippleButton>
-
-                <RippleButton
-                    onClick={() =>
-                        currentStep === steps.length - 1
-                            ? navigate('/checkout')
-                            : onStepChange(currentStep + 1)
-                    }
-                    disabled={
-                        (currentStep === 0 && !storedStates.coordinates) ||
-                        (currentStep === 1 &&
-                            (!storedStates.coordinates ||
-                                !storedStates.selectedFrame)) ||
-                        (currentStep === 2 &&
-                            (!storedStates.coordinates ||
-                                !storedStates.selectedFrame ||
-                                !storedStates.selectedPassePartout))
-                    }
-                    className='h-10 px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none'
-                >
-                    {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
-                </RippleButton>
-            </div>
-        </div>
-    );
-
     return (
         <div className='w-full flex flex-col'>
-            {TimelineComponent}
+            {/* Step Content: Map, Frame Customization, or Passepartout Customization */}
+            <div className='flex-1 flex flex-col'>{steps[currentStep].component}</div>
 
-            <div className='flex-1 flex flex-col'>{ContentComponent}</div>
+            {/* Bottom Controls Area */}
+            <div className='w-full max-w-5xl mx-auto bg-surface pt-2 pb-8 sm:pb-10'>
+                {/* Stepper Timeline at the bottom for desktop/tablet */}
+                {TimelineComponent}
+
+                {/* Action Buttons & Mobile Step Counter */}
+                <div className='flex items-center justify-between px-4 sm:px-8'>
+                    <RippleButton
+                        variant='outline'
+                        onClick={() => onStepChange(currentStep - 1)}
+                        disabled={currentStep === 0}
+                        className='h-10 px-5 sm:px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm cursor-pointer'
+                    >
+                        Previous
+                    </RippleButton>
+
+                    <RippleButton
+                        onClick={() =>
+                            currentStep === steps.length - 1
+                                ? navigate('/checkout')
+                                : onStepChange(currentStep + 1)
+                        }
+                        disabled={
+                            (currentStep === 0 && !storedStates.coordinates) ||
+                            (currentStep === 1 &&
+                                (!storedStates.coordinates ||
+                                    !storedStates.selectedFrame)) ||
+                            (currentStep === 2 &&
+                                (!storedStates.coordinates ||
+                                    !storedStates.selectedFrame ||
+                                    !storedStates.selectedPassePartout))
+                        }
+                        className='h-10 px-6 sm:px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none cursor-pointer'
+                    >
+                        {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
+                    </RippleButton>
+                </div>
+            </div>
         </div>
     );
 }

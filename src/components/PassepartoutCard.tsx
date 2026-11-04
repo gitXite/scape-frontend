@@ -1,5 +1,5 @@
+import type React from 'react';
 import { Check } from 'lucide-react';
-// import { Separator } from './ui/separator';
 
 interface PassepartoutCardParams {
     passePartoutType: string;
@@ -13,37 +13,67 @@ function PassepartoutCard({
     passePartoutType,
     type,
     handleClick,
-    // text,
-    // desc,
+    text,
+    desc,
 }: PassepartoutCardParams) {
     const isSelected = passePartoutType === type;
 
     return (
-        <label className='flex flex-col h-fit cursor-pointer w-40 max-md:w-35 z-5'>
+        <label
+            className={`group relative flex flex-col justify-between p-3.5 sm:p-5 rounded-2xl border transition-all duration-200 select-none text-left cursor-pointer ${
+                isSelected
+                    ? 'border-foreground bg-card ring-2 ring-foreground/15 shadow-sm'
+                    : 'border-border/80 bg-background hover:bg-muted/40 hover:border-border shadow-xs'
+            }`}
+        >
             <input
                 type='radio'
                 name='passe-partout'
                 value={type}
-                checked={passePartoutType === type}
+                checked={isSelected}
                 onChange={handleClick}
-                className='peer hidden'
+                className='peer sr-only'
             />
-            <div className='flex flex-col h-58 w-40 max-md:w-35 max-md:h-48 text-center justify-between items-center bg-neutral-200/20 hover:bg-card peer-checked:bg-card border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                {isSelected && (
-                    <div className='absolute bottom-[52%] rounded-full bg-neutral-900 p-1'>
-                        <Check className='w-4 h-4 text-white' />
-                    </div>
-                )}
+
+            {/* Top row: Mat title & Radio check indicator */}
+            <div className='flex items-center justify-between gap-2 mb-2'>
+                <div>
+                    <span className='font-display font-bold text-sm sm:text-base text-foreground capitalize'>
+                        {type} Mat
+                    </span>
+                    <span className='block text-[11px] font-mono text-muted-foreground uppercase tracking-wider'>
+                        {text}
+                    </span>
+                </div>
+
+                <div
+                    className={`size-5 sm:size-5.5 rounded-full flex items-center justify-center transition-all ${
+                        isSelected
+                            ? 'bg-foreground text-background shadow-xs'
+                            : 'border border-border/80 bg-background'
+                    }`}
+                >
+                    {isSelected && <Check className='w-3 h-3 stroke-[3]' />}
+                </div>
+            </div>
+
+            {/* Passepartout Image Container */}
+            <div className='aspect-[4/3] w-full rounded-xl bg-muted/30 p-2 sm:p-2.5 flex items-center justify-center my-1.5 overflow-hidden border border-border/40'>
                 <img
                     src={`/images/passepartout_${type}.webp`}
-                    alt={`${type.charAt(0).toUpperCase + type.slice(1)} Passepartout`}
-                    className='w-[90%] mb-2 rounded'
+                    alt={`${type} Passepartout`}
+                    className='w-full h-full object-contain'
                 />
-                <p className='text-neutral-900 text-md pb-2 font-medium'>
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                </p>
-                {/* <Separator orientation='horizontal' />
-                <p className='text-neutral-600 pt-2'>49kr</p> */}
+            </div>
+
+            {/* Description */}
+            <p className='text-[11px] sm:text-xs text-muted-foreground leading-snug line-clamp-2 mt-1'>
+                {desc}
+            </p>
+
+            {/* Quality Specification Footer */}
+            <div className='mt-3 pt-2.5 border-t border-border/50 flex items-center justify-between text-[11px] font-mono text-muted-foreground'>
+                <span className='text-[10px] uppercase opacity-70'>45° Bevel Cut</span>
             </div>
         </label>
     );
