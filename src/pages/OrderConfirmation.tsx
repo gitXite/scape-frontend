@@ -479,15 +479,25 @@ function OrderConfirmation() {
                         <div className='w-full flex flex-col sm:flex-row items-center gap-3 mt-8'>
                             <button
                                 onClick={() => window.location.reload()}
-                                className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
+                                className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
                                 Check Status Again
                             </button>
                             <button
-                                onClick={() => navigate('/')}
-                                className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
+                                onClick={() => {
+                                    localStorage.removeItem('reference');
+                                    navigate('/');
+                                }} 
+                                className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full text-destructive border border-destructive bg-background text-xs sm:text-sm font-medium hover:bg-destructive/10 transition-colors cursor-pointer'>
+                                Cancel
+                            </button>
+                        </div>
+                        <div className='w-full mt-4'>
+                            <button
+                                onClick={() => navigate('/checkout')}
+                                className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                             >
-                                Back to Home
+                                Back to Checkout
                             </button>
                         </div>
                     </div>
