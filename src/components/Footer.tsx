@@ -88,7 +88,7 @@ function Footer() {
                                 Powered by
                             </span>
                             <img
-                                className='max-w-20 relative top-[1px]'
+                                className='max-w-20 relative'
                                 src='/images/Vipps-Logo.wine.png'
                                 alt='Vipps Logo'
                                 loading='lazy'

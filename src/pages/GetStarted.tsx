@@ -24,7 +24,15 @@ function GetStarted() {
     });
 
     const steps = [
-        { component: <MapSelector mode='real' className='pt-4 sm:pt-8' /> },
+        {
+            component: (
+                <MapSelector
+                    mode='real'
+                    showStepHeader
+                    className='pt-2 sm:pt-4'
+                />
+            ),
+        },
         { component: <CustomizeFrame /> },
         { component: <CustomizePassePartout /> },
     ];
@@ -33,39 +41,57 @@ function GetStarted() {
         localStorage.setItem('step', activeStep.toString());
         const refresh = async () => {
             if (localStorage.getItem('coordinates') && !STLCache.objectUrl) {
-                await generateAndFetchSTL().then(stlObject => parseSTL(stlObject?.buffer!));
+                await generateAndFetchSTL().then((stlObject) =>
+                    parseSTL(stlObject?.buffer!),
+                );
             }
         };
         refresh();
     }, [activeStep]);
 
     return (
-        <div className='min-h-svh bg-surface w-full'>
+        <div className='min-h-svh bg-surface w-full relative'>
             <BackButton page='home' />
+
+            {/* Mobile Home Anchor - Zero vertical layout footprint */}
+            <a
+                href='/'
+                className='sm:hidden pt-4 pr-4 place-self-end text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
+            >
+                Back to Home
+            </a>
             <HoverCard>
-                <HoverCardTrigger className='absolute right-10 top-9 max-md:hidden z-5'>
-                    <CircleQuestionMark className='text-neutral-600/50 hover:text-neutral-900 transition-colors duration-200 cursor-pointer' />
+                <HoverCardTrigger className='fixed right-6 top-6 max-md:hidden z-50 flex items-center justify-center size-9 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors cursor-pointer shadow-xs'>
+                    <CircleQuestionMark className='size-4 text-muted-foreground hover:text-foreground transition-colors' />
                 </HoverCardTrigger>
                 <HoverCardContent className='bg-neutral-900 text-neutral-100 text-left justify-center'>
-                    <p>1. <b>Select your coordinates -</b></p>
+                    <p>
+                        1. <b>Select your coordinates -</b>
+                    </p>
                     <p className='pb-3'>Choose the exact location you want</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>2. <b>Pick a frame -</b></p>
+                    <p className='pt-2'>
+                        2. <b>Pick a frame -</b>
+                    </p>
                     <p className='pb-3'>Find the style that fits your space</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>3. <b>Add a passepartout -</b></p>
+                    <p className='pt-2'>
+                        3. <b>Add a passepartout -</b>
+                    </p>
                     <p className='pb-3'>Give your model a refined finish</p>
                     <Separator
                         orientation='horizontal'
                         className='border-neutral-100/10'
                     />
-                    <p className='pt-2'>4. <b>Checkout -</b></p>
+                    <p className='pt-2'>
+                        4. <b>Checkout -</b>
+                    </p>
                     <p>Get your customized piece delivered to you</p>
                 </HoverCardContent>
             </HoverCard>

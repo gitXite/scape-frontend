@@ -35,7 +35,7 @@ const pillars = [
         tag: 'Cartography',
         title: 'Millimeter-Accurate Relief',
         description:
-            'Derived from official geospatial elevation data. Every fjord, mountain ridge, and summit is rendered with architectural topological precision.',
+            'Every model is derived from geographic elevation data, translating real-world terrain into a detailed physical relief.',
         spec: 'Official GeoData',
     },
     {
@@ -43,16 +43,16 @@ const pillars = [
         tag: 'Materiality',
         title: 'Sculpted for Natural Light',
         description:
-            'Made with a matte, light-absorbing finish that creates subtle shadows as the natural light in the room changes.',
+            'A refined matte finish brings out the contours of the terrain, with subtle shadows that shift as natural light moves through the room.',
         spec: 'Light-responsive matte surface',
     },
     {
         number: '03',
-        tag: 'Joinery',
-        title: 'Hand-Framed in Bergen',
+        tag: 'Craftsmanship',
+        title: 'Finished to Fit Your Space',
         description:
-            'Fitted with modern solid frames - available in oak, walnut, satin black, or matte white - inset with a passe-partout of your choice',
-        spec: 'Scandinavian Design',
+            'Each piece is presented in a carefully selected frame, with oak, walnut, black and white finishes and your choice of passe-partout.',
+        spec: 'Customisable framing',
     },
 ];
 
@@ -279,12 +279,10 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            Solid Frames
+                                            Made to order
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Four gallery finishes: Natural Oak,
-                                            Deep Walnut, Matte White, or Satin
-                                            Black.
+                                            Each piece is produced individually for your order.
                                         </p>
                                     </div>
                                 </div>
@@ -295,10 +293,12 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            Pay With Vipps
+                                            Made in Bergen
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Safe payment provided by Vipps
+                                            Designed and produced in Bergen,
+                                            Norway, with delivery throughout
+                                            Norway.
                                         </p>
                                     </div>
                                 </div>
@@ -309,12 +309,10 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            Made in Norway
+                                            A considered finish
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Locally crafted in Bergen with
-                                            nationwide delivery via
-                                            Posten.
+                                            Assembled as a complete piece of wall art, ready to find its place in your home.
                                         </p>
                                     </div>
                                 </div>

@@ -16,8 +16,8 @@ function FrameCard({
     type,
     handleClick,
     art,
-    // text,
-    // desc,
+    text,
+    desc,
 }: FrameCardParams) {
     const isSelected = frameType === type;
     const [outOfStock, setOutOfStock] = useState(false);
@@ -49,8 +49,8 @@ function FrameCard({
                 if (!response.ok) return;
 
                 const data = await response.json();
-                const availability = data.availabilities.find(
-                    (a: any) => a.classUnitKey.classUnitCode === '441',
+                const availability = data.availabilities?.find(
+                    (a: any) => a.classUnitKey?.classUnitCode === '441',
                 );
 
                 if (!availability) return;
@@ -64,15 +64,14 @@ function FrameCard({
                 setOutOfStock(true);
 
                 const date =
-                    availability.buyingOption.cashCarry.availability
-                        .restocks?.[0]?.earliestDate;
+                    availability.buyingOption?.cashCarry?.availability
+                        ?.restocks?.[0]?.earliestDate;
 
                 if (date) {
                     setExpectedDate(
                         new Date(date).toLocaleDateString('en-GB', {
                             day: 'numeric',
                             month: 'short',
-                            year: 'numeric',
                         }),
                     );
                 } else {
@@ -88,43 +87,73 @@ function FrameCard({
 
     return (
         <label
-            className={`flex flex-col h-fit w-40 max-md:w-35 z-5 ${!outOfStock && 'cursor-pointer'} ${outOfStock && 'cursor-not-allowed'}`}
+            className={`group relative flex flex-col justify-between p-3.5 sm:p-4 rounded-2xl border transition-all duration-200 select-none text-left ${
+                outOfStock ? 'cursor-not-allowed opacity-60 bg-muted/20 border-dashed border-border' : 'cursor-pointer'
+            } ${
+                isSelected
+                    ? 'border-foreground bg-card ring-2 ring-foreground/15 shadow-sm'
+                    : 'border-border/80 bg-background hover:bg-muted/40 hover:border-border shadow-xs'
+            }`}
         >
             <input
                 type='radio'
                 name='frame'
                 value={type}
-                checked={frameType === type}
+                checked={isSelected}
                 onChange={handleClick}
                 disabled={outOfStock}
-                className='peer hidden'
+                className='peer sr-only'
             />
-            <div
-                className={`flex relative flex-col h-58 w-40 max-md:w-35 max-md:h-48 text-center justify-between bg-neutral-200/20 hover:bg-card items-center peer-checked:bg-card border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:shadow-lg ${!outOfStock && 'hover:scale-105'} ${outOfStock && 'hover:shadow-none hover:bg-neutral-200/20'}`}
-            >
-                {isSelected && (
-                    <div className='absolute bottom-[52%] rounded-full bg-primary p-1'>
-                        <Check className='w-4 h-4 text-white' />
-                    </div>
-                )}
-                {outOfStock && (
-                    <div className='absolute z-5 inset-0 flex items-center justify-center'>
-                        <span className='rounded-full bg-primary px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary-foreground'>
-                            Out of stock
-                        </span>
-                    </div>
-                )}
+
+            {/* Top row: Finish title & Radio check indicator */}
+            <div className='flex items-center justify-between gap-2 mb-2'>
+                <div>
+                    <span className='font-display font-bold text-sm sm:text-base text-foreground capitalize'>
+                        {text || type}
+                    </span>
+                    <span className='block text-[11px] font-mono text-muted-foreground uppercase tracking-wider'>
+                        {type} Finish
+                    </span>
+                </div>
+
+                <div
+                    className={`size-5 sm:size-5.5 rounded-full flex items-center justify-center transition-all ${
+                        isSelected
+                            ? 'bg-foreground text-background shadow-xs'
+                            : 'border border-border/80 bg-background'
+                    }`}
+                >
+                    {isSelected && <Check className='w-3 h-3 stroke-[3]' />}
+                </div>
+            </div>
+
+            {/* Frame Image Container */}
+            <div className='aspect-[4/3] w-full rounded-xl bg-muted/30 p-2 sm:p-2.5 flex items-center justify-center my-1.5 overflow-hidden border border-border/40'>
                 <img
                     src={`/images/frame_${type}.webp`}
-                    alt={`${type.charAt(0).toUpperCase + type.slice(1)} Frame`}
-                    className={`w-[90%] rounded mb-2 ${outOfStock && 'grayscale'}`}
+                    alt={`${type} Frame`}
+                    className={`w-full h-full object-contain ${
+                        outOfStock ? 'grayscale opacity-75' : ''
+                    }`}
                 />
-                <p className='text-primary text-md pb-2 font-medium'>
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                </p>
-                {expectedDate && (
-                    <span className='absolute text-muted-foreground text-xs bottom-0 font-normal my-2'>
-                        Expected: {expectedDate}
+            </div>
+
+            {/* Description */}
+            <p className='text-[11px] sm:text-xs text-muted-foreground leading-snug line-clamp-2 mt-1'>
+                {desc}
+            </p>
+
+            {/* Stock Availability Footer */}
+            <div className='mt-3 pt-2.5 border-t border-border/50 flex items-center justify-between text-[11px] font-mono'>
+                {outOfStock ? (
+                    <span className='inline-flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-medium'>
+                        <span className='size-1.5 rounded-full bg-amber-500' />
+                        {expectedDate ? `Restock ${expectedDate}` : 'Out of stock'}
+                    </span>
+                ) : (
+                    <span className='inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium'>
+                        <span className='size-1.5 rounded-full bg-emerald-500' />
+                        In stock
                     </span>
                 )}
             </div>
