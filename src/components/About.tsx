@@ -40,19 +40,19 @@ const craftValues = [
     {
         number: '01',
         tag: 'Cartography',
-        title: 'Millimeter-Faithful Topography',
+        title: 'Every Contour Tells a Story',
         description:
-            'We do not approximate nature. Using official digital elevation models from around the world, each piece captures official geographic contours with millimeter fidelity.',
-        spec: 'Official GeoData',
+            'We do not approximate nature. We use official digital elevation data to capture the real shape of the landscape, preserving the distinctive features of places that matter to you.',
+        spec: 'High Fidelity',
         icon: Compass,
     },
     {
         number: '02',
-        tag: 'Materiality',
-        title: 'Sculpted for Ambient Room Light',
+        tag: 'Scandinavian Design',
+        title: 'Sculpted for Scandinavian Interiors',
         description:
-            'Finished in a non-reflective high quality matte PLA that subtly absorbs and diffuses light, allowing shifting daylight across the day to cast gentle micro-shadows along the ridge lines.',
-        spec: 'Light-reactive surface',
+            'Designed to complement Scandinavian interiors, each terrain model combines clean lines, natural forms and understated colours to bring a subtle connection to the landscape into your home.',
+        spec: 'Designed for modern interiors',
         icon: Layers,
     },
     {
@@ -219,9 +219,15 @@ function About() {
                     </motion.div>
 
                     {/* Editorial Story Split: Narrative + Studio Photography */}
-                    <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-start text-left'>
+                    <motion.div
+                        ref={ref1}
+                        initial='hidden'
+                        animate={inView1 ? 'visible' : 'hidden'}
+                        variants={staggerContainer}
+                        className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-start text-left'
+                    >
                         <div className='md:sticky md:top-25 md:col-span-7 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                            <p>
+                            <motion.p variants={fadeInUp}>
                                 Being based in Bergen, it’s difficult not to be
                                 inspired by the surrounding mountains, fjords,
                                 and dramatic landscapes that define the west
@@ -231,11 +237,11 @@ function About() {
                                 scandinavian design to create detailed 3D
                                 terrain pieces with both visual and sentimental
                                 value.
-                            </p>
-                            <p>
+                            </motion.p>
+                            <motion.p variants={fadeInUp}>
                                 Every piece is designed and produced to order in
                                 our Bergen workshop.
-                            </p>
+                            </motion.p>
                         </div>
 
                         <div className='md:col-span-5'>
@@ -251,7 +257,7 @@ function About() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -362,8 +368,8 @@ function About() {
                                         algorithmic engine that interfaces
                                         directly with Norway’s elevation
                                         databases. He translates gigabytes of
-                                        raw terrain coordinate data into
-                                        high-resolution physical topography.
+                                        raw binary data into high-resolution
+                                        physical topography.
                                     </p>
                                 </div>
                             </motion.div>
@@ -395,9 +401,8 @@ function About() {
                                 What defines a SCAPE.
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                                Every piece we craft adheres to three
-                                foundational standards of cartographic fidelity
-                                and Scandinavian design.
+                                Every piece we craft adheres to our three
+                                foundational standards.
                             </p>
                         </motion.div>
 
@@ -451,7 +456,7 @@ function About() {
                     >
                         <motion.div variants={fadeInUp} className='max-w-2xl'>
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                COMMENCE YOUR PIECE
+                                GET STARTED
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
                                 Frame your memories.
