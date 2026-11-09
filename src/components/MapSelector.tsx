@@ -479,7 +479,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             </div>
 
                                             <Slider
-                                                min={40}
+                                                min={20}
                                                 max={200}
                                                 defaultValue={[100]}
                                                 value={sliderValues.boxSize}
