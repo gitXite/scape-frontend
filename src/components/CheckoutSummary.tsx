@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import CheckoutPayment from './CheckoutPayment';
 import type { Checkout } from '@/types';
-import { ShieldCheck, Truck, Lock, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Truck, Lock, CreditCard } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 const frameImages: Record<string, string> = {
@@ -212,18 +212,18 @@ function CheckoutSummary() {
                                 <Button
                                     onClick={startCheckout}
                                     disabled
-                                    className='h-13 w-full rounded-full bg-foreground text-background border border-border opacity-80 cursor-not-allowed flex items-center justify-center'
+                                    className='h-13 w-full rounded-full bg-foreground text-background border border-border opacity-80 cursor-not-allowed flex items-center shadow-xs justify-center'
                                 >
                                     <Spinner variant='ellipsis' />
                                 </Button>
                             ) : (
                                 <Button
                                     onClick={startCheckout}
-                                    className='group h-13 w-full rounded-full bg-foreground text-background font-semibold text-sm sm:text-base hover:bg-primary-foreground hover:text-primary transition-all shadow-md flex items-center justify-center gap-2.5 cursor-pointer'
+                                    className='group h-13 w-full rounded-full bg-foreground text-background font-semibold text-sm sm:text-base hover:bg-primary-foreground hover:text-primary transition-all shadow-xs border border-border flex items-center justify-center gap-2.5 cursor-pointer'
                                 >
                                     <span>Pay with Vipps</span>
                                     {/* <span className='font-mono font-normal opacity-80'>· 596 kr</span> */}
-                                    <ArrowRight className='w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform' />
+                                    <CreditCard className='w-4 h-4 ml-1 transition-all' />
                                 </Button>
                             )}
                         </div>

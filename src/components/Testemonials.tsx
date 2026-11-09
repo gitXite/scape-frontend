@@ -229,7 +229,7 @@ function Testemonials() {
             </div>
             <section
                 id='mission'
-                className='w-full py-16 border-t border-border bg-background'
+                className='w-full py-16 border-t border-border bg-background/50'
             >
                 <div className='max-w-6xl mx-auto px-6 sm:px-10 text-left'>
                     <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-10'>
@@ -247,7 +247,7 @@ function Testemonials() {
                         <div className='flex flex-col sm:flex-row items-center justify-center gap-3'>
                             <a
                                 href='/get-started'
-                                className='max-sm:w-full inline-flex group items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
+                                className='max-sm:w-full inline-flex group items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-xs border border-border cursor-pointer'
                             >
                                 Create Your Scape
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />

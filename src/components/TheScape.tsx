@@ -395,7 +395,7 @@ function TheScape() {
                         <motion.div variants={fadeInUp} className='shrink-0'>
                             <a
                                 href='/get-started'
-                                className='inline-flex group items-center gap-3 px-8 py-3.5 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground'
+                                className='inline-flex group items-center gap-3 px-8 py-3.5 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground shadow-xs transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground'
                             >
                                 Customize Yours
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
