@@ -25,7 +25,7 @@ function Returns() {
             </div>
 
             {/* Main Content Area */}
-            <main className='flex-1 flex flex-col justify-center max-w-4xl mx-auto w-full px-6 sm:px-10 pt-6 sm:pt-28 pb-12 sm:pb-16 text-left'>
+            <main className='flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full px-6 sm:px-10 pt-6 sm:pt-28 pb-12 sm:pb-16 text-left'>
                 {/* Header Masthead */}
                 <div className='mb-10 sm:mb-14'>
                     <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-4 gap-2 bg-background/80 backdrop-blur-sm'>

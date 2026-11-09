@@ -724,7 +724,7 @@ function FAQ() {
                     <div className='flex flex-wrap items-center gap-3.5 shrink-0'>
                         <a
                             href='/get-started'
-                            className='inline-flex group items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
+                            className='inline-flex group items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border shadow-xs cursor-pointer'
                         >
                             <span>Customize Yours</span>
                             <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />

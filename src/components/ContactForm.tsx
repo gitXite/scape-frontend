@@ -200,14 +200,14 @@ function ContactForm() {
                         <Button
                             type='submit'
                             disabled
-                            className='w-full sm:w-auto min-w-36 h-12 px-8 rounded-full bg-primary text-primary-foreground border border-border cursor-not-allowed opacity-80'
+                            className='w-full sm:w-auto min-w-42 h-12 px-8 rounded-full bg-primary text-primary-foreground border border-border cursor-not-allowed opacity-80'
                         >
                             <Spinner variant='ellipsis' />
                         </Button>
                     ) : (
                         <Button
                             type='submit'
-                            className='w-full sm:w-auto min-w-36 h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border cursor-pointer inline-flex items-center justify-center gap-2'
+                            className='w-full sm:w-auto min-w-42 h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border cursor-pointer inline-flex items-center justify-center gap-2'
                         >
                             <span>Send Message</span>
                             <Send className='w-4 h-4' />

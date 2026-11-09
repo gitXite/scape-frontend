@@ -467,7 +467,7 @@ function About() {
                         <motion.div variants={fadeInUp} className='shrink-0'>
                             <a
                                 href='/get-started'
-                                className='inline-flex group items-center gap-3 px-8 py-4 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground cursor-pointer'
+                                className='inline-flex group items-center gap-3 px-8 py-4 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 shadow-xs hover:bg-primary-foreground hover:text-secondary-foreground cursor-pointer'
                             >
                                 Customize Your Scape
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
