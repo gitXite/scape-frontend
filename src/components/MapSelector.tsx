@@ -5,8 +5,16 @@ import { Slider } from './ui/slider';
 import ModelPreview from './modals/ModelPreview';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
+// import { Switch } from './ui/switch';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hoverCard';
-import { Separator } from './ui/separator';
+import { Spinner } from './ui/shadcn-io/spinner/spinner';
+import { STLCache } from '@/utils/cache';
+import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
+import { libraries } from '@/lib/googleMapLib';
+import { parseSTL } from '@/utils/parseSTL';
+import type { STLObject } from '@/types';
+import { /*Box,*/ ChevronsUp, /*Frame*/ } from 'lucide-react';
+import { Badge } from './ui/badge';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type RectangleBounds = {
@@ -16,7 +24,10 @@ type RectangleBounds = {
     west: number;
 };
 type MapSelectorProps = {
-    mode: 'dummy' | 'real',
+    mode: 'dummy' | 'real';
+    className?: string;
+    classNameChild?: string;
+    showStepHeader?: boolean;
 };
 
 const BASE_SCALE = 1500;
@@ -25,286 +36,702 @@ const RATIO_WIDTH = 14;
 const RECT_HEIGHT = BASE_SCALE * RATIO_HEIGHT;
 const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
-const containerStyle: React.CSSProperties = {
-    height: '80%',
-    width: '80%',
-    boxShadow: '5px 5px 15px 2px rgba(0, 0, 0, 0.3)',
-    borderRadius: '5px',
-};
-
-const libraries: 'geometry'[] = ['geometry'];
-
-
-function MapSelector({ mode }: MapSelectorProps) {
+function MapSelector({ mode, className, classNameChild, showStepHeader = false }: MapSelectorProps) {
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
         const coords = localStorage.getItem('coordinates');
-        return coords ? ({
-            lat: (JSON.parse(coords).north + JSON.parse(coords).south) / 2,
-            lng: (JSON.parse(coords).east + JSON.parse(coords).west) / 2,
-        }) : ({
-            lat: 60.39299,
-            lng: 5.32415,
-        });
+        return coords
+            ? {
+                  lat:
+                      (JSON.parse(coords).north + JSON.parse(coords).south) / 2,
+                  lng: (JSON.parse(coords).east + JSON.parse(coords).west) / 2,
+              }
+            : { lat: 60.39299, lng: 5.32415 };
     });
-    const [rectangleBounds, setRectangleBounds] = useState<RectangleBounds | undefined>(undefined);
+    const [rectangleBounds, setRectangleBounds] = useState<
+        RectangleBounds | undefined
+    >(undefined);
     const [sliderValues, setSliderValues] = useState(() => {
         const verticalScale = localStorage.getItem('verticalScale');
         const boxSize = localStorage.getItem('boxSize');
-        return verticalScale && boxSize ? ({
-            verticalScale: [parseFloat(verticalScale)],
-            boxSize: [parseInt(boxSize)],
-        }) : ({
-            verticalScale: [2.0],
-            boxSize: [100],
-        });
+        return verticalScale && boxSize
+            ? {
+                  verticalScale: [parseFloat(verticalScale)],
+                  boxSize: [parseInt(boxSize)],
+              }
+            : { verticalScale: [2.0], boxSize: [100] };
     });
     const [showModal, setShowModal] = useState(false);
     const mapRef = useRef<google.maps.Map | null>(null);
-    const { ref: ref, inView: inView } = useInView({
-        triggerOnce: true,
-        threshold: 0.1,
-    });
+    const mapContainerRef = useRef<HTMLDivElement>(null);
+    const isDraggingRef = useRef(false);
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
     const [hasCoordinates, setHasCoordinates] = useState(
-        !!localStorage.getItem('coordinates')
+        !!localStorage.getItem('coordinates'),
+    );
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const rectangleRef = useRef<google.maps.Rectangle | null>(null);
+    const liveBoundsRef = useRef<RectangleBounds | null>(null);
+    const [controlsOpen, setControlsOpen] = useState(false);
+    const [isSliderDrag, setIsSliderDrag] = useState(false);
+    const isMobile = window.innerWidth < 640;
+    // const [isToggled, setIsToggled] = useState(false);
+
+    const computeRectangleBounds = useCallback(
+        (point: LatLngLiteral) => {
+            const latLng = new google.maps.LatLng(point.lat, point.lng);
+            const scale = sliderValues.boxSize[0] / 100;
+            const north = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 0)
+                .lat();
+            const south = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_HEIGHT / 2) * scale, 180)
+                .lat();
+            const east = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_WIDTH / 2) * scale, 90)
+                .lng();
+            const west = google.maps.geometry.spherical
+                .computeOffset(latLng, (RECT_WIDTH / 2) * scale, 270)
+                .lng();
+            setRectangleBounds({ north, south, east, west });
+        },
+        [sliderValues.boxSize],
     );
 
     const onLoad = useCallback((map: google.maps.Map) => {
         mapRef.current = map;
+        map.setMapTypeId('terrain');
         computeRectangleBounds(center);
     }, []);
 
-    const computeRectangleBounds = useCallback((point: LatLngLiteral) => {
-        const latLng = new google.maps.LatLng(point.lat, point.lng);
-
-        const north = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2 * (sliderValues.boxSize[0] / 100), 0)
-            .lat();
-        const south = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_HEIGHT / 2 * (sliderValues.boxSize[0] / 100), 180)
-            .lat();
-        const east = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2 * (sliderValues.boxSize[0] / 100), 90)
-            .lng();
-        const west = google.maps.geometry.spherical
-            .computeOffset(latLng, RECT_WIDTH / 2 * (sliderValues.boxSize[0] / 100), 270)
-            .lng();
-
-        setRectangleBounds({ north, south, east, west });
-    }, [sliderValues.boxSize]);
-
     const handleMapClick = useCallback((e: google.maps.MapMouseEvent) => {
         if (!e.latLng) return;
-        const clickedPoint = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-        setCenter(clickedPoint);
+        setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     }, []);
 
-    useEffect(() => {
-        if (mapRef.current) computeRectangleBounds(center);
-    }, [center, computeRectangleBounds, sliderValues.boxSize]);
-
-    const handleCapture = () => {
+    const handleCapture = async (): Promise<STLObject | undefined> => {
+        setIsLoading(true);
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast.success("Coordinates captured in test mode", {
-                        description: "Get started to enable preview."
+                    toast.success('Coordinates captured in test mode', {
+                        description: 'Get started to enable preview.',
                     });
+                    setIsLoading(false);
                     break;
                 case 'real':
-                    localStorage.setItem('coordinates', JSON.stringify(rectangleBounds));
-                    localStorage.setItem('verticalScale', sliderValues.verticalScale[0].toString());
-                    localStorage.setItem('boxSize', sliderValues.boxSize[0].toString());
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('coordinates-updated'));
-                    });
-                    toast.success("Coordinates captured!", {
-                        description: "You can now proceed or preview your model."
-                    });
+                    if (
+                        (JSON.parse(localStorage.getItem('coordinates') || '{}')
+                            .north !== rectangleBounds.north &&
+                            JSON.parse(
+                                localStorage.getItem('coordinates') || '{}',
+                            ).west !== rectangleBounds.west) ||
+                        parseInt(localStorage.getItem('verticalScale')!) !==
+                            sliderValues.verticalScale[0]
+                    ) {
+                        localStorage.setItem(
+                            'coordinates',
+                            JSON.stringify(rectangleBounds),
+                        );
+                        localStorage.setItem(
+                            'verticalScale',
+                            sliderValues.verticalScale[0].toString(),
+                        );
+                        localStorage.setItem(
+                            'boxSize',
+                            sliderValues.boxSize[0].toString(),
+                        );
+                        setTimeout(() => {
+                            window.dispatchEvent(
+                                new Event('coordinates-updated'),
+                            );
+                        });
+                    }
+                    try {
+                        const stlObject = await generateAndFetchSTL();
+                        if (!stlObject) {
+                            toast.error('Error generating STL', {
+                                description: 'Please try again later',
+                            });
+                            STLCache.invalidate();
+                            setIsLoading(false);
+                            return;
+                        }
+                        toast.success('Your Scape has been generated!', {
+                            description:
+                                'You can now preview your model, or proceed with customization.',
+                        });
+                        return stlObject;
+                    } catch (err: any) {
+                        console.error(err.message);
+                        toast.error(err.message, {
+                            description: 'Please try again later',
+                        });
+                        STLCache.invalidate();
+                    } finally {
+                        setIsLoading(false);
+                    }
                     break;
             }
         }
     };
 
     const resetMap = () => {
-        if (rectangleBounds) {
-            switch (mode) {
-                case 'dummy':
-                    setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValues({
-                        verticalScale: [2.0],
-                        boxSize: [100],
-                    });
-                    toast.success('Map has been reset');
-                    break;
-                case 'real':
-                    setCenter({ lat: 60.39299, lng: 5.32415 });
-                    setSliderValues({
-                        verticalScale: [2.0],
-                        boxSize: [100],
-                    });
-                    localStorage.removeItem('coordinates');
-                    localStorage.removeItem('verticalScale');
-                    localStorage.removeItem('boxSize');
-                    localStorage.removeItem('selectedFrame');
-                    localStorage.removeItem('selectedPassePartout');
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('coordinates-updated'));
-                        window.dispatchEvent(new Event('frame-removed'));
-                        window.dispatchEvent(new Event('passe-partout-removed'));
-                    });
-                    toast.success('Your Scape has been reset', {
-                        description: 'Please capture your coordinates to proceed.'
-                    });
-                    break;
-            }
+        if (!rectangleBounds) return;
+        setCenter({ lat: 60.39299, lng: 5.32415 });
+        setSliderValues({ verticalScale: [2.0], boxSize: [100] });
+        setControlsOpen(isMobile ? false : true);
+        if (mode === 'real') {
+            localStorage.removeItem('coordinates');
+            localStorage.removeItem('verticalScale');
+            localStorage.removeItem('boxSize');
+            localStorage.removeItem('selectedFrame');
+            localStorage.removeItem('selectedPassePartout');
+            localStorage.setItem('step', '0');
+            setTimeout(() => {
+                window.dispatchEvent(new Event('coordinates-updated'));
+                window.dispatchEvent(new Event('frame-removed'));
+                window.dispatchEvent(new Event('passe-partout-removed'));
+            });
+            STLCache.invalidate();
+            toast.success('Your Scape has been reset', {
+                description: 'Please capture your coordinates to proceed.',
+            });
+        } else {
+            toast.success('Map has been reset');
         }
     };
 
     useEffect(() => {
-        const handleStorageChange = () => {
-            setHasCoordinates(!!localStorage.getItem('coordinates'));
+        const el = mapContainerRef.current;
+        if (!el) return;
+
+        const preventScroll = (e: TouchEvent) => {
+            if (isDraggingRef.current) {
+                e.preventDefault();
+            }
         };
 
-        window.addEventListener('storage', handleStorageChange);
-        window.addEventListener('coordinates-updated', handleStorageChange);
+        el.addEventListener('touchmove', preventScroll, {
+            passive: false,
+        });
 
         return () => {
-            window.removeEventListener('storage', handleStorageChange);
-            window.removeEventListener('coordinates-updated', handleStorageChange);
+            el.removeEventListener('touchmove', preventScroll);
         };
     }, []);
 
-    window.addEventListener('pageshow', (event) => {
-        if (event.persisted) {
-            window.location.reload();
-        }
-    });
-    
+    useEffect(() => {
+        if (mapRef.current) computeRectangleBounds(center);
+    }, [center, computeRectangleBounds, sliderValues.boxSize]);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            STLCache.invalidate();
+            setHasCoordinates(!!localStorage.getItem('coordinates'));
+        };
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('coordinates-updated', handleStorageChange);
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener(
+                'coordinates-updated',
+                handleStorageChange,
+            );
+        };
+    }, []);
+
+    useEffect(() => {
+        const handler = (event: PageTransitionEvent) => {
+            if (event.persisted) window.location.reload();
+        };
+        window.addEventListener('pageshow', handler);
+        return () => window.removeEventListener('pageshow', handler);
+    }, []);
+
+    const containerStyle: React.CSSProperties = {
+        height: '100%',
+        width: '100%',
+    };
 
     return (
-        <div id='map' className='flex flex-col h-full w-full max-sm:relative bg-neutral-100 items-center max-sm:place-content-center pt-20'>
-            <div ref={ref} className={`flex flex-col h-full max-sm:h-4/5 max-lg:h-9/10 w-full items-center transition-opacity duration-600 ease-in max-sm:mb-20 ${
-                inView ? 'opacity-100' : 'opacity-0'
-            }`}>
-                <LoadScript
-                    googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
-                    libraries={libraries}
-                >
-                    <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={center}
-                        zoom={window.innerWidth > 640 ? 10 : 9}
-                        mapTypeId='terrain'
-                        onLoad={onLoad}
-                        onClick={handleMapClick}
-                        options={{
-                            streetViewControl: false,
-                            fullscreenControl: false,
-                            mapTypeId: 'terrain',
-                            cameraControl: false,
-                        }}
-                    >
-                        {rectangleBounds && (
-                            <Rectangle
-                                bounds={rectangleBounds}
-                                options={{
-                                    strokeColor: '#000000',
-                                    strokeOpacity: 1,
-                                    strokeWeight: 1,
-                                    fillColor: '#000000',
-                                    fillOpacity: 0.5,
-                                    draggable: false,
-                                    editable: false,
-                                    clickable: false,
-                                }}
-                            />
-                        )}
-                    </GoogleMap>
-                </LoadScript>
-                
-                <div className='flex w-3/5 max-2xl:w-3/4 max-lg:w-full place-items-center self-center justify-evenly'>
-                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:right-4/7 items-center group'>
-                        <HoverCard>
-                            <HoverCardTrigger>
-                                <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
-                                    Box Size
-                                </p>
-                            </HoverCardTrigger>
-                            <HoverCardContent className='text-center'>
-                                <p className='pb-2'>
-                                    Adjust the slider to set the desired area
-                                </p>
-                                <Separator orientation='horizontal' />
-                                <p className='pt-2'>
-                                    Default: 100%
-                                </p>
-                            </HoverCardContent>
-                        </HoverCard>
-                        <Slider 
-                            min={40}
-                            max={200}
-                            defaultValue={[100]}
-                            value={sliderValues.boxSize}
-                            onValueChange={(value) => setSliderValues({ ...sliderValues, boxSize: value })}
-                            className='w-full'
-                        />
-                        <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
-                            {sliderValues.boxSize[0]}%
+        <div id='map' className={`w-full bg-surface py-5 ${className || ''}`}>
+            <div
+                ref={ref}
+                className={`max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 transition-all duration-700 ease-out ${
+                    classNameChild || ''
+                } ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            >
+                {showStepHeader && (
+                    <div className='flex flex-col items-center text-center mb-6 sm:mb-8'>
+                        <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
+                            Step 01 · Landscape
+                        </Badge>
+                        <h1 className='font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground'>
+                            Select Your Coordinates.
+                        </h1>
+                        <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1.5 max-w-lg'>
+                            Drag the frame across Norway to position your custom 3D terrain selection.
                         </p>
                     </div>
-                    <button 
-                        onClick={() => setShowModal(true)}
-                        disabled={mode === 'dummy' || !hasCoordinates}
-                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 active:text-neutral-600 cursor-pointer disabled:cursor-default disabled:text-neutral-600/50'
+                )}
+
+                {/* Main map card */}
+                <div className='relative'>
+                    <div
+                        className='h-[76vh] sm:h-[76vh] w-full rounded-2xl overflow-hidden border border-border/50 shadow-md overscroll-none touch-none bg-card'
+                        ref={mapContainerRef}
                     >
-                        Preview
-                    </button>
-                    <Button
-                        className='mt-8 py-8 pl-10 pr-10 bg-neutral-900 border-neutral-300 border-1 transition-all hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer text-md tracking-wide'
-                        onClick={handleCapture}
+                        <LoadScript
+                            googleMapsApiKey={
+                                import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
+                            }
+                            libraries={libraries}
+                        >
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={center}
+                                zoom={window.innerWidth > 640 ? 10 : 9}
+                                onLoad={onLoad}
+                                onClick={handleMapClick}
+                                options={{
+                                    streetViewControl: false,
+                                    fullscreenControl: false,
+                                    cameraControl: false,
+                                    maxZoom: window.innerWidth > 640 ? 11 : 10,
+                                    gestureHandling: 'greedy',
+                                }}
+                            >
+                                {rectangleBounds && (
+                                    <Rectangle
+                                        onLoad={(rect) => {
+                                            rectangleRef.current = rect;
+                                        }}
+                                        bounds={rectangleBounds}
+                                        options={{
+                                            strokeColor: '#000000',
+                                            strokeOpacity: 1,
+                                            strokeWeight: 1,
+                                            fillColor: '#000000',
+                                            fillOpacity: 0.5,
+                                            draggable: true,
+                                            editable: false,
+                                            clickable: true,
+                                        }}
+                                        onDrag={() => {
+                                            const bounds =
+                                                rectangleRef.current?.getBounds();
+                                            if (!bounds) return;
+
+                                            const ne = bounds.getNorthEast();
+                                            const sw = bounds.getSouthWest();
+
+                                            liveBoundsRef.current = {
+                                                north: ne.lat(),
+                                                east: ne.lng(),
+                                                south: sw.lat(),
+                                                west: sw.lng(),
+                                            };
+                                        }}
+                                        onDragStart={() => {
+                                            isDraggingRef.current = true;
+                                        }}
+                                        onDragEnd={() => {
+                                            if (!liveBoundsRef.current) return;
+
+                                            isDraggingRef.current = false;
+
+                                            setRectangleBounds(
+                                                liveBoundsRef.current,
+                                            );
+
+                                            setCenter({
+                                                lat:
+                                                    (liveBoundsRef.current
+                                                        .north +
+                                                        liveBoundsRef.current
+                                                            .south) /
+                                                    2,
+                                                lng:
+                                                    (liveBoundsRef.current
+                                                        .east +
+                                                        liveBoundsRef.current
+                                                            .west) /
+                                                    2,
+                                            });
+                                        }}
+                                    />
+                                )}
+                            </GoogleMap>
+                        </LoadScript>
+                    </div>
+
+                    {/* Floating controls panel */}
+                    <div
+                        onMouseEnter={() => setControlsOpen(true)}
+                        onMouseLeave={() => setControlsOpen(false)}
+                        className='
+                            absolute
+                            bottom-0
+                            sm:bottom-8
+                            left-0
+                            right-0
+                            sm:left-8
+                            z-10
+                            max-sm:w-full
+                            sm:max-w-lg
+                        '
                     >
-                        Capture Coordinates
-                    </Button>
-                    <button 
-                        className='flex w-[55px] place-content-center font-normal place-items-end mt-8 transition-colors duration-100 text-neutral-600 hover:text-neutral-950 hover:cursor-pointer active:text-neutral-600' 
-                        onClick={resetMap}
-                    >
-                        Reset
-                    </button>
-                    <div className='flex flex-col w-40 relative max-sm:absolute max-sm:bottom-10 min-sm:top-4 max-sm:left-4/7 items-center group'>
-                        <HoverCard>
-                            <HoverCardTrigger>
-                                <p className='text-neutral-600 pb-3 group-hover:-translate-y-1 cursor-default transition-all duration-200'>
-                                    Vertical Scale
-                                </p>
-                            </HoverCardTrigger>
-                            <HoverCardContent className='text-center'>
-                                <p className='pb-2'>
-                                    Adjust the slider to set the desired vertical exaggeration
-                                </p>
-                                <Separator orientation='horizontal' />
-                                <p className='pt-2'>
-                                    Default: 2.0
-                                </p>
-                            </HoverCardContent>
-                        </HoverCard>
-                        <Slider 
-                            min={1}
-                            max={4}
-                            step={0.1}
-                            defaultValue={[2.0]}
-                            value={sliderValues.verticalScale}
-                            onValueChange={(value) => setSliderValues({ ...sliderValues, verticalScale: value })}
-                            className='w-full'
-                        />
-                        <p className='text-neutral-400 pt-2 transition-colors duration-200 group-hover:text-neutral-600 cursor-default'>
-                            {sliderValues.verticalScale[0].toFixed(1)}
-                        </p>
+                        <div
+                            className={`
+                                rounded-xl
+                                border
+                                border-background/60
+                                sm:border-border/50
+                                bg-background/50
+                                sm:bg-background/20
+                                backdrop-blur-sm
+                                sm:backdrop-blur-md
+                                shadow-xl
+                                overflow-hidden
+                                transition-opacity
+                                duration-200
+
+                                ${isSliderDrag ? 'opacity-0' : 'opacity-100'}
+                            `}
+                        >
+                            {/* Mobile expand toggle */}
+                            <button
+                                onClick={() => setControlsOpen(!controlsOpen)}
+                                className='
+                                    w-full
+                                    flex
+                                    items-center
+                                    justify-between
+                                    px-5
+                                    pt-4
+                                    max-sm:pb-0
+                                    text-left
+                                '
+                            >
+                                <div>
+                                    <p className='text-sm font-medium text-foreground'>
+                                        Adjust Controls
+                                    </p>
+
+                                    <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                        Terrain settings
+                                    </p>
+                                </div>
+
+                                <ChevronsUp
+                                    size={18}
+                                    className={`
+                                        text-foreground
+                                        transition-all
+                                        duration-300
+                                        ease-in-out
+                                        ${controlsOpen ? 'rotate-180' : ''}
+                                    `}
+                                />
+                            </button>
+
+                            {/* Expandable controls */}
+                            <div
+                                className={`
+                                    overflow-hidden
+                                    opacity-0
+                                    transition-all
+                                    duration-300
+                                    ease-in-out
+
+                                    ${controlsOpen ? 'max-h-[600px] opacity-100' : 'max-h-0'}
+                                `}
+                            >
+                                <div className='px-5 pb-0 sm:pb-0 pt-4 sm:pt-4'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12'>
+                                        {/* Box size */}
+                                        <div className='space-y-2 sm:space-y-3'>
+                                            <div className='flex items-center justify-between gap-4'>
+                                                <HoverCard>
+                                                    <HoverCardTrigger>
+                                                        <div className='cursor-default text-left'>
+                                                            <p className='text-sm font-medium text-foreground'>
+                                                                Capture Size
+                                                            </p>
+
+                                                            <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                                                Controls terrain
+                                                                coverage
+                                                            </p>
+                                                        </div>
+                                                    </HoverCardTrigger>
+
+                                                    <HoverCardContent className='text-sm text-left'>
+                                                        Adjust the captured
+                                                        terrain coverage.
+                                                        Default: 100%.
+                                                    </HoverCardContent>
+                                                </HoverCard>
+
+                                                <div className='text-sm font-medium text-foreground/80 tabular-nums'>
+                                                    {sliderValues.boxSize[0]}%
+                                                </div>
+                                            </div>
+
+                                            <Slider
+                                                min={20}
+                                                max={200}
+                                                defaultValue={[100]}
+                                                value={sliderValues.boxSize}
+                                                onValueChange={(value) =>
+                                                    setSliderValues({
+                                                        ...sliderValues,
+                                                        boxSize: value,
+                                                    })
+                                                }
+                                                onPointerDown={() => {
+                                                    if (window.innerWidth < 640)
+                                                        setIsSliderDrag(true);
+                                                }}
+                                                onPointerUp={() => {
+                                                    if (window.innerWidth < 640)
+                                                        setIsSliderDrag(false);
+                                                }}
+                                                className='w-full'
+                                            />
+
+                                            <div className='flex justify-between text-xs text-foreground/60'>
+                                                <span>Smaller</span>
+                                                <span>Larger</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Terrain height */}
+                                        <div className='space-y-2 sm:space-y-3'>
+                                            <div className='flex items-center justify-between gap-4'>
+                                                <HoverCard>
+                                                    <HoverCardTrigger>
+                                                        <div className='cursor-default text-left'>
+                                                            <p className='text-sm font-medium text-foreground'>
+                                                                Terrain Height
+                                                            </p>
+
+                                                            <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
+                                                                Vertical
+                                                                exaggeration
+                                                            </p>
+                                                        </div>
+                                                    </HoverCardTrigger>
+
+                                                    <HoverCardContent className='text-sm text-left'>
+                                                        Increase or decrease
+                                                        terrain height. Default:
+                                                        2.0x
+                                                    </HoverCardContent>
+                                                </HoverCard>
+
+                                                <div className='text-sm font-medium text-foreground/80 tabular-nums'>
+                                                    {sliderValues.verticalScale[0].toFixed(
+                                                        1,
+                                                    )}
+                                                    x
+                                                </div>
+                                            </div>
+
+                                            <Slider
+                                                min={1}
+                                                max={4}
+                                                step={0.1}
+                                                defaultValue={[2.0]}
+                                                value={
+                                                    sliderValues.verticalScale
+                                                }
+                                                onValueChange={(value) =>
+                                                    setSliderValues({
+                                                        ...sliderValues,
+                                                        verticalScale: value,
+                                                    })
+                                                }
+                                                className='w-full'
+                                            />
+
+                                            <div className='flex justify-between text-xs text-foreground/60'>
+                                                <span>Subtle</span>
+                                                <span>Dramatic</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        className={`flex items-center justify-between pt-5 transition-all duration-initial ease-in-out ${controlsOpen ? 'opacity-100' : 'opacity-0'}`}
+                                    >
+                                        {isMobile && (
+                                            <Button
+                                                onClick={resetMap}
+                                                className={`
+                                                    h-9
+                                                    px-7
+                                                    rounded-full
+                                                    text-sm
+                                                    shadow-sm
+                                                    transition-color
+                                                    cursor-pointer
+                                                `}
+                                            >
+                                                Reset
+                                            </Button>
+                                        )}
+                                        {/* <div className='flex items-center gap-2 sm:gap-3'>
+                                            <div
+                                                className={`flex items-center gap-1 transition-colors ${
+                                                    !isToggled
+                                                        ? 'text-foreground'
+                                                        : 'text-muted-foreground'
+                                                }`}
+                                            >
+                                                <Frame size={16} />
+                                                <span className='text-xs font-medium'>
+                                                    Wall Mount
+                                                </span>
+                                            </div>
+
+                                            <Switch
+                                                id='model-type'
+                                                className='transform-gpu'
+                                                checked={isToggled}
+                                                onCheckedChange={setIsToggled}
+                                            />
+
+                                            <div
+                                                className={`flex items-center gap-1 transition-colors ${
+                                                    isToggled
+                                                        ? 'text-foreground'
+                                                        : 'text-muted-foreground'
+                                                }`}
+                                            >
+                                                <Box size={16} />
+                                                <span className='text-xs font-medium'>
+                                                    Table Display
+                                                </span>
+                                            </div>
+                                        </div> */}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div
+                                className={`
+                                    p-4 ${controlsOpen ? 'pt-1 sm:pt-4' : 'pt-4'}
+                                    flex
+                                    flex-row-reverse
+                                    sm:flex-row
+                                    gap-3
+                                    items-end
+                                    
+                                    sm:items-center
+                                    justify-between
+                                    transition-all
+                                `}
+                            >
+                                {/* Secondary buttons */}
+                                <div
+                                    className={`relative flex ease-in-out duration-300 ${isMobile ? `flex-col-reverse gap-2` : 'flex-row gap-3'} order-2 sm:order-1`}
+                                >
+                                    <Button
+                                        onClick={() => setShowModal(true)}
+                                        disabled={
+                                            mode === 'dummy' ||
+                                            !hasCoordinates ||
+                                            isLoading ||
+                                            !STLCache.objectUrl
+                                        }
+                                        className='
+                                            sm:h-10
+                                            h-10
+                                            px-8
+                                            rounded-full
+                                            text-sm
+                                            shadow-sm
+                                            font-medium
+                                            transition-color
+                                            cursor-pointer
+                                            hover:bg-background
+                                            hover:text-foreground
+                                            disabled:opacity-40
+                                            disabled:pointer-events-none
+                                        '
+                                    >
+                                        Preview
+                                    </Button>
+
+                                    {!isMobile && (
+                                        <Button
+                                            onClick={resetMap}
+                                            className='
+                                                sm:h-10
+                                                h-10
+                                                px-8
+                                                rounded-full
+                                                text-sm
+                                                shadow-sm
+                                                transition-color
+                                                cursor-pointer
+                                                hover:bg-background
+                                                hover:text-foreground
+                                            '
+                                        >
+                                            Reset
+                                        </Button>
+                                    )}
+                                </div>
+
+                                {/* Main CTA */}
+                                <Button
+                                    className='
+                                        order-1
+                                        sm:order-2
+                                        h-12
+                                        px-8
+                                        sm:px-10
+                                        rounded-full
+                                        text-sm
+                                        font-medium
+                                        tracking-wide
+                                        shadow-sm
+                                        transition-color
+                                        duration-150
+                                        min-w-[200px]
+                                        cursor-pointer
+                                        hover:bg-background
+                                        hover:text-foreground
+                                    '
+                                    disabled={isLoading}
+                                    onClick={() =>
+                                        handleCapture().then(
+                                            (stlObject) =>
+                                                stlObject &&
+                                                parseSTL(stlObject.buffer!),
+                                        )
+                                    }
+                                >
+                                    {isLoading ? (
+                                        <Spinner variant={'ellipsis'} />
+                                    ) : (
+                                        'Generate Scape'
+                                    )}
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             {showModal && (
-                <ModelPreview showModal={showModal} setShowModal={setShowModal} className='drop-shadow-2xl drop-shadow-black/50' />
+                <ModelPreview
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                    className='drop-shadow-2xl'
+                />
             )}
         </div>
     );

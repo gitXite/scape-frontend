@@ -3,149 +3,331 @@ import { Button } from '@/components/ui/button';
 import StarRating from '@/components/ui/starRating';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { toast } from 'sonner';
+import {
+    CheckCircle2,
+    Sparkles,
+    ArrowRight,
+    PackageCheck,
+    MessageSquare,
+    RotateCcw,
+    SendHorizonal,
+} from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+
+const RATING_DESCRIPTIONS: Record<number, string> = {
+    1: 'You rated 1 / 5 stars',
+    2: 'You rated 2 / 5 stars',
+    3: 'You rated 3 / 5 stars',
+    4: 'You rated 4 / 5 stars',
+    5: 'You rated 5 / 5 stars',
+};
 
 function Feedback() {
     const [userRating, setUserRating] = useState(0);
     const [submittedRating, setSubmittedRating] = useState<number | null>(
-        (): number | null => {
+        () => {
             const storedRating = localStorage.getItem('feedbackRating');
             return storedRating ? Number(storedRating) : null;
-        }
+        },
     );
+    const [submittedMessage, setSubmittedMessage] = useState<string>(() => {
+        return localStorage.getItem('feedbackMessage') || '';
+    });
+    const [submittedOrderId, setSubmittedOrderId] = useState<string>(() => {
+        return localStorage.getItem('orderId') || '';
+    });
+
     const [feedbackMessage, setFeedbackMessage] = useState('');
-    const [orderId, setOrderId] = useState('');
+    const [orderId, setOrderId] = useState<string>(() => {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const fromParam = params.get('orderId') || params.get('reference');
+            if (fromParam) return fromParam;
+        } catch {
+            // ignore
+        }
+        return (
+            localStorage.getItem('reference') ||
+            localStorage.getItem('orderId') ||
+            ''
+        );
+    });
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (
-        event: React.ChangeEvent<HTMLTextAreaElement>,
-        type: string
-    ) => {
-        if (type === 'feedback') {
-            setFeedbackMessage(event.target.value);
-        } else if (type === 'orderId') {
-            setOrderId(event.target.value);
+    const handleSubmitReview = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        if (userRating === 0) {
+            toast.error('Please select a star rating first');
+            return;
         }
-    };
+        if (!orderId.trim()) {
+            toast.error('Please provide your Order ID');
+            return;
+        }
 
-    const handleSubmitReview = async () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+            const response = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/api/reviews`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        rating: userRating,
+                        message: feedbackMessage.trim(),
+                        orderID: orderId.trim(),
+                    }),
                 },
-                body: JSON.stringify({
-                    rating: userRating,
-                    message: feedbackMessage,
-                    orderID: orderId,
-                }),
-            });
+            );
+
             if (!response.ok) {
-                const data = await response.json();
-                toast.error(data.message, {
-                    // description: 'Please try again later',
+                const data = await response.json().catch(() => ({}));
+                toast.error(data.message || 'Unable to submit review', {
+                    description:
+                        'Please check your Order ID or try again shortly.',
                 });
                 setIsLoading(false);
                 return;
             }
 
-            if (userRating > 0) {
-                localStorage.setItem('feedbackRating', userRating.toString());
-                localStorage.setItem('feedbackMessage', feedbackMessage);
-                localStorage.setItem('orderId', orderId);
-            }
+            localStorage.setItem('feedbackRating', userRating.toString());
+            localStorage.setItem('feedbackMessage', feedbackMessage.trim());
+            localStorage.setItem('orderId', orderId.trim());
 
             toast.success('Feedback received', {
-                description: 'Thank you for your review',
+                description:
+                    'Thank you for helping us uphold our standards.',
             });
-            setIsLoading(false);
+
             setSubmittedRating(userRating);
+            setSubmittedMessage(feedbackMessage.trim());
+            setSubmittedOrderId(orderId.trim());
+            setIsLoading(false);
         } catch (err: any) {
-            toast.error(err.message, {
-                description: 'Please try again later',
+            toast.error(err.message || 'Network error', {
+                description: 'Please try again later.',
             });
             setIsLoading(false);
         }
     };
 
+    const handleReset = () => {
+        localStorage.removeItem('feedbackRating');
+        localStorage.removeItem('feedbackMessage');
+        localStorage.removeItem('orderId');
+        setSubmittedRating(null);
+        setSubmittedMessage('');
+        setSubmittedOrderId('');
+        setUserRating(0);
+        setFeedbackMessage('');
+    };
+
     return (
-        <div className='flex flex-col min-h-svh w-full items-center justify-center'>
-            <div className='flex flex-col h-fit max-sm:h-svh max-lg:w-full bg-neutral-200/40 border-1 border-neutral-300 rounded-sm items-center py-10 px-20 max-sm:px-5 place-content-evenly'>
-                {!submittedRating ? (
-                    <>
-                        <div className='flex flex-col items-center w-full gap-2 max-sm:place-content-evenly max-sm:h-3/4'>
-                            <h1 className='text-neutral-900 text-6xl max-xl:text-5xl max-md:text-4xl max-sm:text-3xl tracking-wide mb-5 max-sm:mb-0 font-medium text-shadow-md'>
-                                We value your opinion
-                            </h1>
-                            <div className='flex flex-col text-center items-center relative'>
-                                <label className='text-neutral-900 text-xl max-sm:text-lg font-normal mb-3 block'>
-                                    How would you rate your overall experience?
-                                </label>
-                                <StarRating
-                                    rating={userRating || 4}
-                                    onRatingChange={setUserRating}
-                                    size='lg'
-                                    className='mb-2'
-                                />
-                                {userRating > 0 && (
-                                    <p className='text-sm text-muted-foreground mb-2'>
-                                        You rated: {userRating} out of 5 stars
-                                    </p>
-                                )}
-                            </div>
-                            <textarea
-                                value={feedbackMessage}
-                                onChange={(event) =>
-                                    handleChange(event, 'feedback')
-                                }
-                                placeholder='We would love your feedback'
-                                className='text-neutral-700 font-normal mb-2 border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm p-5 h-35 w-6/10 max-sm:w-full resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
-                            />
-                            <textarea
-                                value={orderId}
-                                onChange={(event) =>
-                                    handleChange(event, 'orderId')
-                                }
-                                placeholder='Order ID (required)'
-                                className='text-neutral-900 h-10.5 text-center overflow-hidden p-2 mb-2 font-normal border-1 border-neutral-300 shadow-xs focus:drop-shadow-sm bg-white rounded-sm resize-none focus:outline-none focus:ring-3 focus:ring-neutral-300 focus:border-neutral-400'
-                            />
-                            {isLoading ? (
-                                <Button
-                                    onClick={handleSubmitReview}
-                                    disabled
-                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                                >
-                                    <Spinner variant={'ellipsis'} />
-                                </Button>
-                            ) : (
-                                <Button
-                                    onClick={handleSubmitReview}
-                                    disabled={userRating === 0 || orderId === ''}
-                                    className='w-40 p-5 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
-                                >
-                                    Submit Feedback
-                                </Button>
-                            )}
-                        </div>
-                    </>
-                ) : (
-                    <div className='flex flex-col text-center py-4 items-center relative'>
-                        <p className='text-green-600 font-medium mb-10'>
-                            Thank you for your review!
-                        </p>
-                        <StarRating
-                            rating={submittedRating}
-                            readonly
-                            size='md'
-                        />
-                        <p className='text-sm text-muted-foreground mt-2'>
-                            You rated: {submittedRating} out of 5 stars
+        <div className='w-full max-w-xl mx-auto'>
+            {!submittedRating ? (
+                <div className='w-full flex flex-col items-center'>
+                    {/* Header Masthead */}
+                    <div className='text-left sm:text-center mb-8 sm:mb-10 w-full'>
+                        <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3.5 py-1 gap-2 bg-background/80 backdrop-blur-sm mb-4'>
+                            <Sparkles className='size-3 text-primary' />
+                            Review & Verification
+                        </Badge>
+
+                        <h1 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
+                            Share your perspective.
+                        </h1>
+
+                        <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg sm:mx-auto'>
+                            Every SCAPE is a bespoke commission. Your feedback
+                            directly informs how we engineer, print, and frame
+                            models in Bergen.
                         </p>
                     </div>
-                )}
-            </div>
+
+                    {/* Feedback Form Card */}
+                    <form
+                        onSubmit={handleSubmitReview}
+                        className='w-full p-6 sm:p-8 rounded-2xl bg-background border border-border/80 shadow-xs space-y-6 text-left'
+                    >
+                        {/* Rating Section */}
+                        <div className='p-5 rounded-xl bg-surface/40 border border-border/60 text-center space-y-3'>
+                            <label className='block font-display text-sm sm:text-base font-bold text-foreground'>
+                                How would you rate your Scape?
+                            </label>
+                            <div className='flex flex-col items-center gap-2'>
+                                <StarRating
+                                    rating={userRating}
+                                    onRatingChange={setUserRating}
+                                    size='lg'
+                                    className='justify-center py-1'
+                                />
+                                <p className='text-xs font-mono font-medium text-muted-foreground min-h-[1.25rem] transition-all'>
+                                    {userRating > 0
+                                        ? RATING_DESCRIPTIONS[userRating]
+                                        : 'Select a rating from 1 to 5 stars'}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Written Message */}
+                        <div className='space-y-2'>
+                            <div className='flex items-center justify-between'>
+                                <label
+                                    htmlFor='feedback-message'
+                                    className='font-display text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5'
+                                >
+                                    <MessageSquare className='size-3.5 text-muted-foreground' />
+                                    <span>Your Experience</span>
+                                </label>
+                                <span className='text-[11px] font-mono text-muted-foreground'>
+                                    Optional
+                                </span>
+                            </div>
+                            <textarea
+                                id='feedback-message'
+                                value={feedbackMessage}
+                                onChange={(e) =>
+                                    setFeedbackMessage(e.target.value)
+                                }
+                                placeholder='Tell us about the detail, expectations, packaging, or how it looks in your space...'
+                                className='w-full min-h-[120px] rounded-xl border border-border/80 bg-surface/30 p-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-y leading-relaxed'
+                            />
+                        </div>
+
+                        {/* Order ID */}
+                        <div className='space-y-2'>
+                            <div className='flex items-center justify-between'>
+                                <label
+                                    htmlFor='order-id'
+                                    className='font-display text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5'
+                                >
+                                    <PackageCheck className='size-3.5 text-muted-foreground' />
+                                    <span>Order Verification</span>
+                                    <span className='text-destructive'>*</span>
+                                </label>
+                                <span className='text-[11px] font-mono text-muted-foreground'>
+                                    Required
+                                </span>
+                            </div>
+                            <input
+                                id='order-id'
+                                type='text'
+                                value={orderId}
+                                onChange={(e) => setOrderId(e.target.value)}
+                                placeholder='e.g. ORD-10492'
+                                className='w-full rounded-xl border border-border/80 bg-surface/30 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all'
+                                required
+                            />
+                            <p className='text-[11px] text-muted-foreground font-sans pl-1'>
+                                Located in your order confirmation email or
+                                transaction confirmation.
+                            </p>
+                        </div>
+
+                        <Separator className='border-border/60 my-2' />
+
+                        {/* Action Submit Button */}
+                        <div className='pt-1 flex flex-col sm:flex-row items-center justify-between gap-3'>
+                            <p className='text-xs text-muted-foreground/80 font-sans text-center sm:text-left'>
+                                Reviews are verified before appearing on our
+                                testimonials page.
+                            </p>
+
+                            <Button
+                                type='submit'
+                                disabled={
+                                    isLoading ||
+                                    userRating === 0 ||
+                                    !orderId.trim()
+                                }
+                                className='w-full sm:w-auto min-w-56 h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border cursor-pointer inline-flex items-center justify-center gap-2'
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <Spinner
+                                            size={16}
+                                            className='text-primary-foreground'
+                                        />
+                                        <span>Submitting...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span>Submit Feedback</span>
+                                        <SendHorizonal className='size-4 transition-colors' />
+                                    </>
+                                )}
+                            </Button>
+                        </div>
+                    </form>
+                </div>
+            ) : (
+                /* Thank You / Confirmation Screen */
+                <div className='w-full p-8 sm:p-12 rounded-2xl bg-background border border-border/80 shadow-xs text-center space-y-6'>
+                    <div className='size-14 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto'>
+                        <CheckCircle2 className='size-8' />
+                    </div>
+
+                    <div className='space-y-2'>
+                        <Badge className='inline-flex text-xs font-mono font-medium text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 gap-1.5'>
+                            Verified Review
+                        </Badge>
+                        <h2 className='font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground'>
+                            Thank you for your review.
+                        </h2>
+                        <p className='text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed'>
+                            Your perspective has been recorded. It helps us
+                            maintain the tactile quality of every Scape we
+                            produce in Bergen.
+                        </p>
+                    </div>
+
+                    {/* Submitted Review Snapshot */}
+                    <div className='p-5 sm:p-6 rounded-xl bg-surface/50 border border-border/70 text-left space-y-3'>
+                        <div className='flex items-center justify-between'>
+                            <StarRating
+                                rating={submittedRating}
+                                readonly
+                                size='md'
+                            />
+                            {submittedOrderId && (
+                                <span className='font-mono text-xs text-muted-foreground'>
+                                    Order: {submittedOrderId}
+                                </span>
+                            )}
+                        </div>
+
+                        {submittedMessage && (
+                            <blockquote className='text-xs sm:text-sm text-foreground/90 italic border-l-2 border-primary/40 pl-3 py-0.5 leading-relaxed'>
+                                "{submittedMessage}"
+                            </blockquote>
+                        )}
+                    </div>
+
+                    {/* Navigation Actions */}
+                    <div className='pt-2 flex flex-col sm:flex-row items-center justify-center gap-3'>
+                        <a
+                            href='/testimonials'
+                            className='max-sm:w-full inline-flex group items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border shadow-xs cursor-pointer'
+                        >
+                            <span>Explore Reviews</span>
+                            <ArrowRight className='size-4 group-hover:translate-x-1 transition-all' />
+                        </a>
+
+                        <button
+                            type='button'
+                            onClick={handleReset}
+                            className='max-sm:w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
+                        >
+                            <RotateCcw className='size-3.5' />
+                            <span>Submit for Another Order</span>
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -1,110 +1,97 @@
 import { useCustomization } from '@/context/CustomizationContext';
 import CustomizationPreview from './CustomizationPreview';
-import { Separator } from './ui/separator';
 import React from 'react';
+import PassepartoutCard from './PassepartoutCard';
+import { Badge } from '@/components/ui/badge';
+import { ShieldCheck } from 'lucide-react';
 
 function CustomizePassePartout() {
-    const { passePartoutType, setPassePartoutType } = useCustomization();
+    const { frameType, passePartoutType, setPassePartoutType } = useCustomization();
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-
         setPassePartoutType(value);
         window.dispatchEvent(new Event('passe-partout-updated'));
     };
 
     return (
-        <div className='flex flex-col h-full w-full'>
-            <h1 className='text-neutral-900 self-center relative top-20 text-xl font-medium tracking-wide'>Choose a Passepartout</h1>
-            <div className='flex h-full w-full justify-evenly'>
-                <div className='flex h-full pb-10'>
-                    <CustomizationPreview />
+        <div className='flex flex-col w-full max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 py-4 sm:py-6'>
+            {/* Step Header */}
+            <div className='flex flex-col items-center text-center mb-6 sm:mb-8'>
+                <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
+                    Step 03 · Passe-partout
+                </Badge>
+                <h1 className='font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground'>
+                    Choose a Passe-partout.
+                </h1>
+                <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1.5 max-w-lg'>
+                    An archival bevel-cut mounting board provides visual breathing room and focuses the eye on the relief depth.
+                </p>
+            </div>
+
+            {/* 2-Column Responsive Layout */}
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start text-left'>
+                {/* Left Column: 3D Product Live Preview */}
+                <div className='lg:col-span-5 rounded-2xl bg-background border border-border/80 shadow-xs p-4 sm:p-6 flex flex-col items-center justify-between sm:sticky sm:top-15'>
+                    {/* Preview Top Header */}
+                    <div className='w-full flex items-center justify-between pb-3 border-b border-border/60 text-xs'>
+                        <span className='inline-flex items-center gap-1.5 text-muted-foreground font-medium'>
+                            <span className='size-2 rounded-full bg-emerald-500 animate-pulse' />
+                            Live Model Preview
+                        </span>
+                        <span className='font-mono text-muted-foreground text-[11px]'>21 × 30 cm (A4)</span>
+                    </div>
+
+                    {/* ThreeJS Preview Container */}
+                    <div className='h-[300px] sm:h-[380px] lg:h-[420px] w-full flex items-center justify-center relative overflow-hidden my-2'>
+                        <CustomizationPreview />
+                    </div>
+
+                    {/* Preview Footer */}
+                    <div className='w-full pt-3 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground'>
+                        <span>Configuration:</span>
+                        <span className='font-display font-semibold text-foreground capitalize'>
+                            {frameType || 'Oak'} Frame · {passePartoutType ? `${passePartoutType} Mat` : 'Select mat'}
+                        </span>
+                    </div>
                 </div>
-                <div className='flex h-full justify-center items-center pb-10 text-sm'>
-                    <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='white'
-                            checked={passePartoutType === 'white'}
-                            onChange={handleClick}
-                            className='peer hidden'
-                        />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src='/images/Passepartout_White.webp'
-                                alt='White'
-                                className='w-30 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 pt-2 px-2'>
-                                Enclosed by white -
+
+                {/* Right Column: Passepartout Card Selection Grid */}
+                <div className='lg:col-span-7 flex flex-col gap-5'>
+                    <div className='pb-2 border-b border-border/60 flex items-baseline justify-between'>
+                        <div>
+                            <h2 className='font-display text-base sm:text-lg font-bold text-foreground tracking-tight'>
+                                Available Colours
+                            </h2>
+                            <p className='text-xs text-muted-foreground mt-0.5'>
+                                1.4 mm thick mounting board with 45° bevel cut.
                             </p>
-                            <p className='text-neutral-500 w-60 pb-2 px-2'>
-                                Bright, airy, and classic
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
-                                White
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>49kr</p>
                         </div>
-                    </label>
-                    <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='black'
-                            checked={passePartoutType === 'black'}
-                            onChange={handleClick}
-                            className='peer hidden'
+                    </div>
+
+                    {/* 2-Column Grid */}
+                    <div className='grid grid-cols-2 gap-3.5 sm:gap-4'>
+                        <PassepartoutCard
+                            passePartoutType={passePartoutType}
+                            type='white'
+                            handleClick={handleClick}
+                            text='Natural White'
+                            desc='Bright, airy, and classic gallery look that lets the relief shadow stand out'
                         />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src='/images/Passepartout_Black.webp'
-                                alt='Black'
-                                className='w-30 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 pt-2 px-2'>
-                                Enclosed by black -
-                            </p>
-                            <p className='text-neutral-500 w-60 pb-2 px-2'>
-                                Sharp contrast for a bold look
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal tracking-widest'>
-                                Black
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>49kr</p>
-                        </div>
-                    </label>
-                    {/* <label className='flex flex-col h-fit items-center cursor-pointer mx-5'>
-                        <input
-                            type='radio'
-                            name='passe-partout'
-                            value='without'
-                            checked={passePartoutType === 'without'}
-                            onChange={handleClick}
-                            className='peer hidden'
+                        <PassepartoutCard
+                            passePartoutType={passePartoutType}
+                            type='black'
+                            handleClick={handleClick}
+                            text='Deep Black'
+                            desc='Dramatic depth with sharp edge contrast that anchors the terrain'
                         />
-                        <div className='flex flex-col max-h-80 max-w-60 text-center justify-center items-center bg-neutral-200/20 hover:bg-neutral-100 peer-checked:bg-neutral-100 border rounded-sm p-4 transition peer-checked:border-neutral-900 peer-checked:scale-105 peer-checked:shadow-lg hover:scale-105 hover:shadow-lg'>
-                            <img
-                                src=''
-                                alt='Without'
-                                className='w-40 mb-2 rounded'
-                            />
-                            <p className='text-neutral-500 w-60 px-2'>
-                                Without a passe-partout -
-                            </p>
-                            <p className='text-neutral-500 w-60 pb-5 px-2'>
-                                Pure focus on the model
-                            </p>
-                            <p className='text-neutral-900 text-xl pb-2 font-normal'>
-                                Without
-                            </p>
-                            <Separator orientation='horizontal' />
-                            <p className='text-neutral-600 pt-2'>19kr</p>
-                        </div>
-                    </label> */}
+                    </div>
+
+                    {/* Specification Guarantee */}
+                    <div className='p-4 rounded-xl bg-background/60 border border-border/60 flex items-center gap-3 text-xs text-muted-foreground'>
+                        <ShieldCheck className='w-4 h-4 text-foreground shrink-0' />
+                        <span>Finished products are inspected and quality controlled in Bergen.</span>
+                    </div>
                 </div>
             </div>
         </div>

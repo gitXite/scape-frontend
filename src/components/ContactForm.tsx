@@ -14,30 +14,33 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
-import { cn } from '@/lib/utils';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
-
+import { Send } from 'lucide-react';
 
 const formSchema = z.object({
-    name: z.string()
+    name: z
+        .string()
         .min(2, {
             message: 'Please enter your name',
         })
-        .max(25, {
-            message: 'Name cannot be over 25 characters',
+        .max(35, {
+            message: 'Name cannot be over 35 characters',
         }),
-    email: z.email(),
+    email: z.email({
+        message: 'Please enter a valid email address',
+    }),
     orderId: z.string().optional(),
     content: z.string().min(10, {
-        message: 'Please provide a message',
+        message: 'Please provide a message (at least 10 characters)',
     }),
     honey: z.string().max(0, 'Bot detected'),
 });
 
+type FormValues = z.infer<typeof formSchema>;
 
-function Contact() {
+function ContactForm() {
     const [isLoading, setIsLoading] = useState(false);
-    const form = useForm<z.infer<typeof formSchema>>({
+    const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: '',
@@ -45,10 +48,10 @@ function Contact() {
             orderId: '',
             content: '',
             honey: '',
-        }
+        },
     });
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: FormValues) => {
         try {
             setIsLoading(true);
             const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/contact`, {
@@ -66,121 +69,154 @@ function Contact() {
             });
 
             if (!response.ok) {
-                toast.error('Failed to submit form', {
-                    description: 'Please try again later',
+                toast.error('Failed to submit message', {
+                    description: 'Please try again later or email us directly.',
                 });
                 setIsLoading(false);
                 return;
             }
 
-            toast.success('Contact form submitted', {
-                description: 'We will reach out to you shortly',
+            toast.success('Message sent successfully', {
+                description: 'Takk! We will get back to you shortly.',
             });
             setIsLoading(false);
             form.reset();
         } catch (err) {
-            console.log('Failed to submit form: ', err);
-            toast.error('Failed to submit form', {
-                description: err instanceof Error ? err.message : 'Please try again later'
+            console.error('Failed to submit form:', err);
+            toast.error('Failed to submit message', {
+                description: err instanceof Error ? err.message : 'Please try again later or email us directly.',
             });
             setIsLoading(false);
         }
     };
 
     return (
-        <div className='w-full text-neutral-900 p-10'>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5 flex flex-col items-center'>
-                    <FormField 
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-5 text-left w-full'>
+                {/* Row 1: Name and Email */}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5'>
+                    <FormField
                         control={form.control}
                         name='name'
                         render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='ml-2 text-neutral-800'>Name</FormLabel>
+                            <FormItem className='flex flex-col gap-1.5'>
+                                <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+                                    Your Name <span className='text-destructive'>*</span>
+                                </FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='Your Name' {...field} />
+                                    <Input
+                                        className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
+                                        placeholder='Ola Nordmann'
+                                        {...field}
+                                    />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='text-xs text-destructive' />
                             </FormItem>
                         )}
                     />
-                    <FormField 
+
+                    <FormField
                         control={form.control}
                         name='email'
                         render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='ml-2 text-neutral-800'>Email</FormLabel>
+                            <FormItem className='flex flex-col gap-1.5'>
+                                <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+                                    Email Address <span className='text-destructive'>*</span>
+                                </FormLabel>
                                 <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='example@gmail.com' {...field} />
+                                    <Input
+                                        type='email'
+                                        className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
+                                        placeholder='ola@example.no'
+                                        {...field}
+                                    />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage className='text-xs text-destructive' />
                             </FormItem>
                         )}
                     />
-                    <FormField 
-                        control={form.control}
-                        name='orderId'
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='ml-2 text-neutral-800'>Order ID</FormLabel>
-                                <FormControl>
-                                    <Input className='bg-white w-70 rounded-sm p-5 font-normal' placeholder='Please provide an order ID (optional)' {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField 
-                        control={form.control}
-                        name='content'
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className='ml-2 text-neutral-800'>Message</FormLabel>
-                                <FormControl>
-                                    {/* <Input className='bg-white w-70 rounded-sm p-5 h-40 font-normal' autoComplete='off' placeholder='What is on your mind?' {...field} /> */}
-                                    <textarea id="message" className={cn(
-                                            "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-                                            "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-                                            "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-                                            "bg-white h-30 w-70 rounded-sm p-5 font-normal resize-none"
-                                          )} autoComplete='off' placeholder='What is on your mind?' {...field} ></textarea>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField 
-                        control={form.control}
-                        name='honey'
-                        render={({ field }) => (
-                            <FormItem className='honeypot'>
-                                <FormControl>
-                                    <Input className='' autoComplete='off' {...field} />
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
+                </div>
+
+                {/* Row 2: Order ID */}
+                <FormField
+                    control={form.control}
+                    name='orderId'
+                    render={({ field }) => (
+                        <FormItem className='flex flex-col gap-1.5'>
+                            <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+                                Order Reference <span className='text-muted-foreground/60 font-normal'>(Optional)</span>
+                            </FormLabel>
+                            <FormControl>
+                                <Input
+                                    className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
+                                    placeholder='e.g. #12345'
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage className='text-xs text-destructive' />
+                        </FormItem>
+                    )}
+                />
+
+                {/* Row 3: Message */}
+                <FormField
+                    control={form.control}
+                    name='content'
+                    render={({ field }) => (
+                        <FormItem className='flex flex-col gap-1.5'>
+                            <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+                                Message <span className='text-destructive'>*</span>
+                            </FormLabel>
+                            <FormControl>
+                                <textarea
+                                    id='message'
+                                    rows={5}
+                                    className='w-full rounded-xl bg-background border border-border/80 p-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs resize-none font-sans leading-relaxed'
+                                    placeholder='Tell us about your custom terrain inquiry, question, or special request...'
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage className='text-xs text-destructive' />
+                        </FormItem>
+                    )}
+                />
+
+                {/* Anti-spam Honeypot (hidden from real users) */}
+                <FormField
+                    control={form.control}
+                    name='honey'
+                    render={({ field }) => (
+                        <FormItem className='honeypot'>
+                            <FormControl>
+                                <Input tabIndex={-1} autoComplete='off' {...field} />
+                            </FormControl>
+                        </FormItem>
+                    )}
+                />
+
+                {/* Submit Button */}
+                <div className='pt-2'>
                     {isLoading ? (
                         <Button
                             type='submit'
                             disabled
-                            className='p-5 min-w-30 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                            className='w-full sm:w-auto min-w-42 h-12 px-8 rounded-full bg-primary text-primary-foreground border border-border cursor-not-allowed opacity-80'
                         >
-                            <Spinner variant={'ellipsis'} />
+                            <Spinner variant='ellipsis' />
                         </Button>
                     ) : (
-                        <Button 
+                        <Button
                             type='submit'
-                            className='p-5 min-w-30 bg-neutral-900 border-neutral-300 border-1 hover:bg-neutral-200 active:bg-white text-neutral-100 hover:text-neutral-900 rounded-full cursor-pointer'
+                            className='w-full sm:w-auto min-w-42 h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border cursor-pointer inline-flex items-center justify-center gap-2'
                         >
-                            Submit
+                            <span>Send Message</span>
+                            <Send className='w-4 h-4' />
                         </Button>
                     )}
-                </form>
-            </Form>
-        </div>
+                </div>
+            </form>
+        </Form>
     );
 }
 
-
-export default Contact;
+export default ContactForm;

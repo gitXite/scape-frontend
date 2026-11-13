@@ -98,7 +98,7 @@ function StarRating({
                 })}
             </div>
             {showValue && (
-                <span className='text-sm text-background ml-2'>
+                <span className='text-sm text-muted-foreground font-normal ml-2'>
                     {rating?.toFixed(1)} / {maxRating}
                 </span>
             )}

@@ -1,102 +1,175 @@
-import { useNavigate } from 'react-router';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import Hero3D from './Hero3D';
-import { motion } from 'motion/react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { lazy, Suspense } from 'react';
+
+const Hero3DNew = lazy(() => import('./Hero3DNew'));
+
+function CanvasFallback() {
+    return (
+        <div className='absolute inset-0 h-full w-full pointer-events-none' />
+    );
+}
 
 function Hero() {
-    const navigate = useNavigate();
-    const fadeUpVariants = {
-        hidden: { opacity: 0, y: 30 },
+    const fadeDown = {
+        hidden: { opacity: 0, y: -20 },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
             transition: {
-                duration: 1,
-                delay: 0.3 + i * 0.2,
+                duration: 0.8,
+                delay: 0.2 + i * 0.12,
                 ease: [0.25, 0.4, 0.25, 1] as const,
             },
         }),
     };
-    const fadeDownVariants = {
-        hidden: { opacity: 0, y: -30 },
+
+    const fadeUp = {
+        hidden: { opacity: 0, y: 20 },
         visible: (i: number) => ({
             opacity: 1,
             y: 0,
             transition: {
-                duration: 1,
-                delay: 0.3 + i * 0.2,
+                duration: 0.8,
+                delay: 0.4 + i * 0.12,
                 ease: [0.25, 0.4, 0.25, 1] as const,
             },
         }),
     };
 
     return (
-        <div id='home' className='h-svh w-full place-content-center'>
-            <div className='flex flex-col place-items-center place-content-center h-full w-full shadow-[inset_0px_0px_20px_rgba(0,0,0,0.6)] bg-neutral-900 drop-shadow-xl drop-shadow-neutral-500/60'>
-                <Hero3D />
-                <motion.div
-                    custom={0}
-                    variants={fadeDownVariants}
-                    initial='hidden'
-                    animate='visible'
-                >
-                    <h1 className='z-2 relative bottom-50 text-9xl max-md:text-8xl max-sm:text-7xl text-white drop-shadow-black drop-shadow-2xl tracking-widest [text-shadow:0_4px_10px_rgba(0,0,0,0.6)] pointer-events-none'>
-                        S C /\ P E
-                    </h1>
-                </motion.div>
-                <motion.div
-                    custom={1}
-                    variants={fadeDownVariants}
-                    initial='hidden'
-                    animate='visible'
-                >
-                    <div className='flex tracking-widest relative text-white bottom-50 text-5xl max-md:text-3xl max-sm:text-2xl z-2 drop-shadow-black drop-shadow-2xl mt-10 space-x-10 max-sm:space-x-5 [text-shadow:0_2px_8px_rgba(0,0,0,1)] pointer-events-none'>
-                        <h2 className=''>F r o m</h2>
-                        <h2 className=''>M a p</h2>
-                        <h2 className=''>T o</h2>
-                        <h2 className=''>F r a m e</h2>
-                    </div>
-                </motion.div>
-                <div className='flex flex-col absolute bottom-20 max-sm:bottom-10'>
-                    <motion.div
-                        custom={2}
-                        variants={fadeUpVariants}
-                        initial='hidden'
-                        animate='visible'
-                        className='backdrop-blur-sm rounded-full'
-                    >
-                        <button
-                            className='flex z-2 p-5 pl-12 pr-12 max-sm:px-9 max-sm:py-4 text-xl max-sm:text-lg font-normal group backdrop-blur-sm transition-colors duration-150 hover:bg-neutral-100/20 text-neutral-900 border-1 border-neutral-50/80 rounded-full shadow-md hover:cursor-pointer'
-                            onClick={() => {
-                                navigate('/get-started');
-                            }}
+        <section
+            id='home'
+            className='relative h-svh w-screen flex flex-col justify-between lg:justify-center overflow-hidden bg-[#0c0d11]'
+        >
+            {/* ── Studio Backdrop Lighting (Identical to Hero) */}
+            <div className='absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0e1015] via-[#0c0d11] to-[#0a0b0e]' />
+
+            {/* Studio spotlight behind central block */}
+            <div className='absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_75%_55%_at_50%_35%,_rgba(255,248,235,0.08)_0%,_transparent_70%)]' />
+
+            {/* Subtle perimeter vignette */}
+            <div className='absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_transparent_60%,_rgba(5,6,8,0.5)_100%)]' />
+
+            {/* ── Mobile readability gradient scrims (guarantees 100% contrast on mobile without dulling 3D center stage) */}
+            <div className='lg:hidden absolute top-0 left-0 right-0 h-52 pointer-events-none z-10 bg-gradient-to-b from-[#0c0d11] via-[#0c0d11]/85 to-transparent' />
+            <div className='lg:hidden absolute bottom-0 left-0 right-0 h-64 pointer-events-none z-10 bg-gradient-to-t from-[#0c0d11] via-[#0c0d11]/90 to-transparent' />
+
+            {/* ── 3D canvas (WebGL) */}
+            <Suspense fallback={<CanvasFallback />}>
+                <Hero3DNew />
+            </Suspense>
+
+            {/* ── Hero Content */}
+            <div
+                className='relative z-20 flex flex-col justify-between lg:justify-center h-full w-full
+                    pt-20 pb-8 sm:pt-24 sm:pb-10 lg:py-0
+                    px-6 sm:px-12 lg:px-20 max-w-7xl
+                    pointer-events-none select-none'
+            >
+                {/* On mobile: stretches full height and splits Top (headline) and Bottom (CTAs) around the 3D model.
+                    On desktop: condenses into a clean left-column stack. */}
+                <div className='flex flex-col justify-between lg:justify-center items-start text-left h-full lg:h-auto max-w-xl'>
+                    {/* ── Top Block (Headline & Eyebrow) */}
+                    <div className='flex flex-col items-start'>
+                        {/* Eyebrow */}
+                        <motion.div
+                            custom={0}
+                            variants={fadeDown}
+                            initial='hidden'
+                            animate='visible'
+                            className='mb-2 sm:mb-4'
                         >
-                            <p>G e t</p>
-                            <span className='w-4'></span>
-                            <p>S t a r t e d</p>
-                            <ChevronRight className='self-center relative max-sm:hidden left-4 top-[1px] p-0 m-0 group-hover:translate-x-2 transition-all duration-200 ease-out' />
-                        </button>
-                    </motion.div>
-                    <motion.div
-                        custom={3}
-                        variants={fadeUpVariants}
-                        initial='hidden'
-                        animate='visible'
-                        className=''
-                    >
-                        <div className='flex flex-col text-center items-center mt-5'>
-                            <a
-                                href='#thescape'
-                                className='text-lg text-neutral-900 cursor-pointer font-normal active:text-neutral-700 transition-colors duration-100 z-1 peer'
+                            <span className='text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-primary-foreground/70'>
+                                FRAMED TERRAIN MODELS
+                            </span>
+                        </motion.div>
+
+                        {/* Bold Modern Headline */}
+                        <motion.div
+                            custom={1}
+                            variants={fadeDown}
+                            initial='hidden'
+                            animate='visible'
+                        >
+                            <h1 className='font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tight text-primary-foreground leading-[1.05] sm:leading-[0.96] mb-0 sm:mb-2'>
+                                From Map <br />
+                                <span className='text-primary-foreground/70 font-bold'>
+                                    to Frame.
+                                </span>
+                            </h1>
+                        </motion.div>
+                    </div>
+
+                    {/* ── Bottom Block (Description, Price, Actions) */}
+                    <div className='flex flex-col items-start pt-4 lg:pt-6'>
+                        {/* Editorial Description */}
+                        <motion.p
+                            custom={2}
+                            variants={fadeDown}
+                            initial='hidden'
+                            animate='visible'
+                            className='font-display text-sm sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
+                        >
+                            Turn your favourite place in Norway into a 3D
+                            landscape, framed and ready for display.
+                        </motion.p>
+
+                        {/* Refined Price Tag */}
+                        <motion.div
+                            custom={0}
+                            variants={fadeUp}
+                            initial='hidden'
+                            animate='visible'
+                            className='mb-4 sm:mb-6'
+                        >
+                            <div className='inline-flex items-end gap-3'>
+                                <span className='font-display text-2xl sm:text-3xl font-semibold tracking-tight text-primary-foreground tabular-nums'>
+                                    596 kr
+                                </span>
+
+                                <span className='font-display text-sm text-primary-foreground/70 mb-0.5'>
+                                    Shipping included
+                                </span>
+                            </div>
+                        </motion.div>
+
+                        {/* Action Button Group */}
+                        <div className='flex flex-wrap items-center gap-3 pointer-events-auto'>
+                            <motion.div
+                                custom={1}
+                                variants={fadeUp}
+                                initial='hidden'
+                                animate='visible'
                             >
-                                Read More
-                            </a>
-                            <ChevronDown className='text-neutral-900/85 pointer-events-none z-0 peer-hover:translate-y-2 transition-all duration-200 ease-out' />
+                                <a
+                                    href='/get-started'
+                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
+                                >
+                                    Customize Yours
+                                    <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
+                                </a>
+                            </motion.div>
+
+                            <motion.div
+                                custom={2}
+                                variants={fadeUp}
+                                initial='hidden'
+                                animate='visible'
+                            >
+                                <a
+                                    href='#thescape'
+                                    className='inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-4 py-3.5 sm:px-4 sm:py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/[0.08] transition-all duration-200'
+                                >
+                                    Explore
+                                    <ChevronDown className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-y-0.5' />
+                                </a>
+                            </motion.div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 
