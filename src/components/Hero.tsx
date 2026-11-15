@@ -146,7 +146,7 @@ function Hero() {
                             >
                                 <a
                                     href='/get-started'
-                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
+                                    className='group inline-flex min-w-42 items-center justify-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                                 >
                                     {t('hero.ctaCustomize')}
                                     <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
