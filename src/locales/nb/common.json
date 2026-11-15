@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "theScape": "The Scape",
+    "about": "Om oss",
+    "map": "Kart",
+    "getStarted": "Kom i gang"
+  },
+  "actions": {
+    "getStarted": "Kom i gang",
+    "customizeYours": "Kom i gang",
+    "createYourScape": "Lag din Scape",
+    "explore": "Utforsk",
+    "back": "Tilbake",
+    "backToHome": "Tilbake til forsiden",
+    "contactAtelier": "Kontakt oss"
+  },
+  "footer": {
+    "by": "by md",
+    "company": "Selskap",
+    "support": "Kundeservice",
+    "legal": "Juridisk",
+    "links": {
+      "home": "Forside",
+      "aboutUs": "Om oss",
+      "getStarted": "Kom i gang",
+      "testimonials": "Kundeomtaler",
+      "faq": "Ofte stilte spørsmål",
+      "shipping": "Frakt og levering",
+      "contactSupport": "Kontakt oss",
+      "feedback": "Gi tilbakemelding",
+      "privacy": "Personvernerklæring",
+      "terms": "Vilkår for bruk",
+      "returns": "Retur og reklamasjon",
+      "cookies": "Informasjonskapsler"
+    },
+    "poweredBy": "Drevet av",
+    "allRightsReserved": "Alle rettigheter forbeholdt.",
+    "orgNumber": "Org nr 929 981 626"
+  },
+  "language": {
+    "switcher": "Språk",
+    "norwegian": "Norsk",
+    "english": "English"
+  }
+}

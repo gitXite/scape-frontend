@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import type { CarouselApi } from './ui/carousel';
 import { Badge } from './ui/badge';
+import { useTranslation } from 'react-i18next';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -29,57 +30,56 @@ const staggerContainer = {
     },
 };
 
-const pillars = [
-    {
-        number: '01',
-        tag: 'Cartography',
-        title: 'Millimeter-Accurate Relief',
-        description:
-            'Every model is derived from geographic elevation data, translating real-world terrain into a detailed physical relief.',
-        spec: 'Official GeoData',
-    },
-    {
-        number: '02',
-        tag: 'Materiality',
-        title: 'Sculpted for Natural Light',
-        description:
-            'A refined matte finish brings out the contours of the terrain, with subtle shadows that shift as natural light moves through the room.',
-        spec: 'Light-responsive matte surface',
-    },
-    {
-        number: '03',
-        tag: 'Craftsmanship',
-        title: 'Finished to Fit Your Space',
-        description:
-            'Each piece is presented in a carefully selected frame, with oak, walnut, black and white finishes and your choice of passe-partout.',
-        spec: 'Customisable framing',
-    },
-];
-
-const studioImages = [
-    {
-        src: '/images/studio_product_oak.webp',
-        alt: 'Oak frame with topographic relief',
-        caption: 'Natural Oak',
-    },
-    {
-        src: '/images/studio_product_model.webp',
-        alt: 'Detailed close-up of 3D terrain elevation',
-        caption: 'Terrain Relief Detail',
-    },
-    {
-        src: '/images/studio_product_black.webp',
-        alt: 'Satin black frame with custom landscape',
-        caption: 'Satin Black',
-    },
-    {
-        src: '/images/studio_product_collection.webp',
-        alt: 'Collection of framed terrain models',
-        caption: 'Studio Collection',
-    },
-];
-
 function TheScape() {
+    const { t } = useTranslation('home');
+
+    const pillars = [
+        {
+            number: '01',
+            tag: t('theScape.pillars.p1.tag'),
+            title: t('theScape.pillars.p1.title'),
+            description: t('theScape.pillars.p1.description'),
+            spec: t('theScape.pillars.p1.spec'),
+        },
+        {
+            number: '02',
+            tag: t('theScape.pillars.p2.tag'),
+            title: t('theScape.pillars.p2.title'),
+            description: t('theScape.pillars.p2.description'),
+            spec: t('theScape.pillars.p2.spec'),
+        },
+        {
+            number: '03',
+            tag: t('theScape.pillars.p3.tag'),
+            title: t('theScape.pillars.p3.title'),
+            description: t('theScape.pillars.p3.description'),
+            spec: t('theScape.pillars.p3.spec'),
+        },
+    ];
+
+    const studioImages = [
+        {
+            src: '/images/studio_product_oak.webp',
+            alt: 'Oak frame with topographic relief',
+            caption: t('theScape.captions.oak'),
+        },
+        {
+            src: '/images/studio_product_model.webp',
+            alt: 'Detailed close-up of 3D terrain elevation',
+            caption: t('theScape.captions.reliefDetail'),
+        },
+        {
+            src: '/images/studio_product_black.webp',
+            alt: 'Satin black frame with custom landscape',
+            caption: t('theScape.captions.satinBlack'),
+        },
+        {
+            src: '/images/studio_product_collection.webp',
+            alt: 'Collection of framed terrain models',
+            caption: t('theScape.captions.studioCollection'),
+        },
+    ];
+
     const { ref: ref1, inView: inView1 } = useInView({
         triggerOnce: true,
         threshold: 0.2,
@@ -132,23 +132,19 @@ function TheScape() {
                         variants={fadeInUp}
                         className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-4'
                     >
-                        THE SCAPE
+                        {t('theScape.eyebrow')}
                     </motion.p>
                     <motion.h2
                         variants={fadeInUp}
                         className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-6 leading-[1.1]'
                     >
-                        From Map To Frame.
+                        {t('theScape.title')}
                     </motion.h2>
                     <motion.p
                         variants={fadeInUp}
                         className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl'
                     >
-                        With just a few clicks you can transform any Norwegian
-                        landscape into a stunning 3D topographic model. Our
-                        service captures elevation data and terrain contours to
-                        create precision-crafted artwork that celebrates the
-                        beauty of your favorite places.
+                        {t('theScape.description')}
                     </motion.p>
                 </motion.div>
             </div>
@@ -205,15 +201,13 @@ function TheScape() {
                     <motion.div variants={fadeInUp} className='mb-6'>
                         <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
                             <span className='h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse' />
-                            Showcase
+                            {t('theScape.showcase.badge')}
                         </Badge>
                         <h3 className='font-display text-2xl sm:text-3xl font-bold tracking-tight text-surface-foreground mb-2'>
-                            How it works.
+                            {t('theScape.showcase.title')}
                         </h3>
                         <p className='font-sans text-sm sm:text-base text-muted-foreground max-w-xl'>
-                            Explore our interactive map interface to select your
-                            coordinates, adjust vertical relief scaling, and
-                            preview the 3D model in real time.
+                            {t('theScape.showcase.description')}
                         </p>
                     </motion.div>
 
@@ -259,17 +253,13 @@ function TheScape() {
                         {/* Left Column: Craft Story & Specifications */}
                         <motion.div variants={fadeInUp} className='text-left'>
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                CRAFT & SPECIFICATIONS
+                                {t('theScape.specs.eyebrow')}
                             </p>
                             <h3 className='font-display text-2xl sm:text-3xl md:text-4xl font-bold text-surface-foreground mb-6 tracking-tight'>
-                                Designed for scandinavian interiors.
+                                {t('theScape.specs.title')}
                             </h3>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
-                                Every SCAPE is made to order using
-                                high-resolution data and our proprietary
-                                modeling algorithm, ensuring clean edges and a
-                                tactile texture that brings every landscape to
-                                life.
+                                {t('theScape.specs.description')}
                             </p>
 
                             <div className='space-y-4 pt-2'>
@@ -279,10 +269,10 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            Made to order
+                                            {t('theScape.specs.points.madeToOrder.title')}
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Each piece is produced individually for your order.
+                                            {t('theScape.specs.points.madeToOrder.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -293,12 +283,10 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            Made in Bergen
+                                            {t('theScape.specs.points.madeInBergen.title')}
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Designed and produced in Bergen,
-                                            Norway, with delivery throughout
-                                            Norway.
+                                            {t('theScape.specs.points.madeInBergen.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -309,10 +297,10 @@ function TheScape() {
                                     </div>
                                     <div>
                                         <h4 className='text-sm font-semibold text-surface-foreground'>
-                                            A considered finish
+                                            {t('theScape.specs.points.finish.title')}
                                         </h4>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Assembled as a complete piece of wall art, ready to find its place in your home.
+                                            {t('theScape.specs.points.finish.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -383,12 +371,10 @@ function TheScape() {
                     >
                         <motion.div variants={fadeInUp} className='max-w-xl'>
                             <h3 className='font-display text-2xl sm:text-3xl md:text-4xl font-bold text-surface-foreground mb-3 tracking-tight'>
-                                Try it out.
+                                {t('theScape.cta.title')}
                             </h3>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                Choose any coordinate across Norway. Preview the
-                                3D model in real time, choose your framing, and
-                                receive a bespoke art piece.
+                                {t('theScape.cta.description')}
                             </p>
                         </motion.div>
 
@@ -397,7 +383,7 @@ function TheScape() {
                                 href='/get-started'
                                 className='inline-flex group items-center gap-3 px-8 py-3.5 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground shadow-xs transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground'
                             >
-                                Customize Yours
+                                {t('theScape.cta.button')}
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
                             </a>
                         </motion.div>

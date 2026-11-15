@@ -1,26 +1,30 @@
 import { Separator } from './ui/separator';
 import { Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import Socials from './Socials';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function Footer() {
+    const { t } = useTranslation('common');
+
     const footerLinks = {
-        Company: [
-            { label: 'Home', href: '/' },
-            { label: 'About Us', href: '/about-us' },
-            { label: 'Get Started', href: '/get-started' },
-            { label: 'Testimonials', href: '/testimonials' },
+        [t('footer.company')]: [
+            { label: t('footer.links.home'), href: '/' },
+            { label: t('footer.links.aboutUs'), href: '/about-us' },
+            { label: t('footer.links.getStarted'), href: '/get-started' },
+            { label: t('footer.links.testimonials'), href: '/testimonials' },
         ],
-        Support: [
-            { label: 'FAQ', href: '/faq' },
-            { label: 'Orders & Shipping', href: '/shipping' },
-            { label: 'Contact Support', href: '/contact-us' },
-            { label: 'Submit Feedback', href: '/feedback' },
+        [t('footer.support')]: [
+            { label: t('footer.links.faq'), href: '/faq' },
+            { label: t('footer.links.shipping'), href: '/shipping' },
+            { label: t('footer.links.contactSupport'), href: '/contact-us' },
+            { label: t('footer.links.feedback'), href: '/feedback' },
         ],
-        Legal: [
-            { label: 'Privacy Policy', href: '/privacy-policy' },
-            { label: 'Terms of Service', href: '/terms-of-service' },
-            { label: 'Returns & Refunds', href: '/returns' },
-            { label: 'Cookie Policy', href: '/cookies' },
+        [t('footer.legal')]: [
+            { label: t('footer.links.privacy'), href: '/privacy-policy' },
+            { label: t('footer.links.terms'), href: '/terms-of-service' },
+            { label: t('footer.links.returns'), href: '/returns' },
+            { label: t('footer.links.cookies'), href: '/cookies' },
         ],
     };
 
@@ -85,7 +89,7 @@ function Footer() {
                         <Socials />
                         <div className='flex items-center gap-2 text-footer-muted'>
                             <span className='text-xs max-sm:hidden'>
-                                Powered by
+                                {t('footer.poweredBy')}
                             </span>
                             <img
                                 className='max-w-20 relative'
@@ -102,7 +106,7 @@ function Footer() {
                     className='my-8 border-footer-muted/20'
                     orientation='horizontal'
                 />
-                <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-footer-muted'>
+                <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-footer-muted'>
                     <a
                         href='mailto:scapebymd@gmail.com'
                         className='flex items-center gap-2 text-footer-muted hover:text-footer-foreground transition-colors'
@@ -116,12 +120,12 @@ function Footer() {
                         </span>
                     </a>
                     <span className='whitespace-nowrap'>
-                        Org nr 929 981 626
+                        {t('footer.orgNumber')}
                     </span>
                     <span className='whitespace-nowrap'>
-                        © {new Date().getFullYear()} SCAPE by md. All rights
-                        reserved.
+                        © {new Date().getFullYear()} SCAPE {t('footer.by')}. {t('footer.allRightsReserved')}
                     </span>
+                    <LanguageSwitcher variant='footer' className='self-start sm:self-auto' />
                 </div>
             </div>
         </footer>
