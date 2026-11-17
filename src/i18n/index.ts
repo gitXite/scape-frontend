@@ -6,16 +6,24 @@ import enCommon from '../locales/en/common.json';
 import nbCommon from '../locales/nb/common.json';
 import enHome from '../locales/en/home.json';
 import nbHome from '../locales/nb/home.json';
+import enCustomizer from '../locales/en/customizer.json';
+import nbCustomizer from '../locales/nb/customizer.json';
+import enCheckout from '../locales/en/checkout.json';
+import nbCheckout from '../locales/nb/checkout.json';
 
 export const defaultNS = 'common';
 export const resources = {
     nb: {
         common: nbCommon,
         home: nbHome,
+        customizer: nbCustomizer,
+        checkout: nbCheckout,
     },
     en: {
         common: enCommon,
         home: enHome,
+        customizer: enCustomizer,
+        checkout: enCheckout,
     },
 } as const;
 

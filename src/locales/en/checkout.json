@@ -1,0 +1,117 @@
+{
+  "summary": {
+    "badge": "Review & Pay",
+    "title": "Order Summary.",
+    "description": "Verify your custom configuration before proceeding to secure Vipps checkout.",
+    "items": {
+      "theScape": {
+        "title": "The Scape",
+        "badge": "3D printed",
+        "details": "14 × 19 cm (A5 format) · Made to order",
+        "price": "399 kr"
+      },
+      "frameMat": {
+        "frameSuffix": "Frame",
+        "matSuffix": "Passepartout",
+        "whiteMatDefault": "White Passepartout",
+        "price": "148 kr"
+      }
+    },
+    "breakdown": {
+      "subtotal": "Subtotal",
+      "subtotalPrice": "547 kr",
+      "shipping": "Tracked Shipping (Posten Norge)",
+      "shippingPrice": "49 kr",
+      "totalAmount": "Total Amount",
+      "totalTaxNote": "Includes 25% MVA & nationwide shipping",
+      "totalPrice": "596 kr"
+    },
+    "vipps": {
+      "title": "Vipps Checkout",
+      "desc": "Pay instantly with the Vipps app or Bank Card (Visa / Mastercard)"
+    },
+    "actions": {
+      "payWithVipps": "Pay with Vipps"
+    },
+    "trust": {
+      "secureVipps": "Secure Vipps Checkout",
+      "posten": "Posten Tracked Delivery",
+      "tls": "TLS Encrypted"
+    },
+    "toasts": {
+      "errorInitiate": "Failed to initiate Vipps checkout",
+      "tryAgain": "Please try again in a moment."
+    }
+  },
+  "payment": {
+    "badge": "Official Vipps Gateway",
+    "title": "Vipps Checkout.",
+    "description": "Complete your payment securely via the Vipps app or bank card below.",
+    "connecting": "Connecting to Vipps secure portal...",
+    "sdkError": "Failed to load Vipps Checkout SDK"
+  },
+  "confirmation": {
+    "loading": {
+      "title": "Verifying payment status",
+      "desc": "Connecting to Vipps to confirm your transaction. Please do not close this window..."
+    },
+    "success": {
+      "title": "Order Confirmed",
+      "desc": "Takk for din bestilling! We’ve received your order and we will begin preparing your custom Scape.",
+      "orderId": "Order ID:",
+      "nextStepsTitle": "What happens next",
+      "estimatedDispatch": "Estimated dispatch: 2-4 business days",
+      "step1": {
+        "title": "3D Printing",
+        "desc": "We start 3D printing your order as soon as possible."
+      },
+      "step2": {
+        "title": "Framing",
+        "desc": "Hand-fitted into solid frames and apply final touches."
+      },
+      "step3": {
+        "title": "Quality Control",
+        "desc": "Thourougly inspect the final build- and print quality."
+      },
+      "step4": {
+        "title": "Dispatch",
+        "desc": "Packaged and shipped with Posten, with tracking."
+      },
+      "summaryTitle": "Order Summary",
+      "modelTitle": "Scape",
+      "modelSubtitle": "3D Topographic Model",
+      "framePassepartout": "Custom Frame & Passepartout",
+      "frameSuffix": "frame",
+      "matSuffix": "passepartout",
+      "shipping": "Shipping (Posten Norge)",
+      "totalPaid": "Total Paid",
+      "emailNotice": "A complete receipt and tracking updates have been sent to your email. If you need to make changes or have questions before shipping, contact us at",
+      "createAnother": "Create Another Scape",
+      "backToHome": "Back to Home"
+    },
+    "cancelled": {
+      "title": "Checkout Cancelled",
+      "desc": "Your payment was not completed and no funds were withdrawn. Your custom 3D terrain selection has been preserved so you can resume anytime."
+    },
+    "expired": {
+      "title": "Session Expired",
+      "desc": "The checkout session timed out before payment could be verified. No funds were charged, and your custom terrain selection is still saved."
+    },
+    "readyToComplete": "Ready to complete your piece?",
+    "readyToCompleteDesc": "You can return directly to checkout to retry payment with Vipps, or return home.",
+    "returnToCheckout": "Return to Checkout",
+    "notFound": {
+      "title": "No Active Order Found",
+      "desc": "We couldn’t find an order session to confirm. If you recently completed a purchase, please check your email inbox for your order receipt.",
+      "createAScape": "Create a Scape",
+      "backToHome": "Back to Home"
+    },
+    "error": {
+      "title": "Order Verification Pending",
+      "desc": "We received your callback but could not immediately verify payment status with Vipps. If your Vipps app confirmed the transaction, your order has gone through and your confirmation email is on its way.",
+      "checkAgain": "Check Status Again",
+      "cancel": "Cancel",
+      "backToCheckout": "Back to Checkout"
+    }
+  }
+}

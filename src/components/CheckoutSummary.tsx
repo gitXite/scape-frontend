@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { useCustomization } from '@/context/CustomizationContext';
@@ -23,6 +24,8 @@ const passePartoutImages: Record<string, string> = {
 };
 
 function CheckoutSummary() {
+    const { t } = useTranslation('checkout');
+    const { t: tCustomizer } = useTranslation('customizer');
     const { frameType, passePartoutType } = useCustomization();
     const [isLoading, setIsLoading] = useState(false);
     const [session, setSession] = useState(null);
@@ -66,8 +69,8 @@ function CheckoutSummary() {
             setSession(data);
             localStorage.setItem('reference', orderId);
         } catch (err) {
-            toast.error('Failed to initiate Vipps checkout', {
-                description: 'Please try again in a moment.',
+            toast.error(t('summary.toasts.errorInitiate'), {
+                description: t('summary.toasts.tryAgain'),
             });
         } finally {
             setIsLoading(false);
@@ -83,13 +86,13 @@ function CheckoutSummary() {
                     {/* Header */}
                     <div className='mb-6 sm:mb-8 text-center sm:text-left'>
                         <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
-                            Review & Pay
+                            {t('summary.badge')}
                         </Badge>
                         <h1 className='font-display text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight'>
-                            Order Summary.
+                            {t('summary.title')}
                         </h1>
                         <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1'>
-                            Verify your custom configuration before proceeding to secure Vipps checkout.
+                            {t('summary.description')}
                         </p>
                     </div>
 
@@ -107,18 +110,18 @@ function CheckoutSummary() {
                             <div className='flex-1 min-w-0'>
                                 <div className='flex items-center gap-2'>
                                     <h2 className='text-base sm:text-lg font-display font-bold text-foreground'>
-                                        The Scape
+                                        {t('summary.items.theScape.title')}
                                     </h2>
                                     <span className='text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-muted text-muted-foreground'>
-                                        3D printed
+                                        {t('summary.items.theScape.badge')}
                                     </span>
                                 </div>
                                 <p className='text-xs sm:text-sm text-muted-foreground mt-0.5'>
-                                    14 × 19 cm (A5 format) · Made to order
+                                    {t('summary.items.theScape.details')}
                                 </p>
                             </div>
                             <p className='font-mono font-semibold text-foreground text-sm sm:text-base tabular-nums'>
-                                399 kr
+                                {t('summary.items.theScape.price')}
                             </p>
                         </div>
 
@@ -142,14 +145,14 @@ function CheckoutSummary() {
                             </div>
                             <div className='flex-1 min-w-0'>
                                 <h2 className='text-base sm:text-lg font-display font-bold text-foreground capitalize'>
-                                    {frameType || 'Oak'} Frame
+                                    {frameType ? `${tCustomizer(`frame.options.${frameType}.title`, { defaultValue: frameType })} ${t('summary.items.frameMat.frameSuffix')}` : `Oak ${t('summary.items.frameMat.frameSuffix')}`}
                                 </h2>
                                 <p className='text-xs sm:text-sm text-muted-foreground mt-0.5 capitalize'>
-                                    {passePartoutType ? `${passePartoutType} Passepartout` : 'White Passepartout'}
+                                    {passePartoutType ? `${tCustomizer(`passepartout.options.${passePartoutType}.title`, { defaultValue: passePartoutType })} ${t('summary.items.frameMat.matSuffix')}` : t('summary.items.frameMat.whiteMatDefault')}
                                 </p>
                             </div>
                             <p className='font-mono font-semibold text-foreground text-sm sm:text-base tabular-nums'>
-                                148 kr
+                                {t('summary.items.frameMat.price')}
                             </p>
                         </div>
 
@@ -158,14 +161,14 @@ function CheckoutSummary() {
                         {/* Price Breakdown */}
                         <div className='space-y-2 text-sm'>
                             <div className='flex justify-between font-normal'>
-                                <span className='text-muted-foreground'>Subtotal</span>
-                                <span className='font-mono text-foreground tabular-nums'>547 kr</span>
+                                <span className='text-muted-foreground'>{t('summary.breakdown.subtotal')}</span>
+                                <span className='font-mono text-foreground tabular-nums'>{t('summary.breakdown.subtotalPrice')}</span>
                             </div>
                             <div className='flex justify-between font-normal'>
                                 <span className='text-muted-foreground flex items-center gap-1.5'>
-                                    <span>Tracked Shipping (Posten Norge)</span>
+                                    <span>{t('summary.breakdown.shipping')}</span>
                                 </span>
-                                <span className='font-mono text-foreground tabular-nums'>49 kr</span>
+                                <span className='font-mono text-foreground tabular-nums'>{t('summary.breakdown.shippingPrice')}</span>
                             </div>
                         </div>
 
@@ -175,14 +178,14 @@ function CheckoutSummary() {
                         <div className='flex justify-between items-baseline pt-1'>
                             <div>
                                 <span className='font-display text-lg sm:text-xl font-bold text-foreground block'>
-                                    Total Amount
+                                    {t('summary.breakdown.totalAmount')}
                                 </span>
                                 <span className='text-xs text-muted-foreground'>
-                                    Includes 25% MVA & nationwide shipping
+                                    {t('summary.breakdown.totalTaxNote')}
                                 </span>
                             </div>
                             <span className='font-display text-2xl sm:text-3xl font-extrabold text-foreground tabular-nums'>
-                                596 kr
+                                {t('summary.breakdown.totalPrice')}
                             </span>
                         </div>
 
@@ -192,10 +195,10 @@ function CheckoutSummary() {
                                 <div className='size-2.5 rounded-full bg-[#ff5b24] shrink-0' />
                                 <div>
                                     <p className='text-xs sm:text-sm font-semibold text-foreground'>
-                                        Vipps Checkout
+                                        {t('summary.vipps.title')}
                                     </p>
                                     <p className='text-[11px] text-muted-foreground leading-tight mt-0.5'>
-                                        Pay instantly with the Vipps app or Bank Card (Visa / Mastercard)
+                                        {t('summary.vipps.desc')}
                                     </p>
                                 </div>
                             </div>
@@ -221,7 +224,7 @@ function CheckoutSummary() {
                                     onClick={startCheckout}
                                     className='group h-13 w-full rounded-full bg-foreground text-background font-semibold text-sm sm:text-base hover:bg-primary-foreground hover:text-primary transition-all shadow-xs border border-border flex items-center justify-center gap-2.5 cursor-pointer'
                                 >
-                                    <span>Pay with Vipps</span>
+                                    <span>{t('summary.actions.payWithVipps')}</span>
                                     {/* <span className='font-mono font-normal opacity-80'>· 596 kr</span> */}
                                     <CreditCard className='w-4 h-4 ml-1 transition-all' />
                                 </Button>
@@ -232,15 +235,15 @@ function CheckoutSummary() {
                         <div className='pt-4 border-t border-border/50 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground'>
                             <span className='flex items-center gap-1.5'>
                                 <ShieldCheck className='w-4 h-4 text-emerald-600 dark:text-emerald-400' />
-                                Secure Vipps Checkout
+                                {t('summary.trust.secureVipps')}
                             </span>
                             <span className='flex items-center gap-1.5'>
                                 <Truck className='w-4 h-4 text-foreground' />
-                                Posten Tracked Delivery
+                                {t('summary.trust.posten')}
                             </span>
                             <span className='flex items-center gap-1.5'>
                                 <Lock className='w-3.5 h-3.5 text-foreground' />
-                                TLS Encrypted
+                                {t('summary.trust.tls')}
                             </span>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSearchParams, useNavigate } from 'react-router';
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
@@ -31,6 +32,8 @@ interface OrderSnapshot {
 }
 
 function OrderConfirmation() {
+    const { t } = useTranslation('checkout');
+    const { t: tCustomizer } = useTranslation('customizer');
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
@@ -150,11 +153,10 @@ function OrderConfirmation() {
                         </div>
                         <div>
                             <h1 className='text-xl sm:text-2xl font-display font-semibold tracking-tight text-foreground'>
-                                Verifying payment status
+                                {t('confirmation.loading.title')}
                             </h1>
                             <p className='text-sm text-muted-foreground mt-2 max-w-sm mx-auto leading-relaxed'>
-                                Connecting to Vipps to confirm your transaction.
-                                Please do not close this window...
+                                {t('confirmation.loading.desc')}
                             </p>
                         </div>
                     </div>
@@ -169,17 +171,15 @@ function OrderConfirmation() {
                                 <CheckCircle2 className='w-8 h-8 stroke-[2]' />
                             </div>
                             <h1 className='text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground'>
-                                Order Confirmed
+                                {t('confirmation.success.title')}
                             </h1>
                             <p className='text-sm sm:text-base text-muted-foreground mt-2 max-w-md mx-auto'>
-                                Takk for din bestilling! We’ve received your
-                                order and we will begin preparing your custom
-                                Scape.
+                                {t('confirmation.success.desc')}
                             </p>
 
                             {orderId && (
                                 <div className='inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-muted border border-border/60 text-xs font-mono text-muted-foreground mt-4'>
-                                    <span>Order ID:</span>
+                                    <span>{t('confirmation.success.orderId')}</span>
                                     <span className='font-semibold text-foreground tracking-wider'>
                                         #{orderId}
                                     </span>
@@ -196,10 +196,10 @@ function OrderConfirmation() {
                         <div className='space-y-4'>
                             <div className='flex items-center justify-between'>
                                 <h2 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                    What happens next
+                                    {t('confirmation.success.nextStepsTitle')}
                                 </h2>
                                 <span className='text-xs text-muted-foreground/80'>
-                                    Estimated dispatch: 2-4 business days
+                                    {t('confirmation.success.estimatedDispatch')}
                                 </span>
                             </div>
 
@@ -211,11 +211,10 @@ function OrderConfirmation() {
                                     <div>
                                         <p className='text-xs font-semibold text-foreground flex items-center gap-1.5'>
                                             <Layers className='w-3.5 h-3.5 text-muted-foreground' />{' '}
-                                            3D Printing
+                                            {t('confirmation.success.step1.title')}
                                         </p>
                                         <p className='text-[11px] text-muted-foreground mt-0.5 leading-snug'>
-                                            We start 3D printing your order as
-                                            soon as possible.
+                                            {t('confirmation.success.step1.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -227,11 +226,10 @@ function OrderConfirmation() {
                                     <div>
                                         <p className='text-xs font-semibold text-foreground flex items-center gap-1.5'>
                                             <Frame className='w-3.5 h-3.5 text-muted-foreground' />{' '}
-                                            Framing
+                                            {t('confirmation.success.step2.title')}
                                         </p>
                                         <p className='text-[11px] text-muted-foreground mt-0.5 leading-snug'>
-                                            Hand-fitted into solid frames and
-                                            apply final touches.
+                                            {t('confirmation.success.step2.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -243,11 +241,10 @@ function OrderConfirmation() {
                                     <div>
                                         <p className='text-xs font-semibold text-foreground flex items-center gap-1.5'>
                                             <PackageCheck className='w-3.5 h-3.5 text-muted-foreground' />{' '}
-                                            Quality Control
+                                            {t('confirmation.success.step3.title')}
                                         </p>
                                         <p className='text-[11px] text-muted-foreground mt-0.5 leading-snug'>
-                                            Thourougly inspect the final build-
-                                            and print quality.
+                                            {t('confirmation.success.step3.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -259,11 +256,10 @@ function OrderConfirmation() {
                                     <div>
                                         <p className='text-xs font-semibold text-foreground flex items-center gap-1.5'>
                                             <Truck className='w-3.5 h-3.5 text-muted-foreground' />{' '}
-                                            Dispatch
+                                            {t('confirmation.success.step4.title')}
                                         </p>
                                         <p className='text-[11px] text-muted-foreground mt-0.5 leading-snug'>
-                                            Packaged and shipped with Posten,
-                                            with tracking.
+                                            {t('confirmation.success.step4.desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -278,7 +274,7 @@ function OrderConfirmation() {
                         {/* Order Summary Receipt */}
                         <div className='space-y-4'>
                             <h2 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                Order Summary
+                                {t('confirmation.success.summaryTitle')}
                             </h2>
 
                             <div className='space-y-3.5'>
@@ -291,10 +287,10 @@ function OrderConfirmation() {
                                         />
                                         <div>
                                             <p className='font-medium text-foreground'>
-                                                Scape
+                                                {t('confirmation.success.modelTitle')}
                                             </p>
                                             <p className='text-xs text-muted-foreground'>
-                                                3D Topographic Model
+                                                {t('confirmation.success.modelSubtitle')}
                                             </p>
                                         </div>
                                     </div>
@@ -306,12 +302,12 @@ function OrderConfirmation() {
                                 <div className='flex items-center justify-between text-sm pt-1'>
                                     <div>
                                         <p className='font-medium text-foreground'>
-                                            Custom Frame & Passepartout
+                                            {t('confirmation.success.framePassepartout')}
                                         </p>
                                         <p className='text-xs text-muted-foreground capitalize'>
-                                            {orderSnapshot.frame || ''} frame ·{' '}
-                                            {orderSnapshot.passepartout || ''}{' '}
-                                            passepartout
+                                            {orderSnapshot.frame ? tCustomizer(`frame.options.${orderSnapshot.frame}.title`, { defaultValue: orderSnapshot.frame }) : ''} {t('confirmation.success.frameSuffix')} ·{' '}
+                                            {orderSnapshot.passepartout ? tCustomizer(`passepartout.options.${orderSnapshot.passepartout}.title`, { defaultValue: orderSnapshot.passepartout }) : ''}{' '}
+                                            {t('confirmation.success.matSuffix')}
                                         </p>
                                     </div>
                                     <span className='font-mono text-foreground font-medium'>
@@ -320,7 +316,7 @@ function OrderConfirmation() {
                                 </div>
 
                                 <div className='flex items-center justify-between text-xs text-muted-foreground pt-1'>
-                                    <span>Shipping (Posten Norge)</span>
+                                    <span>{t('confirmation.success.shipping')}</span>
                                     <span className='font-mono'>49 kr</span>
                                 </div>
 
@@ -328,7 +324,7 @@ function OrderConfirmation() {
 
                                 <div className='flex justify-between items-baseline font-medium text-base text-foreground'>
                                     <span className='font-display font-semibold'>
-                                        Total Paid
+                                        {t('confirmation.success.totalPaid')}
                                     </span>
                                     <span className='font-display font-bold text-xl tabular-nums'>
                                         596 kr
@@ -346,10 +342,7 @@ function OrderConfirmation() {
                         <div className='flex items-start gap-3.5 p-4 rounded-xl bg-muted/40 border border-border/60 text-xs text-muted-foreground'>
                             <Mail className='w-4 h-4 text-foreground shrink-0 mt-0.5' />
                             <p className='leading-relaxed'>
-                                A complete receipt and tracking updates have
-                                been sent to your email. If you need to make
-                                changes or have questions before shipping,
-                                contact us at{' '}
+                                {t('confirmation.success.emailNotice')}{' '}
                                 <a
                                     href='mailto:scapebymd@gmail.com'
                                     className='font-medium text-foreground underline underline-offset-2 hover:opacity-80'
@@ -366,13 +359,13 @@ function OrderConfirmation() {
                                 onClick={() => navigate('/get-started')}
                                 className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                             >
-                                Create Another Scape
+                                {t('confirmation.success.createAnother')}
                             </button>
                             <button
                                 onClick={() => navigate('/')}
                                 className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
-                                Back to Home
+                                {t('confirmation.success.backToHome')}
                             </button>
                         </div>
                     </div>
@@ -387,23 +380,22 @@ function OrderConfirmation() {
 
                         <h1 className='text-2xl sm:text-3xl font-display font-bold tracking-tight text-foreground'>
                             {status === 'cancelled'
-                                ? 'Checkout Cancelled'
-                                : 'Session Expired'}
+                                ? t('confirmation.cancelled.title')
+                                : t('confirmation.expired.title')}
                         </h1>
 
                         <p className='text-sm text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed'>
                             {status === 'cancelled'
-                                ? 'Your payment was not completed and no funds were withdrawn. Your custom 3D terrain selection has been preserved so you can resume anytime.'
-                                : 'The checkout session timed out before payment could be verified. No funds were charged, and your custom terrain selection is still saved.'}
+                                ? t('confirmation.cancelled.desc')
+                                : t('confirmation.expired.desc')}
                         </p>
 
                         <div className='w-full my-6 p-4 rounded-xl bg-muted/40 border border-border/60 text-left text-xs text-muted-foreground space-y-1.5'>
                             <p className='font-medium text-foreground'>
-                                Ready to complete your piece?
+                                {t('confirmation.readyToComplete')}
                             </p>
                             <p>
-                                You can return directly to checkout to retry
-                                payment with Vipps, or return home.
+                                {t('confirmation.readyToCompleteDesc')}
                             </p>
                         </div>
 
@@ -412,13 +404,13 @@ function OrderConfirmation() {
                                 onClick={() => navigate('/checkout')}
                                 className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                             >
-                                Return to Checkout
+                                {t('confirmation.returnToCheckout')}
                             </button>
                             <button
                                 onClick={() => navigate('/')}
                                 className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
-                                Back to Home
+                                {t('confirmation.success.backToHome')}
                             </button>
                         </div>
                     </div>
@@ -432,13 +424,11 @@ function OrderConfirmation() {
                         </div>
 
                         <h1 className='text-2xl font-display font-bold tracking-tight text-foreground'>
-                            No Active Order Found
+                            {t('confirmation.notFound.title')}
                         </h1>
 
                         <p className='text-sm text-muted-foreground mt-2 max-w-sm mx-auto leading-relaxed'>
-                            We couldn’t find an order session to confirm. If you
-                            recently completed a purchase, please check your
-                            email inbox for your order receipt.
+                            {t('confirmation.notFound.desc')}
                         </p>
 
                         <div className='w-full flex flex-col sm:flex-row items-center gap-3 mt-8'>
@@ -446,13 +436,13 @@ function OrderConfirmation() {
                                 onClick={() => navigate('/get-started')}
                                 className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                             >
-                                Create a Scape
+                                {t('confirmation.notFound.createAScape')}
                             </button>
                             <button
                                 onClick={() => navigate('/')}
                                 className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
-                                Back to Home
+                                {t('confirmation.notFound.backToHome')}
                             </button>
                         </div>
                     </div>
@@ -466,14 +456,11 @@ function OrderConfirmation() {
                         </div>
 
                         <h1 className='text-2xl font-display font-bold tracking-tight text-foreground'>
-                            Order Verification Pending
+                            {t('confirmation.error.title')}
                         </h1>
 
                         <p className='text-sm text-muted-foreground mt-2 max-w-sm mx-auto leading-relaxed'>
-                            We received your callback but could not immediately
-                            verify payment status with Vipps. If your Vipps app
-                            confirmed the transaction, your order has gone
-                            through and your confirmation email is on its way.
+                            {t('confirmation.error.desc')}
                         </p>
 
                         <div className='w-full flex flex-col sm:flex-row items-center gap-3 mt-8'>
@@ -481,7 +468,7 @@ function OrderConfirmation() {
                                 onClick={() => window.location.reload()}
                                 className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
-                                Check Status Again
+                                {t('confirmation.error.checkAgain')}
                             </button>
                             <button
                                 onClick={() => {
@@ -489,7 +476,7 @@ function OrderConfirmation() {
                                     navigate('/');
                                 }} 
                                 className='inline-flex w-full justify-center gap-2 px-6 py-3.5 rounded-full text-destructive border border-destructive bg-background text-xs sm:text-sm font-medium hover:bg-destructive/10 transition-colors cursor-pointer'>
-                                Cancel
+                                {t('confirmation.error.cancel')}
                             </button>
                         </div>
                         <div className='w-full mt-4'>
@@ -497,7 +484,7 @@ function OrderConfirmation() {
                                 onClick={() => navigate('/checkout')}
                                 className='inline-flex w-full group justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-sm cursor-pointer'
                             >
-                                Back to Checkout
+                                {t('confirmation.error.backToCheckout')}
                             </button>
                         </div>
                     </div>

@@ -7,26 +7,38 @@ import LanguageSwitcher from './LanguageSwitcher';
 function Footer() {
     const { t } = useTranslation('common');
 
-    const footerLinks = {
-        [t('footer.company')]: [
-            { label: t('footer.links.home'), href: '/' },
-            { label: t('footer.links.aboutUs'), href: '/about-us' },
-            { label: t('footer.links.getStarted'), href: '/get-started' },
-            { label: t('footer.links.testimonials'), href: '/testimonials' },
-        ],
-        [t('footer.support')]: [
-            { label: t('footer.links.faq'), href: '/faq' },
-            { label: t('footer.links.shipping'), href: '/shipping' },
-            { label: t('footer.links.contactSupport'), href: '/contact-us' },
-            { label: t('footer.links.feedback'), href: '/feedback' },
-        ],
-        [t('footer.legal')]: [
-            { label: t('footer.links.privacy'), href: '/privacy-policy' },
-            { label: t('footer.links.terms'), href: '/terms-of-service' },
-            { label: t('footer.links.returns'), href: '/returns' },
-            { label: t('footer.links.cookies'), href: '/cookies' },
-        ],
-    };
+    const footerColumns = [
+        {
+            category: t('footer.company'),
+            isLegal: false,
+            links: [
+                { label: t('footer.links.home'), href: '/' },
+                { label: t('footer.links.aboutUs'), href: '/about-us' },
+                { label: t('footer.links.getStarted'), href: '/get-started' },
+                { label: t('footer.links.testimonials'), href: '/testimonials' },
+            ],
+        },
+        {
+            category: t('footer.support'),
+            isLegal: false,
+            links: [
+                { label: t('footer.links.faq'), href: '/faq' },
+                { label: t('footer.links.shipping'), href: '/shipping' },
+                { label: t('footer.links.contactSupport'), href: '/contact-us' },
+                { label: t('footer.links.feedback'), href: '/feedback' },
+            ],
+        },
+        {
+            category: t('footer.legal'),
+            isLegal: true,
+            links: [
+                { label: t('footer.links.privacy'), href: '/privacy-policy' },
+                { label: t('footer.links.terms'), href: '/terms-of-service' },
+                { label: t('footer.links.returns'), href: '/returns' },
+                { label: t('footer.links.cookies'), href: '/cookies' },
+            ],
+        },
+    ];
 
     return (
         <footer className='w-full bg-footer-bg text-footer-foreground'>
@@ -46,42 +58,35 @@ function Footer() {
 
                     {/* Link columns */}
                     <div className='md:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-8'>
-                        {Object.entries(footerLinks).map(
-                            ([category, links]) => {
-                                const isLegal = category === 'Legal';
-                                return (
-                                    <div
-                                        key={category}
-                                        className={`flex flex-col items-start gap-3.5 ${
-                                            isLegal
-                                                ? 'col-span-2 sm:col-span-1'
-                                                : ''
-                                        }`}
-                                    >
-                                        <h3 className='text-xs font-semibold uppercase tracking-wider text-footer-foreground/90'>
-                                            {category}
-                                        </h3>
-                                        <div
-                                            className={`w-full ${
-                                                isLegal
-                                                    ? 'grid grid-cols-2 gap-x-8 gap-y-2.5 sm:flex sm:flex-col'
-                                                    : 'flex flex-col gap-2.5'
-                                            }`}
+                        {footerColumns.map(({ category, isLegal, links }) => (
+                            <div
+                                key={category}
+                                className={`flex flex-col items-start gap-3.5 ${
+                                    isLegal ? 'col-span-2 sm:col-span-1' : ''
+                                }`}
+                            >
+                                <h3 className='text-xs font-semibold uppercase tracking-wider text-footer-foreground/90'>
+                                    {category}
+                                </h3>
+                                <div
+                                    className={`w-full ${
+                                        isLegal
+                                            ? 'grid grid-cols-2 gap-x-8 gap-y-2.5 sm:flex sm:flex-col'
+                                            : 'flex flex-col gap-2.5'
+                                    }`}
+                                >
+                                    {links.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            className='text-xs sm:text-sm text-footer-muted hover:text-footer-foreground transition-colors duration-200 whitespace-nowrap'
                                         >
-                                            {links.map((link) => (
-                                                <a
-                                                    key={link.href}
-                                                    href={link.href}
-                                                    className='text-xs sm:text-sm text-footer-muted hover:text-footer-foreground transition-colors duration-200 whitespace-nowrap'
-                                                >
-                                                    {link.label}
-                                                </a>
-                                            ))}
-                                        </div>
-                                    </div>
-                                );
-                            },
-                        )}
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
                     {/* Socials + Payment */}
@@ -125,7 +130,7 @@ function Footer() {
                     <span className='whitespace-nowrap'>
                         © {new Date().getFullYear()} SCAPE {t('footer.by')}. {t('footer.allRightsReserved')}
                     </span>
-                    <LanguageSwitcher variant='footer' className='self-start sm:self-auto' />
+                    <LanguageSwitcher variant='footer' className='self-start sm:self-auto shrink-0' />
                 </div>
             </div>
         </footer>

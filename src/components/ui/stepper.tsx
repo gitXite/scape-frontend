@@ -1,4 +1,5 @@
 import { type JSX, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { RippleButton } from './ripple';
 import { useNavigate } from 'react-router';
@@ -50,7 +51,12 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
         };
     }, []);
 
-    const labels = ['Landscape', 'Frame', 'Passe-partout'];
+    const { t } = useTranslation('customizer');
+    const labels = [
+        t('stepper.landscape'),
+        t('stepper.frame'),
+        t('stepper.passepartout'),
+    ];
 
     {/* Desktop/Tablet Timeline - completely hidden on mobile */}
     const TimelineComponent = (
@@ -131,7 +137,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                         disabled={currentStep === 0}
                         className='h-10 px-5 sm:px-6 rounded-full border border-border bg-background text-foreground hover:bg-muted hover:border-border/80 transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none hover:shadow-sm cursor-pointer'
                     >
-                        Previous
+                        {t('stepper.previous')}
                     </RippleButton>
 
                     <RippleButton
@@ -152,7 +158,7 @@ export function Stepper({ steps, currentStep, onStepChange }: StepperProps) {
                         }
                         className='h-10 px-6 sm:px-7 rounded-full bg-foreground border border-border hover:bg-primary-foreground hover:text-foreground text-primary-foreground hover:shadow-sm transition-all duration-150 disabled:opacity-40 disabled:pointer-events-none cursor-pointer'
                     >
-                        {currentStep === steps.length - 1 ? 'Checkout' : 'Next'}
+                        {currentStep === steps.length - 1 ? t('stepper.checkout') : t('stepper.next')}
                     </RippleButton>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check } from 'lucide-react';
 
 interface PassepartoutCardParams {
@@ -16,6 +17,7 @@ function PassepartoutCard({
     text,
     desc,
 }: PassepartoutCardParams) {
+    const { t } = useTranslation('customizer');
     const isSelected = passePartoutType === type;
 
     return (
@@ -39,7 +41,7 @@ function PassepartoutCard({
             <div className='flex items-center justify-between gap-2 mb-2'>
                 <div>
                     <span className='font-display font-bold text-sm sm:text-base text-foreground capitalize'>
-                        {type} Mat
+                        {text || type} {t('passepartout.matLabel')}
                     </span>
                     <span className='block text-[11px] font-mono text-muted-foreground uppercase tracking-wider'>
                         {text}
@@ -61,7 +63,7 @@ function PassepartoutCard({
             <div className='aspect-[4/3] w-full rounded-xl bg-muted/30 p-2 sm:p-2.5 flex items-center justify-center my-1.5 overflow-hidden border border-border/40'>
                 <img
                     src={`/images/passepartout_${type}.webp`}
-                    alt={`${type} Passepartout`}
+                    alt={`${text || type} ${t('passepartout.matLabel')}`}
                     className='w-full h-full object-contain'
                 />
             </div>
@@ -73,7 +75,7 @@ function PassepartoutCard({
 
             {/* Quality Specification Footer */}
             <div className='mt-3 pt-2.5 border-t border-border/50 flex items-center justify-between text-[11px] font-mono text-muted-foreground'>
-                <span className='text-[10px] uppercase opacity-70'>45° Bevel Cut</span>
+                <span className='text-[10px] uppercase opacity-70'>{t('passepartout.bevelCut')}</span>
             </div>
         </label>
     );

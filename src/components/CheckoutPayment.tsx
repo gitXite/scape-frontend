@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { Badge } from './ui/badge';
@@ -13,6 +14,7 @@ interface CheckoutPaymentProps {
 }
 
 function CheckoutPayment({ session }: CheckoutPaymentProps) {
+    const { t } = useTranslation('checkout');
     const [sdkReady, setSdkReady] = useState(false);
 
     useEffect(() => {
@@ -23,14 +25,14 @@ function CheckoutPayment({ session }: CheckoutPaymentProps) {
         script.async = true;
         script.onload = () => setSdkReady(true);
         script.onerror = () => {
-            toast.error('Failed to load Vipps Checkout SDK');
+            toast.error(t('payment.sdkError'));
         };
         document.body.appendChild(script);
 
         return () => {
             document.body.removeChild(script);
         };
-    }, [session]);
+    }, [session, t]);
 
     useEffect(() => {
         if (!sdkReady || !session) return;
@@ -54,13 +56,13 @@ function CheckoutPayment({ session }: CheckoutPaymentProps) {
             <div>
                 <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
                     <ShieldCheck className='w-3.5 h-3.5 text-emerald-600' />
-                    Official Vipps Gateway
+                    {t('payment.badge')}
                 </Badge>
                 <h1 className='font-display text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight'>
-                    Vipps Checkout.
+                    {t('payment.title')}
                 </h1>
                 <p className='font-sans text-xs sm:text-sm text-muted-foreground mt-1'>
-                    Complete your payment securely via the Vipps app or bank card below.
+                    {t('payment.description')}
                 </p>
             </div>
 
@@ -69,7 +71,7 @@ function CheckoutPayment({ session }: CheckoutPaymentProps) {
                 {!sdkReady ? (
                     <div className='flex flex-col items-center justify-center gap-3 py-16 text-muted-foreground'>
                         <Spinner variant='circle' size={32} className='text-foreground' />
-                        <span className='text-xs font-mono'>Connecting to Vipps secure portal...</span>
+                        <span className='text-xs font-mono'>{t('payment.connecting')}</span>
                     </div>
                 ) : (
                     <div id='vipps-checkout-container' className='w-full min-h-[420px]' />

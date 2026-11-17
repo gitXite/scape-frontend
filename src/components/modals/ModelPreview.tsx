@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import type React from 'react';
@@ -28,6 +29,7 @@ function ModelPreview({
     setShowModal,
     className,
 }: ModelPreviewProps) {
+    const { t } = useTranslation('customizer');
     const [isLoading, setIsLoading] = useState(true);
     const [isReady, setIsReady] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
@@ -205,10 +207,10 @@ function ModelPreview({
                         </div>
                         <div>
                             <h3 className='text-sm font-medium text-white'>
-                                3D Model Preview
+                                {t('previewModal.title')}
                             </h3>
                             <p className='text-xs text-white/50'>
-                                Drag to rotate, scroll to zoom
+                                {t('previewModal.subtitle')}
                             </p>
                         </div>
                     </div>
@@ -216,7 +218,7 @@ function ModelPreview({
                     <div className='flex items-center gap-2'>
                         <button
                             className='flex items-center justify-center w-9 h-9 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200 group'
-                            title='Reset view'
+                            title={t('previewModal.resetView')}
                             onClick={resetView}
                         >
                             <RotateCcw className='w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors' />
@@ -224,7 +226,7 @@ function ModelPreview({
                         <button
                             onClick={() => setShowModal(false)}
                             className='flex items-center justify-center w-9 h-9 rounded-md bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-200 group'
-                            title='Close (Esc)'
+                            title={t('previewModal.close')}
                         >
                             <X className='w-4 h-4 text-white/50 group-hover:text-red-400 transition-colors' />
                         </button>
@@ -243,7 +245,7 @@ function ModelPreview({
                             />
                         </div>
                         <p className='text-sm text-white/60 animate-pulse'>
-                            Loading model...
+                            {t('previewModal.loading')}
                         </p>
                     </div>
                 )}
@@ -261,14 +263,14 @@ function ModelPreview({
                             <kbd className='px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]'>
                                 ESC
                             </kbd>
-                            to close
+                            {t('previewModal.hints.esc')}
                         </span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Scroll to zoom</span>
+                        <span>{t('previewModal.hints.scroll')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Left click to rotate</span>
+                        <span>{t('previewModal.hints.rotate')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Right click to drag</span>
+                        <span>{t('previewModal.hints.drag')}</span>
                     </div>
                 </div>
             </div>

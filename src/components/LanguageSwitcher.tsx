@@ -32,7 +32,7 @@ function LanguageSwitcher({
                 role='group'
                 aria-label='Language switcher'
                 className={cn(
-                    'inline-flex items-center gap-1.5 text-xs font-mono select-none text-footer-muted',
+                    'inline-flex items-center gap-1.5 text-xs font-mono select-none text-footer-muted shrink-0',
                     className,
                 )}
             >
@@ -85,7 +85,7 @@ function LanguageSwitcher({
             role='group'
             aria-label='Language switcher'
             className={cn(
-                'inline-flex items-center gap-1.5 select-none text-xs font-mono',
+                'inline-flex items-center gap-1.5 select-none text-xs font-mono shrink-0',
                 isHeader ? 'text-primary-foreground' : 'text-foreground',
                 className,
             )}

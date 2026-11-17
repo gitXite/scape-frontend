@@ -1,0 +1,158 @@
+{
+  "stepper": {
+    "landscape": "Landscape",
+    "frame": "Frame",
+    "passepartout": "Passe-partout",
+    "previous": "Previous",
+    "next": "Next",
+    "checkout": "Checkout"
+  },
+  "guide": {
+    "button": "Guide",
+    "title": "How to Order Your SCAPE",
+    "subtitle": "4 simple steps from coordinates to checkout",
+    "step1": {
+      "tag": "Map",
+      "title": "Select Coordinates & Area",
+      "desc1": "Find any location in Norway and click to center the map, or drag the box. Use <bold>Capture Size</bold> to adjust coverage and <bold>Terrain Height</bold> for elevation exaggeration. The defalt 2.0x is 1:1 scale.",
+      "desc2": "<bold>Generate Scape</bold> to preview the model or to continue."
+    },
+    "step2": {
+      "tag": "Frame",
+      "title": "Choose Frame",
+      "desc": "Select a frame to your liking. Real-time stock availability is verified automatically."
+    },
+    "step3": {
+      "tag": "Finish",
+      "title": "Add Passe-Partout",
+      "desc": "Choose an archival bevel-cut matboard to give your 3D model enhanced architectural depth."
+    },
+    "step4": {
+      "tag": "Order",
+      "title": "Review & Vipps Checkout",
+      "desc": "Finalize in seconds with Vipps. Each piece is 3D printed in Bergen and delivered nationwide via Posten with tracking."
+    },
+    "tip": "Tip: Remember to preview the model in step 1.",
+    "signature": "SCAPE by md"
+  },
+  "map": {
+    "stepBadge": "Step 01 · Landscape",
+    "title": "Select Your Coordinates.",
+    "description": "Drag the frame across Norway to position your custom 3D terrain selection.",
+    "controls": {
+      "title": "Adjust Controls",
+      "subtitle": "Terrain settings"
+    },
+    "captureSize": {
+      "title": "Capture Size",
+      "subtitle": "Controls terrain coverage",
+      "tooltip": "Adjust the captured terrain coverage. Default: 100%.",
+      "smaller": "Smaller",
+      "larger": "Larger"
+    },
+    "terrainHeight": {
+      "title": "Terrain Height",
+      "subtitle": "Vertical exaggeration",
+      "tooltip": "Increase or decrease terrain height. Default: 2.0x",
+      "subtle": "Subtle",
+      "dramatic": "Dramatic"
+    },
+    "buttons": {
+      "preview": "Preview",
+      "reset": "Reset",
+      "generate": "Generate Scape"
+    },
+    "toasts": {
+      "testModeCaptured": "Coordinates captured in test mode",
+      "getStartedEnablePreview": "Get started to enable preview.",
+      "errorGenerating": "Error generating STL",
+      "tryAgainLater": "Please try again later",
+      "generatedSuccess": "Your Scape has been generated!",
+      "generatedSuccessDesc": "You can now preview your model, or proceed with customization.",
+      "resetSuccess": "Your Scape has been reset",
+      "resetSuccessDesc": "Please capture your coordinates to proceed.",
+      "mapResetSuccess": "Map has been reset"
+    }
+  },
+  "previewModal": {
+    "title": "3D Model Preview",
+    "subtitle": "Drag to rotate, scroll to zoom",
+    "resetView": "Reset view",
+    "close": "Close (Esc)",
+    "loading": "Loading model...",
+    "hints": {
+      "esc": "to close",
+      "scroll": "Scroll to zoom",
+      "rotate": "Left click to rotate",
+      "drag": "Right click to drag"
+    }
+  },
+  "frame": {
+    "stepBadge": "Step 02 · Frames",
+    "title": "Choose Your Frame.",
+    "description": "Select a frame for your custom 3D terrain piece.",
+    "preview": {
+      "live": "Live Model Preview",
+      "dimensions": "21 × 30 cm (A4)",
+      "selectedFinish": "Selected finish:",
+      "selectFrame": "Select a frame",
+      "frameSuffix": "Frame"
+    },
+    "available": {
+      "title": "Available Frames",
+      "subtitle": "Real-time stock."
+    },
+    "options": {
+      "oak": {
+        "title": "Oak",
+        "desc": "Natural and timeless Scandinavian grain"
+      },
+      "walnut": {
+        "title": "Walnut",
+        "desc": "Rich, dark wood tone with warm character"
+      },
+      "white": {
+        "title": "White",
+        "desc": "Clean, crisp architectural minimalism"
+      },
+      "black": {
+        "title": "Black",
+        "desc": "Bold contrast with satin matte profile"
+      }
+    },
+    "finishSuffix": "Finish",
+    "stock": {
+      "inStock": "In stock",
+      "outOfStock": "Out of stock",
+      "restock": "Restock"
+    },
+    "guarantee": "Finished products are inspected and quality controlled in Bergen."
+  },
+  "passepartout": {
+    "stepBadge": "Step 03 · Passe-partout",
+    "title": "Choose a Passe-partout.",
+    "description": "An archival bevel-cut mounting board provides visual breathing room and focuses the eye on the relief depth.",
+    "preview": {
+      "configuration": "Configuration:",
+      "frameSuffix": "Frame",
+      "matSuffix": "Mat",
+      "selectMat": "Select mat"
+    },
+    "available": {
+      "title": "Available Colours",
+      "subtitle": "1.4 mm thick mounting board with 45° bevel cut."
+    },
+    "options": {
+      "white": {
+        "title": "Natural White",
+        "desc": "Bright, airy, and classic gallery look that lets the relief shadow stand out"
+      },
+      "black": {
+        "title": "Deep Black",
+        "desc": "Dramatic depth with sharp edge contrast that anchors the terrain"
+      }
+    },
+    "matLabel": "Mat",
+    "bevelCut": "45° Bevel Cut"
+  }
+}

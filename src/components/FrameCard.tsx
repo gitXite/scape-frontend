@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -19,6 +20,7 @@ function FrameCard({
     text,
     desc,
 }: FrameCardParams) {
+    const { t, i18n } = useTranslation('customizer');
     const isSelected = frameType === type;
     const [outOfStock, setOutOfStock] = useState(false);
     const [expectedDate, setExpectedDate] = useState('');
@@ -69,7 +71,7 @@ function FrameCard({
 
                 if (date) {
                     setExpectedDate(
-                        new Date(date).toLocaleDateString('en-GB', {
+                        new Date(date).toLocaleDateString(i18n.language?.startsWith('nb') ? 'nb-NO' : 'en-GB', {
                             day: 'numeric',
                             month: 'short',
                         }),
@@ -112,7 +114,7 @@ function FrameCard({
                         {text || type}
                     </span>
                     <span className='block text-[11px] font-mono text-muted-foreground uppercase tracking-wider'>
-                        {type} Finish
+                        {text || type} {t('frame.finishSuffix')}
                     </span>
                 </div>
 
@@ -131,7 +133,7 @@ function FrameCard({
             <div className='aspect-[4/3] w-full rounded-xl bg-muted/30 p-2 sm:p-2.5 flex items-center justify-center my-1.5 overflow-hidden border border-border/40'>
                 <img
                     src={`/images/frame_${type}.webp`}
-                    alt={`${type} Frame`}
+                    alt={`${text || type} ${t('frame.preview.frameSuffix')}`}
                     className={`w-full h-full object-contain ${
                         outOfStock ? 'grayscale opacity-75' : ''
                     }`}
@@ -148,12 +150,12 @@ function FrameCard({
                 {outOfStock ? (
                     <span className='inline-flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-medium'>
                         <span className='size-1.5 rounded-full bg-amber-500' />
-                        {expectedDate ? `Restock ${expectedDate}` : 'Out of stock'}
+                        {expectedDate ? `${t('frame.stock.restock')} ${expectedDate}` : t('frame.stock.outOfStock')}
                     </span>
                 ) : (
                     <span className='inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium'>
                         <span className='size-1.5 rounded-full bg-emerald-500' />
-                        In stock
+                        {t('frame.stock.inStock')}
                     </span>
                 )}
             </div>
