@@ -71,7 +71,8 @@
       "generatedSuccessDesc": "Du kan nå forhåndsvise modellen din, eller fortsette med tilpasningen.",
       "resetSuccess": "Din Scape har blitt nullstilt",
       "resetSuccessDesc": "Vennligst velg koordinater for å fortsette.",
-      "mapResetSuccess": "Kartet har blitt nullstilt"
+      "mapResetSuccess": "Kartet har blitt nullstilt",
+      "generating": "Genererer Scape..."
     }
   },
   "previewModal": {

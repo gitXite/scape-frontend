@@ -71,7 +71,8 @@
       "generatedSuccessDesc": "You can now preview your model, or proceed with customization.",
       "resetSuccess": "Your Scape has been reset",
       "resetSuccessDesc": "Please capture your coordinates to proceed.",
-      "mapResetSuccess": "Map has been reset"
+      "mapResetSuccess": "Map has been reset",
+      "generating": "Generating Scape..."
     }
   },
   "previewModal": {

@@ -14,7 +14,7 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
-import { /*Box,*/ ChevronsUp, /*Frame*/ } from 'lucide-react';
+import { /*Box,*/ ChevronsUp /*Frame*/ } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -37,7 +37,12 @@ const RATIO_WIDTH = 14;
 const RECT_HEIGHT = BASE_SCALE * RATIO_HEIGHT;
 const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
-function MapSelector({ mode, className, classNameChild, showStepHeader = false }: MapSelectorProps) {
+function MapSelector({
+    mode,
+    className,
+    classNameChild,
+    showStepHeader = false,
+}: MapSelectorProps) {
     const { t } = useTranslation('customizer');
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
         const coords = localStorage.getItem('coordinates');
@@ -110,7 +115,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
         setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     }, []);
 
-    const handleCapture = async (): Promise<STLObject | undefined> => {
+    const handleCapture = async (): Promise<STLObject | null | undefined> => {
         setIsLoading(true);
         if (rectangleBounds) {
             switch (mode) {
@@ -149,18 +154,31 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                         });
                     }
                     try {
-                        const stlObject = await generateAndFetchSTL();
-                        if (!stlObject) {
-                            toast.error(t('map.toasts.errorGenerating'), {
+                        const stlPromise = generateAndFetchSTL().then(
+                            (result) => {
+                                if (!result) {
+                                    STLCache.invalidate();
+                                }
+
+                                return result;
+                            },
+                        );
+
+                        toast.promise(stlPromise, {
+                            loading: t('map.toasts.generating'),
+                            success: {
+                                message: t('map.toasts.generatedSuccess'),
+                                description: t(
+                                    'map.toasts.generatedSuccessDesc',
+                                ),
+                            },
+                            error: {
+                                message: t('map.toasts.errorGenerating'),
                                 description: t('map.toasts.tryAgainLater'),
-                            });
-                            STLCache.invalidate();
-                            setIsLoading(false);
-                            return;
-                        }
-                        toast.success(t('map.toasts.generatedSuccess'), {
-                            description: t('map.toasts.generatedSuccessDesc'),
+                            },
                         });
+
+                        const stlObject = await stlPromise;
                         return stlObject;
                     } catch (err: any) {
                         console.error(err.message);
@@ -457,17 +475,23 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                     <HoverCardTrigger>
                                                         <div className='cursor-default text-left'>
                                                             <p className='text-sm font-medium text-foreground'>
-                                                                {t('map.captureSize.title')}
+                                                                {t(
+                                                                    'map.captureSize.title',
+                                                                )}
                                                             </p>
 
                                                             <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
-                                                                {t('map.captureSize.subtitle')}
+                                                                {t(
+                                                                    'map.captureSize.subtitle',
+                                                                )}
                                                             </p>
                                                         </div>
                                                     </HoverCardTrigger>
 
                                                     <HoverCardContent className='text-sm text-left'>
-                                                        {t('map.captureSize.tooltip')}
+                                                        {t(
+                                                            'map.captureSize.tooltip',
+                                                        )}
                                                     </HoverCardContent>
                                                 </HoverCard>
 
@@ -499,8 +523,16 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             />
 
                                             <div className='flex justify-between text-xs text-foreground/60'>
-                                                <span>{t('map.captureSize.smaller')}</span>
-                                                <span>{t('map.captureSize.larger')}</span>
+                                                <span>
+                                                    {t(
+                                                        'map.captureSize.smaller',
+                                                    )}
+                                                </span>
+                                                <span>
+                                                    {t(
+                                                        'map.captureSize.larger',
+                                                    )}
+                                                </span>
                                             </div>
                                         </div>
 
@@ -511,17 +543,23 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                     <HoverCardTrigger>
                                                         <div className='cursor-default text-left'>
                                                             <p className='text-sm font-medium text-foreground'>
-                                                                {t('map.terrainHeight.title')}
+                                                                {t(
+                                                                    'map.terrainHeight.title',
+                                                                )}
                                                             </p>
 
                                                             <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
-                                                                {t('map.terrainHeight.subtitle')}
+                                                                {t(
+                                                                    'map.terrainHeight.subtitle',
+                                                                )}
                                                             </p>
                                                         </div>
                                                     </HoverCardTrigger>
 
                                                     <HoverCardContent className='text-sm text-left'>
-                                                        {t('map.terrainHeight.tooltip')}
+                                                        {t(
+                                                            'map.terrainHeight.tooltip',
+                                                        )}
                                                     </HoverCardContent>
                                                 </HoverCard>
 
@@ -551,8 +589,16 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             />
 
                                             <div className='flex justify-between text-xs text-foreground/60'>
-                                                <span>{t('map.terrainHeight.subtle')}</span>
-                                                <span>{t('map.terrainHeight.dramatic')}</span>
+                                                <span>
+                                                    {t(
+                                                        'map.terrainHeight.subtle',
+                                                    )}
+                                                </span>
+                                                <span>
+                                                    {t(
+                                                        'map.terrainHeight.dramatic',
+                                                    )}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
