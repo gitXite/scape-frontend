@@ -54,7 +54,7 @@ function GetStarted() {
             {/* Mobile Home Anchor - Zero vertical layout footprint */}
             <a
                 href='/'
-                className='sm:hidden z-50 absolute top-4 right-4 text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
+                className='sm:hidden z-50 absolute top-5 right-4 text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
             >
                 {tCommon('actions.backToHome')}
             </a>

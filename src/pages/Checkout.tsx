@@ -13,7 +13,7 @@ function Checkout() {
             {/* Mobile Back Anchor */}
             <a
                 href='/get-started'
-                className='sm:hidden absolute top-4 right-4 place-self-end text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
+                className='sm:hidden absolute top-5 right-4 place-self-end text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
             >
                 {t('actions.back')}
             </a>
