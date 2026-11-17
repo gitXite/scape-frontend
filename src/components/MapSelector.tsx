@@ -741,7 +741,8 @@ function MapSelector({
                                         shadow-sm
                                         transition-color
                                         duration-150
-                                        min-w-[200px]
+                                        sm:min-w-[200px]
+                                        min-w-[170px]
                                         cursor-pointer
                                         hover:bg-background
                                         hover:text-foreground

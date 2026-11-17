@@ -176,7 +176,7 @@ function CheckoutSummary() {
 
                         {/* Total Row */}
                         <div className='flex justify-between items-baseline pt-1'>
-                            <div>
+                            <div className='w-3/4'>
                                 <span className='font-display text-lg sm:text-xl font-bold text-foreground block'>
                                     {t('summary.breakdown.totalAmount')}
                                 </span>
