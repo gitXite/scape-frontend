@@ -260,20 +260,20 @@ function ModelPreview({
                 />
 
                 {/* Footer hint */}
-                <div className='absolute bottom-0 left-0 right-0 flex items-center justify-center py-3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none'>
+                <div className='absolute bottom-0 left-0 right-0 flex items-center justify-center py-3 px-2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none'>
                     <div className='flex items-center gap-2 sm:gap-4 text-xs text-white/40'>
-                        <span className='flex items-center gap-1.5'>
+                        <span className='flex items-center gap-1.5 max-sm:text-[10px]'>
                             <kbd className='px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]'>
                                 ESC
                             </kbd>
                             {t('previewModal.hints.esc')}
                         </span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>{t('previewModal.hints.scroll')}</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.scroll')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>{t('previewModal.hints.rotate')}</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.rotate')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>{t('previewModal.hints.drag')}</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.drag')}</span>
                     </div>
                 </div>
             </div>
