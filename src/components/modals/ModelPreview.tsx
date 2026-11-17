@@ -39,7 +39,9 @@ function ModelPreview({
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const viewRef = useRef<ViewState | null>(null);
     const frameIDRef = useRef<number | null>(null);
-    const initTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+    const initTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+        undefined,
+    );
 
     const cleanup = useCallback(() => {
         if (initTimeoutRef.current) {
@@ -165,9 +167,10 @@ function ModelPreview({
             }
         };
     }, [isReady]);
-    
+
     const resetView = () => {
-        if (!cameraRef.current || !controlsRef.current || !viewRef.current) return;
+        if (!cameraRef.current || !controlsRef.current || !viewRef.current)
+            return;
         cameraRef.current.position.copy(viewRef.current.initCameraPosition);
         cameraRef.current.up.copy(viewRef.current.initCameraUp);
         controlsRef.current.target.copy(viewRef.current.initTarget);
