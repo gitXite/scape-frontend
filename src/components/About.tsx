@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { Badge } from './ui/badge';
+import { useTranslation } from 'react-i18next';
 
 const videoSrc = '/videos/scape_final_aspect.mp4';
 const posterSrc = '/images/scape_final_aspect_thumb.jpg';
@@ -121,6 +122,7 @@ function ProductVideo() {
 }
 
 function About() {
+    const { t } = useTranslation('home');
     const [ref1, inView1] = useInView(options);
     const [ref2, inView2] = useInView(options);
     const [ref3, inView3] = useInView(options);
@@ -182,7 +184,7 @@ function About() {
             </div>
 
             {/* Editorial Hero Section */}
-            <section id='story' className='w-full pt-6 sm:pt-28 pb-16 sm:pb-24'>
+            <section id='story' className='w-full pt-6 sm:pt-28 pb-16'>
                 <div className='max-w-6xl mx-auto px-6 sm:px-10'>
                     <motion.div
                         ref={ref1}
@@ -231,6 +233,20 @@ function About() {
                                     to create detailed 3D terrain pieces with
                                     both visual and sentimental value.
                                 </motion.p>
+                                <motion.div
+                                    variants={fadeInUp}
+                                    className='relative aspect-4/3 sm:aspect-auto sm:h-86 rounded-lg overflow-hidden border border-border/80 shadow-sm bg-muted'
+                                >
+                                    <img
+                                        src='/images/IMG_0474.avif'
+                                        alt='Walnut framed duo'
+                                        className='w-full h-full object-cover'
+                                        loading='lazy'
+                                    />
+                                    <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
+                                        <span>{t('theScape.captions.walnut')}</span>
+                                    </div>
+                                </motion.div>
                                 <motion.p variants={fadeInUp}>
                                     We believe the places we feel connected to
                                     deserve more than a place on a map. By
@@ -240,7 +256,7 @@ function About() {
                                     meaningful places, and feels at home in any
                                     space.
                                 </motion.p>
-                                <motion.p variants={fadeInUp}>
+                                <motion.p variants={fadeInUp} className='text-sm'>
                                     Every piece is designed and produced to
                                     order in our Bergen workshop.
                                 </motion.p>
