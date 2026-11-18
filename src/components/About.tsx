@@ -268,7 +268,7 @@ function About() {
                                     className='relative rounded-lg overflow-hidden border border-border/80 shadow-sm bg-muted'
                                 >
                                     <img
-                                        src='/images/IMG_0467.avif'
+                                        src='/images/IMG_0473.avif'
                                         alt='Framed topographic model crafted in Bergen'
                                         className='w-full h-full object-cover'
                                         loading='lazy'
