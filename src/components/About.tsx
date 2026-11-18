@@ -35,6 +35,13 @@ const staggerContainer = {
         transition: { staggerChildren: 0.15 },
     },
 };
+const fastStaggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.05 },
+    },
+};
 
 const craftValues = [
     {
@@ -181,8 +188,8 @@ function About() {
                         ref={ref1}
                         initial='hidden'
                         animate={inView1 ? 'visible' : 'hidden'}
-                        variants={staggerContainer}
-                        className='text-left max-w-4xl'
+                        variants={fastStaggerContainer}
+                        className='text-left'
                     >
                         <motion.div
                             variants={fadeInUp}
@@ -210,45 +217,50 @@ function About() {
                             fjords, and coastlines into architectural 3D reliefs
                             for contemporary Scandinavian spaces.
                         </motion.p>
-                    </motion.div>
 
-                    {/* Editorial Story Split: Narrative + Studio Photography */}
-                    <motion.div
-                        ref={ref1}
-                        initial='hidden'
-                        animate={inView1 ? 'visible' : 'hidden'}
-                        variants={staggerContainer}
-                        className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pt-8 items-start text-left'
-                    >
-                        <div className='md:sticky md:top-25 md:col-span-7 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                            <motion.p variants={fadeInUp}>
-                                Being based in Bergen, it’s difficult not to be
-                                inspired by the surrounding mountains, fjords,
-                                and dramatic landscapes that define the west
-                                coast of Norway. SCAPE by md was created from a
-                                desire to capture these environments in a
-                                tangible form - combining modern technology with
-                                scandinavian design to create detailed 3D
-                                terrain pieces with both visual and sentimental
-                                value.
-                            </motion.p>
-                            <motion.p variants={fadeInUp}>
-                                Every piece is designed and produced to order in
-                                our Bergen workshop.
-                            </motion.p>
-                        </div>
+                        <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start text-left'>
+                            <div className='md:sticky md:top-50 md:col-span-7 space-y-5 text-base sm:text-md text-muted-foreground leading-relaxed'>
+                                <motion.p variants={fadeInUp}>
+                                    Being based in Bergen, it’s difficult not to
+                                    be inspired by the surrounding mountains,
+                                    fjords, and dramatic landscapes that define
+                                    the west coast of Norway. SCAPE by md was
+                                    created from a desire to capture these
+                                    environments in a tangible form - combining
+                                    modern technology with scandinavian design
+                                    to create detailed 3D terrain pieces with
+                                    both visual and sentimental value.
+                                </motion.p>
+                                <motion.p variants={fadeInUp}>
+                                    We believe the places we feel connected to
+                                    deserve more than a place on a map. By
+                                    turning familiar landscapes into carefully
+                                    crafted pieces, we aim to create something
+                                    that brings back memories, celebrates
+                                    meaningful places, and feels at home in any
+                                    space.
+                                </motion.p>
+                                <motion.p variants={fadeInUp}>
+                                    Every piece is designed and produced to
+                                    order in our Bergen workshop.
+                                </motion.p>
+                            </div>
 
-                        <div className='md:col-span-5'>
-                            <div className='relative rounded-lg overflow-hidden border border-border/80 shadow-sm bg-muted'>
-                                <img
-                                    src='/images/studio_product_collection.webp'
-                                    alt='Collection of framed topographic models crafted in Bergen'
-                                    className='w-full h-full object-cover transition-transform duration-500'
-                                    loading='lazy'
-                                />
-                                <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
-                                    <span>Studio Collection</span>
-                                </div>
+                            <div className='md:col-span-5'>
+                                <motion.div
+                                    variants={fadeInUp}
+                                    className='relative rounded-lg overflow-hidden border border-border/80 shadow-sm bg-muted'
+                                >
+                                    <img
+                                        src='/images/IMG_0467.avif'
+                                        alt='Framed topographic model crafted in Bergen'
+                                        className='w-full h-full object-cover'
+                                        loading='lazy'
+                                    />
+                                    <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
+                                        <span>Natural Oak</span>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
                     </motion.div>

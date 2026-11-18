@@ -59,25 +59,37 @@ function TheScape() {
 
     const studioImages = [
         {
-            src: '/images/studio_product_oak.webp',
+            src: '/images/IMG_0444.avif',
             alt: 'Oak frame with topographic relief',
             caption: t('theScape.captions.oak'),
         },
         {
-            src: '/images/studio_product_model.webp',
+            src: '/images/IMG_0467.avif',
             alt: 'Detailed close-up of 3D terrain elevation',
-            caption: t('theScape.captions.reliefDetail'),
+            caption: t('theScape.captions.oak'),
         },
         {
-            src: '/images/studio_product_black.webp',
-            alt: 'Satin black frame with custom landscape',
-            caption: t('theScape.captions.satinBlack'),
+            src: '/images/IMG_0453.avif',
+            alt: 'Oak frame, alternative angle',
+            caption: t('theScape.captions.oak'),
+        },
+        {
+            src: '/images/IMG_0443.avif',
+            alt: 'Oak frame, wide angle',
+            caption: t('theScape.captions.oak'),
         },
         {
             src: '/images/studio_product_collection.webp',
             alt: 'Collection of framed terrain models',
             caption: t('theScape.captions.studioCollection'),
         },
+    ];
+    const imageClasses = [
+        '',
+        '',
+        '',
+        '',
+        'object-cover object-center'
     ];
 
     const { ref: ref1, inView: inView1 } = useInView({
@@ -314,13 +326,13 @@ function TheScape() {
                                 className='w-full rounded-lg shadow-lg'
                             >
                                 <CarouselContent>
-                                    {studioImages.map((img) => (
+                                    {studioImages.map((img, index) => (
                                         <CarouselItem key={img.alt}>
                                             <div className='aspect-[4/5] bg-muted rounded-lg overflow-hidden relative'>
                                                 <img
                                                     src={img.src}
                                                     alt={img.alt}
-                                                    className='w-full h-full object-cover'
+                                                    className={`h-full w-full ${imageClasses[index]}`}
                                                     loading='lazy'
                                                 />
                                                 <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
