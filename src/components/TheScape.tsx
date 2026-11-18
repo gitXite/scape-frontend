@@ -79,12 +79,18 @@ function TheScape() {
             caption: t('theScape.captions.oak'),
         },
         {
+            src: '/images/IMG_0473.avif',
+            alt: 'Oak frame, angled',
+            caption: t('theScape.captions.oak'),
+        },
+        {
             src: '/images/studio_product_collection.webp',
             alt: 'Collection of framed terrain models',
             caption: t('theScape.captions.studioCollection'),
         },
     ];
     const imageClasses = [
+        '',
         '',
         '',
         '',
