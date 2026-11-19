@@ -43,16 +43,16 @@ This repository contains the React + TypeScript frontend, built with Vite for fa
 
 - A responsive, performant frontend powering a hybrid e‑commerce experience.  
 - Built using modern tools and frameworks: TypeScript, React + Vite, and Tailwind CSS.
-- Modular, scalable architecture—designed for easy integration with backend APIs and future enhancements.
+- Modular, scalable architecture-designed for easy integration with backend APIs and future enhancements.
 
 ---
 
 ## Demo / Screenshots
 
-<img width="768" height="512" alt="Product Image" src="./src/assets/product-image-straight.png" />
+<img height="512" alt="Product Image" src="./public/images/IMG_0444.avif" />
 
 
-<img width="768" height="512" alt="Product Image 2" src="./src/assets/product-image-angle.png" />
+<img width="768" height="556" alt="Product Image 2" src="./public/images/IMG_0474.avif" />
 
 ---
 
