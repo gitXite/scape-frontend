@@ -3,8 +3,11 @@ import Footer from '@/components/Footer';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Package, ShieldAlert, HeartHandshake, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 function Returns() {
+    const { t } = useTranslation('policies');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -30,17 +33,15 @@ function Returns() {
                 <div className='mb-10 sm:mb-14'>
                     <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-4 gap-2 bg-background/80 backdrop-blur-sm'>
                         <HeartHandshake className='w-3 h-3 text-muted-foreground' />
-                        Customer Care & Quality Guarantee
+                        {t('returns.badge')}
                     </Badge>
 
                     <h1 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                        Returns & Refunds.
+                        {t('returns.title')}
                     </h1>
 
                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl'>
-                        All SCAPE pieces are bespoke physical commissions
-                        tailored to your specific coordinates. Here is how our
-                        return and damage policies operate.
+                        {t('returns.lead')}
                     </p>
                 </div>
 
@@ -53,23 +54,14 @@ function Returns() {
                                 <Package className='w-5 h-5' />
                             </div>
                             <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mb-3'>
-                                Custom-Made to Order
+                                {t('returns.custom.title')}
                             </h2>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                At <b>SCAPE by md</b>, all products are
-                                custom-made to order based on the geographical
-                                coordinates, elevation scale, and framing
-                                finishes you specify. Because each item is
-                                uniquely created for you, we cannot accept
-                                returns, exchanges, or cancellations once
-                                additive production and framing have commenced.
+                                {t('returns.custom.body')}
                             </p>
                         </div>
                         <div className='pt-4 mt-4 border-t border-border/60 text-xs text-muted-foreground/80 leading-relaxed'>
-                            This policy is in full accordance with Norwegian and
-                            EU consumer protection statutes, which legally
-                            exempt personalized, custom-made goods from standard
-                            cooling-off return rights.
+                            {t('returns.custom.statute')}
                         </div>
                     </div>
 
@@ -80,16 +72,10 @@ function Returns() {
                                 <ShieldAlert className='w-5 h-5' />
                             </div>
                             <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mb-3'>
-                                Damaged in Transit
+                                {t('returns.damaged.title')}
                             </h2>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                If your item arrives damaged, defective, or
-                                incorrect, please reach out to us within{' '}
-                                <b>7 days</b> of parcel delivery. Please include
-                                photographs of the packaging and the affected
-                                frame or relief so our atelier can evaluate the
-                                issue and immediately dispatch a priority
-                                replacement.
+                                {t('returns.damaged.body')}
                             </p>
                         </div>
                         <div className='pt-4 mt-4 border-t border-border/60'>
@@ -97,7 +83,7 @@ function Returns() {
                                 href='/contact-us'
                                 className='inline-flex items-center gap-1.5 text-xs font-semibold text-surface-foreground hover:underline underline-offset-4'
                             >
-                                <span>Report a damaged item</span>
+                                <span>{t('returns.damaged.cta')}</span>
                                 <ArrowRight className='w-3 h-3' />
                             </a>
                         </div>
@@ -107,13 +93,10 @@ function Returns() {
                 {/* Assurance Callout */}
                 <div className='p-6 rounded-2xl bg-muted/40 border border-border/60 mb-12 sm:mb-16'>
                     <p className='text-sm sm:text-base text-foreground font-medium mb-1'>
-                        Our Craft Commitment
+                        {t('returns.commitment.title')}
                     </p>
                     <p className='text-xs sm:text-sm text-muted-foreground leading-relaxed'>
-                        We want you to be entirely proud to display your Scape.
-                        If there is ever an oversight or flaw on our part, we
-                        will work directly with you to resolve it swiftly and
-                        ensure you are delighted with your finished artwork.
+                        {t('returns.commitment.body')}
                     </p>
                 </div>
 
@@ -124,7 +107,7 @@ function Returns() {
                 />
                 <div className='flex flex-col items-center my-8 text-center'>
                     <p className='text-xs font-display uppercase tracking-widest text-muted-foreground mb-3'>
-                        Regards,
+                        {t('returns.regards')}
                     </p>
                     <h2 className='text-2xl sm:text-3xl font-display tracking-[0.2em] mb-1 text-foreground whitespace-nowrap'>
                         <span>SC</span>

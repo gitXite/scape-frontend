@@ -3,8 +3,11 @@ import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Clock, Sparkles, MessageSquare } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { useTranslation } from 'react-i18next';
 
 function Contact() {
+    const { t } = useTranslation('pages');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -20,7 +23,7 @@ function Contact() {
                     href='/'
                     className='text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors'
                 >
-                    Back to Home
+                    {t('contact.header.backToHome')}
                 </a>
             </div>
 
@@ -30,17 +33,15 @@ function Contact() {
                 <div className='max-w-2xl mb-10 sm:mb-14'>
                     <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-4 gap-2 bg-background/80 backdrop-blur-sm'>
                         <MapPin className='w-3 h-3 text-muted-foreground' />
-                        Bergen · Norway
+                        {t('contact.header.badge')}
                     </Badge>
 
                     <h1 className='font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-[1.08]'>
-                        Let’s connect.
+                        {t('contact.header.title')}
                     </h1>
 
                     <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                        Have questions about custom coordinates, framing
-                        details, or bespoke commissions? We’re here to help
-                        bring your landscape to life.
+                        {t('contact.header.lead')}
                     </p>
                 </div>
 
@@ -52,7 +53,7 @@ function Contact() {
                             <div className='flex items-center gap-2 mb-6'>
                                 <MessageSquare className='w-4 h-4 text-muted-foreground' />
                                 <span className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                    Direct Support
+                                    {t('contact.sidebar.directSupport')}
                                 </span>
                             </div>
 
@@ -64,16 +65,16 @@ function Contact() {
                                     </div>
                                     <div>
                                         <h3 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1'>
-                                            Direct Email
+                                            {t('contact.sidebar.emailTitle')}
                                         </h3>
                                         <a
                                             href='mailto:scapebymd@gmail.com'
                                             className='text-base font-semibold text-surface-foreground hover:underline underline-offset-4 transition-colors'
                                         >
-                                            scapebymd@gmail.com
+                                            {t('contact.sidebar.email')}
                                         </a>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Direct line to Maren & Daniel
+                                            {t('contact.sidebar.emailSub')}
                                         </p>
                                     </div>
                                 </div>
@@ -85,13 +86,13 @@ function Contact() {
                                     </div>
                                     <div>
                                         <h3 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1'>
-                                            Response Time
+                                            {t('contact.sidebar.responseTimeTitle')}
                                         </h3>
                                         <p className='text-base font-semibold text-surface-foreground'>
-                                            Within 24 hours
+                                            {t('contact.sidebar.responseTime')}
                                         </p>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Monday through Friday
+                                            {t('contact.sidebar.responseTimeSub')}
                                         </p>
                                     </div>
                                 </div>
@@ -103,13 +104,13 @@ function Contact() {
                                     </div>
                                     <div>
                                         <h3 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1'>
-                                            Workshop
+                                            {t('contact.sidebar.workshopTitle')}
                                         </h3>
                                         <p className='text-base font-semibold text-surface-foreground'>
-                                            Bergen, Norway
+                                            {t('contact.sidebar.workshopLocation')}
                                         </p>
                                         <p className='text-xs text-muted-foreground mt-0.5'>
-                                            Nationwide delivery via Posten
+                                            {t('contact.sidebar.workshopSub')}
                                         </p>
                                     </div>
                                 </div>
@@ -121,10 +122,7 @@ function Contact() {
                             <div className='flex items-start gap-3 p-4 rounded-xl bg-muted/40 border border-border/60 text-xs text-muted-foreground leading-relaxed'>
                                 <Sparkles className='w-4 h-4 text-surface-foreground shrink-0 mt-0.5' />
                                 <p>
-                                    Looking for custom dimensions, a specific
-                                    summit elevation ratio, or corporate
-                                    gifting? Mention your project details in the
-                                    form and we will assist.
+                                    {t('contact.sidebar.customCommission')}
                                 </p>
                             </div>
                         </div>
@@ -134,11 +132,10 @@ function Contact() {
                     <div className='lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-background border border-border/80 shadow-xs'>
                         <div className='mb-6 pb-6 border-b border-border/60'>
                             <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mb-1.5'>
-                                Send a message
+                                {t('contact.form.heading')}
                             </h2>
                             <p className='text-xs sm:text-sm text-muted-foreground'>
-                                Fill in your details below and our Bergen studio
-                                will get back to you promptly.
+                                {t('contact.form.subheading')}
                             </p>
                         </div>
 

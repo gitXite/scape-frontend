@@ -1,58 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import StarRating from './ui/starRating';
 import TestimonialCard from './TestimonialCard';
 import { Star, Sparkles, MapPin, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import type { Review } from '@/types/common';
+import { useTranslation } from 'react-i18next';
 
 const INITIAL_COUNT = 6;
 const BATCH_SIZE = 6;
-
-const FALLBACK_REVIEWS: (Review & { id?: string | number })[] = [
-    {
-        id: 'fb-1',
-        message:
-            'Ordered a 3D relief of the mountains surrounding our family cabin in Hemsedal. The tactile precision of the contours and the solid oak framing exceeded every expectation. An absolute centerpiece in our living room.',
-        rating: 5,
-        location: 'Hemsedal, Viken',
-    },
-    {
-        id: 'fb-2',
-        message:
-            'The depth and shadow play when the afternoon light hits the peaks is stunning. Daniel calibrated the exact elevation scale for our summit route in Jotunheimen. Truly bespoke Scandinavian craftsmanship.',
-        rating: 5,
-        location: 'Oslo',
-    },
-    {
-        id: 'fb-3',
-        message:
-            'Gave my husband a relief of the Bergen archipelago where we were married. He was speechless. The quality of the passe-partout and the subtle topographic details make it timeless.',
-        rating: 5,
-        location: 'Bergen, Vestland',
-    },
-    {
-        id: 'fb-4',
-        message:
-            'Incredible attention to cartographic fidelity. You can trace every ridge of Reinebringen in Lofoten. Shipped securely via Posten and arrived in pristine condition.',
-        rating: 5,
-        location: 'Tromsø',
-    },
-    {
-        id: 'fb-5',
-        message:
-            'A minimalist work of art that holds immense personal meaning. Clean Nordic aesthetic that fits our contemporary interior seamlessly.',
-        rating: 5,
-        location: 'Trondheim',
-    },
-    {
-        id: 'fb-6',
-        message:
-            'From choosing the coordinates on the interactive map to unwrapping the framed piece in Stavanger, the entire commissioning experience was personal and effortless.',
-        rating: 5,
-        location: 'Stavanger',
-    },
-];
 
 const FALLBACK_STATS = {
     averageRating: 4.9,
@@ -60,10 +16,53 @@ const FALLBACK_STATS = {
 };
 
 function Testemonials() {
+    const { t } = useTranslation('pages');
     const [totalReviews, setTotalReviews] = useState<number | undefined>();
     const [averageRating, setAverageRating] = useState<number | undefined>();
     const [reviews, setReviews] = useState<any[]>([]);
     const [visible, setVisible] = useState(INITIAL_COUNT);
+
+    const fallbackReviews: (Review & { id?: string | number })[] = useMemo(
+        () => [
+            {
+                id: 'fb-1',
+                message: t('testimonials.fallbacks.fb1'),
+                rating: 5,
+                location: 'Hemsedal, Viken',
+            },
+            {
+                id: 'fb-2',
+                message: t('testimonials.fallbacks.fb2'),
+                rating: 5,
+                location: 'Oslo',
+            },
+            {
+                id: 'fb-3',
+                message: t('testimonials.fallbacks.fb3'),
+                rating: 5,
+                location: 'Bergen, Vestland',
+            },
+            {
+                id: 'fb-4',
+                message: t('testimonials.fallbacks.fb4'),
+                rating: 5,
+                location: 'Tromsø',
+            },
+            {
+                id: 'fb-5',
+                message: t('testimonials.fallbacks.fb5'),
+                rating: 5,
+                location: 'Trondheim',
+            },
+            {
+                id: 'fb-6',
+                message: t('testimonials.fallbacks.fb6'),
+                rating: 5,
+                location: 'Stavanger',
+            },
+        ],
+        [t],
+    );
 
     useEffect(() => {
         const getReviewStats = async () => {
@@ -105,7 +104,7 @@ function Testemonials() {
         getReviews();
     }, []);
 
-    const activeReviews = reviews.length > 0 ? reviews : FALLBACK_REVIEWS;
+    const activeReviews = reviews.length > 0 ? reviews : fallbackReviews;
     const displayAvgRating = averageRating ?? FALLBACK_STATS.averageRating;
     const displayTotalReviews = totalReviews ?? FALLBACK_STATS.totalReviews;
 
@@ -117,16 +116,14 @@ function Testemonials() {
             <div className='flex flex-col relative mx-auto max-w-6xl w-full px-6 sm:px-10 pt-4 sm:pt-20 pb-12 sm:pb-16'>
                 <header className='max-w-3xl sm:mx-auto text-left sm:text-center mb-10 sm:mb-14'>
                     <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3.5 py-1 gap-2 bg-background/80 backdrop-blur-sm mb-4'>
-                        <Star className='w-3 h-3 fill-amber-400 text-amber-400' />
-                        Reviews & Perspectives
+                        <Star className='w-3 h-3 text-primary fill-primary' />
+                        {t('testimonials.header.badge')}
                     </Badge>
                     <h1 className='font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                        Words of praise from our customers.
+                        {t('testimonials.header.title')}
                     </h1>
                     <p className='font-sans text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl sm:mx-auto'>
-                        Don&apos;t just take our word for it. See what our
-                        customers say about turning their favorite places into
-                        cherished Scapes.
+                        {t('testimonials.header.lead')}
                     </p>
                 </header>
 
@@ -144,7 +141,7 @@ function Testemonials() {
                                         {displayAvgRating.toFixed(1)}
                                     </span>
                                     <span className='text-sm font-mono text-muted-foreground'>
-                                        / 5.0
+                                        {t('testimonials.scorecard.scale')}
                                     </span>
                                 </div>
                                 <div className='mt-2'>
@@ -156,9 +153,9 @@ function Testemonials() {
                                     />
                                 </div>
                                 <p className='mt-2.5 text-xs font-mono text-muted-foreground'>
-                                    Based on{' '}
+                                    {t('testimonials.scorecard.basedOn')}{' '}
                                     <span className='font-semibold text-foreground'>
-                                        {displayTotalReviews} verified reviews
+                                        {displayTotalReviews} {t('testimonials.scorecard.verifiedReviews')}
                                     </span>
                                 </p>
                             </div>
@@ -168,26 +165,23 @@ function Testemonials() {
                                 <div className='flex items-center gap-2'>
                                     <Sparkles className='size-4 text-primary shrink-0' />
                                     <span className='text-xs font-mono uppercase tracking-wider font-semibold text-primary'>
-                                        Made in Bergen
+                                        {t('testimonials.scorecard.madeInBergen')}
                                     </span>
                                 </div>
                                 <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                    Every Scape is algorithmically generated
-                                    from official Norwegian elevation databases,
-                                    precisely 3D printed, and hand-fitted into
-                                    frames.
+                                    {t('testimonials.scorecard.desc')}
                                 </p>
                                 <div className='flex flex-wrap items-center gap-3 pt-1 text-xs text-muted-foreground font-mono'>
                                     <span className='flex items-center gap-1.5'>
                                         <CheckCircle2 className='size-3.5 text-emerald-500 shrink-0' />
-                                        100% Verified Customers
+                                        {t('testimonials.scorecard.verifiedCustomers')}
                                     </span>
                                     <span className='hidden sm:inline text-border'>
                                         •
                                     </span>
                                     <span className='flex items-center gap-1.5'>
                                         <MapPin className='size-3.5 text-primary shrink-0' />
-                                        Delivered Across Norway
+                                        {t('testimonials.scorecard.deliveredAcrossNorway')}
                                     </span>
                                 </div>
                             </div>
@@ -217,11 +211,13 @@ function Testemonials() {
                                     setVisible((v) => v + BATCH_SIZE)
                                 }
                             >
-                                Show More Reviews
+                                {t('testimonials.pagination.showMore')}
                             </Button>
                             <p className='text-xs font-mono text-muted-foreground'>
-                                Showing {shown.length} of {activeReviews.length}{' '}
-                                perspectives
+                                {t('testimonials.pagination.showing', {
+                                    shown: shown.length,
+                                    total: activeReviews.length,
+                                })}
                             </p>
                         </div>
                     )}
@@ -235,12 +231,10 @@ function Testemonials() {
                     <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-10'>
                         <div className='max-w-2xl'>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Made to stand out. <br></br>Built to be talked
-                                about.
+                                {t('testimonials.cta.title')}
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                                Some places stay with us. Give yours a place on
-                                your wall.
+                                {t('testimonials.cta.lead')}
                             </p>
                         </div>
 
@@ -249,14 +243,14 @@ function Testemonials() {
                                 href='/get-started'
                                 className='max-sm:w-full inline-flex group items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-xs sm:text-sm font-semibold transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground shadow-xs border border-border cursor-pointer'
                             >
-                                Create Your Scape
+                                {t('testimonials.cta.createScape')}
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
                             </a>
                             <a
                                 href='/feedback'
                                 className='max-sm:w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-border bg-background text-surface-foreground text-xs sm:text-sm font-medium hover:bg-muted transition-colors cursor-pointer'
                             >
-                                Leave a Review
+                                {t('testimonials.cta.leaveReview')}
                             </a>
                         </div>
                     </div>

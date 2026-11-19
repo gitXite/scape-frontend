@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "theScape": "The Scape",
+    "theScape": "The SCAPE",
     "about": "About",
     "map": "Map",
     "getStarted": "Get Started"
@@ -9,7 +9,7 @@
   "actions": {
     "getStarted": "Get Started",
     "customizeYours": "Customize Yours",
-    "createYourScape": "Create Your Scape",
+    "createYourScape": "Create Your SCAPE",
     "explore": "Explore",
     "back": "Back",
     "backToHome": "Back to Home",

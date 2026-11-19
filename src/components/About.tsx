@@ -44,37 +44,8 @@ const fastStaggerContainer = {
     },
 };
 
-const craftValues = [
-    {
-        number: '01',
-        tag: 'Cartography',
-        title: 'Every Contour Tells a Story',
-        description:
-            'We do not approximate nature. We use official digital elevation data to capture the real shape of the landscape, preserving the distinctive features of places that matter to you.',
-        spec: 'High Fidelity',
-        icon: Compass,
-    },
-    {
-        number: '02',
-        tag: 'Scandinavian Design',
-        title: 'Sculpted for Scandinavian Interiors',
-        description:
-            'Designed to complement Scandinavian interiors, each terrain model combines clean lines, natural forms and understated colours to bring a subtle connection to the landscape into your home.',
-        spec: 'Designed for modern interiors',
-        icon: Layers,
-    },
-    {
-        number: '03',
-        tag: 'Personal Meaning',
-        title: 'An Anchor to Places That Matter',
-        description:
-            'Whether it’s a family cabin in Hemsedal, a summit in Jotunheimen, or the archipelago where you grew up - each SCAPE is a tactile anchor to a memory in the landscape.',
-        spec: 'Bespoke commissions',
-        icon: Sparkles,
-    },
-];
-
 function ProductVideo() {
+    const { t } = useTranslation('pages');
     const videoRef = useRef<HTMLVideoElement>(null);
     const [playing, setPlaying] = useState(false);
 
@@ -104,7 +75,7 @@ function ProductVideo() {
                     type='button'
                     onClick={handlePlay}
                     className='absolute inset-0 flex flex-col items-center justify-center gap-4 bg-primary/25 backdrop-blur-[2px] transition-all duration-300 hover:bg-primary/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer'
-                    aria-label='Play the SCAPE by md product film'
+                    aria-label={t('about.film.playAria')}
                 >
                     <span className='flex size-18 sm:size-20 items-center justify-center rounded-full bg-background/95 text-primary shadow-xl transition-transform duration-300 group-hover:scale-105'>
                         <Play
@@ -113,7 +84,7 @@ function ProductVideo() {
                         />
                     </span>
                     <span className='rounded-full bg-background/90 px-4 py-1.5 text-xs sm:text-sm font-medium text-foreground tracking-wide border border-border/60 shadow-sm'>
-                        Watch the film (0:31)
+                        {t('about.film.watchFilm')}
                     </span>
                 </button>
             )}
@@ -122,49 +93,76 @@ function ProductVideo() {
 }
 
 function About() {
-    const { t } = useTranslation('home');
+    const { t } = useTranslation('pages');
     const [ref1, inView1] = useInView(options);
     const [ref2, inView2] = useInView(options);
     const [ref3, inView3] = useInView(options);
     const [ref4, inView4] = useInView(options);
     const [ref5, inView5] = useInView(options);
 
+    const craftValues = [
+        {
+            number: '01',
+            tag: t('about.values.items.0.tag'),
+            title: t('about.values.items.0.title'),
+            description: t('about.values.items.0.description'),
+            spec: t('about.values.items.0.spec'),
+            icon: Compass,
+        },
+        {
+            number: '02',
+            tag: t('about.values.items.1.tag'),
+            title: t('about.values.items.1.title'),
+            description: t('about.values.items.1.description'),
+            spec: t('about.values.items.1.spec'),
+            icon: Layers,
+        },
+        {
+            number: '03',
+            tag: t('about.values.items.2.tag'),
+            title: t('about.values.items.2.title'),
+            description: t('about.values.items.2.description'),
+            spec: t('about.values.items.2.spec'),
+            icon: Sparkles,
+        },
+    ];
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             {/* Desktop in-page sticky sub-nav */}
             <nav
-                aria-label='About Page Navigation'
+                aria-label={t('about.nav.ariaLabel')}
                 className='fixed top-6 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center gap-8 px-8 py-2.5 rounded-full bg-background/80 backdrop-blur-md border border-border/80 shadow-sm text-xs font-medium text-muted-foreground'
             >
                 <a
                     href='#story'
                     className='hover:text-foreground transition-colors duration-150'
                 >
-                    Story
+                    {t('about.nav.story')}
                 </a>
                 <a
                     href='#film'
                     className='hover:text-foreground transition-colors duration-150'
                 >
-                    Film
+                    {t('about.nav.film')}
                 </a>
                 <a
                     href='#founders'
                     className='hover:text-foreground transition-colors duration-150'
                 >
-                    Founders
+                    {t('about.nav.founders')}
                 </a>
                 <a
                     href='#values'
                     className='hover:text-foreground transition-colors duration-150'
                 >
-                    Values
+                    {t('about.nav.values')}
                 </a>
                 <a
                     href='#mission'
                     className='hover:text-foreground transition-colors duration-150'
                 >
-                    Mission
+                    {t('about.nav.mission')}
                 </a>
             </nav>
 
@@ -179,7 +177,7 @@ function About() {
                     href='/'
                     className='text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
                 >
-                    Back to Home
+                    {t('about.nav.backToHome')}
                 </a>
             </div>
 
@@ -199,7 +197,7 @@ function About() {
                         >
                             <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 gap-2 bg-background/80 backdrop-blur-sm'>
                                 <MapPin className='w-3 h-3 text-muted-foreground' />
-                                Bergen, Norway
+                                {t('about.story.location')}
                             </Badge>
                         </motion.div>
 
@@ -207,31 +205,20 @@ function About() {
                             variants={fadeInUp}
                             className='font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-surface-foreground mb-8 leading-[1.08]'
                         >
-                            Topography as art.
+                            {t('about.story.title')}
                         </motion.h1>
 
                         <motion.p
                             variants={fadeInUp}
                             className='font-sans text-lg sm:text-xl text-surface-foreground/90 leading-relaxed font-normal mb-8 max-w-3xl'
                         >
-                            Born on the west coast of Norway, SCAPE by md
-                            translates the dramatic topography of mountains,
-                            fjords, and coastlines into architectural 3D reliefs
-                            for contemporary Scandinavian spaces.
+                            {t('about.story.lead')}
                         </motion.p>
 
                         <div className='grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start text-left'>
                             <div className='md:sticky md:top-50 md:col-span-7 space-y-5 text-base sm:text-md text-muted-foreground leading-relaxed'>
                                 <motion.p variants={fadeInUp}>
-                                    Being based in Bergen, it’s difficult not to
-                                    be inspired by the surrounding mountains,
-                                    fjords, and dramatic landscapes that define
-                                    the west coast of Norway. SCAPE by md was
-                                    created from a desire to capture these
-                                    environments in a tangible form - combining
-                                    modern technology with scandinavian design
-                                    to create detailed 3D terrain pieces with
-                                    both visual and sentimental value.
+                                    {t('about.story.p1')}
                                 </motion.p>
                                 <motion.div
                                     variants={fadeInUp}
@@ -239,26 +226,19 @@ function About() {
                                 >
                                     <img
                                         src='/images/IMG_0474.avif'
-                                        alt='Walnut framed duo'
+                                        alt={t('about.story.altWalnut')}
                                         className='w-full h-full object-cover'
                                         loading='lazy'
                                     />
                                     <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
-                                        <span>{t('theScape.captions.walnut')}</span>
+                                        <span>{t('about.story.captionWalnut')}</span>
                                     </div>
                                 </motion.div>
                                 <motion.p variants={fadeInUp}>
-                                    We believe the places we feel connected to
-                                    deserve more than a place on a map. By
-                                    turning familiar landscapes into carefully
-                                    crafted pieces, we aim to create something
-                                    that brings back memories, celebrates
-                                    meaningful places, and feels at home in any
-                                    space.
+                                    {t('about.story.pExtra')}
                                 </motion.p>
                                 <motion.p variants={fadeInUp} className='text-sm'>
-                                    Every piece is designed and produced to
-                                    order in our Bergen workshop.
+                                    {t('about.story.p2')}
                                 </motion.p>
                             </div>
 
@@ -269,12 +249,12 @@ function About() {
                                 >
                                     <img
                                         src='/images/IMG_0473.avif'
-                                        alt='Framed topographic model crafted in Bergen'
+                                        alt={t('about.story.altOak')}
                                         className='w-full h-full object-cover'
                                         loading='lazy'
                                     />
                                     <div className='absolute bottom-3 left-4 px-3 py-1 rounded-sm bg-black/60 backdrop-blur-md text-[11px] font-medium text-white'>
-                                        <span>Natural Oak</span>
+                                        <span>{t('about.story.captionNaturalOak')}</span>
                                     </div>
                                 </motion.div>
                             </div>
@@ -297,10 +277,10 @@ function About() {
                             className='max-w-2xl mb-8 sm:mb-10'
                         >
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                THE CRAFT IN MOTION
+                                {t('about.film.badge')}
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Bring your landscape to life.
+                                {t('about.film.title')}
                             </h2>
                         </motion.div>
 
@@ -328,15 +308,13 @@ function About() {
                             className='max-w-2xl mb-12 sm:mb-16'
                         >
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                THE FOUNDERS
+                                {t('about.founders.badge')}
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Architecture meets data engineering.
+                                {t('about.founders.title')}
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                                SCAPE is created by Maren and Daniel. Our
-                                practice unites spatial architectural design
-                                with geospatial computing to create quality art.
+                                {t('about.founders.lead')}
                             </p>
                         </motion.div>
 
@@ -349,21 +327,17 @@ function About() {
                                 <div>
                                     <div className='flex items-center justify-between mb-6'>
                                         <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
-                                            Architecture & Design
+                                            {t('about.founders.maren.discipline')}
                                         </span>
                                         <span className='text-xs font-semibold text-surface-foreground/80 bg-muted px-2.5 py-1 rounded-full'>
-                                            Co-Founder
+                                            {t('about.founders.maren.role')}
                                         </span>
                                     </div>
                                     <h3 className='font-display text-2xl font-bold text-surface-foreground tracking-tight mb-4'>
-                                        Maren
+                                        {t('about.founders.maren.name')}
                                     </h3>
                                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
-                                        With an educational foundation in
-                                        architecture, Maren defines the physical
-                                        aesthetics, proportion, and quality. She
-                                        had the idea initially, which we then
-                                        perfected over multiple iterations.
+                                        {t('about.founders.maren.bio')}
                                     </p>
                                 </div>
                             </motion.div>
@@ -375,23 +349,17 @@ function About() {
                                 <div>
                                     <div className='flex items-center justify-between mb-6'>
                                         <span className='font-mono text-xs uppercase tracking-wider text-muted-foreground/80'>
-                                            Data Engineering & Software
+                                            {t('about.founders.daniel.discipline')}
                                         </span>
                                         <span className='text-xs font-semibold text-surface-foreground/80 bg-muted px-2.5 py-1 rounded-full'>
-                                            Co-Founder
+                                            {t('about.founders.daniel.role')}
                                         </span>
                                     </div>
                                     <h3 className='font-display text-2xl font-bold text-surface-foreground tracking-tight mb-4'>
-                                        Daniel
+                                        {t('about.founders.daniel.name')}
                                     </h3>
                                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
-                                        With a background in computer science
-                                        and data systems, Daniel built the
-                                        algorithmic engine that interfaces
-                                        directly with Norway’s elevation
-                                        databases. He translates gigabytes of
-                                        raw binary data into high-resolution
-                                        physical topography.
+                                        {t('about.founders.daniel.bio')}
                                     </p>
                                 </div>
                             </motion.div>
@@ -417,14 +385,13 @@ function About() {
                             className='max-w-2xl mb-12 sm:mb-16'
                         >
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                OUR PRINCIPLES
+                                {t('about.values.badge')}
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                What defines a SCAPE.
+                                {t('about.values.title')}
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                                Every piece we craft adheres to our three
-                                foundational standards.
+                                {t('about.values.lead')}
                             </p>
                         </motion.div>
 
@@ -478,17 +445,13 @@ function About() {
                     >
                         <motion.div variants={fadeInUp} className='max-w-2xl'>
                             <p className='text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3'>
-                                GET STARTED
+                                {t('about.mission.badge')}
                             </p>
                             <h2 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                                Frame your memories.
+                                {t('about.mission.title')}
                             </h2>
                             <p className='font-sans text-base sm:text-lg text-muted-foreground leading-relaxed'>
-                                We believe that every landscape tells a story.
-                                Our mission is to help you preserve and
-                                celebrate the places that matter most -
-                                transforming memories into timeless art pieces
-                                that you can hold and display.
+                                {t('about.mission.lead')}
                             </p>
                         </motion.div>
 
@@ -497,7 +460,7 @@ function About() {
                                 href='/get-started'
                                 className='inline-flex group items-center gap-3 px-8 py-4 text-sm font-semibold border border-border rounded-full bg-primary text-primary-foreground transition-all duration-200 shadow-xs hover:bg-primary-foreground hover:text-secondary-foreground cursor-pointer'
                             >
-                                Customize Your Scape
+                                {t('about.mission.cta')}
                                 <ArrowRight className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1' />
                             </a>
                         </motion.div>

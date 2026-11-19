@@ -2,8 +2,11 @@ import { BadgeCheck, Quote, MapPin } from 'lucide-react';
 import StarRating from './ui/starRating';
 import type { Review } from '@/types/common';
 import { Separator } from './ui/separator';
+import { useTranslation } from 'react-i18next';
 
 function TestimonialCard({ review }: { review: Review }) {
+    const { t } = useTranslation('pages');
+
     return (
         <figure className='flex h-full flex-col rounded-2xl border border-border/80 bg-background p-6 sm:p-7 shadow-xs hover:border-border hover:shadow-sm transition-all duration-300 group text-left'>
             <div className='flex items-center justify-between gap-4 mb-4'>
@@ -33,7 +36,7 @@ function TestimonialCard({ review }: { review: Review }) {
                         className='size-3.5 shrink-0'
                         aria-hidden='true'
                     />
-                    <span>Verified Customer</span>
+                    <span>{t('testimonials.card.verifiedCustomer')}</span>
                 </figcaption>
                 {review.location && (
                     <figcaption className='inline-flex items-center gap-1 text-muted-foreground font-mono'>

@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Hjem",
-    "theScape": "The Scape",
+    "theScape": "The SCAPE",
     "about": "Om oss",
     "map": "Kart",
     "getStarted": "Kom i gang"
@@ -9,7 +9,7 @@
   "actions": {
     "getStarted": "Kom i gang",
     "customizeYours": "Kom i gang",
-    "createYourScape": "Lag din Scape",
+    "createYourScape": "Lag ditt SCAPE",
     "explore": "Utforsk",
     "back": "Tilbake",
     "backToHome": "Til forsiden",

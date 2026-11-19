@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
+import type { TFunction } from 'i18next';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,31 +19,42 @@ import {
 import { Spinner } from './ui/shadcn-io/spinner/spinner';
 import { Send } from 'lucide-react';
 
-const formSchema = z.object({
-    name: z
-        .string()
-        .min(2, {
-            message: 'Please enter your name',
-        })
-        .max(35, {
-            message: 'Name cannot be over 35 characters',
+const createFormSchema = (t: TFunction) =>
+    z.object({
+        name: z
+            .string()
+            .min(2, {
+                message: t('contact.form.validation.nameMin', { ns: 'pages' }),
+            })
+            .max(35, {
+                message: t('contact.form.validation.nameMax', { ns: 'pages' }),
+            }),
+        email: z.string().email({
+            message: t('contact.form.validation.email', { ns: 'pages' }),
         }),
-    email: z.email({
-        message: 'Please enter a valid email address',
-    }),
-    orderId: z.string().optional(),
-    content: z.string().min(10, {
-        message: 'Please provide a message (at least 10 characters)',
-    }),
-    honey: z.string().max(0, 'Bot detected'),
-});
+        orderId: z.string().optional(),
+        content: z.string().min(10, {
+            message: t('contact.form.validation.contentMin', { ns: 'pages' }),
+        }),
+        honey: z.string().max(0, t('contact.form.validation.botDetected', { ns: 'pages' })),
+    });
 
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = {
+    name: string;
+    email: string;
+    orderId?: string;
+    content: string;
+    honey: string;
+};
 
 function ContactForm() {
+    const { t } = useTranslation('pages');
     const [isLoading, setIsLoading] = useState(false);
+
+    const schema = useMemo(() => createFormSchema(t), [t]);
+
     const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(schema),
         defaultValues: {
             name: '',
             email: '',
@@ -69,22 +82,22 @@ function ContactForm() {
             });
 
             if (!response.ok) {
-                toast.error('Failed to submit message', {
-                    description: 'Please try again later or email us directly.',
+                toast.error(t('contact.form.toast.error'), {
+                    description: t('contact.form.toast.errorDesc'),
                 });
                 setIsLoading(false);
                 return;
             }
 
-            toast.success('Message sent successfully', {
-                description: 'Takk! We will get back to you shortly.',
+            toast.success(t('contact.form.toast.success'), {
+                description: t('contact.form.toast.successDesc'),
             });
             setIsLoading(false);
             form.reset();
         } catch (err) {
             console.error('Failed to submit form:', err);
-            toast.error('Failed to submit message', {
-                description: err instanceof Error ? err.message : 'Please try again later or email us directly.',
+            toast.error(t('contact.form.toast.error'), {
+                description: err instanceof Error ? err.message : t('contact.form.toast.errorDesc'),
             });
             setIsLoading(false);
         }
@@ -101,12 +114,12 @@ function ContactForm() {
                         render={({ field }) => (
                             <FormItem className='flex flex-col gap-1.5'>
                                 <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                    Your Name <span className='text-destructive'>*</span>
+                                    {t('contact.form.nameLabel')} <span className='text-destructive'>*</span>
                                 </FormLabel>
                                 <FormControl>
                                     <Input
                                         className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
-                                        placeholder='Ola Nordmann'
+                                        placeholder={t('contact.form.namePlaceholder')}
                                         {...field}
                                     />
                                 </FormControl>
@@ -121,13 +134,13 @@ function ContactForm() {
                         render={({ field }) => (
                             <FormItem className='flex flex-col gap-1.5'>
                                 <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                    Email Address <span className='text-destructive'>*</span>
+                                    {t('contact.form.emailLabel')} <span className='text-destructive'>*</span>
                                 </FormLabel>
                                 <FormControl>
                                     <Input
                                         type='email'
                                         className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
-                                        placeholder='ola@example.no'
+                                        placeholder={t('contact.form.emailPlaceholder')}
                                         {...field}
                                     />
                                 </FormControl>
@@ -144,12 +157,12 @@ function ContactForm() {
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-1.5'>
                             <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                Order Reference <span className='text-muted-foreground/60 font-normal'>(Optional)</span>
+                                {t('contact.form.orderLabel')} <span className='text-muted-foreground/60 font-normal'>{t('contact.form.optional')}</span>
                             </FormLabel>
                             <FormControl>
                                 <Input
                                     className='h-11 rounded-xl bg-background border border-border/80 text-sm text-foreground placeholder:text-muted-foreground/60 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs'
-                                    placeholder='e.g. #12345'
+                                    placeholder={t('contact.form.orderPlaceholder')}
                                     {...field}
                                 />
                             </FormControl>
@@ -165,14 +178,14 @@ function ContactForm() {
                     render={({ field }) => (
                         <FormItem className='flex flex-col gap-1.5'>
                             <FormLabel className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-                                Message <span className='text-destructive'>*</span>
+                                {t('contact.form.messageLabel')} <span className='text-destructive'>*</span>
                             </FormLabel>
                             <FormControl>
                                 <textarea
                                     id='message'
                                     rows={5}
                                     className='w-full rounded-xl bg-background border border-border/80 p-3.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-xs resize-none font-sans leading-relaxed'
-                                    placeholder='Tell us about your custom terrain inquiry, question, or special request...'
+                                    placeholder={t('contact.form.messagePlaceholder')}
                                     {...field}
                                 />
                             </FormControl>
@@ -209,7 +222,7 @@ function ContactForm() {
                             type='submit'
                             className='w-full sm:w-auto min-w-42 h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-sm transition-all duration-200 hover:bg-primary-foreground hover:text-secondary-foreground border border-border cursor-pointer inline-flex items-center justify-center gap-2'
                         >
-                            <span>Send Message</span>
+                            <span>{t('contact.form.submit')}</span>
                             <Send className='w-4 h-4' />
                         </Button>
                     )}

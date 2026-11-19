@@ -11,8 +11,9 @@ import {
     ArrowRight,
     ShieldAlert,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const TOC_SECTIONS = [
+const DEFAULT_TOC_SECTIONS = [
     { id: 'our-services', num: '01', title: 'Our Services' },
     {
         id: 'intellectual-property-rights',
@@ -71,6 +72,9 @@ const TOC_SECTIONS = [
 ];
 
 function TermsOfService() {
+    const { t } = useTranslation('policies');
+    const tocSections = (t('terms.toc', { returnObjects: true }) as Array<{ id: string; num: string; title: string }>) || DEFAULT_TOC_SECTIONS;
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -97,23 +101,19 @@ function TermsOfService() {
                     <div className='flex flex-wrap items-center gap-3 mb-4'>
                         <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 gap-2 bg-background/80 backdrop-blur-sm'>
                             <FileText className='w-3 h-3 text-muted-foreground' />
-                            Legal Terms & Customer Agreement
+                            {t('terms.badge')}
                         </Badge>
                         <span className='text-xs font-mono text-muted-foreground'>
-                            Last updated: November 06, 2026
+                            {t('terms.lastUpdated')}
                         </span>
                     </div>
 
                     <h1 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                        Terms of Service.
+                        {t('terms.title')}
                     </h1>
 
                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl'>
-                        These Legal Terms constitute a legally binding agreement
-                        made between you, whether personally or on behalf of an
-                        entity, and Maren Stenersen (SCAPE by md), concerning
-                        your access to and use of our bespoke cartographic
-                        products, website, and services.
+                        {t('terms.lead')}
                     </p>
                 </div>
 
@@ -121,10 +121,10 @@ function TermsOfService() {
                 <div className='p-6 sm:p-8 rounded-2xl bg-background border border-border/80 shadow-xs mb-10 space-y-6'>
                     <div>
                         <span className='text-xs uppercase font-mono tracking-wider font-semibold text-primary'>
-                            Agreement to Our Legal Terms
+                            {t('terms.entity.badge')}
                         </span>
                         <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mt-1'>
-                            Operating Entity & Registered Business
+                            {t('terms.entity.title')}
                         </h2>
                     </div>
 
@@ -132,14 +132,14 @@ function TermsOfService() {
                         <div className='space-y-2 p-4 rounded-xl border border-border/70 bg-surface/30'>
                             <div className='flex items-center gap-2 text-surface-foreground font-semibold'>
                                 <Building className='w-4 h-4 text-muted-foreground' />
-                                <span>Business Registration</span>
+                                <span>{t('terms.entity.registration')}</span>
                             </div>
                             <p>
-                                Maren Stenersen, doing business as <br/>
+                                {t('terms.entity.operatingName')} <br/>
                                 <b>SCAPE by md</b>
                             </p>
                             <p className='font-mono text-xs'>
-                                Org nr: 929 981 626 (Norway)
+                                {t('terms.entity.orgNr')}
                             </p>
                             <p className='font-mono text-xs text-primary'>
                                 https://www.scapebymd.no
@@ -149,7 +149,7 @@ function TermsOfService() {
                         <div className='space-y-2 p-4 rounded-xl border border-border/70 bg-surface/30'>
                             <div className='flex items-center gap-2 text-surface-foreground font-semibold'>
                                 <MapPin className='w-4 h-4 text-muted-foreground' />
-                                <span>Contact</span>
+                                <span>{t('terms.entity.contact')}</span>
                             </div>
                             <p>Schweigårds vei 30A, 5063 Bergen, Norway</p>
                             <p className='font-mono text-xs'>
@@ -163,35 +163,13 @@ function TermsOfService() {
 
                     <div className='space-y-3 pt-2 text-sm text-muted-foreground leading-relaxed border-t border-border/60'>
                         <p>
-                            We operate the website{' '}
-                            <a
-                                href='https://www.scapebymd.no'
-                                target='_blank'
-                                rel='noreferrer'
-                                className='font-medium text-foreground underline underline-offset-4'
-                            >
-                                https://www.scapebymd.no
-                            </a>{' '}
-                            (the "Site"), as well as any other related products
-                            and services that refer or link to these legal terms
-                            (collectively, the "Services").
+                            {t('terms.entity.p1')}
                         </p>
                         <p>
-                            You agree that by accessing the Services, you have
-                            read, understood, and agreed to be bound by all of
-                            these Legal Terms. We will provide you with prior
-                            notice of any scheduled changes to the Services you
-                            are using. The modified Legal Terms will become
-                            effective upon posting or notifying you via
-                            scapebymd@gmail.com.
+                            {t('terms.entity.p2')}
                         </p>
                         <p>
-                            The Services are intended for users who are at least
-                            13 years of age. All users who are minors in the
-                            jurisdiction in which they reside (generally under
-                            the age of 18) must have the permission of, and be
-                            directly supervised by, their parent or guardian to
-                            use the Services.
+                            {t('terms.entity.p3')}
                         </p>
                     </div>
 
@@ -203,11 +181,7 @@ function TermsOfService() {
                                 Important Notice
                             </p>
                             <p className='text-muted-foreground leading-relaxed'>
-                                IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL
-                                TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM
-                                USING THE SERVICES AND YOU MUST DISCONTINUE USE
-                                IMMEDIATELY. We recommend printing or retaining
-                                a digital copy of these terms for your records.
+                                {t('terms.entity.disagree')}
                             </p>
                         </div>
                     </div>
@@ -223,12 +197,12 @@ function TermsOfService() {
                             </h2>
                         </div>
                         <span className='font-mono text-xs text-muted-foreground'>
-                            27 Articles
+                            {tocSections.length} Articles
                         </span>
                     </div>
 
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-                        {TOC_SECTIONS.map((section) => (
+                        {tocSections.map((section) => (
                             <a
                                 key={section.id}
                                 href={`#${section.id}`}
@@ -1998,15 +1972,12 @@ function TermsOfService() {
                                 27
                             </span>
                             <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                                Contact Us
+                                {t('terms.contactUs.title')}
                             </h2>
                         </div>
                         <div className='pl-7 sm:pl-8 space-y-4'>
                             <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                In order to resolve a complaint regarding the
-                                Services or to receive further information
-                                regarding use of the Services, please contact
-                                our atelier directly:
+                                {t('terms.contactUs.lead')}
                             </p>
 
                             <div className='p-5 rounded-xl border border-border/70 bg-surface/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4'>
@@ -2015,7 +1986,7 @@ function TermsOfService() {
                                         Maren Stenersen / SCAPE by md
                                     </p>
                                     <p className='text-muted-foreground'>
-                                        Schweigårds vei 30A, 5063 Bergen, Norway
+                                        Schweigaards vei 30A, 5063 Bergen, Norway
                                     </p>
                                     <div className='flex flex-wrap gap-4 pt-1 font-mono text-xs text-muted-foreground'>
                                         <span className='flex items-center gap-1.5'>
@@ -2033,7 +2004,7 @@ function TermsOfService() {
                                     href='/contact-us'
                                     className='inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-border bg-background text-foreground text-xs font-medium hover:bg-muted transition-colors shrink-0'
                                 >
-                                    <span>Contact Us</span>
+                                    <span>{t('terms.contactUs.cta')}</span>
                                     <ArrowRight className='w-3 h-3' />
                                 </a>
                             </div>

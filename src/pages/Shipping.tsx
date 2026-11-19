@@ -3,8 +3,11 @@ import Footer from '@/components/Footer';
 import { Separator } from '@/components/ui/separator';
 import { Truck, PackageCheck, ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { useTranslation } from 'react-i18next';
 
 function Shipping() {
+    const { t } = useTranslation('pages');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -20,7 +23,7 @@ function Shipping() {
                     href='/'
                     className='text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors'
                 >
-                    Back to Home
+                    {t('shipping.backToHome')}
                 </a>
             </div>
 
@@ -30,14 +33,13 @@ function Shipping() {
                 <div className='mb-10 sm:mb-14'>
                     <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-4 gap-2 bg-background/80 backdrop-blur-sm'>
                         <Truck className='w-3 h-3 text-muted-foreground' />
-                        Domestic Delivery (Norway)
+                        {t('shipping.badge')}
                     </Badge>
                     <h1 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                        Orders & Shipping.
+                        {t('shipping.title')}
                     </h1>
                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl'>
-                        All pieces are crafted to order in our Bergen studio and
-                        delivered across Norway via Posten.
+                        {t('shipping.lead')}
                     </p>
                 </div>
 
@@ -50,17 +52,10 @@ function Shipping() {
                                 <Truck className='w-5 h-5' />
                             </div>
                             <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mb-3'>
-                                Shipping
+                                {t('shipping.shipping.title')}
                             </h2>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                                We offer shipping through Posten directly
-                                integrated in Vipps, making delivery fast and
-                                convenient. Once your package is on its way,
-                                you’ll receive tracking information so you can
-                                follow the shipment in real time. Delivery times
-                                vary depending on your location, but Posten
-                                typically provides quick and reliable service
-                                across Norway.
+                                {t('shipping.shipping.body')}
                             </p>
                         </div>
                     </div>
@@ -72,29 +67,20 @@ function Shipping() {
                                 <PackageCheck className='w-5 h-5' />
                             </div>
                             <h2 className='font-display text-xl sm:text-2xl font-bold tracking-tight text-surface-foreground mb-3'>
-                                Orders
+                                {t('shipping.orders.title')}
                             </h2>
                             <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed mb-6'>
-                                When you place an order with us, it is processed
-                                immediately and you’ll receive a confirmation by
-                                email as soon as payment is completed. We’ll
-                                start production as soon as possible, but
-                                production times may vary depending on the
-                                number of pending orders. If anything is unclear
-                                or you need to make changes before your order is
-                                shipped, contact our support team as soon as
-                                possible - we’re always here to help ensure the
-                                process is smooth and predictable.
+                                {t('shipping.orders.body')}
                             </p>
                         </div>
                         <div className='pt-4 border-t border-border/60'>
                             <p className='text-sm text-muted-foreground flex items-center gap-1.5'>
-                                Need help with an order?{' '}
+                                {t('shipping.orders.needHelp')}{' '}
                                 <a
                                     href='/contact-us'
                                     className='font-semibold text-surface-foreground underline underline-offset-4 hover:opacity-80 inline-flex items-center gap-1'
                                 >
-                                    Contact us here
+                                    {t('shipping.orders.contactUs')}
                                     <ArrowRight className='w-3 h-3' />
                                 </a>
                             </p>

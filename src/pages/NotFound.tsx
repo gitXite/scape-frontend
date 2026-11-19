@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Compass, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const fadeDown = {
     hidden: { opacity: 0, y: -20 },
@@ -28,6 +29,8 @@ const fadeUp = {
 };
 
 function NotFound() {
+    const { t } = useTranslation('pages');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-[#0c0d11] text-primary-foreground selection:bg-primary-foreground/20'>
             {/* ── Studio Backdrop Lighting (Identical to Hero) */}
@@ -70,7 +73,7 @@ function NotFound() {
                     <div className='inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-primary-foreground/[0.08] border border-primary-foreground/15 backdrop-blur-md'>
                         <span className='h-2 w-2 rounded-full bg-amber-400 animate-pulse' />
                         <span className='text-[11px] sm:text-xs font-mono font-medium tracking-[0.2em] uppercase text-primary-foreground/80'>
-                            Error 404 · Uncharted Terrain
+                            {t('notFound.badge')}
                         </span>
                     </div>
                 </motion.div>
@@ -84,10 +87,7 @@ function NotFound() {
                     className='mb-6'
                 >
                     <h1 className='font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-primary-foreground leading-[1.08] sm:leading-[1.02]'>
-                        Lost in the <br className='hidden sm:inline' />
-                        <span className='text-primary-foreground/60 font-bold'>
-                            topography.
-                        </span>
+                        {t('notFound.title')}
                     </h1>
                 </motion.div>
 
@@ -99,9 +99,7 @@ function NotFound() {
                     animate='visible'
                     className='font-sans text-sm sm:text-base md:text-lg text-primary-foreground/85 font-normal leading-relaxed max-w-xl mx-auto mb-8'
                 >
-                    The coordinates you’re looking for don’t exist in our
-                    elevation model, or this path has shifted. Let’s guide you
-                    back to familiar ground.
+                    {t('notFound.lead')}
                 </motion.p>
 
                 {/* Cartographic Telemetry Box */}
@@ -120,12 +118,12 @@ function NotFound() {
                         <span className='text-primary-foreground/20 hidden sm:inline'>
                             •
                         </span>
-                        <span>ELEV: 0m</span>
+                        <span>{t('notFound.telemetry.elev')}</span>
                         <span className='text-primary-foreground/20 hidden sm:inline'>
                             •
                         </span>
                         <span className='text-amber-300/80'>
-                            GRID: UNRESOLVED
+                            {t('notFound.telemetry.grid')}
                         </span>
                     </div>
                 </motion.div>
@@ -143,15 +141,15 @@ function NotFound() {
                         className='group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                     >
                         <ArrowLeft className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:-translate-x-1' />
-                        Return to Home
+                        {t('notFound.returnHome')}
                     </a>
 
                     <a
                         href='/get-started'
-                        className='group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full  px-6 py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10  transition-all duration-200 backdrop-blur-sm'
+                        className='group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10 transition-all duration-200 backdrop-blur-sm'
                     >
                         <MapPin className='w-3.5 h-3.5 sm:w-4 sm:h-4' />
-                        Explore Interactive Map
+                        {t('notFound.exploreMap')}
                         <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
                     </a>
                 </motion.div>
@@ -165,35 +163,35 @@ function NotFound() {
                     className='pt-6 border-t border-primary-foreground/10 w-full max-w-lg'
                 >
                     <p className='text-[11px] font-mono uppercase tracking-wider text-primary-foreground/40 mb-3'>
-                        Suggested destinations
+                        {t('notFound.suggested')}
                     </p>
                     <div className='flex flex-wrap items-center justify-center gap-4 text-xs font-sans'>
                         <a
                             href='/#thescape'
                             className='text-primary-foreground/70 hover:text-primary-foreground transition-colors'
                         >
-                            The Scape
+                            {t('notFound.destinations.theScape')}
                         </a>
                         <span className='text-primary-foreground/20'>/</span>
                         <a
                             href='/about-us'
                             className='text-primary-foreground/70 hover:text-primary-foreground transition-colors'
                         >
-                            About Us
+                            {t('notFound.destinations.aboutUs')}
                         </a>
                         <span className='text-primary-foreground/20'>/</span>
                         <a
                             href='/faq'
                             className='text-primary-foreground/70 hover:text-primary-foreground transition-colors'
                         >
-                            FAQ
+                            {t('notFound.destinations.faq')}
                         </a>
                         <span className='text-primary-foreground/20'>/</span>
                         <a
                             href='/contact-us'
                             className='text-primary-foreground/70 hover:text-primary-foreground transition-colors'
                         >
-                            Contact
+                            {t('notFound.destinations.contact')}
                         </a>
                     </div>
                 </motion.div>

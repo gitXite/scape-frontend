@@ -1,0 +1,225 @@
+{
+    "cookies": {
+        "badge": "Transparency & Essential Tracking",
+        "lastUpdated": "Last updated: November 06, 2026",
+        "title": "Cookie Policy.",
+        "lead": "SCAPE by md is built on digital minimalism. We do not use third-party marketing trackers or profiling cookies - only strictly necessary session tokens to keep your cart secure and process payments.",
+        "s1": {
+            "title": "01 / What Are Cookies?",
+            "body": "Cookies are small text files stored locally on your computer or mobile device when you interact with a web application. They help the site remember your configuration and function reliably. Cookies do not collect personal information unless you explicitly provide it (such as when entering shipping details during checkout)."
+        },
+        "s2": {
+            "title": "02 / Necessary Cookies We Use",
+            "lead": "Our website operates exclusively with strictly necessary cookies required for system integrity and payment processing:",
+            "paymentCard": {
+                "title": "Payment & Anti-Fraud",
+                "badge": "Vipps",
+                "desc": "When you finalize your Scape, integrated payment gateways set security and anti-fraud verification tokens. These prevent duplicate charges and ensure PCI-DSS compliant transactions."
+            },
+            "cartCard": {
+                "title": "Cart & Configuration",
+                "badge": "Session",
+                "desc": "Temporary session identifiers keep your relief model, frame selection, and passe-partout choices synchronized between steps without losing your work."
+            },
+            "note": "Because these cookies are indispensable for website functionality and secure commerce, they are active by default. No personal information or tracking profile is shared with advertisers."
+        },
+        "s3": {
+            "title": "03 / Managing Browser Settings",
+            "body": "You retain complete authority over your device's cookie settings. You can instruct your browser to prompt you when cookies are set or block them altogether through your browser preferences (such as in Safari, Chrome, Firefox, or Edge).",
+            "warning": "*Please note: Disabling strictly necessary cookies will inhibit the secure payment token exchange, preventing checkout completion."
+        },
+        "s4": {
+            "title": "04 / More Information & Privacy Rights",
+            "body": "For comprehensive documentation regarding how we protect your personal data, customer rights, and data retention standards, consult our Privacy Policy.",
+            "cta": "Read Full Privacy Policy"
+        }
+    },
+    "returns": {
+        "badge": "Customer Care & Quality Guarantee",
+        "title": "Returns & Refunds.",
+        "lead": "All SCAPE pieces are bespoke physical commissions tailored to your specific coordinates. Here is how our return and damage policies operate.",
+        "custom": {
+            "title": "Custom-Made to Order",
+            "body": "At SCAPE by md, all products are custom-made to order based on the geographical coordinates, elevation scale, and framing finishes you specify. Because each item is uniquely created for you, we cannot accept returns, exchanges, or cancellations once additive production and framing have commenced.",
+            "statute": "This policy is in full accordance with Norwegian and EU consumer protection statutes, which legally exempt personalized, custom-made goods from standard cooling-off return rights."
+        },
+        "damaged": {
+            "title": "Damaged in Transit",
+            "body": "If your item arrives damaged, defective, or incorrect, please reach out to us within 7 days of parcel delivery. Please include photographs of the packaging and the affected frame or relief so our atelier can evaluate the issue and immediately dispatch a priority replacement.",
+            "cta": "Report a damaged item"
+        },
+        "commitment": {
+            "title": "Our Craft Commitment",
+            "body": "We want you to be entirely proud to display your Scape. If there is ever an oversight or flaw on our part, we will work directly with you to resolve it swiftly and ensure you are delighted with your finished artwork."
+        },
+        "regards": "Regards,"
+    },
+    "privacy": {
+        "badge": "Legal & Transparency",
+        "lastUpdated": "Last updated: November 06, 2026",
+        "title": "Privacy Policy.",
+        "lead": "We value your privacy. This policy explains what information we collect, how we use it, and your rights as a customer of SCAPE by md.",
+        "s1": {
+            "title": "01 / Introduction",
+            "body": "We are committed to safeguarding the personal information of our visitors and customers. We do not sell, rent, or trade your personal data."
+        },
+        "s2": {
+            "title": "02 / Information We Collect",
+            "lead": "We only collect information that you voluntarily provide when creating an inquiry or placing an order:",
+            "items": {
+                "name": "Full Name - used for order identification and labeling",
+                "email": "Email Address - used to send order confirmations and real-time tracking updates",
+                "address": "Delivery Address - used exclusively by Posten Norge for physical parcel dispatch",
+                "payment": "Payment Information - processed securely through Vipps; card numbers never touch or reside on our servers"
+            },
+            "noCookies": "We do not collect personal data automatically or through cross-site tracking cookies."
+        },
+        "s3": {
+            "title": "03 / How We Use Your Information",
+            "lead": "Your information is used solely to fulfill our contractual commitments to you:",
+            "items": {
+                "item1": "Fabricating and custom-framing your 3D topographic relief",
+                "item2": "Contacting you regarding dispatch, tracking, or unexpected production delays",
+                "item3": "Responding to customer support inquiries and replacement requests"
+            },
+            "noMarketing": "We never use your contact details for unsolicited marketing campaigns, nor do we disclose customer lists to third parties."
+        },
+        "s4": {
+            "title": "04 / Third-Party Services",
+            "lead": "We collaborate with trusted Norwegian service providers solely to operate our service:",
+            "items": {
+                "vipps": "Vipps MobilePay - Secure, PCI-DSS compliant checkout and transaction authorization",
+                "posten": "Posten Norge / Bring - Physical parcel logistics, shipping label generation, and domestic delivery tracking"
+            }
+        },
+        "s5": {
+            "title": "05 / Data Security",
+            "body": "We employ modern industry standards to protect your data, including transport-layer security (HTTPS/TLS) encryption on all endpoints and strict access limitations within our workshop databases."
+        },
+        "s6": {
+            "title": "06 / Your Rights (GDPR)",
+            "body": "Under Norwegian and European privacy regulations, you hold the right to request a copy of the personal data we store, request rectification of errors, or ask for complete deletion of your customer record once your warranty and accounting period has completed."
+        },
+        "s7": {
+            "title": "07 / Policy Updates",
+            "body": "Any revisions to our privacy practices will be published on this page alongside an updated revision date."
+        },
+        "contact": {
+            "title": "Questions or Data Inquiries?",
+            "desc": "Contact Maren & Daniel directly at",
+            "cta": "Contact Us"
+        }
+    },
+    "terms": {
+        "badge": "Legal Terms & Customer Agreement",
+        "lastUpdated": "Last updated: November 06, 2026",
+        "title": "Terms of Service.",
+        "lead": "Please read these Terms of Service carefully before purchasing or interacting with SCAPE by md.",
+        "entity": {
+            "badge": "Agreement to Our Legal Terms",
+            "title": "Operating Entity & Registered Business",
+            "registration": "Business Registration",
+            "operatingName": "Maren Stenersen, doing business as",
+            "orgNr": "Org nr: 929 981 626 (Norway)",
+            "contact": "Contact",
+            "p1": "We operate the website https://www.scapebymd.no (the \"Site\"), as well as any other related products and services that refer or link to these legal terms (collectively, the \"Services\").",
+            "p2": "You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. We will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you via scapebymd@gmail.com.",
+            "p3": "The Services are intended for users who are at least 13 years of age. All users who are minors in the jurisdiction in which they reside (generally under the age of 18) must have the permission of, and be directly supervised by, their parent or guardian to use the Services.",
+            "disagree": "If you do not agree with all of these Legal Terms, then you are expressly prohibited from using the Services and you must discontinue use immediately."
+        },
+        "contactUs": {
+            "title": "Contact Us",
+            "lead": "In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us directly:",
+            "cta": "Contact Us"
+        },
+        "toc": [
+            { "id": "our-services", "num": "01", "title": "Our Services" },
+            {
+                "id": "intellectual-property-rights",
+                "num": "02",
+                "title": "Intellectual Property Rights"
+            },
+            {
+                "id": "user-representations",
+                "num": "03",
+                "title": "User Representations"
+            },
+            { "id": "products", "num": "04", "title": "Products & Visuals" },
+            {
+                "id": "purchases-and-payment",
+                "num": "05",
+                "title": "Purchases & Payment"
+            },
+            { "id": "return-policy", "num": "06", "title": "Return Policy" },
+            { "id": "warranty", "num": "07", "title": "Warranty" },
+            { "id": "delivery", "num": "08", "title": "Delivery & Title" },
+            {
+                "id": "prohibited-activities",
+                "num": "09",
+                "title": "Prohibited Activities"
+            },
+            {
+                "id": "user-generated-contributions",
+                "num": "10",
+                "title": "User Generated Contributions"
+            },
+            {
+                "id": "contribution-licence",
+                "num": "11",
+                "title": "Contribution Licence"
+            },
+            {
+                "id": "guidelines-for-reviews",
+                "num": "12",
+                "title": "Guidelines for Reviews"
+            },
+            {
+                "id": "third-party-websites-and-content",
+                "num": "13",
+                "title": "Third-Party Websites"
+            },
+            {
+                "id": "services-management",
+                "num": "14",
+                "title": "Services Management"
+            },
+            { "id": "privacy-policy", "num": "15", "title": "Privacy Policy" },
+            {
+                "id": "term-and-termination",
+                "num": "16",
+                "title": "Term & Termination"
+            },
+            {
+                "id": "modifications-and-interruptions",
+                "num": "17",
+                "title": "Modifications & Interruptions"
+            },
+            { "id": "governing-law", "num": "18", "title": "Governing Law" },
+            {
+                "id": "dispute-resolution",
+                "num": "19",
+                "title": "Dispute Resolution"
+            },
+            { "id": "corrections", "num": "20", "title": "Corrections" },
+            { "id": "disclaimer", "num": "21", "title": "Disclaimer" },
+            {
+                "id": "limitations-of-liability",
+                "num": "22",
+                "title": "Limitations of Liability"
+            },
+            {
+                "id": "indemnification",
+                "num": "23",
+                "title": "Indemnification"
+            },
+            { "id": "user-data", "num": "24", "title": "User Data" },
+            {
+                "id": "electronic-communications-transactions-and-signatures",
+                "num": "25",
+                "title": "Electronic Signatures"
+            },
+            { "id": "miscellaneous", "num": "26", "title": "Miscellaneous" },
+            { "id": "contact-us", "num": "27", "title": "Contact Us" }
+        ]
+    }
+}

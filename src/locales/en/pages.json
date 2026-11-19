@@ -1,0 +1,413 @@
+{
+  "about": {
+    "nav": {
+      "ariaLabel": "About Page Navigation",
+      "story": "Story",
+      "film": "Film",
+      "founders": "Founders",
+      "values": "Values",
+      "mission": "Mission",
+      "backToHome": "Back to Home"
+    },
+    "story": {
+      "location": "Bergen, Norway",
+      "title": "Topography as art.",
+      "lead": "Born on the west coast of Norway, SCAPE by md translates the dramatic topography of mountains, fjords, and coastlines into architectural 3D reliefs for contemporary Scandinavian spaces.",
+      "p1": "Being based in Bergen, it’s difficult not to be inspired by the surrounding mountains, fjords, and dramatic landscapes that define the west coast of Norway. SCAPE by md was created from a desire to capture these environments in a tangible form - combining modern technology with scandinavian design to create detailed 3D terrain pieces with both visual and sentimental value.",
+      "pExtra": "We believe the places we feel connected to deserve more than a place on a map. By turning familiar landscapes into carefully crafted pieces, we aim to create something that brings back memories, celebrates meaningful places, and feels at home in any space.",
+      "p2": "Every piece is designed and produced to order in our Bergen workshop.",
+      "imageAlt": "Collection of framed topographic models crafted in Bergen",
+      "imageBadge": "Studio Collection",
+      "altWalnut": "Walnut framed duo",
+      "captionWalnut": "Walnut",
+      "altOak": "Framed topographic model crafted in Bergen",
+      "captionNaturalOak": "Natural Oak"
+    },
+    "film": {
+      "badge": "THE CRAFT IN MOTION",
+      "title": "Bring your landscape to life.",
+      "playAria": "Play the SCAPE by md product film",
+      "watchFilm": "Watch the film (0:31)"
+    },
+    "founders": {
+      "badge": "THE FOUNDERS",
+      "title": "Architecture meets data engineering.",
+      "lead": "SCAPE is created by Maren and Daniel. Our practice unites spatial architectural design with geospatial computing to create quality art.",
+      "maren": {
+        "discipline": "Architecture & Design",
+        "role": "Co-Founder",
+        "name": "Maren",
+        "bio": "With an educational foundation in architecture, Maren defines the physical aesthetics, proportion, and quality. She had the idea initially, which we then perfected over multiple iterations."
+      },
+      "daniel": {
+        "discipline": "Data Engineering & Software",
+        "role": "Co-Founder",
+        "name": "Daniel",
+        "bio": "With a background in computer science and data systems, Daniel built the algorithmic engine that interfaces directly with Norway’s elevation databases. He translates gigabytes of raw binary data into high-resolution physical topography."
+      }
+    },
+    "values": {
+      "badge": "OUR PRINCIPLES",
+      "title": "What defines a SCAPE.",
+      "lead": "Every piece we craft adheres to our three foundational standards.",
+      "items": [
+        {
+          "number": "01",
+          "tag": "Cartography",
+          "title": "Every Contour Tells a Story",
+          "description": "We do not approximate nature. We use official digital elevation data to capture the real shape of the landscape, preserving the distinctive features of places that matter to you.",
+          "spec": "High Fidelity"
+        },
+        {
+          "number": "02",
+          "tag": "Scandinavian Design",
+          "title": "Sculpted for Scandinavian Interiors",
+          "description": "Designed to complement Scandinavian interiors, each terrain model combines clean lines, natural forms and understated colours to bring a subtle connection to the landscape into your home.",
+          "spec": "Designed for modern interiors"
+        },
+        {
+          "number": "03",
+          "tag": "Personal Meaning",
+          "title": "An Anchor to Places That Matter",
+          "description": "Whether it’s a family cabin in Hemsedal, a summit in Jotunheimen, or the archipelago where you grew up - each SCAPE is a tactile anchor to a memory in the landscape.",
+          "spec": "Bespoke commissions"
+        }
+      ]
+    },
+    "mission": {
+      "badge": "GET STARTED",
+      "title": "Frame your memories.",
+      "lead": "We believe that every landscape tells a story. Our mission is to help you preserve and celebrate the places that matter most - transforming memories into timeless art pieces that you can hold and display.",
+      "cta": "Customize Your Scape"
+    }
+  },
+  "contact": {
+    "header": {
+      "badge": "Bergen · Norway",
+      "title": "Let’s connect.",
+      "lead": "Have questions about custom coordinates, framing details, or bespoke commissions? We’re here to help bring your landscape to life.",
+      "backToHome": "Back to Home"
+    },
+    "sidebar": {
+      "directSupport": "Direct Support",
+      "emailTitle": "Direct Email",
+      "email": "scapebymd@gmail.com",
+      "emailSub": "Direct line to Maren & Daniel",
+      "responseTimeTitle": "Response Time",
+      "responseTime": "Within 24 hours",
+      "responseTimeSub": "Monday through Friday",
+      "workshopTitle": "Workshop",
+      "workshopLocation": "Bergen, Norway",
+      "workshopSub": "Nationwide delivery via Posten",
+      "customCommission": "Looking for custom dimensions, a specific summit elevation ratio, or corporate gifting? Mention your project details in the form and we will assist."
+    },
+    "form": {
+      "heading": "Send a message",
+      "subheading": "Fill in your details below and our Bergen studio will get back to you promptly.",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Ola Nordmann",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "ola@example.no",
+      "orderLabel": "Order Reference",
+      "optional": "(Optional)",
+      "orderPlaceholder": "e.g. #12345",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell us about your custom terrain inquiry, question, or special request...",
+      "submit": "Send Message",
+      "validation": {
+        "nameMin": "Please enter your name",
+        "nameMax": "Name cannot be over 35 characters",
+        "email": "Please enter a valid email address",
+        "contentMin": "Please provide a message (at least 10 characters)",
+        "botDetected": "Bot detected"
+      },
+      "toast": {
+        "success": "Message sent successfully",
+        "successDesc": "Takk! We will get back to you shortly.",
+        "error": "Failed to submit message",
+        "errorDesc": "Please try again later or email us directly."
+      }
+    }
+  },
+  "feedback": {
+    "header": {
+      "badge": "Review & Verification",
+      "title": "Share your perspective.",
+      "lead": "Every SCAPE is a bespoke commission. Your feedback directly informs how we engineer, print, and frame models in Bergen.",
+      "backToHome": "Back to Home"
+    },
+    "form": {
+      "ratingQuestion": "How would you rate your SCAPE?",
+      "selectPrompt": "Select a rating from 1 to 5 stars",
+      "ratings": {
+        "1": "You rated 1 / 5 stars",
+        "2": "You rated 2 / 5 stars",
+        "3": "You rated 3 / 5 stars",
+        "4": "You rated 4 / 5 stars",
+        "5": "You rated 5 / 5 stars"
+      },
+      "experienceLabel": "Your Experience",
+      "optional": "Optional",
+      "messagePlaceholder": "Tell us about the detail, expectations, packaging, or how it looks in your space...",
+      "orderLabel": "Order Verification",
+      "required": "Required",
+      "orderPlaceholder": "e.g. ORD-10492",
+      "orderHint": "Located in your order confirmation email or transaction confirmation.",
+      "disclaimer": "Reviews are verified before appearing on our testimonials page.",
+      "submit": "Submit Feedback",
+      "submitting": "Submitting...",
+      "toast": {
+        "selectRating": "Please select a star rating first",
+        "orderId": "Please provide your Order ID",
+        "received": "Feedback received",
+        "receivedDesc": "Thank you for helping us uphold our standards.",
+        "error": "Unable to submit review",
+        "errorDesc": "Please check your Order ID or try again shortly.",
+        "networkError": "Network error",
+        "networkErrorDesc": "Please try again later."
+      }
+    },
+    "confirmation": {
+      "verifiedBadge": "Verified Review",
+      "title": "Thank you for your review.",
+      "desc": "Your perspective has been recorded. It helps us maintain the tactile quality of every SCAPE we produce in Bergen.",
+      "orderPrefix": "Order: ",
+      "exploreCta": "Explore Reviews",
+      "anotherOrder": "Submit for Another Order"
+    }
+  },
+  "testimonials": {
+    "header": {
+      "badge": "Reviews & Perspectives",
+      "title": "Words of praise from our customers.",
+      "lead": "Don't just take our word for it. See what our customers say about turning their favorite places into cherished Scapes.",
+      "backToHome": "Back to Home"
+    },
+    "scorecard": {
+      "scale": "/ 5.0",
+      "basedOn": "Based on ",
+      "verifiedReviews": "verified reviews",
+      "madeInBergen": "Made in Bergen",
+      "desc": "Every Scape is algorithmically generated from official Norwegian elevation databases, precisely 3D printed, and hand-fitted into frames.",
+      "verifiedCustomers": "100% Verified Customers",
+      "deliveredAcrossNorway": "Delivered Across Norway"
+    },
+    "card": {
+      "verifiedCustomer": "Verified Customer"
+    },
+    "pagination": {
+      "showMore": "Show More Reviews",
+      "showing": "Showing {{shown}} of {{total}} perspectives"
+    },
+    "cta": {
+      "title": "Made to stand out. Built to be talked about.",
+      "lead": "Some places stay with us. Give yours a place on your wall.",
+      "createScape": "Create Your Scape",
+      "leaveReview": "Leave a Review"
+    },
+    "fallbacks": {
+      "fb1": "Ordered a 3D relief of the mountains surrounding our family cabin in Hemsedal. The tactile precision of the contours and the solid oak framing exceeded every expectation. An absolute centerpiece in our living room.",
+      "fb2": "The depth and shadow play when the afternoon light hits the peaks is stunning. Daniel calibrated the exact elevation scale for our summit route in Jotunheimen. Truly bespoke Scandinavian craftsmanship.",
+      "fb3": "Gave my husband a relief of the Bergen archipelago where we were married. He was speechless. The quality of the passe-partout and the subtle topographic details make it timeless.",
+      "fb4": "Incredible attention to cartographic fidelity. You can trace every ridge of Reinebringen in Lofoten. Shipped securely via Posten and arrived in pristine condition.",
+      "fb5": "A minimalist work of art that holds immense personal meaning. Clean Nordic aesthetic that fits our contemporary interior seamlessly.",
+      "fb6": "From choosing the coordinates on the interactive map to unwrapping the framed piece in Stavanger, the entire commissioning experience was personal and effortless."
+    }
+  },
+  "shipping": {
+    "badge": "Domestic Delivery (Norway)",
+    "title": "Orders & Shipping.",
+    "lead": "All pieces are crafted to order in our Bergen studio and delivered across Norway via Posten.",
+    "backToHome": "Back to Home",
+    "shipping": {
+      "title": "Shipping",
+      "body": "We offer shipping through Posten directly integrated in Vipps, making delivery fast and convenient. Once your package is on its way, you’ll receive tracking information so you can follow the shipment in real time. Delivery times vary depending on your location, but Posten typically provides quick and reliable service across Norway."
+    },
+    "orders": {
+      "title": "Orders",
+      "body": "When you place an order with us, it is processed immediately and you’ll receive a confirmation by email as soon as payment is completed. We’ll start production as soon as possible, but production times may vary depending on the number of pending orders. If anything is unclear or you need to make changes before your order is shipped, contact our support team as soon as possible - we’re always here to help ensure the process is smooth and predictable.",
+      "needHelp": "Need help with an order?",
+      "contactUs": "Contact us here"
+    }
+  },
+  "notFound": {
+    "badge": "Error 404 · Uncharted Terrain",
+    "title": "Lost in the topography.",
+    "lead": "The coordinates you’re looking for don’t exist in our elevation model, or this path has shifted. Let’s guide you back to familiar ground.",
+    "telemetry": {
+      "elev": "ELEV: 0m",
+      "grid": "GRID: UNRESOLVED"
+    },
+    "returnHome": "Return to Home",
+    "exploreMap": "Explore Interactive Map",
+    "suggested": "Suggested destinations",
+    "destinations": {
+      "theScape": "The Scape",
+      "aboutUs": "About Us",
+      "faq": "FAQ",
+      "contact": "Contact"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "articlesCount": "{{count}} articles",
+    "title": "Frequently Asked Questions.",
+    "lead": "Everything you need to know about our cartographic relief process, solid framing, shipping via Posten, and custom orders.",
+    "backToHome": "Back to Home",
+    "search": {
+      "placeholder": "Search questions, delivery, framing, payments...",
+      "clear": "Clear search",
+      "all": "All Questions ({{count}})"
+    },
+    "sidebar": {
+      "sections": "Sections",
+      "cantFindTitle": "Can’t find your answer?",
+      "cantFindLead": "Maren and Daniel are available to help with custom coordinates, corporate orders, or framing advice.",
+      "contactEmail": "scapebymd@gmail.com",
+      "contactForm": "Contact form",
+      "responseEstimate": "Typical response within 24 hours"
+    },
+    "empty": {
+      "title": "No matching questions found",
+      "lead": "We couldn’t find any answers matching \"{{query}}\". Try a different keyword or contact our atelier directly.",
+      "clearFilters": "Clear search filters"
+    },
+    "qasCount": "{{count}} Q&As",
+    "cta": {
+      "badge": "READY TO BEGIN?",
+      "title": "Visualize your favorite landscape.",
+      "lead": "Choose your coordinates in Norway, inspect the 3D model in real time, and customize your solid wood frame.",
+      "customizeYours": "Customize Yours",
+      "contactUs": "Contact Us"
+    },
+    "sections": {
+      "returns": {
+        "title": "Returns & Refunds",
+        "description": "Policies on custom-made topographic pieces, damaged arrivals, and cancellations.",
+        "items": [
+          {
+            "q": "Do I have a right to return my order?",
+            "a": "No. Since all our products are custom-made and created based on your specific terrain coordinates and framing choices, returns are not possible unless the item is faulty or damaged."
+          },
+          {
+            "q": "What if my order arrives damaged or with a mistake?",
+            "p1": "If your order arrives damaged, defective, or not as described, please reach out to us within reasonable time.",
+            "p2": "We may ask for photos so we can assess the issue and arrange a replacement or solution promptly."
+          },
+          {
+            "q": "Can I cancel my order after placing it?",
+            "p1": "We begin work on your custom order shortly after it is placed. Once production has started, cancellations are not possible.",
+            "p2": "If you contact us immediately after ordering, we may be able to halt production before slicing and printing begins - please reach out as soon as possible."
+          },
+          {
+            "q": "Do these rules apply if I order as a business?",
+            "a": "Yes. Orders placed by businesses are not covered by consumer return rights and follow the same no-return policy for custom-made physical products."
+          }
+        ]
+      },
+      "shipping": {
+        "title": "Shipping & Delivery",
+        "description": "Delivery timelines, tracking via Posten Norge, and domestic coverage.",
+        "items": [
+          {
+            "q": "How long does it take to receive my order?",
+            "p1": "Since each item is custom-made, production times vary. On average, production takes 1-3 days depending on workshop volume, plus shipping time depending on your location.",
+            "p2": "That being said, we always aim to deliver within 7 business days from order placement."
+          },
+          {
+            "q": "Do you ship internationally?",
+            "a": "No, as of right now we only ship within Norway through Posten. We plan to expand to international shipping in the future."
+          },
+          {
+            "q": "How can I track my order?",
+            "a": "Once your order has shipped from our studio in Bergen, you will receive a confirmation email with real-time Posten tracking details."
+          }
+        ]
+      },
+      "payments": {
+        "title": "Payments & Security",
+        "description": "Vipps integration, supported cards, and encrypted transactions.",
+        "items": [
+          {
+            "q": "Which payment methods do you accept?",
+            "p1": "We use Vipps as our main payment provider to make checkout as fast and friction-free as possible.",
+            "p2": "You can choose to either pay directly through the Vipps mobile app or enter your standard credit/debit card details (Visa, Mastercard) within the secure Vipps portal."
+          },
+          {
+            "q": "Is my payment information secure?",
+            "a": "Yes. All transactions are securely processed by Vipps following strict PCI-DSS payment and banking security standards. We never store or have access to your payment card details."
+          },
+          {
+            "q": "When will I be charged?",
+            "a": "Your account will be charged at the moment you finalize and authorize payment in Vipps."
+          }
+        ]
+      },
+      "customization": {
+        "title": "Customization & Framing",
+        "description": "Geospatial coordinates, solid frames, 3D relief scaling, and custom projects.",
+        "items": [
+          {
+            "q": "What kind of customization can I request?",
+            "p1": "You can choose any location across Norway as your Scape.",
+            "p2": "Once you have selected your coordinates, you can personalize the presentation by selecting from our range of solid frames (Oak, Walnut, Black, White) and passe-partouts to match your interior.",
+            "p3": "If you have a specific request or bespoke dimension in mind, feel free to contact us before placing your order."
+          },
+          {
+            "q": "Can I see a preview before production?",
+            "p1": "Yes, our interactive 3D map engine provides a real-time digital render of your topography as you navigate coordinates and adjust vertical elevation scaling.",
+            "p2": "We also visualize the complete framed artwork prior to checkout to ensure you are 100% happy with your custom composition."
+          },
+          {
+            "q": "What if I want something completely unique?",
+            "a": "We are always thrilled to discuss special architectural commissions! Contact us with your idea, and we will let you know what is possible and prepare a tailored quote."
+          }
+        ]
+      },
+      "support": {
+        "title": "Problems & Support",
+        "description": "Assistance with pending orders, photo assessments, and studio contact.",
+        "items": [
+          {
+            "q": "My order arrived damaged - what do I do?",
+            "a": "Please reach out to us within reasonable time with clear photos of the packaging and damage. We will immediately assess the case and arrange a priority replacement."
+          },
+          {
+            "q": "I made a mistake in my order - can it be fixed?",
+            "p1": "If you realize there is an error in your coordinates or chosen frame, contact us immediately.",
+            "p2": "If production has not yet started, we can easily adjust your order specifications. Once 3D printing is underway, modifications are no longer possible."
+          },
+          {
+            "q": "How can I contact you?",
+            "p1": "You can email us directly at ",
+            "p2": "Alternatively, visit our Contact Us page to submit an inquiry through our form."
+          }
+        ]
+      },
+      "privacy": {
+        "title": "Cookies & Privacy",
+        "description": "Data security, essential cookie policies, and transparency.",
+        "items": [
+          {
+            "q": "Do you use cookies on this website?",
+            "a": "Yes, but only strictly essential cookies required by our payment provider and core site functionality."
+          },
+          {
+            "q": "Do you use cookies for advertising or tracking?",
+            "a": "No. We do not use cookies for cross-site tracking, third-party advertising, or behavioral data profiling."
+          },
+          {
+            "q": "Can I disable cookies?",
+            "p1": "Because we only use essential cookies, disabling them in your browser may cause checkout and payment sessions to fail.",
+            "p2": "For this reason, we recommend keeping cookies enabled while using the site."
+          },
+          {
+            "q": "Do you collect personal data?",
+            "p1": "We only collect personal information you explicitly provide during checkout or form submissions—such as your name, email address, and shipping address.",
+            "p2": "This data is solely used to produce and deliver your physical artwork and to communicate order updates. We will never sell your information to third parties."
+          }
+        ]
+      }
+    }
+  }
+}

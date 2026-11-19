@@ -10,6 +10,10 @@ import enCustomizer from '../locales/en/customizer.json';
 import nbCustomizer from '../locales/nb/customizer.json';
 import enCheckout from '../locales/en/checkout.json';
 import nbCheckout from '../locales/nb/checkout.json';
+import enPages from '../locales/en/pages.json';
+import nbPages from '../locales/nb/pages.json';
+import enPolicies from '../locales/en/policies.json';
+import nbPolicies from '../locales/nb/policies.json';
 
 export const defaultNS = 'common';
 export const resources = {
@@ -18,12 +22,16 @@ export const resources = {
         home: nbHome,
         customizer: nbCustomizer,
         checkout: nbCheckout,
+        pages: nbPages,
+        policies: nbPolicies,
     },
     en: {
         common: enCommon,
         home: enHome,
         customizer: enCustomizer,
         checkout: enCheckout,
+        pages: enPages,
+        policies: enPolicies,
     },
 } as const;
 
