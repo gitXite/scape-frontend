@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "eyebrow": "FRAMED TERRAIN MODELS",
+    "titleLine1": "From Map",
+    "titleLine2": "to Frame.",
+    "description": "Turn your favourite place in Norway into a 3D landscape, framed and ready for display.",
+    "price": "596 kr",
+    "shippingIncluded": "Shipping included",
+    "ctaCustomize": "Customize Yours",
+    "ctaExplore": "Explore"
+  },
+  "theScape": {
+    "eyebrow": "THE SCAPE",
+    "title": "From Map To Frame.",
+    "description": "With just a few clicks you can transform any Norwegian landscape into a stunning 3D topographic model. Our service captures elevation data and terrain contours to create precision-crafted artwork that celebrates the beauty of your favorite places.",
+    "pillars": {
+      "p1": {
+        "tag": "Cartography",
+        "title": "Millimeter-Accurate Relief",
+        "description": "Every model is derived from geographic elevation data, translating real-world terrain into a detailed physical relief.",
+        "spec": "Official GeoData"
+      },
+      "p2": {
+        "tag": "Materiality",
+        "title": "Sculpted for Natural Light",
+        "description": "A refined matte finish brings out the contours of the terrain, with subtle shadows that shift as natural light moves through the room.",
+        "spec": "Light-responsive matte surface"
+      },
+      "p3": {
+        "tag": "Craftsmanship",
+        "title": "Finished to Fit Your Space",
+        "description": "Each piece is presented in a carefully selected frame, with oak, walnut, black and white finishes and your choice of passe-partout.",
+        "spec": "Customisable framing"
+      }
+    },
+    "showcase": {
+      "badge": "Showcase",
+      "title": "How it works.",
+      "description": "Explore our interactive map interface to select your coordinates, adjust vertical relief scaling, and preview the 3D model in real time."
+    },
+    "specs": {
+      "eyebrow": "CRAFT & SPECIFICATIONS",
+      "title": "Designed for scandinavian interiors.",
+      "description": "Every SCAPE is made to order using high-resolution data and our proprietary modeling algorithm, ensuring clean edges and a tactile texture that brings every landscape to life.",
+      "points": {
+        "madeToOrder": {
+          "title": "Made to order",
+          "desc": "Each piece is produced individually for your order."
+        },
+        "madeInBergen": {
+          "title": "Made in Bergen",
+          "desc": "Designed and produced in Bergen, Norway, with delivery throughout Norway."
+        },
+        "finish": {
+          "title": "A considered finish",
+          "desc": "Assembled as a complete piece of wall art, ready to find its place in your home."
+        }
+      }
+    },
+    "captions": {
+      "oak": "Natural Oak",
+      "walnut": "Walnut Duo",
+      "reliefDetail": "Terrain Relief Detail",
+      "satinBlack": "Satin Black",
+      "studioCollection": "Studio Collection"
+    },
+    "cta": {
+      "title": "Try it out.",
+      "description": "Choose any coordinate across Norway. Preview the 3D model in real time, choose your framing, and receive a bespoke art piece.",
+      "button": "Customize Yours"
+    }
+  }
+}

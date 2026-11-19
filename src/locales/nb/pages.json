@@ -1,0 +1,413 @@
+{
+    "about": {
+        "nav": {
+            "ariaLabel": "Om oss-sidenavigasjon",
+            "story": "Historie",
+            "film": "Film",
+            "founders": "Grunnleggere",
+            "values": "Prinsipper",
+            "mission": "Visjon",
+            "backToHome": "Tilbake til forsiden"
+        },
+        "story": {
+            "location": "Bergen, Norge",
+            "title": "Topografi som kunst.",
+            "lead": "Med røtter på Norges vestkyst gjenskaper SCAPE by md det dramatiske landskapet av fjell, fjorder og kystlinjer i detaljerte 3D-modeller, designet for moderne skandinaviske hjem.",
+            "p1": "I Bergen er det vanskelig å ikke la seg inspirere av de omkringliggende fjellene, fjordene og det dramatiske landskapet som definerer Vestlandet. SCAPE by md ble til ut fra et ønske om å fange disse omgivelsene i en taktil form - ved å forene moderne teknologi med skandinavisk design for å skape detaljerte 3D-terrengmodeller med både visuell og sentimental verdi.",
+            "pExtra": "Vi mener at stedene vi føler tilknytning til fortjener mer enn en plass på et kart. Ved å forvandle velkjente landskap til nøye utformede verk, ønsker vi å skape noe som vekker minner, hedrer meningsfulle steder og finner sin naturlige plass i ethvert rom.",
+            "p2": "Hvert verk er designet og produsert på bestilling i Bergen.",
+            "imageAlt": "Samling av innrammede topografiske modeller laget i Bergen",
+            "imageBadge": "Studiokolleksjon",
+            "altWalnut": "Valnøttinnrammet duo",
+            "captionWalnut": "Valnøtt",
+            "altOak": "Innrammet topografisk modell laget i Bergen",
+            "captionNaturalOak": "Naturlig eik"
+        },
+        "film": {
+            "badge": "LANDSKAP I PERSPEKTIV",
+            "title": "Gjør landskapet ditt levende.",
+            "playAria": "Spill av SCAPE by md produktfilmen",
+            "watchFilm": "Se filmen (0:31)"
+        },
+        "founders": {
+            "badge": "GRUNNLEGGERNE",
+            "title": "Arkitektur møter datateknikk.",
+            "lead": "SCAPE er skapt av Maren og Daniel. Vår praksis forener romlig arkitekturdesign med geodataberegninger for å skape kvalitetskunst.",
+            "maren": {
+                "discipline": "Arkitektur & Design",
+                "role": "Medgrunnlegger",
+                "name": "Maren",
+                "bio": "Med utdanningsbakgrunn innen arkitektur definerer Maren den fysiske estetikken, proporsjonene og kvaliteten. Hun fikk den opprinnelige ideen, som vi deretter perfeksjonerte over utallige iterasjoner."
+            },
+            "daniel": {
+                "discipline": "Datateknikk & Programvare",
+                "role": "Medgrunnlegger",
+                "name": "Daniel",
+                "bio": "Med bakgrunn innen informatikk og datasystemer bygget Daniel den algoritmiske motoren som kobler seg direkte til Norges høydedatabaser. Han oversetter gigabytes med binære data til høyoppløselig fysisk topografi."
+            }
+        },
+        "values": {
+            "badge": "VÅRE PRINSIPPER",
+            "title": "Hva som definerer et SCAPE.",
+            "lead": "Hvert verk vi skaper følger våre tre grunnleggende standarder.",
+            "items": [
+                {
+                    "number": "01",
+                    "tag": "Kartografi",
+                    "title": "Hver kote forteller en historie",
+                    "description": "Vi approksimerer ikke naturen. Vi benytter offisielle digitale høydedata for å fange landskapets virkelige former og bevare særpreget til steder som betyr noe for deg.",
+                    "spec": "Høy presisjon"
+                },
+                {
+                    "number": "02",
+                    "tag": "Skandinavisk design",
+                    "title": "Skulpturert for skandinaviske interiører",
+                    "description": "Designet for å komplementere skandinaviske interiører - hver terrengmodell kombinerer rene linjer, naturlige former og dempede farger for å bringe en subtil tilknytning til landskapet inn i hjemmet ditt.",
+                    "spec": "Skapt for moderne interiører"
+                },
+                {
+                    "number": "03",
+                    "tag": "Personlig betydning",
+                    "title": "Et anker til steder som betyr noe",
+                    "description": "Enten det er en familiehytte i Hemsedal, en tind i Jotunheimen eller skjærgården der du vokste opp - er hver SCAPE et taktilt anker til et minne i landskapet.",
+                    "spec": "Skreddersydde bestillinger"
+                }
+            ]
+        },
+        "mission": {
+            "badge": "KOM I GANG",
+            "title": "Ram inn minner.",
+            "lead": "Vi tror at hvert landskap forteller en historie. Vår visjon er å hjelpe deg med å bevare og feire stedene som betyr mest - ved å forvandle minner til tidløse kunstverk du kan holde i hånden og vise frem.",
+            "cta": "Tilpass ditt SCAPE"
+        }
+    },
+    "contact": {
+        "header": {
+            "badge": "Bergen · Norge",
+            "title": "La oss ta en prat.",
+            "lead": "Har du spørsmål om egne koordinater, rammer eller skreddersydde bestillinger? Vi er her for å hjelpe deg med å vekke landskapet ditt til liv.",
+            "backToHome": "Tilbake til forsiden"
+        },
+        "sidebar": {
+            "directSupport": "Direkte kontakt",
+            "emailTitle": "Direkte e-post",
+            "email": "scapebymd@gmail.com",
+            "emailSub": "Direktelinje til Maren & Daniel",
+            "responseTimeTitle": "Svartid",
+            "responseTime": "Innen 24 timer",
+            "responseTimeSub": "Mandag til fredag",
+            "workshopTitle": "Verksted",
+            "workshopLocation": "Bergen, Norge",
+            "workshopSub": "Landsdekkende levering med Posten",
+            "customCommission": "Ser du etter spesielle dimensjoner, et unikt høydeforhold for en fjelltopp, eller firmagaver? Beskriv prosjektet ditt i skjemaet, så hjelper vi deg gjerne."
+        },
+        "form": {
+            "heading": "Send en melding",
+            "subheading": "Fyll inn opplysningene dine under, så tar vi kontakt så snart som mulig.",
+            "nameLabel": "Ditt navn",
+            "namePlaceholder": "Ola Nordmann",
+            "emailLabel": "E-postadresse",
+            "emailPlaceholder": "ola@eksempel.no",
+            "orderLabel": "Ordrenummer",
+            "optional": "(Valgfritt)",
+            "orderPlaceholder": "f.eks. #12345",
+            "messageLabel": "Melding",
+            "messagePlaceholder": "Fortell oss om din terrengforespørsel, spørsmål eller spesielle ønsker...",
+            "submit": "Send melding",
+            "validation": {
+                "nameMin": "Vennligst oppgi navnet ditt",
+                "nameMax": "Navnet kan ikke overskride 35 tegn",
+                "email": "Vennligst oppgi en gyldig e-postadresse",
+                "contentMin": "Vennligst skriv en melding (minst 10 tegn)",
+                "botDetected": "Bot oppdaget"
+            },
+            "toast": {
+                "success": "Meldingen ble sendt",
+                "successDesc": "Takk! Vi tar kontakt med deg om kort tid.",
+                "error": "Kunne ikke sende meldingen",
+                "errorDesc": "Vennligst prøv igjen senere eller send oss en direkte e-post."
+            }
+        }
+    },
+    "feedback": {
+        "header": {
+            "badge": "Omtale & Verifisering",
+            "title": "Del din opplevelse.",
+            "lead": "Hvert SCAPE er et skreddersydd verk. Tilbakemeldingen din påvirker direkte hvordan vi designer, 3D-printer og rammer inn modeller i Bergen.",
+            "backToHome": "Tilbake til forsiden"
+        },
+        "form": {
+            "ratingQuestion": "Hvordan vil du vurdere ditt SCAPE?",
+            "selectPrompt": "Velg en vurdering fra 1 til 5 stjerner",
+            "ratings": {
+                "1": "Du ga 1 av 5 stjerner",
+                "2": "Du ga 2 av 5 stjerner",
+                "3": "Du ga 3 av 5 stjerner",
+                "4": "Du ga 4 av 5 stjerner",
+                "5": "Du ga 5 av 5 stjerner"
+            },
+            "experienceLabel": "Din opplevelse",
+            "optional": "Valgfritt",
+            "messagePlaceholder": "Fortell oss om detaljnivået, forventningene, innpakningen eller hvordan den passer inn i rommet...",
+            "orderLabel": "Ordreverifisering",
+            "required": "Påkrevd",
+            "orderPlaceholder": "f.eks. ORD-10492",
+            "orderHint": "Finnes i din ordrebekreftelse på e-post eller betalingskvittering.",
+            "disclaimer": "Omtaler blir verifisert før de publiseres på vår omtaleside.",
+            "submit": "Send vurdering",
+            "submitting": "Sender...",
+            "toast": {
+                "selectRating": "Vennligst velg antall stjerner først",
+                "orderId": "Vennligst oppgi ditt ordrenummer",
+                "received": "Tilbakemelding mottatt",
+                "receivedDesc": "Takk for at du hjelper oss med å opprettholde kvaliteten.",
+                "error": "Kunne ikke sende inn omtalen",
+                "errorDesc": "Vennligst sjekk ordrenummeret ditt eller prøv igjen om et øyeblikk.",
+                "networkError": "Nettverksfeil",
+                "networkErrorDesc": "Vennligst prøv igjen senere."
+            }
+        },
+        "confirmation": {
+            "verifiedBadge": "Verifisert omtale",
+            "title": "Tusen takk for din omtale.",
+            "desc": "Din opplevelse er nå registrert. Det hjelper oss med å ivareta kvaliteten på hvert eneste SCAPE vi produserer i Bergen.",
+            "orderPrefix": "Ordre: ",
+            "exploreCta": "Se andre omtaler",
+            "anotherOrder": "Send vurdering for ny ordre"
+        }
+    },
+    "testimonials": {
+        "header": {
+            "badge": "Omtaler & Opplevelser",
+            "title": "Varme ord fra våre kunder.",
+            "lead": "Ikke ta vårt ord for det. Se hva kundene våre sier om å forvandle favorittstedene sine til SCAPES.",
+            "backToHome": "Tilbake til forsiden"
+        },
+        "scorecard": {
+            "scale": "/ 5,0",
+            "basedOn": "Basert på ",
+            "verifiedReviews": "verifiserte omtaler",
+            "madeInBergen": "Laget i Bergen",
+            "desc": "Hvert SCAPE er algoritmisk generert fra offisielle norske høydedatabaser, presist 3D-printet og håndmontert i rammer.",
+            "verifiedCustomers": "100 % verifiserte kunder",
+            "deliveredAcrossNorway": "Levert over hele Norge"
+        },
+        "card": {
+            "verifiedCustomer": "Verifisert kunde"
+        },
+        "pagination": {
+            "showMore": "Vis flere omtaler",
+            "showing": "Viser {{shown}} av {{total}} opplevelser"
+        },
+        "cta": {
+            "title": "Skapt for å skille seg ut. Bygget for å bli snakket om.",
+            "lead": "Noen steder blir med oss for alltid. Gi ditt en plass på veggen.",
+            "createScape": "Lag ditt SCAPE",
+            "leaveReview": "Skriv en omtale"
+        },
+        "fallbacks": {
+            "fb1": "Bestilte et 3D-relieff av fjellene rundt familiehytta vår i Hemsedal. Den taktile presisjonen i kotene og den solide eikerammen overgikk alle forventninger. Et naturlig blikkfang i stuen.",
+            "fb2": "Dybden og skyggespillet når ettermiddagssolen treffer tindene er helt nydelig. Daniel kalibrerte den nøyaktige høydeskalaen for toppturen vår i Jotunheimen. Virkelig skreddersydd skandinavisk håndverk.",
+            "fb3": "Ga mannen min et relieff av Bergensskjærgården der vi giftet oss. Han ble målløs. Kvaliteten på passepartouten og de subtile topografiske detaljene gjør det tidløst.",
+            "fb4": "Utrolig sans for kartografisk nøyaktighet. Du kan spore hver eneste rygg på Reinebringen i Lofoten. Ble sendt trygt med Posten og ankom i perfekt stand.",
+            "fb5": "Et minimalistisk kunstverk med stor personlig betydning. Ren nordisk estetikk som passer sømløst inn i vårt moderne interiør.",
+            "fb6": "Fra å velge koordinatene på det interaktive kartet til å pakke ut det innrammede verket i Stavanger - hele opplevelsen var personlig og sømløs."
+        }
+    },
+    "shipping": {
+        "badge": "Innenlandslevering (Norge)",
+        "title": "Ordre & Levering.",
+        "lead": "Alle verk lages på bestilling i Bergen og leveres over hele Norge med Posten.",
+        "backToHome": "Tilbake til forsiden",
+        "shipping": {
+            "title": "Levering",
+            "body": "Vi tilbyr levering gjennom Posten direkte integrert i Vipps, noe som gjør frakten rask og enkel. Så snart pakken din er på vei, mottar du sporingsinformasjon slik at du kan følge forsendelsen i sanntid. Leveringstiden varierer basert på hvor du bor, men Posten gir normalt rask og pålitelig service i hele Norge."
+        },
+        "orders": {
+            "title": "Bestillinger",
+            "body": "Når du legger inn en bestilling hos oss, behandles den umiddelbart, og du vil motta en bekreftelse på e-post så snart betalingen er fullført. Vi starter produksjonen så raskt som mulig, men produksjonstiden kan variere avhengig av pågangen i verkstedet. Hvis noe er uklart eller du ønsker å gjøre endringer før ordren sendes, ta kontakt med oss så snart som mulig - vi er alltid her for å sikre en trygg og forutsigbar opplevelse.",
+            "needHelp": "Trenger du hjelp med en bestilling?",
+            "contactUs": "Kontakt oss her"
+        }
+    },
+    "notFound": {
+        "badge": "Feil 404 · Ukjent terreng",
+        "title": "Fortapt i topografien.",
+        "lead": "Koordinatene du leter etter finnes ikke i høydemodellen vår, eller denne stien har flyttet på seg. La oss lede deg tilbake til kjent terreng.",
+        "telemetry": {
+            "elev": "HØYDE: 0m",
+            "grid": "RUTENETT: URESOLVERT"
+        },
+        "returnHome": "Tilbake til forsiden",
+        "exploreMap": "Utforsk kartet",
+        "suggested": "Foreslåtte destinasjoner",
+        "destinations": {
+            "theScape": "The SCAPE",
+            "aboutUs": "Om oss",
+            "faq": "FAQ",
+            "contact": "Kontakt"
+        }
+    },
+    "faq": {
+        "badge": "FAQ",
+        "articlesCount": "{{count}} artikler",
+        "title": "Ofte stilte spørsmål.",
+        "lead": "Alt du trenger å vite om vår prosess, våre rammer, frakt med Posten og spesialbestillinger.",
+        "backToHome": "Tilbake til forsiden",
+        "search": {
+            "placeholder": "Søk i spørsmål, levering, rammer, betaling...",
+            "clear": "Tøm søk",
+            "all": "Alle spørsmål ({{count}})"
+        },
+        "sidebar": {
+            "sections": "Kategorier",
+            "cantFindTitle": "Finner du ikke svaret ditt?",
+            "cantFindLead": "Maren og Daniel er tilgjengelige for å hjelpe med egne koordinater, firmabestillinger eller råd om innramming.",
+            "contactEmail": "scapebymd@gmail.com",
+            "contactForm": "Kontaktskjema",
+            "responseEstimate": "Svarer vanligvis innen 24 timer"
+        },
+        "empty": {
+            "title": "Ingen treff på søket",
+            "lead": "Vi fant ingen svar som passet til «{{query}}». Prøv et annet søkeord eller kontakt studioet vårt direkte.",
+            "clearFilters": "Tilbakestill søkefilter"
+        },
+        "qasCount": "{{count}} spørsmål og svar",
+        "cta": {
+            "badge": "KLAR TIL Å BEGYNNE?",
+            "title": "Visualiser ditt favorittlandskap.",
+            "lead": "Velg koordinater i Norge, inspiser 3D-modellen i sanntid, og tilpass for ditt hjem.",
+            "customizeYours": "Tilpass din egen",
+            "contactUs": "Kontakt oss"
+        },
+        "sections": {
+            "returns": {
+                "title": "Retur & Angrerett",
+                "description": "Retningslinjer for skreddersydde topografiske verk, transportskader og kanselleringer.",
+                "items": [
+                    {
+                        "q": "Har jeg angrerett på bestillingen min?",
+                        "a": "Nei. Siden alle våre produkter lages på bestilling basert på dine valgte terrengkoordinater og rammevalg, er det ikke angrerett med mindre varen har feil eller transportskade."
+                    },
+                    {
+                        "q": "Hva om bestillingen min ankommer skadet eller med en feil?",
+                        "p1": "Dersom bestillingen din ankommer skadet, mangelfull eller ikke som beskrevet, ber vi deg ta kontakt med oss innen rimelig tid.",
+                        "p2": "Vi ber gjerne om bilder slik at vi kan vurdere skaden og raskt ordne en erstatning eller løsning."
+                    },
+                    {
+                        "q": "Kan jeg kansellere ordren etter at den er lagt inn?",
+                        "p1": "Vi starter arbeidet med din skreddersydde bestilling kort tid etter at den er mottatt. Når produksjonen har startet, er det ikke lenger mulig å kansellere.",
+                        "p2": "Hvis du kontakter oss umiddelbart etter bestilling, kan vi kanskje stanse produksjonen før klargjøring og 3D-printing starter + ta kontakt så raskt som overhodet mulig."
+                    },
+                    {
+                        "q": "Gjelder disse reglene også hvis jeg bestiller som bedrift?",
+                        "a": "Ja. Bestillinger foretatt av bedrifter dekkes ikke av forbrukerkjøpslovens angrerett, og følger samme retningslinjer for skreddersydde fysiske produkter."
+                    }
+                ]
+            },
+            "shipping": {
+                "title": "Frakt & Levering",
+                "description": "Leveringstider, sporing med Posten Norge og nasjonal dekning.",
+                "items": [
+                    {
+                        "q": "Hvor lang tid tar det før jeg mottar bestillingen min?",
+                        "p1": "Siden hvert produkt lages på bestilling, varierer produksjonstiden. I snitt tar produksjonen 1-3 dager avhengig av pågangen, i tillegg til frakttid avhengig av hvor du bor.",
+                        "p2": "Når det er sagt, har vi alltid som mål å levere innen 7 virkedager fra bestilling."
+                    },
+                    {
+                        "q": "Sender dere til utlandet?",
+                        "a": "Nei, per i dag sender vi kun innenfor Norge med Posten. Vi planlegger å utvide med internasjonal frakt i fremtiden."
+                    },
+                    {
+                        "q": "Hvordan kan jeg spore bestillingen min?",
+                        "a": "Så snart bestillingen din er sendt fra vårt studio i Bergen, mottar du en bekreftelse på e-post med sporingsinformasjon i sanntid fra Posten."
+                    }
+                ]
+            },
+            "payments": {
+                "title": "Betaling & Sikkerhet",
+                "description": "Vipps-integrasjon, støttede kort og krypterte transaksjoner.",
+                "items": [
+                    {
+                        "q": "Hvilke betalingsmetoder godtar dere?",
+                        "p1": "Vi bruker Vipps som vår primære betalingsleverandør for å gjøre betalingen så rask og friksjonsfri som mulig.",
+                        "p2": "Du kan velge å betale direkte via Vipps-appen eller angi vanlige kortopplysninger (Visa, Mastercard) i den sikre Vipps-portalen."
+                    },
+                    {
+                        "q": "Er betalingsinformasjonen min trygg?",
+                        "a": "Ja. Alle transaksjoner behandles sikkert av Vipps i henhold til strenge PCI-DSS sikkerhetsstandarder for betaling og bank. Vi lagrer aldri og har aldri tilgang til dine kortopplysninger."
+                    },
+                    {
+                        "q": "Når blir jeg belastet?",
+                        "a": "Kontoen din belastes i det øyeblikket du fullfører og godkjenner betalingen i Vipps."
+                    }
+                ]
+            },
+            "customization": {
+                "title": "Tilpasning & Innramming",
+                "description": "Geodata-koordinater, rammer, 3D-høydeskala og spesialprosjekter.",
+                "items": [
+                    {
+                        "q": "Hva slags tilpasninger kan jeg gjøre?",
+                        "p1": "Du kan velge et hvilket som helst sted i Norge som din Scape.",
+                        "p2": "Når du har valgt koordinatene dine, kan du tilpasse uttrykket ved å velge fra vårt utvalg av rammer (eik, valnøtt, sort, hvit) og passepartouter som matcher ditt interiør.",
+                        "p3": "Hvis du har et spesifikt ønske eller spesielle mål i tankene, ta gjerne kontakt med oss før du bestiller."
+                    },
+                    {
+                        "q": "Kan jeg se en forhåndsvisning før produksjon?",
+                        "p1": "Ja, vår interaktive 3D-kartmotor gir en sanntids forhåndsvisning av topografien mens du navigerer i koordinatene og justerer den vertikale høydeskalaen.",
+                        "p2": "Vi visualiserer også hele det innrammede kunstverket før kassen for å sikre at du er 100 % fornøyd med komposisjonen."
+                    },
+                    {
+                        "q": "Hva om jeg ønsker noe helt unikt?",
+                        "a": "Vi diskuterer mer enn gjerne spesielle arkitektoniske oppdrag! Ta kontakt med din idé, så forteller vi hva som er mulig og gir et skreddersydd pristilbud."
+                    }
+                ]
+            },
+            "support": {
+                "title": "Hjelp & Kundestøtte",
+                "description": "Hjelp med bestillinger, bildevurderinger og kontakt med studioet.",
+                "items": [
+                    {
+                        "q": "Bestillingen min ankom skadet - hva gjør jeg?",
+                        "a": "Vennligst ta kontakt med oss innen rimelig tid med tydelige bilder av emballasjen og skaden. Vi vurderer saken umiddelbart og ordner en prioritert erstatning."
+                    },
+                    {
+                        "q": "Jeg gjorde en feil i bestillingen min - kan det rettes opp?",
+                        "p1": "Dersom du oppdager en feil i koordinatene eller valgt ramme, kontakt oss umiddelbart.",
+                        "p2": "Hvis produksjonen ikke har startet ennå, kan vi enkelt justere bestillingsdetaljene. Når 3D-printingen er i gang, er det dessverre ikke lenger mulig å gjøre endringer."
+                    },
+                    {
+                        "q": "Hvordan kan jeg kontakte dere?",
+                        "p1": "Du kan sende oss en e-post direkte på ",
+                        "p2": "Alternativt kan du gå til vår Kontaktside for å sende en henvendelse via skjemaet vårt."
+                    }
+                ]
+            },
+            "privacy": {
+                "title": "Informasjonskapsler & Personvern",
+                "description": "Datasikkerhet, nødvendige informasjonskapsler og åpenhet.",
+                "items": [
+                    {
+                        "q": "Bruker dere informasjonskapsler (cookies) på denne nettsiden?",
+                        "a": "Ja, men utelukkende strengt nødvendige informasjonskapsler som kreves av betalingsleverandøren og kjerneløsningene på nettsiden."
+                    },
+                    {
+                        "q": "Bruker dere informasjonskapsler til annonsering eller sporing?",
+                        "a": "Nei. Vi bruker ikke informasjonskapsler til sporing på tvers av nettsteder, tredjepartsannonsering eller profilering."
+                    },
+                    {
+                        "q": "Kan jeg deaktivere informasjonskapsler?",
+                        "p1": "Fordi vi kun bruker strengt nødvendige informasjonskapsler, kan deaktivering i nettleseren føre til at kassen og betalingen ikke fungerer.",
+                        "p2": "Av den grunn anbefaler vi å la informasjonskapsler være aktivert når du bruker nettstedet."
+                    },
+                    {
+                        "q": "Samler dere inn personopplysninger?",
+                        "p1": "Vi samler kun inn personopplysninger du oppgir eksplisitt i kassen eller via kontaktskjemaer - som navn, e-postadresse og leveringsadresse.",
+                        "p2": "Disse opplysningene brukes utelukkende til å produsere og levere ditt fysiske kunstverk og sende deg oppdateringer om ordren. Vi vil aldri selge dine opplysninger til tredjeparter."
+                    }
+                ]
+            }
+        }
+    }
+}

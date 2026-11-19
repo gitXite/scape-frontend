@@ -1,4 +1,5 @@
 import { useCustomization } from '@/context/CustomizationContext';
+import { useTranslation } from 'react-i18next';
 import CustomizationPreview from './CustomizationPreview';
 import React from 'react';
 import PassepartoutCard from './PassepartoutCard';
@@ -6,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { ShieldCheck } from 'lucide-react';
 
 function CustomizePassePartout() {
+    const { t } = useTranslation('customizer');
     const { frameType, passePartoutType, setPassePartoutType } = useCustomization();
 
     const handleClick = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,13 +21,13 @@ function CustomizePassePartout() {
             {/* Step Header */}
             <div className='flex flex-col items-center text-center mb-6 sm:mb-8'>
                 <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
-                    Step 03 · Passe-partout
+                    {t('passepartout.stepBadge')}
                 </Badge>
                 <h1 className='font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground'>
-                    Choose a Passe-partout.
+                    {t('passepartout.title')}
                 </h1>
                 <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1.5 max-w-lg'>
-                    An archival bevel-cut mounting board provides visual breathing room and focuses the eye on the relief depth.
+                    {t('passepartout.description')}
                 </p>
             </div>
 
@@ -37,9 +39,9 @@ function CustomizePassePartout() {
                     <div className='w-full flex items-center justify-between pb-3 border-b border-border/60 text-xs'>
                         <span className='inline-flex items-center gap-1.5 text-muted-foreground font-medium'>
                             <span className='size-2 rounded-full bg-emerald-500 animate-pulse' />
-                            Live Model Preview
+                            {t('frame.preview.live')}
                         </span>
-                        <span className='font-mono text-muted-foreground text-[11px]'>21 × 30 cm (A4)</span>
+                        <span className='font-mono text-muted-foreground text-[11px]'>{t('frame.preview.dimensions')}</span>
                     </div>
 
                     {/* ThreeJS Preview Container */}
@@ -49,9 +51,9 @@ function CustomizePassePartout() {
 
                     {/* Preview Footer */}
                     <div className='w-full pt-3 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground'>
-                        <span>Configuration:</span>
-                        <span className='font-display font-semibold text-foreground capitalize'>
-                            {frameType || 'Oak'} Frame · {passePartoutType ? `${passePartoutType} Mat` : 'Select mat'}
+                        <span>{t('passepartout.preview.configuration')}</span>
+                        <span className='font-display font-semibold text-foreground'>
+                            {frameType ? `${t(`frame.options.${frameType}.title`, { defaultValue: frameType })} ${t('passepartout.preview.frameSuffix')}` : `${t('frame.options.oak.title')} ${t('passepartout.preview.frameSuffix')}`} · {passePartoutType ? `${t(`passepartout.options.${passePartoutType}.title`, { defaultValue: passePartoutType })} ${t('passepartout.preview.matSuffix')}` : t('passepartout.preview.selectMat')}
                         </span>
                     </div>
                 </div>
@@ -61,10 +63,10 @@ function CustomizePassePartout() {
                     <div className='pb-2 border-b border-border/60 flex items-baseline justify-between'>
                         <div>
                             <h2 className='font-display text-base sm:text-lg font-bold text-foreground tracking-tight'>
-                                Available Colours
+                                {t('passepartout.available.title')}
                             </h2>
                             <p className='text-xs text-muted-foreground mt-0.5'>
-                                1.4 mm thick mounting board with 45° bevel cut.
+                                {t('passepartout.available.subtitle')}
                             </p>
                         </div>
                     </div>
@@ -75,22 +77,22 @@ function CustomizePassePartout() {
                             passePartoutType={passePartoutType}
                             type='white'
                             handleClick={handleClick}
-                            text='Natural White'
-                            desc='Bright, airy, and classic gallery look that lets the relief shadow stand out'
+                            text={t('passepartout.options.white.title')}
+                            desc={t('passepartout.options.white.desc')}
                         />
                         <PassepartoutCard
                             passePartoutType={passePartoutType}
                             type='black'
                             handleClick={handleClick}
-                            text='Deep Black'
-                            desc='Dramatic depth with sharp edge contrast that anchors the terrain'
+                            text={t('passepartout.options.black.title')}
+                            desc={t('passepartout.options.black.desc')}
                         />
                     </div>
 
                     {/* Specification Guarantee */}
                     <div className='p-4 rounded-xl bg-background/60 border border-border/60 flex items-center gap-3 text-xs text-muted-foreground'>
                         <ShieldCheck className='w-4 h-4 text-foreground shrink-0' />
-                        <span>Finished products are inspected and quality controlled in Bergen.</span>
+                        <span>{t('frame.guarantee')}</span>
                     </div>
                 </div>
             </div>

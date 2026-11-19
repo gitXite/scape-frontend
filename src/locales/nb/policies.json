@@ -1,0 +1,245 @@
+{
+    "cookies": {
+        "badge": "Åpenhet & Nødvendig sporing",
+        "lastUpdated": "Sist oppdatert: 6. november 2026",
+        "title": "Retningslinjer for informasjonskapsler.",
+        "lead": "SCAPE by md er bygget på digital minimalisme. Vi bruker ikke tredjeparts markedsføringssporing eller profileringskapsler - kun strengt nødvendige sesjonskoder for å holde handlekurven din trygg og behandle betalinger.",
+        "s1": {
+            "title": "01 / Hva er informasjonskapsler?",
+            "body": "Informasjonskapsler (cookies) er små tekstfiler som lagres lokalt på datamaskinen eller mobilen din når du bruker en nettapplikasjon. De hjelper nettstedet med å huske innstillingene dine og fungere stabilt. Informasjonskapsler samler ikke inn personopplysninger med mindre du oppgir det eksplisitt (som ved utfylling av leveringsdetaljer i kassen)."
+        },
+        "s2": {
+            "title": "02 / Nødvendige informasjonskapsler vi benytter",
+            "lead": "Nettstedet vårt benytter utelukkende strengt nødvendige informasjonskapsler som kreves for systemintegritet og betalingshåndtering:",
+            "paymentCard": {
+                "title": "Betaling & Svindelforebygging",
+                "badge": "Vipps",
+                "desc": "Når du fullfører din Scape, setter integrerte betalingsløsninger sikkerhets- og verifiseringskoder mot svindel. Disse forhindrer doble belastninger og sikrer PCI-DSS-kompatible transaksjoner."
+            },
+            "cartCard": {
+                "title": "Handlekurv & Konfigurasjon",
+                "badge": "Sesjon",
+                "desc": "Midlertidige sesjonsidentifikatorer holder relieffmodellen, rammevalget og passepartoutvalget synkronisert mellom stegene, slik at du ikke mister arbeidet ditt."
+            },
+            "note": "Fordi disse informasjonskapslene er helt uunnværlige for nettstedets funksjonalitet og sikker handel, er de aktive som standard. Ingen personopplysninger eller sporingsprofiler deles med annonsører."
+        },
+        "s3": {
+            "title": "03 / Administrering av nettleserinnstillinger",
+            "body": "Du har full kontroll over informasjonskapselinnstillingene på enheten din. Du kan instruere nettleseren om å varsle deg når informasjonskapsler settes, eller blokkere dem helt i nettleserens innstillinger (for eksempel i Safari, Chrome, Firefox eller Edge).",
+            "warning": "*Vennligst merk: Deaktivering av strengt nødvendige informasjonskapsler vil forhindre den sikre utvekslingen av betalingstokener og hindre at du kan fullføre kjøpet."
+        },
+        "s4": {
+            "title": "04 / Mer informasjon & Personvernrettigheter",
+            "body": "For utfyllende dokumentasjon om hvordan vi beskytter personopplysningene dine, dine kunderettigheter og våre lagringsstandarder, se våre Retningslinjer for personvern.",
+            "cta": "Les personvernerklæringen"
+        }
+    },
+    "returns": {
+        "badge": "Kundetilfredshet & Kvalitetsgaranti",
+        "title": "Retur & Angrerett.",
+        "lead": "Alle SCAPE-verk er skreddersydde fysiske oppdrag tilpasset dine unike koordinater. Her beskrives våre retningslinjer for retur og transportskader.",
+        "custom": {
+            "title": "Skreddersydd på bestilling",
+            "body": "Hos SCAPE by md er alle produkter spesiallaget på bestilling basert på de geografiske koordinatene, høydeskalaen og rammevalgene du angir. Fordi hver gjenstand er unikt skapt for deg, kan vi ikke godta returer, bytter eller kanselleringer etter at 3D-produksjon og innramming har startet.",
+            "statute": "Disse retningslinjene er i full overensstemmelse med norsk og europeisk forbrukerlovgivning, som gir lovfestet unntak fra den vanlige 14-dagers angreretten for varer som er tilvirket etter forbrukerens spesifikasjoner."
+        },
+        "damaged": {
+            "title": "Skadet under transport",
+            "body": "Dersom varen din ankommer skadet, defekt eller feilaktig, ber vi deg ta kontakt med oss innen 7 dager etter mottak. Legg gjerne ved fotografier av emballasjen og den berørte rammen eller relieffet, slik at verkstedet vårt kan vurdere saken og umiddelbart sende en prioritert erstatning.",
+            "cta": "Meld fra om skadet vare"
+        },
+        "commitment": {
+            "title": "Vårt håndverksløfte",
+            "body": "Vi ønsker at du skal være stolt av å vise frem ditt SCAPE. Dersom det mot formodning skulle oppstå en feil fra vår side, vil vi samarbeide direkte med deg for å løse det raskt og sørge for at du blir strålende fornøyd med ditt ferdige kunstverk."
+        },
+        "regards": "Hilsen,"
+    },
+    "privacy": {
+        "badge": "Juridisk & Åpenhet",
+        "lastUpdated": "Sist oppdatert: 6. november 2026",
+        "title": "Personvernerklæring.",
+        "lead": "Vi verdsetter personvernet ditt. Denne erklæringen forklarer hvilke opplysninger vi samler inn, hvordan vi bruker dem, og dine rettigheter som kunde hos SCAPE by md.",
+        "s1": {
+            "title": "01 / Innledning",
+            "body": "Vi er forpliktet til å ivareta personopplysningene til våre besøkende og kunder. Vi selger, leier aldri ut eller utveksler dine personopplysninger med tredjeparter."
+        },
+        "s2": {
+            "title": "02 / Opplysninger vi samler inn",
+            "lead": "Vi samler kun inn opplysninger som du frivillig oppgir når du sender en forespørsel eller legger inn en bestilling:",
+            "items": {
+                "name": "Fullt navn - brukes til ordreidentifikasjon og merking",
+                "email": "E-postadresse - brukes til å sende ordrebekreftelser og sporingsoppdateringer i sanntid",
+                "address": "Leveringsadresse - brukes utelukkende av Posten Norge til fysisk pakkelevering",
+                "payment": "Betalingsopplysninger - behandles sikkert gjennom Vipps; kortnumre berører eller lagres aldri på våre servere"
+            },
+            "noCookies": "Vi samler ikke inn personopplysninger automatisk eller via sporingskapsler på tvers av nettsteder."
+        },
+        "s3": {
+            "title": "03 / Hvordan vi bruker opplysningene",
+            "lead": "Opplysningene dine brukes utelukkende til å oppfylle våre forpliktelser overfor deg:",
+            "items": {
+                "item1": "Produksjon og skreddersydd innramming av ditt 3D-topografiske relieff",
+                "item2": "Kommunikasjon angående utsendelse, sporing eller uventede forsinkelser i produksjonen",
+                "item3": "Besvarelse av kundestøttehenvendelser og henvendelser om erstatningsvarer"
+            },
+            "noMarketing": "Vi bruker aldri kontaktinformasjonen din til uønsket markedsføring, og vi overleverer aldri kundelister til tredjeparter."
+        },
+        "s4": {
+            "title": "04 / Tredjepartstjenester",
+            "lead": "Vi samarbeider utelukkende med pålitelige norske tjenesteleverandører for å levere tjenesten:",
+            "items": {
+                "vipps": "Vipps MobilePay - Sikker, PCI-DSS-kompatibel betaling og autorisasjon av transaksjoner",
+                "posten": "Posten Norge / Bring - Pakkelogistikk, etikettutskrift og nasjonal forsendelsessporing"
+            }
+        },
+        "s5": {
+            "title": "05 / Datasikkerhet",
+            "body": "Vi benytter moderne industristandarder for å beskytte opplysningene dine, inkludert transportlagskryptering (HTTPS/TLS) på alle endepunkter og strenge adgangsbegrensninger til våre verkstedsdatabaser."
+        },
+        "s6": {
+            "title": "06 / Dine rettigheter (GDPR)",
+            "body": "I henhold til norsk og europeisk personvernlovgivning har du rett til innsyn i personopplysningene vi har lagret, rett til å kreve retting av feil, og rett til å be om sletting av kundeprofilen din så snart garanti- og regnskapsmessige oppbevaringskrav er utløpt."
+        },
+        "s7": {
+            "title": "07 / Oppdateringer av erklæringen",
+            "body": "Eventuelle endringer i vår personvernpraksis vil bli publisert på denne siden med oppdatert revisjonsdato."
+        },
+        "contact": {
+            "title": "Spørsmål om personvern?",
+            "desc": "Kontakt Maren & Daniel direkte på",
+            "cta": "Kontakt oss"
+        }
+    },
+    "terms": {
+        "badge": "Juridiske vilkår & Kundekontrakt",
+        "lastUpdated": "Sist oppdatert: 6. november 2026",
+        "title": "Tjenestevilkår.",
+        "lead": "Vennligst les disse vilkårene nøye før du bestiller eller samhandler med SCAPE by md.",
+        "entity": {
+            "badge": "Aksept av våre juridiske vilkår",
+            "title": "Driftsenhet & Registrert foretak",
+            "registration": "Foretaksregistrering",
+            "operatingName": "Maren Stenersen, som opererer som",
+            "orgNr": "Org.nr: 929 981 626 (Norge)",
+            "contact": "Kontakt",
+            "p1": "Vi driver nettstedet https://www.scapebymd.no («Nettstedet»), samt alle andre relaterte produkter og tjenester som henviser eller lenker til disse juridiske vilkårene (samlet «Tjenestene»).",
+            "p2": "Ved å benytte Tjenestene bekrefter du at du har lest, forstått og samtykket til å være bundet av alle disse juridiske vilkårene. Vi vil varsle deg i forkant av planlagte endringer i Tjenestene du benytter. De oppdaterte vilkårene trer i kraft ved publisering eller varsel via scapebymd@gmail.com.",
+            "p3": "Tjenestene er ment for brukere som er minst 13 år gamle. Mindreårige brukere må ha tillatelse fra og være under oppsyn av en forelder eller foresatt for å benytte Tjenestene.",
+            "disagree": "Dersom du ikke godtar alle disse juridiske vilkårene, har du ikke tillatelse til å bruke Tjenestene og må avslutte bruken umiddelbart."
+        },
+        "contactUs": {
+            "title": "Kontakt oss",
+            "lead": "For å løse en klage vedrørende Tjenestene eller motta ytterligere informasjon om bruken av Tjenestene, vennligst kontakt oss direkte:",
+            "cta": "Kontakt oss"
+        },
+        "toc": [
+            { "id": "our-services", "num": "01", "title": "Våre tjenester" },
+            {
+                "id": "intellectual-property-rights",
+                "num": "02",
+                "title": "Immaterielle rettigheter"
+            },
+            {
+                "id": "user-representations",
+                "num": "03",
+                "title": "Brukererklæringer"
+            },
+            {
+                "id": "products",
+                "num": "04",
+                "title": "Produkter & Visuelle fremstillinger"
+            },
+            {
+                "id": "purchases-and-payment",
+                "num": "05",
+                "title": "Kjøp & Betaling"
+            },
+            {
+                "id": "return-policy",
+                "num": "06",
+                "title": "Returretningslinjer"
+            },
+            { "id": "warranty", "num": "07", "title": "Garanti" },
+            {
+                "id": "delivery",
+                "num": "08",
+                "title": "Levering & Risikoovergang"
+            },
+            {
+                "id": "prohibited-activities",
+                "num": "09",
+                "title": "Forbudte aktiviteter"
+            },
+            {
+                "id": "user-generated-contributions",
+                "num": "10",
+                "title": "Brukerbidrag"
+            },
+            {
+                "id": "contribution-licence",
+                "num": "11",
+                "title": "Bidragslisens"
+            },
+            {
+                "id": "guidelines-for-reviews",
+                "num": "12",
+                "title": "Retningslinjer for omtaler"
+            },
+            {
+                "id": "third-party-websites-and-content",
+                "num": "13",
+                "title": "Tredjeparts nettsteder"
+            },
+            {
+                "id": "services-management",
+                "num": "14",
+                "title": "Administrasjon av tjenester"
+            },
+            {
+                "id": "privacy-policy",
+                "num": "15",
+                "title": "Personvernerklæring"
+            },
+            {
+                "id": "term-and-termination",
+                "num": "16",
+                "title": "Varighet & Oppsigelse"
+            },
+            {
+                "id": "modifications-and-interruptions",
+                "num": "17",
+                "title": "Endringer & Driftsavbrudd"
+            },
+            { "id": "governing-law", "num": "18", "title": "Gjeldende lov" },
+            {
+                "id": "dispute-resolution",
+                "num": "19",
+                "title": "Tvisteløsning"
+            },
+            { "id": "corrections", "num": "20", "title": "Korreksjoner" },
+            { "id": "disclaimer", "num": "21", "title": "Ansvarsfraskrivelse" },
+            {
+                "id": "limitations-of-liability",
+                "num": "22",
+                "title": "Ansvarsbegrensning"
+            },
+            {
+                "id": "indemnification",
+                "num": "23",
+                "title": "Skadesløsholdelse"
+            },
+            { "id": "user-data", "num": "24", "title": "Brukerdata" },
+            {
+                "id": "electronic-communications-transactions-and-signatures",
+                "num": "25",
+                "title": "Elektronisk kommunikasjon & Signaturer"
+            },
+            {
+                "id": "miscellaneous",
+                "num": "26",
+                "title": "Diverse bestemmelser"
+            },
+            { "id": "contact-us", "num": "27", "title": "Kontakt oss" }
+        ]
+    }
+}

@@ -15,6 +15,7 @@ import Returns from './pages/Returns';
 import Cookies from './pages/Cookies';
 import NotFound from './pages/NotFound';
 import { Toaster } from 'sonner';
+import { Loader2 } from 'lucide-react';
 
 function App() {
     return (
@@ -24,22 +25,34 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/get-started' element={<GetStarted />} />
                     <Route path='/checkout' element={<Checkout />} />
-                    <Route path='/order-confirmation' element={<OrderConfirmation />} />
+                    <Route
+                        path='/order-confirmation'
+                        element={<OrderConfirmation />}
+                    />
                     <Route path='/about-us' element={<AboutUs />} />
-                    <Route path='/testimonials' element={<TestimonialsPage />} />
+                    <Route
+                        path='/testimonials'
+                        element={<TestimonialsPage />}
+                    />
                     <Route path='/faq' element={<FAQ />} />
                     <Route path='/shipping' element={<Shipping />} />
                     <Route path='/contact-us' element={<Contact />} />
                     <Route path='/feedback' element={<FeedbackPage />} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-                    <Route path='/terms-of-service' element={<TermsOfService />} />
+                    <Route
+                        path='/terms-of-service'
+                        element={<TermsOfService />}
+                    />
                     <Route path='/returns' element={<Returns />} />
                     <Route path='/cookies' element={<Cookies />} />
                     <Route path='/404' element={<NotFound />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </Router>
-            <Toaster position='top-center' />
+            <Toaster
+                position='top-center'
+                icons={{ loading: <Loader2 className='size-5 animate-spin' /> }}
+            />
         </>
     );
 }

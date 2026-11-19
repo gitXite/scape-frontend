@@ -1,0 +1,117 @@
+{
+  "summary": {
+    "badge": "Se over og betal",
+    "title": "Ordresammendrag.",
+    "description": "Kontroller din skreddersydde konfigurasjon før du går videre til sikker betaling med Vipps.",
+    "items": {
+      "theScape": {
+        "title": "The Scape",
+        "badge": "3D-printet",
+        "details": "14 × 19 cm (A5-format) · Lages på bestilling",
+        "price": "399 kr"
+      },
+      "frameMat": {
+        "frameSuffix": "ramme",
+        "matSuffix": "passepartout",
+        "whiteMatDefault": "Hvit passepartout",
+        "price": "148 kr"
+      }
+    },
+    "breakdown": {
+      "subtotal": "Delsum",
+      "subtotalPrice": "547 kr",
+      "shipping": "Sporbar frakt (Posten Norge)",
+      "shippingPrice": "49 kr",
+      "totalAmount": "Totalsum",
+      "totalTaxNote": "Inkluderer 25 % mva. og frakt over hele landet",
+      "totalPrice": "596 kr"
+    },
+    "vipps": {
+      "title": "Vipps Hurtigkasse",
+      "desc": "Betal umiddelbart med Vipps eller bankkort (Visa / Mastercard)"
+    },
+    "actions": {
+      "payWithVipps": "Betal med Vipps"
+    },
+    "trust": {
+      "secureVipps": "Sikker Vipps-betaling",
+      "posten": "Sporbar levering med Posten",
+      "tls": "TLS-kryptert"
+    },
+    "toasts": {
+      "errorInitiate": "Kunne ikke starte Vipps-betaling",
+      "tryAgain": "Vennligst prøv igjen om et øyeblikk."
+    }
+  },
+  "payment": {
+    "badge": "Offisiell Vipps-portal",
+    "title": "Vipps Hurtigkasse.",
+    "description": "Fullfør betalingen trygt via Vipps-appen eller bankkort nedenfor.",
+    "connecting": "Kobler til Vipps sikker portal...",
+    "sdkError": "Kunne ikke laste Vipps Checkout SDK"
+  },
+  "confirmation": {
+    "loading": {
+      "title": "Verifiserer betalingsstatus",
+      "desc": "Kobler til Vipps for å bekrefte transaksjonen din. Vennligst ikke lukk dette vinduet..."
+    },
+    "success": {
+      "title": "Ordre bekreftet",
+      "desc": "Takk for din bestilling! Vi har mottatt ordren din og starter klargjøringen av din skreddersydde Scape.",
+      "orderId": "Ordre-ID:",
+      "nextStepsTitle": "Hva skjer videre",
+      "estimatedDispatch": "Forventet utsendelse: 2–4 virkedager",
+      "step1": {
+        "title": "3D-printing",
+        "desc": "Vi starter 3D-printingen av bestillingen din så snart som mulig."
+      },
+      "step2": {
+        "title": "Innramming",
+        "desc": "Monteres for hånd i solid treramme med siste finish."
+      },
+      "step3": {
+        "title": "Kvalitetskontroll",
+        "desc": "Grundig inspeksjon av overflater og detaljkvalitet."
+      },
+      "step4": {
+        "title": "Utsendelse",
+        "desc": "Pakkes trygt og sendes med Posten, inkludert sporing."
+      },
+      "summaryTitle": "Ordresammendrag",
+      "modelTitle": "Scape",
+      "modelSubtitle": "3D topografisk modell",
+      "framePassepartout": "Tilpasset ramme og passepartout",
+      "frameSuffix": "ramme",
+      "matSuffix": "passepartout",
+      "shipping": "Frakt (Posten Norge)",
+      "totalPaid": "Totalt betalt",
+      "emailNotice": "Fullstendig kvittering og sporingsoppdateringer er sendt til din e-post. Hvis du trenger å gjøre endringer eller har spørsmål før utsendelse, kontakt oss på",
+      "createAnother": "Lag en ny Scape",
+      "backToHome": "Tilbake til forsiden"
+    },
+    "cancelled": {
+      "title": "Bestilling avbrutt",
+      "desc": "Betalingen ble ikke fullført og ingen penger er trukket. Ditt 3D-terrengutsnitt er lagret så du kan gjenoppta bestillingen når som helst."
+    },
+    "expired": {
+      "title": "Økten har utløpt",
+      "desc": "Betalingsøkten utløp før betalingen ble verifisert. Ingen penger ble trukket, og ditt terrengutsnitt er fortsatt lagret."
+    },
+    "readyToComplete": "Klar til å fullføre bestillingen?",
+    "readyToCompleteDesc": "Du kan gå direkte tilbake til kassen for å prøve igjen med Vipps, eller gå tilbake til forsiden.",
+    "returnToCheckout": "Tilbake til kassen",
+    "notFound": {
+      "title": "Ingen aktiv ordre funnet",
+      "desc": "Vi fant ingen ordreøkt å bekrefte. Hvis du nylig har gjennomført et kjøp, vennligst sjekk innboksen din for ordrebekreftelse.",
+      "createAScape": "Lag en Scape",
+      "backToHome": "Tilbake til forsiden"
+    },
+    "error": {
+      "title": "Ordreverifisering pågår",
+      "desc": "Vi mottok bekreftelsen, men kunne ikke umiddelbart verifisere betalingsstatus hos Vipps. Dersom Vipps-appen bekreftet transaksjonen, er ordren din registrert og bekreftelsen er på vei til din e-post.",
+      "checkAgain": "Sjekk status på nytt",
+      "cancel": "Avbryt",
+      "backToCheckout": "Tilbake til kassen"
+    }
+  }
+}

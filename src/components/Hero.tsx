@@ -1,6 +1,7 @@
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Hero3DNew = lazy(() => import('./Hero3DNew'));
 
@@ -11,6 +12,8 @@ function CanvasFallback() {
 }
 
 function Hero() {
+    const { t } = useTranslation('home');
+
     const fadeDown = {
         hidden: { opacity: 0, y: -20 },
         visible: (i: number) => ({
@@ -81,7 +84,7 @@ function Hero() {
                             className='mb-2 sm:mb-4'
                         >
                             <span className='text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-primary-foreground/70'>
-                                FRAMED TERRAIN MODELS
+                                {t('hero.eyebrow')}
                             </span>
                         </motion.div>
 
@@ -93,9 +96,9 @@ function Hero() {
                             animate='visible'
                         >
                             <h1 className='font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold tracking-tight text-primary-foreground leading-[1.05] sm:leading-[0.96] mb-0 sm:mb-2'>
-                                From Map <br />
+                                {t('hero.titleLine1')} <br />
                                 <span className='text-primary-foreground/70 font-bold'>
-                                    to Frame.
+                                    {t('hero.titleLine2')}
                                 </span>
                             </h1>
                         </motion.div>
@@ -111,8 +114,7 @@ function Hero() {
                             animate='visible'
                             className='font-display text-sm sm:text-sm md:text-base text-primary-foreground/90 font-normal leading-relaxed max-w-[38ch] sm:max-w-[48ch] mb-4 sm:mb-6'
                         >
-                            Turn your favourite place in Norway into a 3D
-                            landscape, framed and ready for display.
+                            {t('hero.description')}
                         </motion.p>
 
                         {/* Refined Price Tag */}
@@ -125,11 +127,11 @@ function Hero() {
                         >
                             <div className='inline-flex items-end gap-3'>
                                 <span className='font-display text-2xl sm:text-3xl font-semibold tracking-tight text-primary-foreground tabular-nums'>
-                                    596 kr
+                                    {t('hero.price')}
                                 </span>
 
                                 <span className='font-display text-sm text-primary-foreground/70 mb-0.5'>
-                                    Shipping included
+                                    {t('hero.shippingIncluded')}
                                 </span>
                             </div>
                         </motion.div>
@@ -144,9 +146,9 @@ function Hero() {
                             >
                                 <a
                                     href='/get-started'
-                                    className='group inline-flex items-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
+                                    className='group inline-flex min-w-42 items-center justify-center gap-2 rounded-full bg-primary-foreground px-7 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                                 >
-                                    Customize Yours
+                                    {t('hero.ctaCustomize')}
                                     <ArrowRight className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1' />
                                 </a>
                             </motion.div>
@@ -161,7 +163,7 @@ function Hero() {
                                     href='#thescape'
                                     className='inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-4 py-3.5 sm:px-4 sm:py-3.5 text-xs sm:text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/[0.08] transition-all duration-200'
                                 >
-                                    Explore
+                                    {t('hero.ctaExplore')}
                                     <ChevronDown className='w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-y-0.5' />
                                 </a>
                             </motion.div>

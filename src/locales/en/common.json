@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "home": "Home",
+    "theScape": "The SCAPE",
+    "about": "About",
+    "map": "Map",
+    "getStarted": "Get Started"
+  },
+  "actions": {
+    "getStarted": "Get Started",
+    "customizeYours": "Customize Yours",
+    "createYourScape": "Create Your SCAPE",
+    "explore": "Explore",
+    "back": "Back",
+    "backToHome": "Back to Home",
+    "contactAtelier": "Contact Us"
+  },
+  "footer": {
+    "by": "by md",
+    "company": "Company",
+    "support": "Support",
+    "legal": "Legal",
+    "links": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "getStarted": "Get Started",
+      "testimonials": "Testimonials",
+      "faq": "FAQ",
+      "shipping": "Orders & Shipping",
+      "contactSupport": "Contact Support",
+      "feedback": "Submit Feedback",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "returns": "Returns & Refunds",
+      "cookies": "Cookie Policy"
+    },
+    "poweredBy": "Powered by",
+    "allRightsReserved": "All rights reserved.",
+    "orgNumber": "Org nr 929 981 626"
+  },
+  "language": {
+    "switcher": "Language",
+    "norwegian": "Norsk",
+    "english": "English"
+  }
+}

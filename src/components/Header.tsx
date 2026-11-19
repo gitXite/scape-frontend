@@ -1,19 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-
-const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#thescape', label: 'The Scape' },
-    { href: '/about-us', label: 'About' },
-    { href: '#map', label: 'Map' },
-];
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function Header() {
+    const { t } = useTranslation('common');
     const [showHeader, setShowHeader] = useState(true);
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const lastScrollY = useRef(0);
     const isHoveredRef = useRef(false);
+
+    const navLinks = [
+        { href: '#home', label: t('nav.home') },
+        { href: '#thescape', label: t('nav.theScape') },
+        { href: '/about-us', label: t('nav.about') },
+        { href: '#map', label: t('nav.map') },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -129,7 +132,7 @@ function Header() {
                     </a>
 
                     {/* Right nav - desktop */}
-                    <div className='hidden items-center gap-7 md:flex'>
+                    <div className='hidden items-center gap-6 md:flex'>
                         {rightLinks.map((link) => (
                             <NavLink
                                 key={link.href}
@@ -137,11 +140,12 @@ function Header() {
                                 label={link.label}
                             />
                         ))}
+                        <LanguageSwitcher variant='header' className='ml-1' />
                         <a
                             href='/get-started'
-                            className='inline-flex items-center gap-2 rounded-full bg-primary-foreground px-5 py-2.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
+                            className='inline-flex min-w-30 items-center justify-center gap-2 rounded-full bg-primary-foreground px-5 py-2.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary-foreground/90 shadow-lg shadow-black/30'
                         >
-                            Get Started
+                            {t('actions.getStarted')}
                         </a>
                     </div>
 
@@ -177,12 +181,18 @@ function Header() {
                             {link.label}
                         </a>
                     ))}
+                    <div className='flex items-center justify-between border-b border-primary-foreground/10 py-3'>
+                        <span className='text-xs font-mono uppercase tracking-widest text-primary-foreground/60'>
+                            {t('language.switcher')}
+                        </span>
+                        <LanguageSwitcher variant='header' />
+                    </div>
                     <a
                         href='/get-started'
                         onClick={() => setMobileMenuOpen(false)}
                         className='mt-4 rounded-full bg-primary-foreground px-6 py-3 text-center text-xs font-semibold tracking-widest uppercase text-primary transition-all duration-200 hover:bg-primary-foreground hover:text-primary shadow-lg shadow-black/30'
                     >
-                        Get Started
+                        {t('actions.getStarted')}
                     </a>
                 </div>
             </div>

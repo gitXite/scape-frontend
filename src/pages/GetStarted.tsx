@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import BackButton from '../components/BackButton';
 import Footer from '../components/Footer';
 import MapSelector from '../components/MapSelector';
@@ -17,6 +18,8 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { parseSTL } from '@/utils/parseSTL';
 
 function GetStarted() {
+    const { t } = useTranslation('customizer');
+    const { t: tCommon } = useTranslation('common');
     const [activeStep, setActiveStep] = useState(() => {
         const step = localStorage.getItem('step');
         return step ? +step : 0;
@@ -51,16 +54,16 @@ function GetStarted() {
             {/* Mobile Home Anchor - Zero vertical layout footprint */}
             <a
                 href='/'
-                className='sm:hidden z-50 absolute top-4 right-4 text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
+                className='sm:hidden z-50 absolute top-5 right-4 text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors flex items-center gap-1'
             >
-                Back to Home
+                {tCommon('actions.backToHome')}
             </a>
 
             <HoverCard openDelay={150} closeDelay={200}>
                 <HoverCardTrigger className='fixed right-6 top-6 hidden sm:flex z-50 group items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/90 backdrop-blur-md border border-border hover:border-foreground/20 hover:bg-muted/60 transition-all cursor-pointer shadow-xs'>
                     <CircleQuestionMark className='size-4 text-muted-foreground group-hover:text-foreground transition-colors' />
                     <span className='text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors'>
-                        Guide
+                        {t('guide.button')}
                     </span>
                 </HoverCardTrigger>
                 <HoverCardContent
@@ -77,10 +80,10 @@ function GetStarted() {
                             </div>
                             <div>
                                 <h3 className='font-display text-xs font-bold tracking-tight text-foreground uppercase'>
-                                    How to Order Your SCAPE
+                                    {t('guide.title')}
                                 </h3>
                                 <p className='text-[11px] text-muted-foreground font-sans'>
-                                    4 simple steps from coordinates to checkout
+                                    {t('guide.subtitle')}
                                 </p>
                             </div>
                         </div>
@@ -96,23 +99,26 @@ function GetStarted() {
                                         01
                                     </span>
                                     <h4 className='font-display text-xs font-bold text-foreground'>
-                                        Select Coordinates & Area
+                                        {t('guide.step1.title')}
                                     </h4>
                                 </div>
                                 <span className='text-[10px] font-mono text-muted-foreground'>
-                                    Map
+                                    {t('guide.step1.tag')}
                                 </span>
                             </div>
                             <p className='text-xs text-muted-foreground leading-relaxed pl-6'>
-                                Find any location in Norway and click to center
-                                the map, or drag the box. Use{' '}
-                                <b>Capture Size</b> to adjust coverage and{' '}
-                                <b>Terrain Height</b> for elevation
-                                exaggeration. The defalt 2.0x is 1:1 scale.
+                                <Trans
+                                    i18nKey='guide.step1.desc1'
+                                    ns='customizer'
+                                    components={{ bold: <b /> }}
+                                />
                             </p>
                             <p className='text-xs text-muted-foreground leading-relaxed pl-6'>
-                                <b>Generate Scape</b> to preview the model or to
-                                continue.
+                                <Trans
+                                    i18nKey='guide.step1.desc2'
+                                    ns='customizer'
+                                    components={{ bold: <b /> }}
+                                />
                             </p>
                         </div>
 
@@ -124,16 +130,15 @@ function GetStarted() {
                                         02
                                     </span>
                                     <h4 className='font-display text-xs font-bold text-foreground'>
-                                        Choose Frame
+                                        {t('guide.step2.title')}
                                     </h4>
                                 </div>
                                 <span className='text-[10px] font-mono text-muted-foreground'>
-                                    Frame
+                                    {t('guide.step2.tag')}
                                 </span>
                             </div>
                             <p className='text-xs text-muted-foreground leading-relaxed pl-6'>
-                                Select a frame to your liking. Real-time stock
-                                availability is verified automatically.
+                                {t('guide.step2.desc')}
                             </p>
                         </div>
 
@@ -145,16 +150,15 @@ function GetStarted() {
                                         03
                                     </span>
                                     <h4 className='font-display text-xs font-bold text-foreground'>
-                                        Add Passe-Partout
+                                        {t('guide.step3.title')}
                                     </h4>
                                 </div>
                                 <span className='text-[10px] font-mono text-muted-foreground'>
-                                    Finish
+                                    {t('guide.step3.tag')}
                                 </span>
                             </div>
                             <p className='text-xs text-muted-foreground leading-relaxed pl-6'>
-                                Choose an archival bevel-cut matboard to give
-                                your 3D model enhanced architectural depth.
+                                {t('guide.step3.desc')}
                             </p>
                         </div>
 
@@ -166,17 +170,15 @@ function GetStarted() {
                                         04
                                     </span>
                                     <h4 className='font-display text-xs font-bold text-foreground'>
-                                        Review & Vipps Checkout
+                                        {t('guide.step4.title')}
                                     </h4>
                                 </div>
                                 <span className='text-[10px] font-mono text-muted-foreground'>
-                                    Order
+                                    {t('guide.step4.tag')}
                                 </span>
                             </div>
                             <p className='text-xs text-muted-foreground leading-relaxed pl-6'>
-                                Finalize in seconds with Vipps. Each piece is 3D
-                                printed in Bergen and delivered nationwide via
-                                Posten with tracking.
+                                {t('guide.step4.desc')}
                             </p>
                         </div>
                     </div>
@@ -186,11 +188,11 @@ function GetStarted() {
                         <span className='flex items-center gap-1.5'>
                             <Sparkles className='size-3 text-primary shrink-0' />
                             <span>
-                                Tip: Remember to preview the model in step 1.
+                                {t('guide.tip')}
                             </span>
                         </span>
                         <span className='font-mono text-[10px] text-muted-foreground/70'>
-                            SCAPE by md
+                            {t('guide.signature')}
                         </span>
                     </div>
                 </HoverCardContent>

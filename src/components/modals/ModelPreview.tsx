@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import type React from 'react';
@@ -28,6 +29,7 @@ function ModelPreview({
     setShowModal,
     className,
 }: ModelPreviewProps) {
+    const { t } = useTranslation('customizer');
     const [isLoading, setIsLoading] = useState(true);
     const [isReady, setIsReady] = useState(false);
     const mountRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +39,9 @@ function ModelPreview({
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const viewRef = useRef<ViewState | null>(null);
     const frameIDRef = useRef<number | null>(null);
-    const initTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+    const initTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+        undefined,
+    );
 
     const cleanup = useCallback(() => {
         if (initTimeoutRef.current) {
@@ -163,9 +167,10 @@ function ModelPreview({
             }
         };
     }, [isReady]);
-    
+
     const resetView = () => {
-        if (!cameraRef.current || !controlsRef.current || !viewRef.current) return;
+        if (!cameraRef.current || !controlsRef.current || !viewRef.current)
+            return;
         cameraRef.current.position.copy(viewRef.current.initCameraPosition);
         cameraRef.current.up.copy(viewRef.current.initCameraUp);
         controlsRef.current.target.copy(viewRef.current.initTarget);
@@ -205,10 +210,10 @@ function ModelPreview({
                         </div>
                         <div>
                             <h3 className='text-sm font-medium text-white'>
-                                3D Model Preview
+                                {t('previewModal.title')}
                             </h3>
                             <p className='text-xs text-white/50'>
-                                Drag to rotate, scroll to zoom
+                                {t('previewModal.subtitle')}
                             </p>
                         </div>
                     </div>
@@ -216,7 +221,7 @@ function ModelPreview({
                     <div className='flex items-center gap-2'>
                         <button
                             className='flex items-center justify-center w-9 h-9 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200 group'
-                            title='Reset view'
+                            title={t('previewModal.resetView')}
                             onClick={resetView}
                         >
                             <RotateCcw className='w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors' />
@@ -224,7 +229,7 @@ function ModelPreview({
                         <button
                             onClick={() => setShowModal(false)}
                             className='flex items-center justify-center w-9 h-9 rounded-md bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-200 group'
-                            title='Close (Esc)'
+                            title={t('previewModal.close')}
                         >
                             <X className='w-4 h-4 text-white/50 group-hover:text-red-400 transition-colors' />
                         </button>
@@ -243,7 +248,7 @@ function ModelPreview({
                             />
                         </div>
                         <p className='text-sm text-white/60 animate-pulse'>
-                            Loading model...
+                            {t('previewModal.loading')}
                         </p>
                     </div>
                 )}
@@ -255,20 +260,20 @@ function ModelPreview({
                 />
 
                 {/* Footer hint */}
-                <div className='absolute bottom-0 left-0 right-0 flex items-center justify-center py-3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none'>
+                <div className='absolute bottom-0 left-0 right-0 flex items-center justify-center py-3 px-2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none'>
                     <div className='flex items-center gap-2 sm:gap-4 text-xs text-white/40'>
-                        <span className='flex items-center gap-1.5'>
+                        <span className='flex items-center gap-1.5 max-sm:text-[10px]'>
                             <kbd className='px-1.5 py-0.5 rounded bg-white/10 font-mono text-[10px]'>
                                 ESC
                             </kbd>
-                            to close
+                            {t('previewModal.hints.esc')}
                         </span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Scroll to zoom</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.scroll')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Left click to rotate</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.rotate')}</span>
                         <span className='w-px h-3 bg-white/20' />
-                        <span>Right click to drag</span>
+                        <span className='max-sm:text-[10px]'>{t('previewModal.hints.drag')}</span>
                     </div>
                 </div>
             </div>

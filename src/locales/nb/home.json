@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "eyebrow": "INNRAMMEDE LANDSKAP",
+    "titleLine1": "Landskap i",
+    "titleLine2": "perspektiv.",
+    "description": "Gjør ditt favorittsted i Norge om til et tredimensjonalt terreng, innrammet og klart for display.",
+    "price": "596 kr",
+    "shippingIncluded": "Inkludert frakt",
+    "ctaCustomize": "Kom i gang",
+    "ctaExplore": "Les mer"
+  },
+  "theScape": {
+    "eyebrow": "THE SCAPE",
+    "title": "Landskap i perspektiv.",
+    "description": "Med noen få klikk forvandler du ethvert norsk landskap til en detaljert 3D-topografisk modell. Vi henter offisielle høydedata og terrengkonturer for å skape presisjonshåndverk som feirer stedene som betyr mest for deg.",
+    "pillars": {
+      "p1": {
+        "tag": "Kartografi",
+        "title": "Millimeterpresis oppløsning",
+        "description": "Hver modell genereres direkte fra geografiske høydedata, og oversetter virkelighetens fjell og daler til en taktil fysisk modell.",
+        "spec": "Offisielle høydedata"
+      },
+      "p2": {
+        "tag": "Materialitet",
+        "title": "Skapt for naturlig lys",
+        "description": "En finjustert matt overflate fremhever landskapets konturer, med dynamiske skygger som skifter i takt med dagslyset i rommet.",
+        "spec": "Lysresponsiv matt finish"
+      },
+      "p3": {
+        "tag": "Håndverk",
+        "title": "Tilpasset ditt interiør",
+        "description": "Hver modell leveres i en utvalgt treramme i eik, valnøtt, hvit eller sort, komplettert med passepartout etter eget ønske.",
+        "spec": "Valgfri innramming"
+      }
+    },
+    "showcase": {
+      "badge": "Demo",
+      "title": "Slik fungerer det.",
+      "description": "Bruk vårt interaktive kart til å velge koordinater, justere høyde-overdrivelse og forhåndsvise 3D-modellen i sanntid."
+    },
+    "specs": {
+      "eyebrow": "HÅNDVERK & SPESIFIKASJONER",
+      "title": "Designet for skandinaviske hjem.",
+      "description": "Hver Scape lages på bestilling ved hjelp av høyoppløselige data og vår egenutviklede algoritme, som sikrer skarpe kanter og en taktil overflate som vekker terrenget til live.",
+      "points": {
+        "madeToOrder": {
+          "title": "Laget på bestilling",
+          "desc": "Hver modell produseres individuelt etter dine koordinater."
+        },
+        "madeInBergen": {
+          "title": "Produsert i Bergen",
+          "desc": "Designet, printet og montert i Bergen, med rask levering over hele Norge."
+        },
+        "finish": {
+          "title": "Gjennomført finish",
+          "desc": "Montert som et helhetlig kunstverk, klart til å henges rett på veggen."
+        }
+      }
+    },
+    "captions": {
+      "oak": "Naturlig eik",
+      "walnut": "Valnøtt duo",
+      "reliefDetail": "Terrengdetaljer",
+      "satinBlack": "Matt sort",
+      "studioCollection": "Kolleksjon"
+    },
+    "cta": {
+      "title": "Utforsk selv.",
+      "description": "Velg hvilke som helst koordinater i Norge. Forhåndsvis 3D-modellen i sanntid, velg innramming og motta ditt unike kunstverk.",
+      "button": "Kom i gang"
+    }
+  }
+}

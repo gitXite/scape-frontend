@@ -3,8 +3,11 @@ import Footer from '@/components/Footer';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { ShieldCheck, Mail, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 function PrivacyPolicy() {
+    const { t } = useTranslation('policies');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -31,21 +34,19 @@ function PrivacyPolicy() {
                     <div className='flex items-center gap-3 mb-4'>
                         <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 gap-2 bg-background/80 backdrop-blur-sm'>
                             <ShieldCheck className='w-3 h-3 text-muted-foreground' />
-                            Legal & Transparency
+                            {t('privacy.badge')}
                         </Badge>
                         <span className='text-xs font-mono text-muted-foreground'>
-                            Last updated: November 06, 2026
+                            {t('privacy.lastUpdated')}
                         </span>
                     </div>
 
                     <h1 className='font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-surface-foreground mb-4 leading-tight'>
-                        Privacy Policy.
+                        {t('privacy.title')}
                     </h1>
 
                     <p className='font-sans text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl'>
-                        We value your privacy. This policy explains what
-                        information we collect, how we use it, and your rights
-                        as a customer of SCAPE by md.
+                        {t('privacy.lead')}
                     </p>
                 </div>
 
@@ -54,12 +55,10 @@ function PrivacyPolicy() {
                     {/* Section 1 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            01 / Introduction
+                            {t('privacy.s1.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            We are committed to safeguarding the personal
-                            information of our visitors and customers. We do not
-                            sell, rent, or trade your personal data.
+                            {t('privacy.s1.body')}
                         </p>
                     </section>
 
@@ -68,47 +67,31 @@ function PrivacyPolicy() {
                     {/* Section 2 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            02 / Information We Collect
+                            {t('privacy.s2.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            We only collect information that you voluntarily
-                            provide when creating an inquiry or placing an
-                            order:
+                            {t('privacy.s2.lead')}
                         </p>
                         <ul className='space-y-2 text-sm sm:text-base text-muted-foreground pl-1'>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    <b>Full Name</b> - used for order
-                                    identification and labeling
-                                </span>
+                                <span>{t('privacy.s2.items.name')}</span>
                             </li>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    <b>Email Address</b> - used to send order
-                                    confirmations and real-time tracking updates
-                                </span>
+                                <span>{t('privacy.s2.items.email')}</span>
                             </li>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    <b>Delivery Address</b> - used exclusively
-                                    by Posten Norge for physical parcel dispatch
-                                </span>
+                                <span>{t('privacy.s2.items.address')}</span>
                             </li>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    <b>Payment Information</b> - processed
-                                    securely through Vipps; card numbers never
-                                    touch or reside on our servers
-                                </span>
+                                <span>{t('privacy.s2.items.payment')}</span>
                             </li>
                         </ul>
                         <p className='text-xs sm:text-sm text-muted-foreground/80 leading-relaxed pt-1'>
-                            We do <b>not</b> collect personal data automatically
-                            or through cross-site tracking cookies.
+                            {t('privacy.s2.noCookies')}
                         </p>
                     </section>
 
@@ -117,39 +100,27 @@ function PrivacyPolicy() {
                     {/* Section 3 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            03 / How We Use Your Information
+                            {t('privacy.s3.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            Your information is used solely to fulfill our
-                            contractual commitments to you:
+                            {t('privacy.s3.lead')}
                         </p>
                         <ul className='space-y-2 text-sm sm:text-base text-muted-foreground pl-1'>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    Fabricating and custom-framing your 3D
-                                    topographic relief
-                                </span>
+                                <span>{t('privacy.s3.items.item1')}</span>
                             </li>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    Contacting you regarding dispatch, tracking,
-                                    or unexpected production delays
-                                </span>
+                                <span>{t('privacy.s3.items.item2')}</span>
                             </li>
                             <li className='flex items-start gap-2.5'>
                                 <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
-                                <span>
-                                    Responding to customer support inquiries and
-                                    replacement requests
-                                </span>
+                                <span>{t('privacy.s3.items.item3')}</span>
                             </li>
                         </ul>
                         <p className='text-xs sm:text-sm text-muted-foreground/80 leading-relaxed pt-1'>
-                            We never use your contact details for unsolicited
-                            marketing campaigns, nor do we disclose customer
-                            lists to third parties.
+                            {t('privacy.s3.noMarketing')}
                         </p>
                     </section>
 
@@ -158,26 +129,21 @@ function PrivacyPolicy() {
                     {/* Section 4 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            04 / Cookies & Payment Infrastructure
+                            {t('privacy.s4.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            When you make a payment on our website, verified
-                            payment providers (Vipps) set strictly essential
-                            session tokens to verify anti-fraud checks and
-                            guarantee transaction integrity.
+                            {t('privacy.s4.lead')}
                         </p>
-                        <p className='text-xs sm:text-sm text-muted-foreground/80 leading-relaxed'>
-                            These cookies cannot be turned off without breaking
-                            the checkout flow. For further details on cookie
-                            lifespans, please review our{' '}
-                            <a
-                                href='/cookies'
-                                className='font-semibold text-foreground underline underline-offset-4'
-                            >
-                                Cookie Policy
-                            </a>
-                            .
-                        </p>
+                        <ul className='space-y-2 text-sm sm:text-base text-muted-foreground pl-1'>
+                            <li className='flex items-start gap-2.5'>
+                                <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
+                                <span>{t('privacy.s4.items.vipps')}</span>
+                            </li>
+                            <li className='flex items-start gap-2.5'>
+                                <span className='size-1.5 rounded-full bg-foreground/60 shrink-0 mt-2' />
+                                <span>{t('privacy.s4.items.posten')}</span>
+                            </li>
+                        </ul>
                     </section>
 
                     <Separator className='border-border' />
@@ -185,13 +151,10 @@ function PrivacyPolicy() {
                     {/* Section 5 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            05 / Data Security
+                            {t('privacy.s5.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            We employ modern industry standards to protect your
-                            data, including transport-layer security (HTTPS/TLS)
-                            encryption on all endpoints and strict access
-                            limitations within our workshop databases.
+                            {t('privacy.s5.body')}
                         </p>
                     </section>
 
@@ -200,15 +163,10 @@ function PrivacyPolicy() {
                     {/* Section 6 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            06 / Your Rights (GDPR)
+                            {t('privacy.s6.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            Under Norwegian and European privacy regulations,
-                            you hold the right to request a copy of the personal
-                            data we store, request rectification of errors, or
-                            ask for complete deletion of your customer record
-                            once your warranty and accounting period has
-                            completed.
+                            {t('privacy.s6.body')}
                         </p>
                     </section>
 
@@ -217,12 +175,10 @@ function PrivacyPolicy() {
                     {/* Section 7 */}
                     <section className='space-y-3'>
                         <h2 className='font-display text-lg sm:text-xl font-bold tracking-tight text-foreground'>
-                            07 / Policy Updates
+                            {t('privacy.s7.title')}
                         </h2>
                         <p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
-                            Any revisions to our privacy practices will be
-                            published on this page alongside an updated revision
-                            date.
+                            {t('privacy.s7.body')}
                         </p>
                     </section>
 
@@ -234,10 +190,10 @@ function PrivacyPolicy() {
                             <Mail className='w-5 h-5 text-foreground shrink-0 mt-0.5' />
                             <div>
                                 <h3 className='font-display text-sm font-bold text-foreground'>
-                                    Questions or Data Inquiries?
+                                    {t('privacy.contact.title')}
                                 </h3>
                                 <p className='text-xs text-muted-foreground mt-0.5'>
-                                    Contact Maren & Daniel directly at{' '}
+                                    {t('privacy.contact.desc')}{' '}
                                     <a
                                         href='mailto:scapebymd@gmail.com'
                                         className='font-semibold text-foreground underline underline-offset-2'
@@ -252,7 +208,7 @@ function PrivacyPolicy() {
                             href='/contact-us'
                             className='inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-border bg-background text-foreground text-xs font-medium hover:bg-muted transition-colors shrink-0'
                         >
-                            <span>Contact Us</span>
+                            <span>{t('privacy.contact.cta')}</span>
                             <ArrowRight className='w-3 h-3' />
                         </a>
                     </section>

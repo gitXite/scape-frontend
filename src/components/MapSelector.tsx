@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GoogleMap, LoadScript, Rectangle } from '@react-google-maps/api';
 import { useInView } from 'react-intersection-observer';
 import { Slider } from './ui/slider';
@@ -13,7 +14,7 @@ import { generateAndFetchSTL } from '@/utils/generateAndFetchSTL';
 import { libraries } from '@/lib/googleMapLib';
 import { parseSTL } from '@/utils/parseSTL';
 import type { STLObject } from '@/types';
-import { /*Box,*/ ChevronsUp, /*Frame*/ } from 'lucide-react';
+import { /*Box,*/ ChevronsUp /*Frame*/ } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -36,7 +37,13 @@ const RATIO_WIDTH = 14;
 const RECT_HEIGHT = BASE_SCALE * RATIO_HEIGHT;
 const RECT_WIDTH = BASE_SCALE * RATIO_WIDTH;
 
-function MapSelector({ mode, className, classNameChild, showStepHeader = false }: MapSelectorProps) {
+function MapSelector({
+    mode,
+    className,
+    classNameChild,
+    showStepHeader = false,
+}: MapSelectorProps) {
+    const { t } = useTranslation('customizer');
     const [center, setCenter] = useState<LatLngLiteral>((): LatLngLiteral => {
         const coords = localStorage.getItem('coordinates');
         return coords
@@ -108,13 +115,13 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
         setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     }, []);
 
-    const handleCapture = async (): Promise<STLObject | undefined> => {
+    const handleCapture = async (): Promise<STLObject | null | undefined> => {
         setIsLoading(true);
         if (rectangleBounds) {
             switch (mode) {
                 case 'dummy':
-                    toast.success('Coordinates captured in test mode', {
-                        description: 'Get started to enable preview.',
+                    toast.success(t('map.toasts.testModeCaptured'), {
+                        description: t('map.toasts.getStartedEnablePreview'),
                     });
                     setIsLoading(false);
                     break;
@@ -147,24 +154,36 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                         });
                     }
                     try {
-                        const stlObject = await generateAndFetchSTL();
-                        if (!stlObject) {
-                            toast.error('Error generating STL', {
-                                description: 'Please try again later',
-                            });
-                            STLCache.invalidate();
-                            setIsLoading(false);
-                            return;
-                        }
-                        toast.success('Your Scape has been generated!', {
-                            description:
-                                'You can now preview your model, or proceed with customization.',
+                        const stlPromise = generateAndFetchSTL().then(
+                            (result) => {
+                                if (!result) {
+                                    STLCache.invalidate();
+                                }
+
+                                return result;
+                            },
+                        );
+
+                        toast.promise(stlPromise, {
+                            loading: t('map.toasts.generating'),
+                            success: {
+                                message: t('map.toasts.generatedSuccess'),
+                                description: t(
+                                    'map.toasts.generatedSuccessDesc',
+                                ),
+                            },
+                            error: {
+                                message: t('map.toasts.errorGenerating'),
+                                description: t('map.toasts.tryAgainLater'),
+                            },
                         });
+
+                        const stlObject = await stlPromise;
                         return stlObject;
                     } catch (err: any) {
                         console.error(err.message);
                         toast.error(err.message, {
-                            description: 'Please try again later',
+                            description: t('map.toasts.tryAgainLater'),
                         });
                         STLCache.invalidate();
                     } finally {
@@ -193,11 +212,11 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                 window.dispatchEvent(new Event('passe-partout-removed'));
             });
             STLCache.invalidate();
-            toast.success('Your Scape has been reset', {
-                description: 'Please capture your coordinates to proceed.',
+            toast.success(t('map.toasts.resetSuccess'), {
+                description: t('map.toasts.resetSuccessDesc'),
             });
         } else {
-            toast.success('Map has been reset');
+            toast.success(t('map.toasts.mapResetSuccess'));
         }
     };
 
@@ -264,13 +283,13 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                 {showStepHeader && (
                     <div className='flex flex-col items-center text-center mb-6 sm:mb-8'>
                         <Badge className='inline-flex text-xs font-medium text-surface-foreground border border-border px-3 py-1 mb-3 gap-2 bg-background/80 backdrop-blur-sm'>
-                            Step 01 · Landscape
+                            {t('map.stepBadge')}
                         </Badge>
                         <h1 className='font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground'>
-                            Select Your Coordinates.
+                            {t('map.title')}
                         </h1>
                         <p className='font-sans text-sm sm:text-base text-muted-foreground mt-1.5 max-w-lg'>
-                            Drag the frame across Norway to position your custom 3D terrain selection.
+                            {t('map.description')}
                         </p>
                     </div>
                 )}
@@ -415,11 +434,11 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                             >
                                 <div>
                                     <p className='text-sm font-medium text-foreground'>
-                                        Adjust Controls
+                                        {t('map.controls.title')}
                                     </p>
 
                                     <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
-                                        Terrain settings
+                                        {t('map.controls.subtitle')}
                                     </p>
                                 </div>
 
@@ -456,20 +475,23 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                     <HoverCardTrigger>
                                                         <div className='cursor-default text-left'>
                                                             <p className='text-sm font-medium text-foreground'>
-                                                                Capture Size
+                                                                {t(
+                                                                    'map.captureSize.title',
+                                                                )}
                                                             </p>
 
                                                             <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
-                                                                Controls terrain
-                                                                coverage
+                                                                {t(
+                                                                    'map.captureSize.subtitle',
+                                                                )}
                                                             </p>
                                                         </div>
                                                     </HoverCardTrigger>
 
                                                     <HoverCardContent className='text-sm text-left'>
-                                                        Adjust the captured
-                                                        terrain coverage.
-                                                        Default: 100%.
+                                                        {t(
+                                                            'map.captureSize.tooltip',
+                                                        )}
                                                     </HoverCardContent>
                                                 </HoverCard>
 
@@ -501,8 +523,16 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             />
 
                                             <div className='flex justify-between text-xs text-foreground/60'>
-                                                <span>Smaller</span>
-                                                <span>Larger</span>
+                                                <span>
+                                                    {t(
+                                                        'map.captureSize.smaller',
+                                                    )}
+                                                </span>
+                                                <span>
+                                                    {t(
+                                                        'map.captureSize.larger',
+                                                    )}
+                                                </span>
                                             </div>
                                         </div>
 
@@ -513,20 +543,23 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                     <HoverCardTrigger>
                                                         <div className='cursor-default text-left'>
                                                             <p className='text-sm font-medium text-foreground'>
-                                                                Terrain Height
+                                                                {t(
+                                                                    'map.terrainHeight.title',
+                                                                )}
                                                             </p>
 
                                                             <p className='hidden sm:block text-xs text-foreground/70 mt-1'>
-                                                                Vertical
-                                                                exaggeration
+                                                                {t(
+                                                                    'map.terrainHeight.subtitle',
+                                                                )}
                                                             </p>
                                                         </div>
                                                     </HoverCardTrigger>
 
                                                     <HoverCardContent className='text-sm text-left'>
-                                                        Increase or decrease
-                                                        terrain height. Default:
-                                                        2.0x
+                                                        {t(
+                                                            'map.terrainHeight.tooltip',
+                                                        )}
                                                     </HoverCardContent>
                                                 </HoverCard>
 
@@ -556,8 +589,16 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             />
 
                                             <div className='flex justify-between text-xs text-foreground/60'>
-                                                <span>Subtle</span>
-                                                <span>Dramatic</span>
+                                                <span>
+                                                    {t(
+                                                        'map.terrainHeight.subtle',
+                                                    )}
+                                                </span>
+                                                <span>
+                                                    {t(
+                                                        'map.terrainHeight.dramatic',
+                                                    )}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -577,7 +618,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                     cursor-pointer
                                                 `}
                                             >
-                                                Reset
+                                                {t('map.buttons.reset')}
                                             </Button>
                                         )}
                                         {/* <div className='flex items-center gap-2 sm:gap-3'>
@@ -661,7 +702,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                             disabled:pointer-events-none
                                         '
                                     >
-                                        Preview
+                                        {t('map.buttons.preview')}
                                     </Button>
 
                                     {!isMobile && (
@@ -680,7 +721,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                                 hover:text-foreground
                                             '
                                         >
-                                            Reset
+                                            {t('map.buttons.reset')}
                                         </Button>
                                     )}
                                 </div>
@@ -700,7 +741,8 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                         shadow-sm
                                         transition-color
                                         duration-150
-                                        min-w-[200px]
+                                        sm:min-w-[200px]
+                                        min-w-[170px]
                                         cursor-pointer
                                         hover:bg-background
                                         hover:text-foreground
@@ -717,7 +759,7 @@ function MapSelector({ mode, className, classNameChild, showStepHeader = false }
                                     {isLoading ? (
                                         <Spinner variant={'ellipsis'} />
                                     ) : (
-                                        'Generate Scape'
+                                        t('map.buttons.generate')
                                     )}
                                 </Button>
                             </div>

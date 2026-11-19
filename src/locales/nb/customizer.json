@@ -1,0 +1,159 @@
+{
+  "stepper": {
+    "landscape": "Landskap",
+    "frame": "Ramme",
+    "passepartout": "Passepartout",
+    "previous": "Forrige",
+    "next": "Neste",
+    "checkout": "Til kassen"
+  },
+  "guide": {
+    "button": "Veileder",
+    "title": "Slik bestiller du din SCAPE",
+    "subtitle": "4 enkle steg fra kart til kasse",
+    "step1": {
+      "tag": "Kart",
+      "title": "Velg koordinater og område",
+      "desc1": "Finn et hvilket som helst sted i Norge og klikk for å sentrere kartet, eller dra rammen. Bruk <bold>Områdestørrelse</bold> for å justere utsnitt og <bold>Terrenghøyde</bold> for høydeforsterkning. Standard 2.0x er 1:1 skala.",
+      "desc2": "<bold>Generer Scape</bold> for å forhåndsvise modellen eller gå videre."
+    },
+    "step2": {
+      "tag": "Ramme",
+      "title": "Velg ramme",
+      "desc": "Velg rammen du foretrekker. Sanntids lagerstatus verifiseres automatisk."
+    },
+    "step3": {
+      "tag": "Finish",
+      "title": "Legg til passepartout",
+      "desc": "Velg en syrefri passepartout med skråskåret kant for å gi 3D-modellen ekstra arkitektonisk dybde."
+    },
+    "step4": {
+      "tag": "Bestilling",
+      "title": "Se over og betal med Vipps",
+      "desc": "Fullfør på sekunder med Vipps. Hvert verk 3D-printes i Bergen og leveres over hele landet via Posten med sporing."
+    },
+    "tip": "Tips: Husk å forhåndsvise modellen i steg 1.",
+    "signature": "SCAPE by md"
+  },
+  "map": {
+    "stepBadge": "Steg 01 · Landskap",
+    "title": "Velg dine koordinater.",
+    "description": "Dra rammen over Norge for å plassere ditt skreddersydde 3D-terrengutsnitt.",
+    "controls": {
+      "title": "Kontroller",
+      "subtitle": "Terrenginnstillinger"
+    },
+    "captureSize": {
+      "title": "Områdestørrelse",
+      "subtitle": "Styrer terrengutsnittet",
+      "tooltip": "Juster utsnittet av terrenget. Standard: 100%.",
+      "smaller": "Mindre",
+      "larger": "Større"
+    },
+    "terrainHeight": {
+      "title": "Terrenghøyde",
+      "subtitle": "Vertikal forsterkning",
+      "tooltip": "Øk eller reduser terrenghøyden. Standard: 2.0x",
+      "subtle": "Subtil",
+      "dramatic": "Markant"
+    },
+    "buttons": {
+      "preview": "Forhåndsvis",
+      "reset": "Nullstill",
+      "generate": "Generer Scape"
+    },
+    "toasts": {
+      "testModeCaptured": "Koordinater lagret i testmodus",
+      "getStartedEnablePreview": "Start tilpasning for å aktivere forhåndsvisning.",
+      "errorGenerating": "Kunne ikke generere STL",
+      "tryAgainLater": "Vennligst prøv igjen senere",
+      "generatedSuccess": "Din Scape er generert!",
+      "generatedSuccessDesc": "Du kan nå forhåndsvise modellen din, eller fortsette med tilpasningen.",
+      "resetSuccess": "Din Scape har blitt nullstilt",
+      "resetSuccessDesc": "Vennligst velg koordinater for å fortsette.",
+      "mapResetSuccess": "Kartet har blitt nullstilt",
+      "generating": "Genererer Scape..."
+    }
+  },
+  "previewModal": {
+    "title": "3D-modell forhåndsvisning",
+    "subtitle": "Dra for å rotere, scroll for å zoome",
+    "resetView": "Tilbakestill visning",
+    "close": "Lukk (Esc)",
+    "loading": "Laster modell...",
+    "hints": {
+      "esc": "for å lukke",
+      "scroll": "Scroll for å zoome",
+      "rotate": "Venstreklikk for å rotere",
+      "drag": "Høyreklikk for å flytte"
+    }
+  },
+  "frame": {
+    "stepBadge": "Steg 02 · Rammer",
+    "title": "Velg din ramme.",
+    "description": "Velg en ramme til ditt skreddersydde 3D-kunstverk.",
+    "preview": {
+      "live": "Sanntids forhåndsvisning",
+      "dimensions": "21 × 30 cm (A4)",
+      "selectedFinish": "Valgt finish:",
+      "selectFrame": "Velg en ramme",
+      "frameSuffix": "ramme"
+    },
+    "available": {
+      "title": "Tilgjengelige rammer",
+      "subtitle": "Sanntids lagerstatus."
+    },
+    "options": {
+      "oak": {
+        "title": "Eik",
+        "desc": "Naturlig og tidløs skandinavisk trestruktur"
+      },
+      "walnut": {
+        "title": "Valnøtt",
+        "desc": "Dyp, mørk tretone med varm glød"
+      },
+      "white": {
+        "title": "Hvit",
+        "desc": "Ren, minimalistisk og arkitektonisk hvitfarge"
+      },
+      "black": {
+        "title": "Svart",
+        "desc": "Markant kontrast med silkematt profil"
+      }
+    },
+    "finishSuffix": "Finish",
+    "stock": {
+      "inStock": "På lager",
+      "outOfStock": "Utsolgt",
+      "restock": "Forventet på lager"
+    },
+    "guarantee": "Ferdige produkter inspiseres og kvalitetssikres i Bergen."
+  },
+  "passepartout": {
+    "stepBadge": "Steg 03 · Passepartout",
+    "title": "Velg en passepartout.",
+    "description": "En passepartout med skråskåret kant skaper visuell ro og fremhever relieffets dybde.",
+    "preview": {
+      "configuration": "Konfigurasjon:",
+      "frameSuffix": "ramme",
+      "matSuffix": "passepartout",
+      "selectMat": "Velg passepartout"
+    },
+    "available": {
+      "title": "Tilgjengelige farger",
+      "subtitle": "1,4 mm tykk med 45° skråskåret kant."
+    },
+    "options": {
+      "white": {
+        "title": "Hvit",
+        "desc": "Lys, luftig og klassisk galleristil som lar skyggene i modellen tre frem"
+      },
+      "black": {
+        "title": "Sort",
+        "desc": "Dramatisk dybde med skarp kantkontrast som forankrer terrenget"
+      }
+    },
+    "matLabel": "passepartout",
+    "bevelCut": "45° skråskåret kant"
+  }
+}

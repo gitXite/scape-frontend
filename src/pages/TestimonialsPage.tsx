@@ -1,8 +1,11 @@
 import BackButton from '@/components/BackButton';
 import Footer from '@/components/Footer';
 import Testemonials from '@/components/Testemonials';
+import { useTranslation } from 'react-i18next';
 
 function TestimonialsPage() {
+    const { t } = useTranslation('pages');
+
     return (
         <div className='flex flex-col min-h-screen w-full bg-surface text-surface-foreground font-sans'>
             <BackButton page='home' />
@@ -18,7 +21,7 @@ function TestimonialsPage() {
                     href='/'
                     className='text-xs font-medium text-muted-foreground hover:text-surface-foreground transition-colors'
                 >
-                    Back to Home
+                    {t('testimonials.header.backToHome')}
                 </a>
             </div>
 

@@ -26,7 +26,7 @@ function getLayout(vpWidth: number) {
         return {
             finalX: 0.0,
             finalY: 0.22,
-            scale: 0.62,
+            scale: 0.72,
             camPos: new THREE.Vector3(0, 3.6, 9.6),
             camLookAt: new THREE.Vector3(0, 0.22, 0),
         };
